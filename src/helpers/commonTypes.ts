@@ -1,0 +1,85 @@
+import Error from "next/error";
+
+export enum TtoastType{'success'='success','error'='error'};
+
+type BlogInfo = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  categories: string;
+  contentBody: string;
+  featuredImageUrl: string;
+  alterTextForFeaturedImage: string;
+  author: string;
+  publishDate?: Date;
+};
+
+type BlogInfoFromDB = Omit<
+  BlogInfo,
+  | "contentBody"
+  | "featuredImageUrl"
+  | "alterTextForFeaturedImage"
+  | "publishDate"
+> & {
+  id: number;
+  created_at: Date;
+  updated_at: Date;
+  content_body: string;
+  featured_image: string;
+  alter_text_for_featured_image: string;
+  publish_date: Date;
+};
+
+export interface DynamicSubscriptionPack {
+  accessible_content: string;
+  amount: string;
+  bkashOnetime: number;
+  bkashSubscription: number;
+  canApplyPromo: number;
+  country: string;
+  created_at: Date | string;
+  days: number;
+  description: string;
+  dynamicPrice: string;
+  excluded_payment_methods: string | null;
+  frequency: string;
+  globalPrice: string;
+  googlePay: number;
+  id: number;
+  isOnetime: number;
+  length: string;
+  nagadOnetime: number;
+  name: string;
+  priority: string;
+  rawPrice: number;
+  recommendation: string;
+  redeem: number;
+  sku: string;
+  status: string;
+  subscriptionItemId: string;
+  surjoPay: number;
+  updated_at: null;
+  vat: number;
+}
+
+export enum TMethods {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",  
+  DELETE = "DELETE",
+  PATCH = "PATCH",
+  OPtions = "OPTIONS",
+}
+
+export type TCommonApiCallArgs={
+    name:string;
+    url:string;
+    body?:JSON | string | null;
+    method:TMethods;
+    defaultTokenAllowed?:boolean;
+    catchCB?:(err:any)=>void;
+    noToken?:boolean;
+    extraHeaders?:Object;
+}
+
+export type { BlogInfo, BlogInfoFromDB };
