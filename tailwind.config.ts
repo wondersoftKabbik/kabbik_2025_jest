@@ -19,6 +19,10 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			bg:'#050f1e',
+			grey:'#5E5E5E',
+			pink: "#E319BC", // custom primary
+			deep_pink: "#64748B",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -82,7 +86,19 @@ const config: Config = {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
-  	}
+  	},
+	screens: {
+	  'xxs':'350px',
+      'xs': '480px',   // Extra small devices
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
+	fontFamily: {
+      poppins: ["Inter", 'sans-serif'],
+    },
   },
   plugins: [require("tailwindcss-animate")],
 };

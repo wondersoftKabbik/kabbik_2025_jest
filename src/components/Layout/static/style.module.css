@@ -1,4 +1,40 @@
 .navbarList li{
     /* padding: 0px 5px; */
     padding:0px 10px 0;
+    font-size: 17px;
+}
+
+.subCategories{
+    position: absolute;
+    max-height: 350px;
+    overflow-y: scroll;
+    width: 280px;
+    background-color: #D9D9D91A;
+    margin-top: 10px;
+    border-bottom: 1px solid #5f5f5f;
+}
+
+.subCategories div{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: #001F29;
+    margin: 8px 0;
+    border-radius: 8px;
+    padding: 5px;
+}
+.menuIcon{
+    display: none;
+}
+
+@media (max-width: 950px){
+    .menuIcon{
+        display: block;
+    }
+    .navbarList{
+        display: none;
+    }
+}
+@media (max-width: 380px){
+    
 }

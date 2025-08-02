@@ -6,6 +6,9 @@ const nextConfig = {
   // experimental: {
   //   serverActions: true,
   // },
+  images:{domains:[
+    'kabbik-space.sgp1.digitaloceanspaces.com'
+  ]}
 };
 
 export default nextConfig;

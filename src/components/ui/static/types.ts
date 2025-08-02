@@ -1,6 +1,6 @@
-type TCommonBtnProps={
-    isLoading:boolean;
-    disabled:boolean;
+export type TCommonBtnProps={
+    isLoading?:boolean;
+    disabled?:boolean;
     children:string | React.ReactNode;
     handleClick?:() => void;
     className?:string;
@@ -20,6 +20,14 @@ export type TCategoryItem= {
   created_at: string;   // or Date, if you parse it
   updated_at: string;   // or Date, if you parse it
 };
+
+export type TCategoriesSlice={
+  CategoriesData:TCategoryItem[]|null;
+}
+
+export type TUserSlice={
+  userData:TUserProfile|null;
+}
 
 export type TUserProfile = {
   id: number;
@@ -56,3 +64,12 @@ export type TUserProfile = {
   created_at: string; // or Date if parsed
   updated_at: string; // or Date if parsed
 };
+
+
+// export type TCommonBtnProps={
+//   isLoading:boolean;
+//   disabled:boolean;
+//   children:boolean;
+//   handleClick:boolean;
+//   className:boolean;
+// }

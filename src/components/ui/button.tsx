@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '@/components/ui/static/styles.module.css';
 import { spinnerClassNames } from './static/tailwind.classes';
+import { TCommonBtnProps } from './static/types';
 
 const CommonButton = (props:TCommonBtnProps) => {
   const {isLoading,disabled,children,handleClick,className} = props;

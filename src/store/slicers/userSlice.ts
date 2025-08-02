@@ -1,17 +1,22 @@
 // store/slices/counterSlice.ts
+import { TUserSlice } from '@/components/ui/static/types';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { value: 0 };
+const initialState:TUserSlice = { 
+    userData:null
+ };
 
-const counterSlice = createSlice({
-  name: 'counter',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    increment: (state) => { state.value += 1 },
-    decrement: (state) => { state.value -= 1 },
-    reset: (state) => { state.value = 0 },
+    setUser: (state,action) => { 
+      return {userData:action.payload}
+    },
+    updateUser: (state) => {  },
+    deleteUser: (state) => {  },
   },
 });
 
-export const { increment, decrement, reset } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { setUser, updateUser, deleteUser } = userSlice.actions;
+export default userSlice.reducer;

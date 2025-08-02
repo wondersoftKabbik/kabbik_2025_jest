@@ -13,11 +13,11 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.1",
     "@radix-ui/react-accordion": "^1.2.11",
+    "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-slot": "^1.2.3",
     "@reduxjs/toolkit": "^2.8.2",
     "@types/js-cookie": "^3.0.6",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.525.0",
     "negotiator": "^1.0.0",
@@ -27,8 +27,11 @@
     "react-dom": "^18",
     "react-redux": "^9.2.0",
     "react-toastify": "^11.0.5",
+    "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-variants": "^2.0.1",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
