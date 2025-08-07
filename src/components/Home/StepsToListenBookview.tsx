@@ -42,7 +42,7 @@ const StepsToListenBookview = () => {
             <h2 className='gradient-text text-[43px] font-[600] mb-9'>{staticText?.heading}</h2>
             {staticText?.datas?(
                 staticText.datas?.map((item,i:number)=>(
-                    <div className='flex items-center text-white font-medium text-[29px] mb-7'>
+                    <div key={i} className='flex items-center text-white font-medium text-[29px] mb-7'>
                         <span className='inline-block mr-3 max-w-[70px] max-h-[70px]'>{IconsForSteps[i]}</span>
                         <p>{item}</p>
                     </div>

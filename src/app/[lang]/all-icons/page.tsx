@@ -9,8 +9,8 @@ const page = () => {
     
   return (
     <div className='grid grid-cols-6'>
-        {Icons.map((item)=>(
-            <div className='w-16 h-16 mb-16'>
+        {Icons.map((item,i)=>(
+            <div key={i} className='w-16 h-16 mb-16'>
                 {item.name}
                 <span className='w-8 h-8'>
                     {item.component}
