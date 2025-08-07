@@ -30,17 +30,17 @@ export const OneToTen:{ [key: string]: JSX.Element }={
     "10":<Ten/>
 }
 
-export const IconsForSteps=[
-    <FolderWithBgIcon/>,
-    <BellIcon/>,
-    <LoveIconWithBg/>,
-    <DownloadIconWithBg/>,
-    <BookMarkIcon/>,
-    <ShareIconWithBg/>,
-    <FolderWithBgIcon/>,
-    <LoveIconWithBg/>,
-    <DownloadIconWithBg/>,
-]
+export const IconsForSteps = [
+    <FolderWithBgIcon key={1} />,
+    <BellIcon key={2} />,
+    <LoveIconWithBg key={3} />,
+    <DownloadIconWithBg key={4} />,
+    <BookMarkIcon key={5} />,
+    <ShareIconWithBg key={6} />,
+    <FolderWithBgIcon key={7} />,
+    <LoveIconWithBg key={8} />,
+    <DownloadIconWithBg key={9} />,
+];
 
 export const StepsBySteps={
     heading:"ধাপে ধাপে কীভাবে বই শুনবেন",
