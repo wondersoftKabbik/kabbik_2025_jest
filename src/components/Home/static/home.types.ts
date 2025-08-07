@@ -9,3 +9,11 @@ export type THomeProps={
     topBannerData:{data:TopBannerImageInfo[] | null},
     promoData:PromoBannerInfo,
 }
+
+export type TBestCollection={
+    homeData:HomeInfo
+}
+
+export type TBigBanners={
+    
+}

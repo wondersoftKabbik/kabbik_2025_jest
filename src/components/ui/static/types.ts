@@ -6,6 +6,32 @@ export type TCommonBtnProps={
     className?:string;
 }
 
+export type staticTextSlice= {
+  data: null |
+  {
+    home_page_steps_by_steps: {
+      heading: string;
+      datas: string[];
+    };
+    best_collection: {
+      bg: string;
+      heading: string;
+      para: string;
+      category: string;
+    }[];
+    home_video:{
+        "video1":string;
+    },
+    big_book_banners:[
+        {
+            img:string,
+            id:string
+        }
+    ]
+  }
+};
+
+
 export type TCategoryItem= {
   id: number;
   name: string;

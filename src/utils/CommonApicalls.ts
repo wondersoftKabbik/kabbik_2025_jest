@@ -21,18 +21,20 @@ export const getHeaders=(defaultTokenAllowed:boolean|undefined,noToken?:boolean,
 
 
 export const CommonApiHandler = async (
-    {name,url,method,body,defaultTokenAllowed,catchCB,noToken,extraHeaders}:TCommonApiCallArgs
+    {name,url,method,body,defaultTokenAllowed,catchCB,noToken,extraHeaders,notNeedHeaders}:TCommonApiCallArgs
 ) => {
     const requestOptions :any= {
     method: method || "GET",
-    headers: getHeaders(defaultTokenAllowed,noToken,extraHeaders),
   };
+  if(!notNeedHeaders){
+    requestOptions.headers= getHeaders(defaultTokenAllowed,noToken,extraHeaders);
+  }
   if(body){
     requestOptions.body = body;
   }
   try {
     const response = await  fetch(url, requestOptions);
-    return response.json();
+    return await response.json();
   } catch (err) {
     catchCB && catchCB(err);
     return null;

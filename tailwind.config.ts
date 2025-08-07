@@ -22,6 +22,8 @@ const config: Config = {
 			bg:'#050f1e',
 			grey:'#5E5E5E',
 			pink: "#E319BC", // custom primary
+			ash_blue:"#4E4E4E24",
+			black:"#050F1E",
 			deep_pink: "#64748B",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

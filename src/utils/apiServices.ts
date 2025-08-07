@@ -815,6 +815,18 @@ export const categorySuggestions = async () => {
   )
 };
 
+export const fetchDataFromJson = async () => {
+  const url = "https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-jsons/kabbik_new_jest.json?v="+Date.now();
+   return await CommonApiHandler(
+    {
+      name: "fetchDataFromDigitalSpaceJson",
+      url:url,
+      method: TMethods.GET,
+      notNeedHeaders:true
+    }
+  )
+};
+
 export const userProfile = async () => {
   const userId = Cookies.get("id") ;
    return await CommonApiHandler(
@@ -1001,6 +1013,19 @@ export const subscriptionList = async () => {
       url:url,
       method: TMethods.POST,
       body:JSON.stringify({ "countryAccess":  "BD"  })
+    }
+  )
+};
+
+export const cityBankApiTest = async () => {
+  const url = "http://localhost:8097/api/routes/city-bank-payment-status";
+  return await CommonApiHandler(
+    {
+      name: "cityBankApiTest",
+      url:url,
+      method: TMethods.POST,
+      body:JSON.stringify({txnStatus:1,merchanRefNo:"fgfdhhfdfb436",
+transactionId:"fhdh3747719084f2892710e9",txnamount:10000} )
     }
   )
 };

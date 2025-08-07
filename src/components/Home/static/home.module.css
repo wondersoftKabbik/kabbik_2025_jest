@@ -50,9 +50,9 @@
     color: white;
     display: flex;
     padding: 40px 5vw;
-    background: linear-gradient(0deg, rgba(6, 21, 43, 0.17) 8.31%, rgba(38, 19, 39, 0.17) 100%);
+    /* background: linear-gradient(0deg, rgba(6, 21, 43, 0.17) 8.31%, rgba(38, 19, 39, 0.17) 100%); */
     justify-content: space-around;
-    background: linear-gradient(0deg, rgba(6, 21, 43, 0.17) 8.31%, rgba(38, 19, 39, 0.17) 100%);
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .download_txt{

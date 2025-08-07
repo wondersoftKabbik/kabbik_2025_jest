@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { ReactHTMLElement } from 'react'
 // import { createTranslation } from 'next-international';
 import { toast, ToastPosition } from 'react-toastify';
 import { TtoastType } from './commonTypes';
 import { apiEndPoints } from '../utils/apiEndpoints';
+import { TBooks } from '@/pageTypes/home.types';
 
 export const StringToJSX=(str:string)=>{
 
@@ -110,6 +111,7 @@ export function normalizeBLNumber(input:string ) {
 
   // Now should start with 19 or 14 and be 10 digits
   if ((normalized.startsWith('19') || normalized.startsWith('14')) && normalized.length === 10) {
+    console.log(normalized)
     return normalized;
   }
 
@@ -174,7 +176,18 @@ export function extractNumber(input:string) {
 }
 
 export function add(a: number, b: number): number {
-  return 5;
+  return a+b;
+}
+
+export type TcatWiseData={data:TBooks[],name:string}
+
+export const findCatwiseData=(arr:TcatWiseData[],catName:string):TcatWiseData | undefined=>{
+  return arr.find((item)=>item.name===catName);
+}
+
+export const stopPropagation=(e:any)=>{
+  e.stopPropagation();
+  // e.preventDefault();
 }
 
 

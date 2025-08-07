@@ -80,6 +80,7 @@ export type TCommonApiCallArgs={
     catchCB?:(err:any)=>void;
     noToken?:boolean;
     extraHeaders?:Object;
+    notNeedHeaders?:boolean;
 }
 
 export type { BlogInfo, BlogInfoFromDB };

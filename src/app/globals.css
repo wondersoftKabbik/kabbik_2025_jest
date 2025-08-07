@@ -21,6 +21,7 @@ body{
   padding: 0;
   margin: 0;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
 }
 
 
@@ -32,3 +33,34 @@ body{
     @apply bg-background text-foreground;
   }
 } */
+
+.swiper{
+  overflow: visible !important;
+  /* overflow-x: hidden !important; */
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #CE4573 0%, #68233A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hr_gradient{
+   background: linear-gradient(90deg, #CE4573 0%, #68233A 100%);
+}
+
+.best_collection .swiper-pagination-bullet {
+    background: white !important;
+    width: 14px !important;
+    height: 14px !important;
+
+}
+.best_collection .swiper-pagination {
+    bottom: 10px !important;
+    z-index: 100;
+}
+.best_collection .swiper-button-next,
+.best_collection .swiper-button-prev {
+  bottom: 0;
+  top: auto;
+}
