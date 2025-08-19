@@ -106,12 +106,12 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                                   key={item?.id}
                                   onClick={() => {
                                     router.push(
-                                      `/audiobook_details/${item?.id}`
+                                      `/audiobook/${item?.id}`
                                     );
                                   }}
                                   className={styles.swiper_slider_custom}
                                 >
-                                  <Link href={`/audiobook_details/${item?.id}`}>
+                                  <Link href={`/audiobook/${item?.id}`}>
                                       <div className={styles.item_cont} key={index}>
                                         <span className='max-w-[205px] max-h-[281px] inline-block'>
                                           {OneToTen[(index+1).toString()] ?(

@@ -1,5 +1,7 @@
 
 import React from 'react';
+import Minus10Sec from './Minus10Sec';
+import BootomTraingle from './BootomTraingle';
 import AppStoreIcon from './AppStoreIcon';
 import AudioBooksIcon from './AudioBooksIcon';
 import BellIcon from './BellIcon';
@@ -30,6 +32,7 @@ import Six from './Six';
 import Ten from './Ten';
 import Three from './Three';
 import Two from './Two';
+import Plus10Sec from './Plus10Sec';
 
 
 export const Icons=[
@@ -62,7 +65,10 @@ export const Icons=[
     {name:'rightAngle',component:<RightAngle/>},
     {name:'RightArrowIcon',component:<RightArrowIcon/>},
     {name:'SearchIcon',component:<SearchIcon/>},
-    {name:'ShareIconWithBg',component:<ShareIconWithBg/>}
+    {name:'ShareIconWithBg',component:<ShareIconWithBg/>},
+    {name:'BootomTraingle',component:<BootomTraingle/>},
+    {name:'BootomTraingle',component:<Minus10Sec/>},
+    {name:'BootomTraingle',component:<Plus10Sec/>}
 ]
 
 // export default Index

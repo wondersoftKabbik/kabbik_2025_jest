@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { getDictionary } from "./dictionaries";
 import HomeComponent from "@/components/Home/HomeComponent.view";
+import { getApprovedBlogs } from "@/utils/server-api";
 
 export const metadata: Metadata = {
   title: "Bangla Audiobook App | Kabbik Audiobook & Podcast",
@@ -21,17 +22,20 @@ export default async function Home({
   const { lang } = await params
   const dict = await getDictionary(lang) // en
   const homeData: HomeInfo = await homeListData();
+  
   const topBannerData: {data:TopBannerImageInfo[] | null} = await topBanner();
   const promoData: PromoBannerInfo = await promoBannerList();
+  const blogs = await getApprovedBlogs();
 
   console.log(topBannerData,"homeData");
   return (
-    <main  className="mt-[-100px]">
+    <main className="bg-bg min-h-screen">
       <HomeComponent
         homeData={homeData}
         topBannerData={topBannerData}
         promoData={promoData}
         dict={dict}
+        blogs={blogs}
       />
     </main>
   );

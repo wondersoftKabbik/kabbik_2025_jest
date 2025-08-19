@@ -1017,6 +1017,22 @@ export const subscriptionList = async () => {
   )
 };
 
+export async function addFavorite( audioBookId:string) {
+  const userId= Cookies.get("user_id");
+  const bodyData = {
+    user_id: userId,
+    audiobook_id: audioBookId.toString(),
+  };
+  return await CommonApiHandler(
+    {
+      name: "addFavorite",
+      url:apiEndPoints.favPostApi,
+      method: TMethods.POST,
+      body:JSON.stringify(bodyData)
+    }
+  )
+}
+
 export const cityBankApiTest = async () => {
   const url = "http://localhost:8097/api/routes/city-bank-payment-status";
   return await CommonApiHandler(

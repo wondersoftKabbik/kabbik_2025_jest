@@ -1,7 +1,7 @@
 import React, { ReactHTMLElement } from 'react'
 // import { createTranslation } from 'next-international';
 import { toast, ToastPosition } from 'react-toastify';
-import { TtoastType } from './commonTypes';
+import { Edigit, TtoastType, TtranslatorNums } from './commonTypes';
 import { apiEndPoints } from '../utils/apiEndpoints';
 import { TBooks } from '@/pageTypes/home.types';
 
@@ -190,13 +190,108 @@ export const stopPropagation=(e:any)=>{
   // e.preventDefault();
 }
 
+export function formatDate(dateString: string, lang: 'bn' | 'en' = 'en'): string {
+  const date = new Date(dateString);
+
+  const monthsEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const monthsBn = ["জানুয়ারী", "ফেব্রুয়ারী", "মার্চ", "এপ্রিল", "মে", "জুন",
+                    "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
+
+  const enDigits = ['0','1','2','3','4','5','6','7','8','9'];
+  const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+
+  if (lang === 'bn') {
+    const bnDay = day.toString().replace(/\d/g, d => bnDigits[+d]);
+    const bnYear = year.toString().replace(/\d/g, d => bnDigits[+d]);
+    return `${bnDay} ${monthsBn[monthIndex]} ${bnYear}`;
+  } else {
+    return `${day} ${monthsEn[monthIndex]} ${year}`;
+  }
+}
 
 
-// export const {
-//   useTranslation,
-//   TranslationProvider,
-//   getTranslation,
-// } = createTranslation({
-//   en: () => import('@/locales/en/common.json'),
-//   bn: () => import('@/locales/bn/common.json'),
-// });
+export  function decodeWord(encodedStr:string) {
+  return decodeURIComponent(encodedStr);
+}
+
+
+export const numberTranslator=(num:number, map:any)=> {
+  return String(num)
+    .split('')
+    .map(digit => map[digit as Edigit] || digit)
+    .join('');
+}
+
+
+export const handleShare = async () => {
+	if (navigator.share) {
+		try {
+			await navigator.share({
+				title: document.title,
+				text: 'Check this out!',
+				url: window.location.href,
+			});
+		} catch (error) {
+			console.error('Error sharing:', error);
+		}
+	} else {
+		alert('Share not supported on this browser.');
+	}
+};
+
+export function formatDateDDMMYY(dateStr: string): string {
+  const date = new Date(dateStr.replace(" ", "T")); // Ensure ISO format
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const year = String(date.getFullYear()).slice(-2); // Last two digits
+  return `${day}/${month}/${year}`;
+}
+
+export function formatTimeForAudio(secs: number) {
+  if (!isFinite(secs) || secs < 0) return "0:00";
+  const m = Math.floor(secs / 60);
+  const s = Math.floor(secs % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
+export const clampAudio=(v: number, min: number, max: number) =>{
+  return Math.max(min, Math.min(max, v));
+}
+
+export const formatNumber = (num: number): any => {
+  if (num >= 1e9) {
+    return (num / 1e9).toFixed(1) + "B";
+  }
+  if (num >= 1e6) {
+    return (num / 1e6).toFixed(1) + "M";
+  }
+  if (num >= 1e3) {
+    return (num / 1e3).toFixed(1) + "K";
+  }
+  return num;
+};
+
+export const  GetFloatNum=(num:number|string,toPosition:number)=>{
+  if( typeof num !== 'number' && typeof num !== 'string' || isNaN(Number(num)) || !isFinite(Number(num))) {
+    return 0;
+  } 
+  return Number(Number(num).toFixed(toPosition));
+}
+
+
+export function textSlice(
+  text: string,
+  length: number,
+  addEllipsis = true,
+  defaultText = "N/A"
+): string {
+  if(text.length === 0) return defaultText;
+  if (text.length <= length) return text
+  return addEllipsis ? text.slice(0, length) + "…" : text.slice(0, length)
+}

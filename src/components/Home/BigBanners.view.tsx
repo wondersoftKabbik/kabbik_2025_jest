@@ -16,7 +16,7 @@ const BigBanners = () => {
 
     
   return (
-    <div className='best_collection my-10 text-white mt-20'>
+    <div className='best_collection my-10 max-w-[1440px] h-[790px] mx-auto overflow-hidden text-white mt-20'>
         <Swiper
             // slidesPerView={1}
             // spaceBetween={1}
@@ -63,7 +63,7 @@ const BigBanners = () => {
                         // className={styles.swiper_slider_custom}
                         >
                         <Link href={`/${item?.id}`}>
-                            <div className='w-full max-w-[1440px] h-[550px]'>
+                            <div className='w-full  h-[550px]'>
                                 <figure className='max-w-[100%] max-h-[100%]'>
                                     <img className='max-w-[100%] max-h-[100%]' src={item.img}/>
                                 </figure>

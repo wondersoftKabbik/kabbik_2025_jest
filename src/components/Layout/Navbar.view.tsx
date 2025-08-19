@@ -12,6 +12,7 @@ import AudioBookIcon from '@/svgs/AudioBooksIcon'
 import MenuIcons from '@/svgs/MenuIcons'
 import { CustomDrawer } from '../ui/drawer'
 import MobileNavbar from './MobileNavbar.view'
+import { paths } from '@/utils/Paths'
 
 
 const Navbar = (props:TNavbar) => {
@@ -59,7 +60,7 @@ const Navbar = (props:TNavbar) => {
                         </ul>}
                     </li>
                     <li>
-                        <Link href={'/'}>আপকামিং</Link>
+                        <Link href={paths.upcoming}>আপকামিং</Link>
                     </li>
                     <li>
                         <Link href={'/'}>রেফার এন্ড  আর্ন</Link>

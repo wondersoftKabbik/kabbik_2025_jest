@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '@/components/Home/static/category.module.css'
@@ -27,6 +27,7 @@ import "swiper/css/navigation";
 import CommonButton from '../ui/button';
 import PlayerIcon from '@/svgs/PlayerIcon';
 import ExpandableIcon from '@/svgs/ExpandableIcon';
+import { paths } from '@/utils/Paths';
 // import DesktopCrown from '../../svgs/DesktopCrown';
 
 type tProps={
@@ -39,15 +40,26 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const router=useRouter();
+  const [podcast,setPodcast]=useState(false)
   const [expand,setIsExpand]=useState<boolean>(false);
+
+  useEffect(()=>{
+    if(categoryName==="কাব্যিক গ্যালারী" || categoryName==="পডকাস্ট"){
+      setPodcast(true)
+    }else{
+      setPodcast(false)
+    }
+  },[])
   return (
 
     <div className={styles.container}>
         <div className={styles.heading_container}>
             <h3 className={styles.heading}>{categoryName}</h3>
             <div className={styles.see_all}>
-                সব দেখুন
-                <span className={styles.arrow}><RightArrowIcon/></span>
+              <Link href={paths.categoryWiseBooks(categoryName)}>
+                  সব দেখুন
+                  <span className={styles.arrow}><RightArrowIcon/></span>
+              </Link>
             </div>
         </div>
         <div className={styles.slider_box}>
@@ -105,13 +117,13 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                           key={item?.id}
                           onClick={() => {
                             router.push(
-                              `/audiobook_details/${item?.id}`
+                              `/audiobook/${item?.id}`
                             );
                           }}
                           className={styles.swiper_slider_custom}
                         >
-                                <Link href={`/audiobook_details/${item?.id}`}>
-                                    <div className={categoryName==="পডকাস্ট"?' mx-4':styles.item_cont} key={index}>
+                                <Link href={`/audiobook/${item?.id}`}>
+                                    <div className={podcast?' mx-4':styles.item_cont} key={index}>
                                         {isPopular?
                                             <p className={styles.popular}>Most Popular</p>
                                         :''}
@@ -121,9 +133,9 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                         {item.for_rent?(
                                             <div className={styles.rent}>রেন্ট ৫০ টাকা</div>
                                         ):''}
-                                        <picture className={categoryName==="পডকাস্ট"?styles.podcast_pic:styles.picture}>
+                                        <picture className={podcast?styles.podcast_pic:styles.picture}>
                                             {/* <Image  alt={categoryName} width={100}/> */}
-                                            <img className={categoryName==="পডকাস্ট"?styles.podcast_img:styles.img} src={item.rect_banner??item.thumb_path} alt={item.name}/>
+                                            <img className={podcast?styles.podcast_img:styles.img} src={item.rect_banner??item.thumb_path} alt={item.name}/>
                                         </picture>
                                         {categoryName==='নতুন'?(
                                             <div className={styles.new_audio_book}>নতুন অডিও বুক </div>
@@ -135,7 +147,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             <span >{(item?.play_count/1000).toFixed(2)}k listen</span>
                                         </p>
                                         )}
-                                        <div className={categoryName==="পডকাস্ট"?'hidden ':styles.hovered_item}>
+                                        <div className={podcast?'hidden ':styles.hovered_item}>
                                             <div className={'w-full h-6 '+styles.shadow_blur}></div>
                                             <div className='flex items-start justify-around bg-bg'>
                                                 <div className='z-10'>
@@ -176,7 +188,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                   </Swiper>
                         {/* <div className={styles.mobile_banner_cont}>
                             {data?.slice(0,3).map((item:any,index:number)=>(
-                                <Link href={`/audiobook_details/${item?.id}`}>
+                                <Link href={`/audiobook/${item?.id}`}>
                                     <div className={styles.item_cont} key={index}>
                                         {isPopular?
                                             <p className={styles.popular}>Most Popular</p>

@@ -22,7 +22,7 @@ const BestCollection = (props:TBestCollection) => {
         return data[index]
     }
   return (
-    <div className='best_collection  text-white mt-20'>
+    <div className='best_collection overflow-x-hidden max-w-[1440px] mx-auto text-white mt-20'>
         <Swiper
             // slidesPerView={1}
             // spaceBetween={1}
@@ -47,6 +47,7 @@ const BestCollection = (props:TBestCollection) => {
                slidesPerView: 1,
                },
             }}
+             className='overflow-hidden'
             onBeforeInit={(swiper:any) => {
               if (
                 swiper.params.navigation &&
@@ -66,6 +67,7 @@ const BestCollection = (props:TBestCollection) => {
                             `/${item.category}`
                             );
                         }}
+                       
                         // className={styles.swiper_slider_custom}
                         >
                         <Link href={`/${item?.category}`}>

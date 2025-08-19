@@ -6,6 +6,7 @@ import Navbar from "@/components/Layout/Navbar.view";
 import { categorySuggestions } from "@/utils/apiServices";
 import { CatagorySugges, CatagorySuggestionsInfo } from "@/pageTypes/home.types";
 import { getDictionary } from "./dictionaries";
+import Footer from "@/components/Home/Footer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,10 +28,11 @@ export default async function RootLayout({
     const dict = await getDictionary(lang);
   return (
     <html lang={(await params).lang}>
-      <body className={inter.className}>
+      <body className={inter.className+" bg-bg"}>
         <ReduxProvider>
             <Navbar lang={dict}  categories={categoryData}/>
             {children}
+            <Footer/>
         </ReduxProvider>
       </body>
     </html>

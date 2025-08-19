@@ -58,7 +58,7 @@ const Hero = ({
               <SwiperSlide
                 key={topbannerinfo?.id}
                 onClick={() => {
-                  router.push(`/audiobook_details/${topbannerinfo?.id}`);
+                  router.push(`/audiobook/${topbannerinfo?.id}`);
                 }}
               >
                 <div className="relative h-[130vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">

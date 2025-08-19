@@ -5,5 +5,7 @@ export type TVideoPlayerProps={
     playing:boolean,
     setPlaying:Dispatch<SetStateAction<boolean>>,
     videoRef:RefObject<HTMLVideoElement>,
-    togglePlay:()=>void
+    togglePlay:()=>void;
+    height?:string;
+    width?:string;
 }

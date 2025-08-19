@@ -82,6 +82,11 @@
     right: -0px;
 }
 
+.last_video_drop_shadow{
+    box-shadow: 21px 21px 0px -11px #0000004D;
+
+}
+
 .slider_left_icons,.slider_right_icons{
     height: 70px;
     border-radius: 12px;

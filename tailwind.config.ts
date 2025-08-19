@@ -24,7 +24,9 @@ const config: Config = {
 			pink: "#E319BC", // custom primary
 			ash_blue:"#4E4E4E24",
 			black:"#050F1E",
+			silicon:"#565656",
 			deep_pink: "#64748B",
+			deep_pink2:"#ae346e",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

@@ -3,8 +3,13 @@ import Error from "next/error";
 export enum TtoastType{'success'='success','error'='error'};
 
 type BlogInfo = {
+  id:number|string;
+  featured_image:string;
+  alter_text_for_featured_image:string;
   title: string;
   slug: string;
+  // author:string;
+  publish_date:string;
   excerpt: string;
   categories: string;
   contentBody: string;
@@ -83,4 +88,6 @@ export type TCommonApiCallArgs={
     notNeedHeaders?:boolean;
 }
 
+export type TtranslatorNums={"0":string;"1":string;"2":string;"3":string;"4":string;"5":string;"6":string;"7":string;"8":string;"9":string;}
+export type Edigit="0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9";
 export type { BlogInfo, BlogInfoFromDB };

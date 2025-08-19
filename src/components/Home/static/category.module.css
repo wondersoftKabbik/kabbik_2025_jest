@@ -30,6 +30,44 @@
     font-weight: 600;
     max-height: 53px;
 }
+.see_all a{
+    display: flex;
+    align-items: center
+}
+.upcoming_book{
+    /* box-shadow: -10px -10px 0 gray;
+    transform-origin: left center;
+  transform: scaleX(1.3); */
+    /* transform: scaleX(1.2) scaleY(1.1) rotate(0deg);
+
+  /* Optional: smooth transition on hover 
+  transition: transform ;*/
+} 
+
+/* .upcoming_book {
+  transform: perspective(1000px) rotateY(20deg);
+  box-shadow: -10px -10px 0px gray;
+} */
+
+/* Optional hover effect to pop out */
+/* .upcoming_book:hover {
+  box-shadow:
+    -15px 15px 25px rgba(0,0,0,0.35),
+    inset 7px 0 15px rgba(255,255,255,0.8),
+    inset -7px 0 15px rgba(0,0,0,0.15);
+  
+  transform: rotateY(-5deg) rotateX(3deg) translateZ(10px);
+} */
+ .upcoming_book {
+  position: relative;
+    transform: skewY(-8deg);
+    margin-top: 29px;
+    margin-left: 10px;
+    border-radius: 10px;
+    box-shadow: -10px -10px 0 gray;
+}
+
+
 
 .arrow{
     background-color: black;

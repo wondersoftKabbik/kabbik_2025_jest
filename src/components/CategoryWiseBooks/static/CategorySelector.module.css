@@ -1,0 +1,37 @@
+
+.subCategories{
+    position: absolute;
+    max-height: 350px;
+    overflow-y: scroll;
+    width: 80%;
+    margin: auto;
+    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #D9D9D91A;
+    margin-top: 0px;
+    border-bottom: 1px solid #5f5f5f;
+    display: grid;
+    background:linear-gradient(90deg, #D24874 0%, #881D69 100%);
+    grid-template-columns: repeat(3,1fr);
+    padding: 0 20px;
+}
+
+.subCategories div{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: #001F29;
+    /* margin: 8px 0; */
+    border-radius: 8px;
+    padding: 5px;
+    margin: 8px 8px;
+}
+
+.ThreeDBannerGradient{
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: 1px solid #7E7E7E;
+    background: linear-gradient(90deg, #24152C 0%, #191226 100%);
+    padding: 50px 0;
+    min-height: 437px;
+}

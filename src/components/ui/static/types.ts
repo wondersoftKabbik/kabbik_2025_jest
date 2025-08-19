@@ -27,7 +27,27 @@ export type staticTextSlice= {
             img:string,
             id:string
         }
-    ]
+    ],
+    popular_categories:{
+      img:string;
+      path:string;
+    }[],
+    campaign_video:{
+      video_url:string,
+      img:string
+    },
+    nepal_tour_video:{
+        video_url:string;
+        heading:  string;
+        para:string;
+        thumbnail:string;
+    },
+    teamMembers:{
+        name: string;
+        title: string;
+        description: string;
+        imageUrl: string;
+    }[]
   }
 };
 
@@ -99,3 +119,35 @@ export type TUserProfile = {
 //   handleClick:boolean;
 //   className:boolean;
 // }
+
+export  type RatingProps = {
+  /** Current rating value (controlled). Supports fractions. */
+  value?: number;
+  /** Initial value (uncontrolled). */
+  defaultValue?: number;
+  /** Called when user selects a value. */
+  onChange?: (value: number) => void;
+  /** Minimum value (inclusive). Default: 1 */
+  min?: number;
+  /** Maximum value (inclusive). Default: 5 */
+  max?: number;
+  /** Step for interaction (mouse/keyboard). Default: 0.5 */
+  step?: number;
+  /** If true, disables interactions. */
+  readOnly?: boolean;
+  /**
+   * Render prop for the full icon. Should be a component that respects currentColor
+   * and accepts className.
+   * Example: ({ className }) => <Star className={className} />
+   */
+  icon:  React.ReactNode;
+  /** Size utility classes, e.g., "w-6 h-6". Default: "w-6 h-6" */
+  sizeClasses?: string;
+  /** Extra classes for the root container. */
+  className?: string;
+  /** Color classes for filled and empty states. */
+  fillClassName?: string; // e.g., "text-yellow-500"
+  emptyClassName?: string; // e.g., "text-gray-300 dark:text-gray-600"
+  /** Accessible label prefix */
+  ariaLabel?: string;
+};

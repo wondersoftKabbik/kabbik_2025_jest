@@ -3,11 +3,11 @@ import { NextResponse, userAgent } from "next/server";
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 
-let locales = ['en', 'bl']
+let locales = [ 'bl','en']
  function getLocale(request: Request) { 
-    let headers = { 'accept-language': 'en,en;q=0.5' }
+    let headers = { 'accept-language': 'bl,en,en;q=0.5' }
     let languages = new Negotiator({ headers }).languages()
-    let defaultLocale = 'en'
+    let defaultLocale = 'bl'
     
     return match(languages, locales, defaultLocale) // -> 'en-US'
   }
