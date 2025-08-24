@@ -6,6 +6,7 @@ import LockIcon from '@/svgs/LockIcon.svg';
 import PlayIcon from '@/svgs/PlayIcon';
 import PauseIcon from '@/svgs/PauseIcon';
 import { audioBookDetails } from '@/utils/server-api';
+import WhitePlayer from '@/svgs/WhitePlayer.svg';
 
 const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDetails,hasAccess:()=>boolean,togglePlay:(i:number,id:number)=>void,index:number,isPlaying:boolean}) => {
 
@@ -16,11 +17,16 @@ const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDe
           {book?.episodes.map((episode,i) => (
             <div key={episode.id} className=" my-4 btn-gradient-2 cursor-pointer rounded-[6px] p-3 md:p-4 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4">
-                <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
+                <div className="flex relative items-center gap-2 md:gap-3 flex-1 min-w-0">
                   <img
                     src={book.thumb_path}
                     className="w-12 h-14 md:w-16 md:h-18 rounded-md object-cover flex-shrink-0"
                   />
+                    <div className="w-8 z-50 absolute top-[10px] left-[10px] h-8 md:w-10 md:h-10" onClick={()=>togglePlay(i,episode.id)}>
+                      {hasAccess() ? (
+                        isPlaying && index === i ? <PauseIcon  /> : <><WhitePlayer  /></>
+                      ) : <LockIcon />}
+                    </div>
                   <div>
                     <h3 className="text-lg md:text-[22px] text-white font-normal min-w-0 leading-tight">
                         {episode?.name}
@@ -30,13 +36,7 @@ const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDe
                     </p>
                   </div>
                 </div>
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 md:w-10 md:h-10" onClick={()=>togglePlay(i,episode.id)}>
-                    {hasAccess() ? (
-                      isPlaying && index === i ? <PauseIcon color='#98266B' /> : <PlayIcon  />
-                     ) : <LockIcon />}
-                  </div>
-                </div>
+                
               </div>
             </div>
           ))}

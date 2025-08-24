@@ -4,14 +4,15 @@ import { ClockIcon, SliderHandle } from "@/svgs/ClockIcon.svg";
 import { speedOption, timerOptions } from "./static/audioPlayer.utils";
 
 
-export default function AudioSpeed() {
-  const [selectedTimer, setSelectedTimer] = useState(25);
+export default function AudioSpeed({handleChange,value=1}:{handleChange: (value: number) => void,value:number}) {
+  const [selectedTimer, setSelectedTimer] = useState(value*100/4);
   // sliderValue is percent (0..100) mapped from selectedTimer (0..50)
   const [sliderValue, setSliderValue] = useState(50);
   const handleTimerSelect = (value: number) => {
     const clamped = Math.max(0, value*100/4);
     setSelectedTimer(clamped);
     setSliderValue(clamped === 0 ? 0 : (clamped / 50) * 100);
+    handleChange(value)
   };
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +21,7 @@ export default function AudioSpeed() {
   // snap just in case and compute minutes
   const snapped = Math.round(value / 20) * 20;
   setSliderValue(snapped);
+  handleChange( snapped *4/100); // convert to minutes
   const minutes = Math.round((snapped / 100) * 50);
   setSelectedTimer(minutes);
   };
@@ -79,6 +81,7 @@ export default function AudioSpeed() {
               </button>
             ))}
           </div>
+          
         </div>
       </div>
     </div>

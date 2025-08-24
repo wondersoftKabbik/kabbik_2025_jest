@@ -8,10 +8,10 @@ export const spinnerClassNames =()=>  clsx(
 );
 
 export const container=(width:string)=> clsx(
-     `max-w-[${width}] w-[97%] mx-auto `
+     ` max-w-[${width}] w-[97%] mx-auto `
 )
 
-export const flexCenter=clsx(` flex items-center justify-center`)
+export const flexCenter=clsx(` flex items-center justify-center `)
 
 export const ClassName="text-"
 export const variant='text-'

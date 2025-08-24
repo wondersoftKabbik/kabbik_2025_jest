@@ -61,6 +61,13 @@ export type TBigPlayerProps={
   audioPlayer: string;
   currentTime: number;
   setCurrentTime: (currentTime: number) => void;
+  setPlaybackRate:(val: number) => void;
+  setTimerMin:(val: number) => void;
+  playbackRate: number;
+  timerMin: number;
+  setShowBigPlayer: (val: boolean) => void;
+  setShowSpeedModal:(val:boolean)=>void;
+  setShowSleeperModal:(val:boolean)=>void;
 }
 
 export interface PageProps {

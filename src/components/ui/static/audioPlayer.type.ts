@@ -23,4 +23,8 @@ export type GradientAudioPlayerProps = {
   defaultSpeed?: number;
   defaultTimerMin?: number; // 0 = Off
   startMuted?: boolean;
+  setPlaybackRate:(val: number) => void;
+  setTimerMin:(val: number) => void;
+  playbackRate: number;
+  timerMin: number;
 };

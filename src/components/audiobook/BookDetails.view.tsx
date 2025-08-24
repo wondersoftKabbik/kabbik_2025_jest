@@ -36,7 +36,7 @@ import Skeleton from "../ui/Skeleton.view";
 import LoveIcon from "@/svgs/LoveIcon";
 import LinkIcon from "@/svgs/LinkIcon.svg";
 import CommonModal from "../ui/CommonModal/CommonModal.view";
-import PaymentOptions from "../ui/PaymentOptions/PaymentOptins.view";
+// import PaymentOptions from "../ui/PaymentOptions/PaymentOptins.view";
 import Tabs from "../ui/Tab/Tab.view";
 import EpisodeList from "./EpisodeList.view";
 import CastAndCrew from "./Cast&Crew.viw";
@@ -50,6 +50,7 @@ import ExpandableIcon from "@/svgs/ExpandableIcon";
 import BigPlayerView from "./BigPlayer.view";
 import SleeperTimer from "./SleeperTime.view";
 import AudioSpeed from "./AudioSpeed.view";
+import PaymentOptions from "../Subscription/PaymentOptions.view";
 
 
 // AudioPlayer Configuration
@@ -82,6 +83,12 @@ const AudiobookComponent = ({
   const router = useRouter();
   const [showBigPlayer, setShowBigPlayer] = useState(false);
   const rentAvailable = audiobookData.for_rent && audioBookDetailsData?.price;
+  const [playbackRate, setPlaybackRate] = useState(1);
+  const [timerMin, setTimerMin] = useState(0);
+  const [showSpeedModal, setShowSpeedModal] = useState(false);
+  const [showSleeperModal, setShowSleeperModal] = useState(false);
+  const [showPayModal,setShowPayModal]=useState(false)
+  const [showPaymentOptions,setShowPaymentOptions]=useState<boolean>(false);
 
   const toggleSize = () => {
     setIsBigger((prevSize) => !prevSize);
@@ -411,7 +418,7 @@ const AudiobookComponent = ({
   const handleBigPlayer = ()=>{
     console.log("big player clicked","dkfjdkfjdkdkfjdfj");
     setShowBigPlayer(!showBigPlayer);
-    audioRef.current?.pause()
+    // audioRef.current?.pause()
     setShowMiniPlayer(false)
 }
 
@@ -526,22 +533,25 @@ const AudiobookComponent = ({
     if (paymentName === "Bkash") {
       if (result.data.bkashURL) {
         window.location.href = result.data.bkashURL;
-        return;
+        return ;
       }
     } else {
       if (result.data.callBackUrl) {
         window.location.href = result.data.callBackUrl;
-        return;
+        return ;
       }
     }
     toast.error("Could not make payment");
   };
 
   const purchaseAudiobook = async () => {
+    setShowPaymentOptions(true)
     const result = await getDynamicPaymentMethods("audiobook");
-    const excludedPaymentMethods = JSON.parse(
+    const excludedPaymentMethods = 
+    // JSON.parse(
       audioBookDetailsData.excluded_payment_methods as string
-    );
+    // );
+    console.log(audioBookDetailsData.excluded_payment_methods)
     if (result.success) {
       setPaymentOptions(
         result.data.filter(
@@ -551,6 +561,17 @@ const AudiobookComponent = ({
     }
   };
 
+  const handleCloseBigPlayer=()=>{
+    audioRef.current?.pause();
+    console.log(audioRef.current,"audioRef.current");
+    setShowBigPlayer(false);
+    setTimeout(()=>{
+      setisPlaying(false);
+      setAudioPlayer("");
+      // audioRef.current = null;
+      setShowMiniPlayer(false);
+    },1000)
+  }
  
   return (
     <>
@@ -631,7 +652,17 @@ const AudiobookComponent = ({
                 </div>
                 {/* Premium Header */}
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl font-bold text-black mb-2">প্রিমিয়াম কনটেন্ট</h2>
+                  <h2 className="text-2xl font-bold text-black mb-2">
+                    {isSubscribed ? (
+                            <>প্রিমিয়াম ব্যবহারকারী</>
+                        ) : audioBookDetailsData?.isPurchased === 1 ? (
+                            <>কনটেন্ট কেনা হয়েছে</>
+                        ) : audioBookDetailsData?.price === 0 ? (
+                            <>ফ্রি</>
+                        ) : (
+                            <>প্রিমিয়াম কনটেন্ট</>
+                        )}
+                  </h2>
                   <div className="flex justify-center gap-3">
                     {[...Array(5)].map((_, i) => (
                       <span className="w-6 h-6 fill-audio-star text-audio-star">
@@ -749,14 +780,12 @@ const AudiobookComponent = ({
                       index={index}
                       isPlaying={isPlaying}
                       togglePlay={(i,episodeId)=>{
-                        // setIndex(index)
-                        togglePlayList(i,episodeId)
-                        // audioRef.current?.play()
-                        
-                        // setisPlaying(false)
-                        // if(index!==i || isPlaying===false){
-                          // setTimeout(()=>{setisPlaying(true)},200)
-                        // }
+                        console.log("working")
+                        if(hasAccess()){
+                          togglePlayList(i,episodeId)
+                        }else{
+                          setShowPayModal(true)
+                        }
                       }}
                     /> 
                   },
@@ -767,23 +796,11 @@ const AudiobookComponent = ({
                 },
                 { name: 'রিভিউ', component: <Review reviews={reviewDetailsData.data}/> },
               ]} />
-             
-              {/* <button
-                onClick={() => setActiveTab('reviews')}
-                className={`flex-1 h-12 md:h-14 rounded-xl font-medium text-lg md:text-xl shadow-lg transition-all ${
-                  activeTab === 'reviews'
-                    ? 'bg-gradient-to-r from-[#97266B] to-[#B93A70] text-white'
-                    : 'bg-white text-black'
-                }`}
-              >
-                রিভিউ
-              </button> */}
             </div>
 
           </div>
         </div>
       </div>
-      {showBigPlayer?(
         <div className={showBigPlayer?'':'hidden'}>
           <BigPlayerView
             bookId={bookId}
@@ -798,9 +815,15 @@ const AudiobookComponent = ({
             epList={epList}
             currentTime={currentTime} 
             setCurrentTime={setCurrentTime}
+            setPlaybackRate={setPlaybackRate}
+            playbackRate={playbackRate}
+            setTimerMin={setTimerMin}
+            timerMin={timerMin}
+            setShowBigPlayer={handleCloseBigPlayer}
+            setShowSpeedModal={setShowSpeedModal}
+            setShowSleeperModal={setShowSleeperModal}
           />
         </div>
-      ):''}
       
       <div className={showMiniPlayer?"fixed bottom-0 left-0 min-w-[100vw] right-0 h-[210px] z-[100] bg-bg shadow-lg  ":'hidden'}>
         <div className={'w-full'}>
@@ -848,18 +871,99 @@ const AudiobookComponent = ({
                 audioRef={audioRef}
                 currentTime={currentTime} 
                 setCurrentTime={setCurrentTime}
+                setPlaybackRate={setPlaybackRate}
+                playbackRate={playbackRate}
+                setTimerMin={setTimerMin}
+                timerMin={timerMin}
               />
             </div>
             </div>
         </div>
       </div>
-      <CommonModal 
-        isOpen={true}
-        onClose={()=>{}}
-        container_class="rounded-[18px] w-[75vw]"
-        modalClassName="max-w-[680px] w-[90vw] w-full h-auto"
+      {showSpeedModal?(
+        <CommonModal 
+          isOpen={showSpeedModal}
+          onClose={()=>{setShowSpeedModal(false)}}
+          container_class="rounded-[18px] w-[75vw]"
+          modalClassName="max-w-[680px] w-[90vw] w-full h-auto"
+        >
+          <AudioSpeed value={playbackRate} handleChange={(val)=>{setPlaybackRate(val)}}/>
+        </CommonModal>
+      ):''}
+      {showSleeperModal?(
+        <CommonModal 
+          isOpen={showSleeperModal}
+          onClose={()=>{setShowSleeperModal(false)}}
+          container_class="rounded-[18px] w-[75vw]"
+          modalClassName="max-w-[680px] w-[90vw] w-full h-auto"
+        >
+          <SleeperTimer value={timerMin} handleChange={(val)=>{setTimerMin(val)}}/>
+        </CommonModal>
+      ):''}
+
+      {showPayModal?(
+        <CommonModal
+          isOpen={showPayModal}
+          onClose={()=>setShowPayModal(false)}
+          modalClassName="max-w-[680px] w-[90vw] w-full h-auto"
+        >
+          <div className="w-full bg-[#0c1b3a] text-white py-8 px-4 rounded-[8px]">
+          {/* Book Name */}
+          <h2 className="text-center text-2xl font-semibold mb-10">{audiobookData?.name}</h2>
+
+          <div className="flex items-center justify-center">
+            {/* Subscribe */}
+            {true && (
+              <div onClick={() => router.push("/subscribe")} className="flex flex-col items-center text-center flex-1">
+                <button className="px-6 py-2 bg-white text-black rounded-full shadow hover:bg-gray-100 transition">
+                  Subscribe
+                </button>
+                <p className="text-xs text-gray-200 mt-2">
+                  To listen unlimited audiobooks
+                </p>
+              </div>
+            )}
+
+            {/* Divider with Or */}
+            {true && (
+              <div className="flex flex-col items-center justify-center mx-6">
+                <div className="w-px bg-gray-300 h-8" />
+                <span className="my-1 text-gray-200 text-sm">Or</span>
+                <div className="w-px bg-gray-300 h-8" />
+              </div>
+            )}
+
+            {/* Rent */}
+            {true && (
+              <div onClick={purchaseAudiobook} className="flex flex-col items-center text-center flex-1">
+                <button  className="px-6 py-2 bg-white text-black rounded-full shadow hover:bg-gray-100 transition">
+                  Rent
+                </button>
+                <p className="text-xs text-gray-200 mt-2">
+                  Rent this audiobook
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+        </CommonModal>
+      ):''}
+      <CommonModal
+        isOpen={showPaymentOptions}
+        onClose={()=>setShowPaymentOptions(false)}
       >
-        <AudioSpeed/>
+        <div className={`${styles.modalBody} bg-navyblue modal-body text-center max-h-[96vh] overflow-y-scroll`}>
+          <PaymentOptions
+            options={paymentOptions.map((option: any) => ({
+              methodName: option.method_name,
+              logoUrl: option.image_url,
+              apiUrl: option.url,
+              vat: option.vat,
+            }))}
+            callback={makePayment}
+            price={audioBookDetailsData?.price}
+          />
+        </div>
       </CommonModal>
     </>
   );

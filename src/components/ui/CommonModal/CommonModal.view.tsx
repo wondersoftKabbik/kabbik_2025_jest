@@ -46,7 +46,7 @@ export default function CommonModal({
       className={"fixed inset-0  z-50 flex items-center justify-center bg-black/50 "+{container_class}}
     >
       <div
-        className={`relative w-full max-w-lg bg-transparent rounded-lg shadow-lg ${modalClassName}`}
+        className={`relative max-w-lg bg-transparent rounded-lg shadow-lg w-auto ${modalClassName}`}
       >
         {showCloseButton && (
           <button

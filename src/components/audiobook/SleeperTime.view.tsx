@@ -6,24 +6,26 @@ import { timerOptions } from "./static/audioPlayer.utils";
 
 
 
-export default function SleeperTimer() {
-  const [selectedTimer, setSelectedTimer] = useState(20);
+export default function SleeperTimer({handleChange,value=20}:{handleChange: (value: number) => void,value:number}) {
+  const [selectedTimer, setSelectedTimer] = useState(value);
   // sliderValue is percent (0..100) mapped from selectedTimer (0..50)
   const [sliderValue, setSliderValue] = useState(() => (20 / 50) * 100);
   const handleTimerSelect = (value: number) => {
     const clamped = Math.max(0, Math.min(50, value));
     setSelectedTimer(clamped);
+    handleChange(value)
     setSliderValue(clamped === 0 ? 0 : (clamped / 50) * 100);
   };
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  // slider steps are 0,20,40,60,80,100 -> corresponding to 0,10,20,30,40,50 minutes
-  const value = parseFloat(e.target.value);
-  // snap just in case and compute minutes
-  const snapped = Math.round(value / 20) * 20;
-  setSliderValue(snapped);
-  const minutes = Math.round((snapped / 100) * 50);
-  setSelectedTimer(minutes);
+    // slider steps are 0,20,40,60,80,100 -> corresponding to 0,10,20,30,40,50 minutes
+    const value = parseFloat(e.target.value);
+    // snap just in case and compute minutes
+    const snapped = Math.round(value / 20) * 20;
+    setSliderValue(snapped);
+    const minutes = Math.round((snapped / 100) * 50);
+    setSelectedTimer(minutes);
+    handleChange(minutes);
   };
 
   return (

@@ -1,6 +1,6 @@
 'use client'
 import Minus10Sec from "@/svgs/Minus10Sec";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { use, useEffect, useMemo, useRef, useState } from "react";
 import { flexCenter } from "./static/tailwind.classes";
 import Plus10Sec from "@/svgs/Plus10Sec";
 import PlayIcon from "@/svgs/PlayIcon";
@@ -8,6 +8,8 @@ import PauseIcon from "@/svgs/PauseIcon";
 import GoPrevious from "@/svgs/GoPrevious.svg";
 import { clampAudio, formatTimeForAudio } from "@/helpers/commonFunction";
 import { GradientAudioPlayerProps } from "./static/audioPlayer.type";
+import { current } from "@reduxjs/toolkit";
+import WhitePlayer from "@/svgs/WhitePlayer.svg";
 
 /**
  * GradientAudioPlayer
@@ -45,15 +47,19 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
   isFirst,
   isLast,
   audioRef,
-  currentTime = 0,
+  setPlaybackRate,
+  setTimerMin,
+  playbackRate,
+  timerMin,
+  currentTime ,
   setCurrentTime = () => {},
   thumbColor = "#ffffff",
   trackBg = "#111827",       // gray-900
   accent = "#ffffff",
   className = "",
   skipSeconds = 10,
-  speeds = [0.75, 1, 1.25, 1.5, 1.75, 2],
-  timerOptions = [0, 5, 15, 30, 60],
+  // speeds = [0.75, 1, 1.25, 1.5, 1.75, 2],
+  // timerOptions = [0, 5, 15, 30, 60],
   defaultSpeed = 1,
   defaultTimerMin = 0,
   startMuted = false,
@@ -66,10 +72,9 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
   const [buffered, setBuffered] = useState(0); // seconds loaded
   const [dragging, setDragging] = useState(false);
   const [dragProgress, setDragProgress] = useState(0); // 0..1
-  const [playbackRate, setPlaybackRate] = useState(defaultSpeed);
+  // const [playbackRate, setPlaybackRate] = useState(defaultSpeed);
 
-  // Sleep timer state
-  const [timerMin, setTimerMin] = useState(defaultTimerMin);
+  // const [timerMin, setTimerMin] = useState(defaultTimerMin);
   const [timerEndsAt, setTimerEndsAt] = useState<number | null>(null);
   const timerTimeoutRef = useRef<number | null>(null);
   const tickIntervalRef = useRef<number | null>(null);
@@ -78,6 +83,7 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
   // Setup audio element events
   useEffect(() => {
     const audio = audioRef?.current;
+    console.log("audioRef", audioRef?.current);
     if (!audio) return;
 
     const onLoaded = () => setDuration(audio.duration || 0);
@@ -113,7 +119,8 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
   // Handle play/pause safely
   const togglePlay = async () => {
     const audio = audioRef?.current;
-    console.log("togglePlay", audio, isPlaying);
+    console.log("audioRef", audioRef?.current,"toggle");
+    
     if (!audio) return;
     if (!isPlaying) {
       audio.pause();
@@ -121,6 +128,7 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
     } else {
       try {
         await audio.play();
+        audio.currentTime=currentTime;
         // setIsPlaying(true);
       } catch (e) {
         // autoplay might fail; ignore
@@ -195,6 +203,9 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
     setPlaybackRate(rate);
   };
 
+  useEffect(() => {
+    setSpeed(playbackRate);
+  },[playbackRate])
   // Sleep timer logic -------------------------------------------------
   const clearSleepTimer = () => {
     if (timerTimeoutRef.current) {
@@ -358,7 +369,7 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
             aria-label={`Rewind ${skipSeconds} seconds`}
           >
             <span className="w-10 inline-block">
-                {isPlaying ? <PauseIcon/> : <PlayIcon />   }
+                {isPlaying ? <PauseIcon/> : <WhitePlayer />   }
             </span>
           </button>
 
@@ -388,7 +399,7 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
       <div>
         <div>
           {/* Speed */}
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <label className="text-xs text-white/70">Speed</label>
             <select
               className="rounded-xl bg-white/10 px-2 py-1 text-sm text-white outline-none ring-1 ring-white/10 hover:bg-white/15"
@@ -402,9 +413,9 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
           {/* Sleep timer */}
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <label className="text-xs text-white/70">Sleep</label>
             <select
               className="rounded-xl bg-white/10 px-2 py-1 text-sm text-white outline-none ring-1 ring-white/10 hover:bg-white/15"
@@ -427,7 +438,7 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
                 Cancel
               </button>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
       

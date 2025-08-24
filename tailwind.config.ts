@@ -27,6 +27,8 @@ const config: Config = {
 			silicon:"#565656",
 			deep_pink: "#64748B",
 			deep_pink2:"#ae346e",
+			muted2:"#C7C7C7",
+			navyblue:"#0D244E",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

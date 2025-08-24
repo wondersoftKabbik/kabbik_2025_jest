@@ -24,6 +24,7 @@ const Audiobook = async(params: {
   const { lang } =  await params;
   // const dict = await getDictionary(lang) 
   const doesAudiobookExist = audiobookData.success === "false";
+  console.log(castData,"castData")
   
   return (
     <>

@@ -75,6 +75,10 @@ body{
   backdrop-filter: blur(68px);
   background: linear-gradient(353.98deg, #060F1E 4.77%, #27211F 95.23%);
 }
+.subscribe_gradient{
+  background: linear-gradient(145.9deg, rgba(121, 66, 106, 0) 22.57%, #CA48A7 147.43%);
+
+}
 
 .gradient-text2 {
   background: linear-gradient(to right, white, #999);

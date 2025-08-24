@@ -1,5 +1,8 @@
 "use client";
 
+import MyPlayList from '@/svgs/MyPlayList.svg'
+import SpeedMeter from '@/svgs/SpeedMeter.svg'
+import { Speaker, Timer, Volume, Volume2 } from 'lucide-react'
 import styles from "./static/audioBook.module.css";
 import dynamic from "next/dynamic";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,11 +29,11 @@ import Review from "./Review.view";
 import ShareIcon from "@/svgs/ShareIcon.svg";
 import Star from "@/svgs/Star.svg";
 import GradientAudioPlayer from "../ui/AudioPlayer.view";
-import { container } from "../ui/static/tailwind.classes";
+import { container, flexCenter } from "../ui/static/tailwind.classes";
 import CrossIcon from "@/svgs/CrossIcon";
 import ExpandableIcon from "@/svgs/ExpandableIcon";
 import BigPlayerCards from "./BigPlayerCards.view";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PlayList from "./PlayList.view";
 
 
@@ -48,15 +51,28 @@ const AudiobookComponent = ({
     epList,
     audioPlayer,
     currentTime ,
-    setCurrentTime
+    setCurrentTime,
+    setPlaybackRate,
+    setTimerMin,
+    playbackRate,
+    timerMin,
+    setShowBigPlayer,
+    setShowSpeedModal,
+    setShowSleeperModal
 }: TBigPlayerProps) => {
+  
 
     useEffect(()=>{console.log(audioBookData,"audioBookData")},[])
   
   return (
     <>
-      <div className={"flex justify-around items-start relative"+ " "}>
-        
+      <div className={"flex relative justify-around items-start "+ " "}>
+        <div 
+          className={"absolute top-3 z-40 right-3 cursor-pointer h-8 bg-[#535252] w-8 rounded-[50%]"+flexCenter}
+          onClick={() => setShowBigPlayer(false)}
+        >
+          <X color="white" className="text-6xl"/>
+        </div>
         <div 
           className={`absolute bottom-0 left-0 w-full h-[180vh] ${styles.audioBookBg}`}
           style={{
@@ -91,7 +107,76 @@ const AudiobookComponent = ({
                             audioRef={audioRef}
                             currentTime={currentTime}
                             setCurrentTime={setCurrentTime}
+                            setPlaybackRate={setPlaybackRate}
+                            setTimerMin={setTimerMin}
+                            playbackRate={ playbackRate}
+                            timerMin={timerMin }
                         />
+                    </div>
+                    <div className="flex  justify-between  items-center gap-6 lg:gap-8 px-4 max-w-5xl mx-auto">
+
+                      {/* Left Controls */}
+                      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                        {/* Speed Control */}
+                        <div className="flex flex-col items-center gap-2 cursor-pointer" onClick={() => setShowSpeedModal(true)}>
+                          <div className="flex items-center justify-center min-w-[72px] h-8 bg-player-surface rounded-full px-3">
+                            <span 
+                              className="w-4 h-4 mr-2 fill-player-text" 
+                              
+                            >
+                                <SpeedMeter/>
+                            </span>
+                            <span className="text-white text-sm font-medium">{playbackRate}</span>
+                          </div>
+                          <span className="text-white text-xs">Speed</span>
+                        </div>
+
+                        {/* Timer */}
+                        <div className="flex flex-col items-center gap-2 cursor-pointer" onClick={() => setShowSleeperModal(true)}>
+                          <div 
+                            className="w-6 h-6  rounded-full flex items-center text-white justify-center"
+                            
+                          >
+                            <Timer/>
+                          </div>
+                          <span className="text-white text-sm">Timer</span>
+                        </div>
+
+                        {/* Background Music */}
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="text-xl" role="img" aria-label="speaker">
+                            <Volume2 className='text-white'/>
+                          </div>
+                          <span className="text-white text-xs text-center">Background music</span>
+                        </div>
+                      </div>
+
+                      {/* Right Controls */}
+                      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                        {/* Like */}
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-5 h-5">
+                            <LoveIcon/>
+                          </div>
+                          <span className="text-white text-xs">Like</span>
+                        </div>
+
+                        {/* Share */}
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-4 h-4">
+                            <ShareIcon/>
+                          </div>
+                          <span className="text-white text-xs">Share</span>
+                        </div>
+
+                        {/* Add My Playlist */}
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-4 h-4">
+                            <MyPlayList/>
+                          </div>
+                          <span className="text-white text-xs text-center">Add My Playlist</span>
+                        </div>
+                      </div>
                     </div>
                 
                 </div>
@@ -127,3 +212,5 @@ const AudiobookComponent = ({
 export default dynamic(() => Promise.resolve(AudiobookComponent), {
   ssr: false,
 });
+
+

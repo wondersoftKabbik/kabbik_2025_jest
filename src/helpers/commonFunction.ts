@@ -295,3 +295,51 @@ export function textSlice(
   if (text.length <= length) return text
   return addEllipsis ? text.slice(0, length) + "…" : text.slice(0, length)
 }
+
+
+export function normalizeBillingPeriod(text: string) {
+  const normalizedText = text.toLowerCase();
+
+  if (/6[\s-]*month|half[\s-]*yearly/.test(normalizedText)) {
+    return { name: "৬ মাস", day: "(১৮০ দিন)" };
+  }
+  if (/1[\s-]*year|yearly/.test(normalizedText)) {
+    return { name: "ইয়ারলি", day: "(৩৬০ দিন)" };
+  }
+
+  
+
+  if (/1[\s-]*month|monthly/.test(normalizedText)) {
+    return { name: "মান্থলি", day: "(৩০ দিন)" };
+  }
+
+  if (/biweekly|2[\s-]*weeks|fortnight/.test(normalizedText)) {
+    return { name: "বাই-উইকলি", day: "(১৫ দিন)" };
+  }
+
+  if (/weekly|1[\s-]*week/.test(normalizedText)) {
+    return { name: "উইকলি", day: "(৭ দিন)" };
+  }
+
+  if (/daily|1[\s-]*day/.test(normalizedText)) {
+    return { name: "ডেইলি", day: "(১ দিন)" };
+  }
+  console.log(text,)
+
+  return {};
+}
+
+
+export function convertToBanglaDigits(input:string|number) {
+  input=input.toString();
+  const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return input.toString().split('').map((char:string) => {
+    return /\d/.test(char) ? banglaDigits[Number(char)] : char;
+  }).join('');
+}
+
+export const findObj=(name:string,arr:any)=>{
+  let item = arr.find((item:any)=>item.methodName?.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
+  console.log(arr,"kkkkkkkkk")
+  return item;
+}

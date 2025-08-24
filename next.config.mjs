@@ -7,7 +7,9 @@ const nextConfig = {
   //   serverActions: true,
   // },
   images:{domains:[
-    'kabbik-space.sgp1.digitaloceanspaces.com'
+    'kabbik-space.sgp1.digitaloceanspaces.com',
+    'kabbik-space.sgp1.cdn.digitaloceanspaces.com',
+    'kabbik-space.sgp1.cdn.digitaloceanspaces.com'
   ]},
   // experimental: {
   //   serverActions: {

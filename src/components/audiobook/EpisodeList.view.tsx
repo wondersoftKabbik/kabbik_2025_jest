@@ -8,20 +8,14 @@ import PauseIcon from '@/svgs/PauseIcon';
 
 const EpisodeList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDetails,hasAccess:()=>boolean,togglePlay:(i:number,id:number)=>void,index:number,isPlaying:boolean}) => {
 
-    // const episodes = [
-    //     { id: 1, title: 'শার্লক হোমস: লাল বৃত্ত পর্ব- ১', unlocked: true },
-    //     { id: 2, title: 'শার্লক হোমস: লাল বৃত্ত পর্ব- ২', unlocked: false },
-    //     { id: 3, title: 'শার্লক হোমস: লাল বৃত্ত পর্ব- ৩', unlocked: false },
-    //     { id: 4, title: 'শার্লক হোমস: লাল বৃত্ত পর্ব- ৪', unlocked: false },
-    //     { id: 5, title: 'শার্লক হোমস: লাল বৃত্ত পর্ব- ৫', unlocked: false },
-    //     { id: 6, title: 'শার্লক হোমস: লা�� বৃত্ত পর্ব- ৬', unlocked: false },
-    //     { id: 7, title: 'শার্লক হোমস: লাল বৃত্ত পর্ব- ৭', unlocked: false },
-    // ];
   return (
     <div>
         <div className="space-y-4">
           {book?.episodes.map((episode,i) => (
-            <div key={episode.id} className="bg-white cursor-pointer rounded-[6px] p-3 md:p-4 shadow-lg">
+            <div
+              onClick={()=>togglePlay(i,episode.id)}
+              key={episode.id} className="bg-white cursor-pointer rounded-[6px] p-3 md:p-4 shadow-lg"
+            >
               <div className="flex items-center gap-3 md:gap-4">
                 <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
                   <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center flex-shrink-0">
@@ -38,7 +32,7 @@ const EpisodeList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBoo
                   </h3>
                 </div>
                 <div className="flex-shrink-0">
-                  <div className="w-8 h-8 md:w-10 md:h-10" onClick={()=>togglePlay(i,episode.id)}>
+                  <div className="w-8 h-8 md:w-10 md:h-10" >
                     {hasAccess() ? (
                       isPlaying && index === i ? <PauseIcon color='#98266B' /> : <PlayIcon  />
                      ) : <LockIcon />}
