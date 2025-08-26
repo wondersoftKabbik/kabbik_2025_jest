@@ -65,7 +65,8 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
               <ThreeDBanner dict={dict} book={categoryData?.data?.[0]?.data?.[8]}/>
             :''}
            </div>
-           <div className={`${container('1209px')}`}>
+           <div className={`${container('1209px')} relative`}>
+            
               <div className="grid mt-20 grid-cols-2  lg:grid-cols-4  gap-6 md:gap-8">
                 {categoryData?.data ? categoryData?.data?.[0]?.data.slice(9,17).map((audiobook) => (
                   <AudiobookCard 
@@ -80,7 +81,9 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
            <div className='mt-16 bg-[#09152B] border-[#8D8D8D]'>
                 {isPodCast?"":<ReferAndEarn/>}
            </div>
-           <div className={`${container('1209px')}`}>
+           <div className={`${container('1209px')} relative`}>
+              <div className="circular_gradient left-[-10%] top-[0%] w-[30vw] h-[30vw] absolute  "></div>
+              <div className="circular_gradient right-[-20%] bottom-[-15vh] w-[40vw] h-[40vw] absolute  "></div>
               <div className="mt-20  grid grid-cols-2  lg:grid-cols-4  gap-6 md:gap-8">
                 {categoryData?.data ? categoryData?.data?.[0]?.data.slice(17,).map((audiobook) => (
                   <AudiobookCard 

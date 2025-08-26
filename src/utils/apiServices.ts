@@ -1006,7 +1006,7 @@ export const catagoryList = async () => {
 };
 
 export const subscriptionList = async () => {
-  const url = apiEndPoints.new_packageList + "?development=1";
+  const url = apiEndPoints.new_packageList ;
   return await CommonApiHandler(
     {
       name: "subscriptionList",

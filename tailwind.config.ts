@@ -29,6 +29,7 @@ const config: Config = {
 			deep_pink2:"#ae346e",
 			muted2:"#C7C7C7",
 			navyblue:"#0D244E",
+			muted3:"#5C5C5C",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -100,6 +101,7 @@ const config: Config = {
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
+	  '1350':'1350px',
       '2xl': '1536px',
     },
 	fontFamily: {

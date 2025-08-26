@@ -8,6 +8,7 @@
     position: absolute;
     max-height: 350px;
     overflow-y: scroll;
+    z-index: 100;
     width: 280px;
     background-color: #D9D9D91A;
     margin-top: 10px;

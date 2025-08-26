@@ -20,11 +20,11 @@ interface MenuItemProps {
 const MenuItem: React.FC<MenuItemProps> = ({ title, icon, gradient, hasNewBadge, className }) => {
   return (
     <div className={cn('relative', className)}>
-      <div className="bg-[#531d5a] rounded-xl p-4">
+      <div className="profile_btn_gradients rounded-xl p-4">
         <div className="flex items-center space-x-4">
           <div
             className={cn(
-              'w-[48px] h-[48px] rounded-lg flex items-center justify-center',
+              'w-[48px] h-[48px] rounded-lg flex text-white items-center justify-center',
               gradient
             )}
           >
@@ -46,7 +46,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, icon, gradient, hasNewBadge,
 export default function Profiles() {
   const menuItems = [
     // Row 1
-    { title: 'বইয়ের অনুরোধ', icon: <BookIcon />, gradient: 'bg-blue-gradient', hasNewBadge: true },
+    { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', hasNewBadge: true },
     { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient' },
     { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' },
 
@@ -72,7 +72,7 @@ export default function Profiles() {
   const remainder = menuItems.slice(9);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a0016] via-[#320443] to-[#0a0016] p-4">
+    <div className=" p-4">
       <div className="max-w-6xl mx-auto">
         {/* 3 columns x 3 rows */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

@@ -2,44 +2,11 @@ import { BookOpen } from "lucide-react";
 import { castCrewInfo } from "./static/audiobook.type";
 import BookIcon from "@/svgs/bookIcon";
 
-// interface Author {
-//   id: string;
-//   name: string;
-//   audioBookCount: number;
-//   image: string;
-// }
-
-// const authors: Author[] = [
-//   {
-//     id: "1",
-//     name: "শোয়াইব আহমদ",
-//     audioBookCount: 48,
-//     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face"
-//   },
-//   {
-//     id: "2", 
-//     name: "পিংকি সুস্মিতা ঘাগ্রা",
-//     audioBookCount: 11,
-//     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=120&h=120&fit=crop&crop=face"
-//   },
-//   {
-//     id: "3",
-//     name: "আহসানুল ইসলাম", 
-//     audioBookCount: 10,
-//     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&crop=face"
-//   },
-//   {
-//     id: "4",
-//     name: "মুহাঃ ফেরদৌস করিম তমাল",
-//     audioBookCount: 10,
-//     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face"
-//   }
-// ];
 
 export default function CastAndCrew(props: { castCrewData: castCrewInfo[]  }) {
   const { castCrewData } = props;
   return (
-    <div className="min-h-screen  py-8 px-4">
+    <div className="max-h-[180vh] overflow-y-auto  py-8 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="flex flex-col gap-[27px]">
           {castCrewData?.map((author) => (

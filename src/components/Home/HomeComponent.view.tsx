@@ -81,17 +81,17 @@ const HomeComponent = (props:THomeProps) => {
  
 
   return (
-    <div className='bg-bg'>
+    <div className=' '>
       
-        <div  className="mt-[-100px]">
+        <div  className="mt-[-100px] z-10">
             <Hero slidingData={topBannerData}/>
         </div>
-        <button
+        {/* <button
       className="px-4 py-2 bg-blue-600 text-white rounded"
       onClick={cityTouch}
     >
       Pay with City Bank
-    </button>
+    </button> */}
         <div>
           <div className={topTenStyles.heading_container+" my-16  text-white max-w-[1206px] mx-auto"}>
               <h3 className={topTenStyles.heading}>শীর্ষ ১০</h3>
@@ -113,7 +113,7 @@ const HomeComponent = (props:THomeProps) => {
           </div>
         </div>
         
-        <div className='bg-bg'>
+        <div className='bg-bg relative z-10'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="নতুন"
@@ -122,9 +122,10 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
+          <div className="circular_gradient left-[50%] -translate-x-1/2 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
             
         </div>
-        <div className='bg-bg h-screen'>
+        <div className='bg-bg  relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="ট্রেন্ডিং"
@@ -133,7 +134,6 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
-            
         </div>
         <div className='max-w-[1440px] mx-auto relative mt-20'>
           
@@ -158,7 +158,7 @@ const HomeComponent = (props:THomeProps) => {
             />
           </div>
         </div>
-        <div className='bg-bg'>
+        <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="কাব্যিক রিকমেন্ডেড"
@@ -167,7 +167,7 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
-            
+            <div className="circular_gradient left-[50%] -translate-x-1/2 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
         <div className='bg-bg'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
@@ -180,10 +180,11 @@ const HomeComponent = (props:THomeProps) => {
             {/* </Link> */}
             
         </div>
-        <div>
+        <div className='relative'>
           <StepsToListenBookview/>
+          <div className="circular_gradient right-[10%]  bottom-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
-        <div className='bg-bg'>
+        <div className='bg-bg relative z-10'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="হুমায়ূন আহমেদ স্পেশাল"
@@ -192,9 +193,9 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
-            
+            <div className="circular_gradient left-[50%] -translate-x-1/2 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
-        <div className='bg-bg'>
+        <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="সাসপেন্স"
@@ -205,12 +206,13 @@ const HomeComponent = (props:THomeProps) => {
             {/* </Link> */}
             
         </div>
-        <div>
+        <div className='relative z-10'>
           <BestCollection
             homeData={homeData}
           />
+          <div className="circular_gradient left-[0%]  bottom-[-10%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
-        <div className='bg-bg'>
+        <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="ক্লাসিক"
@@ -219,7 +221,7 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
-            
+            <div className="circular_gradient left-[30%] -translate-x-1/2 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
         <div className='bg-bg'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
@@ -232,8 +234,9 @@ const HomeComponent = (props:THomeProps) => {
             {/* </Link> */}
             
         </div>
-        <div className='mb-10'>
+        <div className='mb-10 relative'>
           <BigBanners/>
+          <div className="circular_gradient left-[0%]  bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
         <div className='bg-bg mt-10'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
@@ -246,7 +249,7 @@ const HomeComponent = (props:THomeProps) => {
             {/* </Link> */}
             
         </div>
-        <div className='bg-bg'>
+        <div className='bg-bg relative z-10'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="কাব্যিক রিকমেন্ডেড"
@@ -255,10 +258,10 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
-            
+            <div className="circular_gradient left-[50%] -translate-x-1/2 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
 
-        <div className='bg-bg'>
+        <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="কাব্যিক গ্যালারী"
@@ -267,10 +270,10 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
-            
+            {/* <div className="circular_gradient right-0 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div> */}
         </div>
 
-        <div className='bg-bg'>
+        <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="পডকাস্ট"
@@ -279,15 +282,16 @@ const HomeComponent = (props:THomeProps) => {
                 // isPopular={true}
               />
             {/* </Link> */}
-            
+            <div className="circular_gradient right-0 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
 
         <div className='mt-10 bg-bg'>
           <UpComing/>
         </div>
 
-        <div>
+        <div className='relative'>
             <PopularCategories/>
+            <div className="circular_gradient left-1/2 -translate-x-1/2 bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
         </div>
 
         <div className='max-w-[1440px] max-h-[480px] mx-auto relative mt-20 mb-10'>
@@ -311,39 +315,37 @@ const HomeComponent = (props:THomeProps) => {
             <CustomVideoPlayer width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
               url={StaticTexts?.campaign_video?.video_url ?? ''}
             />
-            {/* {console.log(StaticTexts?.video_url)} */}
           </div>
         </div>
 
 
-        <div className='max-w-[850px]  max-h-[950px] mx-auto relative mt-40'>
-          <div className='relative  w-full'>
+        <div className='max-w-[900px]   mx-auto relative mt-40 '>
+          <div className='relative max-w-[422px] mx-auto  w-full z-20'>
             {initialPlayer3?'':(
               <>
                 <figure className='absolute top-0 left-0 z-10'>
-                  <img className='h-[480px] z-10 max-w-[100%] w-[1206px]' src={StaticTexts?.nepal_tour_video?.thumbnail}/>
+                  <img className='max-h-[105vh] z-10 w-[422px] ' src={StaticTexts?.nepal_tour_video?.thumbnail}/>
 
                 </figure>
                 <div 
                   onClick={handleInitialPlay3}
                   className='absolute z-20 cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '
                 >
-                  <span className='max-w-[422px] inline-block max-h-[422px] w-[15vw] h-[15vw]'>
+                  <span className='max-w-[200px] inline-block max-h-[200px] w-[15vw] h-[15vw]'>
                     <BigVideoPlayerIcon/>
                   </span>
                 </div>
               </>
             )}
-              <div className='max-w-full  max-h-[900px] border-[10px] rounded-[10px]'>
-                  <CustomVideoPlayer width=' max-w-full ' height=' max-h-[900px]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
+              <div className='max-w-full z-10   border-[10px] rounded-[10px]'>
+                  <CustomVideoPlayer width=' max-w-[400px] ' height=' max-h-[100vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
 
                   url={StaticTexts?.nepal_tour_video?.video_url ?? ''}
                 />
               </div>
-              
-            {/* {console.log(StaticTexts?.video_url)} */}
           </div>
-          <div className='text-center py-10'>
+            <div className="circular_gradient left-1/2 -translate-x-1/2 top-[-10%] w-[40vw] h-[40vw] absolute  "></div>
+          <div className='text-center py-10 z-20'>
               <p className='gradient-text text-[45px] font-semibold'>{StaticTexts?.nepal_tour_video?.heading}</p>
               <p className='text-white text-[37px] py-8'>{StaticTexts?.nepal_tour_video?.para}</p>
               <Link href={'/subscribe'}>
@@ -358,10 +360,13 @@ const HomeComponent = (props:THomeProps) => {
         </div>
 
 
-        <div className='mt-20 max-w-[1206px] mx-auto w-[96%]'>
+        <div className='mt-20 max-w-[1206px] mx-auto w-[96%] relative'>
+          <div className="circular_gradient left-[-20%]   top-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
             <h2 className='gradient-text text-[40px] font-semibold text-center'>আমাদের সাম্প্রতিক কার্যক্রম</h2>
             <p className='text-[18px] text-white text-center py-5 mb-5'>নতুন তথ্য, ইভেন্ট এবং বিশেষ অফার সম্পর্কে জানুন সবার আগে আপডেট পেতে আমাদের সাথে থাকুন।</p>
-            <Blogs blogs={blogs}/>
+            <div className='z-20'>
+              <Blogs blogs={blogs}/>
+            </div>
         </div>
 
         

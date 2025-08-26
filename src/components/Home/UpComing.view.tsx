@@ -21,7 +21,7 @@ const UpComing = () => {
   const nextRef = useRef(null);
   const router=useRouter()
   return (
-    <div className='text-white max-w-[1440px]  mx-auto  w-[100%] max-h-[700px]'>
+    <div className='text-white max-w-[1440px]  mx-auto  w-[100%] max-h-[800px]'>
         <div>
             <div className={common_cat_styles.heading_container + " max-w-[1206px] mx-auto w-[97%] !mb-[0] pb-64"}>
                 <h3 className={common_cat_styles.heading}>আপকামিং বুক</h3>

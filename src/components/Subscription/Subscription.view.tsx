@@ -339,9 +339,10 @@ const SubscribeComponent = ({
 
   return (
     <>
-      <div className="  relative overflow-hidden">
+       <div className="w-full h-[100px] bg-[#0E1D3F] mt-[-100px]"></div>
+      <div className="  relative ">
       {/* Back Arrow */}
-      <div className="absolute left-4 md:left-8 top-4 md:top-8 z-10">
+      <div className="absolute left-4 md:left-8 top-4 md:top-8 ">
         <span 
           onClick={()=>{router.back()}}
           className="w-16 h-16 text-white md:w-20 lg:w-24 xl:w-[122px] md:h-20 lg:h-24 xl:h-[122px]"
@@ -370,7 +371,7 @@ const SubscribeComponent = ({
         </div>
 
         {/* Plan Selection Section */}
-        <div className="text-center mb-8 md:mb-16">
+        <div className="text-center mb-8 md:mb-16 relative z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className={"font-bengali font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px] leading-tight  gradient-text mb-4 md:mb-6 "+styles.gradient_para}>
               আপনার সেরা প্ল্যানটি বেছে নিন
@@ -379,6 +380,7 @@ const SubscribeComponent = ({
               কাব্যিক-এর প্রিমিয়াম ফিচার উপভোগ করতে সাবস্ক্রাইব করুন
             </p>
           </div>
+          <div className="circular_gradient right-[-20%] top-[-10%] w-[30vw] h-[30vw] absolute  "></div>
         </div>
 
         {/* Premium Package Text */}
@@ -395,107 +397,11 @@ const SubscribeComponent = ({
       :(
       <>
       <ToastContainer />
-      {/* <div
-        className="modal fade"
-        id="blMsisdnModal"
-        tabIndex={-1}
-        aria-labelledby="blMsisdnModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="blMsisdnModalLabel">
-                BLDCB MSISDN
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <div className="p-2">
-                {!showBlDcbOtpSubmitButton ? (
-                  <form onSubmit={submitBlDcbMsisdn}>
-                    <div className="form-group">
-                      <label className={`form-label ${styles.text_color}`}>
-                        মোবাইল নাম্বার দিন
-                      </label>
-                      <div className="input-group">
-                        <span
-                          className={`input-group-text ${styles.inputNumberForm} ${styles.text_color}`}
-                          id="msisdnLabel"
-                        >
-                          +880
-                        </span>
-                        <input
-                          type="text"
-                          onChange={(e: any) => {
-                            setBlDcbMsisdn(e.target.value);
-                          }}
-                          value={blDcbMsisdn}
-                          // onPaste={preventPasteNegative}
-                          // onKeyPress={preventMinus}
-                          className={`form-control ${styles.inputNumberForm}`}
-                          placeholder="মোবাইল নাম্বার"
-                          aria-label="মোবাইল নাম্বার"
-                          aria-describedby="msisdnLabel"
-                        />
-                      </div>
-                    </div>
-                    <div className="modal-footer">
-                      <button type="submit" className="btn btn-primary">
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                ) : (
-                  <form onSubmit={submitBlDcbOtp}>
-                    <div className={`form-group`}>
-                      <label className={`form-label`}>ওটিপি নাম্বার দিন</label>
-                      <div className="input-group" style={{ color: "white" }}>
-                        <OTPInput
-                          value={blDcbOtp}
-                          onChange={(event: any) => setBlDcbOtp(event)}
-                          numInputs={5}
-                          renderSeparator={<span>--</span>}
-                          inputType="tel"
-                          inputStyle={styles.otpInputField}
-                          shouldAutoFocus={true}
-                          renderInput={(props) => (
-                            <input
-                              {...props}
-                              style={{
-                                ...props.style,
-                                color: "black",
-                                border: "2px solid #999a",
-                                borderRadius: "5px",
-                                fontWeight: "900",
-                                fontSize: "20px",
-                                backgroundColor: "rgba(225, 225, 225, 0.8)",
-                              }}
-                            />
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <div className="modal-footer">
-                      <button type="submit" className="btn btn-primary">
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className={`${styles.divBody}`}>
-        <div className={"container"+container('1206px')}>
+        <div className={"container relative "+container('1206px')}>
           <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-4"}>
+            <div className="circular_gradient left-[-20%] top-[10%] w-[30vw] h-[30vw] absolute  "></div>
+            <div className="circular_gradient right-[-20%] bottom-[0%] w-[30vw] h-[30vw] absolute  "></div>
             {subscriptionPackList?.map(
               (data: DynamicSubscriptionPack, index: number) => {
                 return (
@@ -696,13 +602,13 @@ const SubscribeComponent = ({
            
           </CommonModal>
 
-          <div className="text-center mt-3">
+          {/* <div className="text-center mt-3">
             <span className="bg-white px-3 py-2 rounded-2">
               মোস্ট পপুলার ক্যাটেগরিজ
             </span>
-          </div>
+          </div> */}
 
-          {categoryListData && categoryListData.length ? (
+          {/* {categoryListData && categoryListData.length ? (
             <ul className={`list-unstyled ${styles.categoriesList}`}>
               {categoryListData?.map((categorylist: any, index: any) => (
                 <li key={categorylist?.id}>
@@ -736,59 +642,10 @@ const SubscribeComponent = ({
             </ul>
           ) : (
             <></>
-          )}
+          )} */}
         </div>
       </div>
-      {/* {isMsisdnTakerModalOpened ? (
-        <CustomModal
-          modalId="msisdnTakerModal"
-          title="Pay with your mobile balance"
-        >
-          <div
-            className="d-flex justify-content-center"
-            style={{ width: "400px" }}
-          >
-            <div
-              style={{ width: "250px" }}
-              className="text-white d-flex flex-column gap-3"
-            >
-              <label htmlFor="msisdn" className="mt-3 form-label fs-14">
-                <div>Enter your grameenphone number</div>
-                <input
-                  type="text"
-                  className={`mt-2 text-input-control w-100 text-center`}
-                  placeholder="Type a number"
-                  value={msisdnRef.current}
-                  onChange={(e) => {
-                    setMsisdn((prev) => e.target.value);
-                    msisdnRef.current = e.target.value;
-                    setIsNextButtonPressed(false);
-                  }}
-                />
-                {!isMsisdnValid && isNextButtonPressed ? (
-                  <div className="text-danger">
-                    Phone number should contain 11 digits!
-                  </div>
-                ) : null}
-              </label>
-              <button
-                className="custom-button"
-                onClick={() => {
-                  setIsNextButtonPressed(true);
-                  if (isMsisdnValid) {
-                    isMsisdnSubmitted.current = true;
-                    setIsMsisdnTakerModalOpened(false);
-                  }
-                }}
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </CustomModal>
-      ) : (
-        <></>
-      )} */}
+      
     </>
     )}</>
   );

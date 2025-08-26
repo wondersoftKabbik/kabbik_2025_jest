@@ -14,7 +14,7 @@ export default function Review({reviews}:{reviews:RatingReviewInfo[]}) {
   };
 
   return (
-    <div className="min-h-screen  py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+    <div className="  py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
         {/* Add Review Button */}
         <div className="mb-6 sm:mb-8">
@@ -24,7 +24,7 @@ export default function Review({reviews}:{reviews:RatingReviewInfo[]}) {
         </div>
 
         {/* Review List */}
-        <div className="space-y-6 sm:space-y-7">
+        <div className="space-y-6 sm:space-y-7 px-2 max-h-[205vh] overflow-y-auto">
           {reviews.map((review) => (
             <div
                 className={

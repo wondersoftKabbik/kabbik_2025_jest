@@ -1,3 +1,4 @@
+'use client'
 import { handleShare } from "@/helpers/commonFunction";
 import BootomTraingle from "@/svgs/BootomTraingle";
 import Messenger from "@/svgs/Messenger.svg";

@@ -13,7 +13,7 @@ const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDe
     
   return (
     <div>
-        <div className="max-h-[514px] overflow-y-auto">
+        <div className="max-h-[514px] px-2 overflow-y-auto">
           {book?.episodes.map((episode,i) => (
             <div key={episode.id} className=" my-4 btn-gradient-2 cursor-pointer rounded-[6px] p-3 md:p-4 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4">

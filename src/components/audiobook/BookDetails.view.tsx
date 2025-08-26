@@ -575,20 +575,22 @@ const AudiobookComponent = ({
  
   return (
     <>
+      <div className="w-full h-[100px] bg-[#0E1D3F] mt-[-100px]"></div>
       <ToastContainer />
-      <div className={showBigPlayer?'hidden':"flex justify-around items-start relative"}
+      <div className={showBigPlayer?'hidden':"flex justify-around mt-7 items-start relative"}
         
       >
         <div 
-          className={`absolute bottom-0 left-0 w-full h-[270vh] ${styles.audioBookBg}`}
+          className={`absolute -top-7 left-0 w-full h-[270vh] ${styles.audioBookBg}`}
           style={{
             backgroundImage: `url('${bookId ? audioBookDetailsData?.thumb_path : ""}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: 0.5,
+            opacity: 0.4,
           }}
         ></div>
-        <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient"></div>
+        {/* <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient opacity-90"></div> */}
+        <div className="circular_gradient left-0 bottom-[-10%] w-[35vw] h-[35vw] absolute rounded-[50%] "></div>
 
         <div className=" flex items-center z-[5] justify-center p-1">
           <div className="w-full max-w-[45vw] mx-auto">
@@ -675,7 +677,7 @@ const AudiobookComponent = ({
                 {/* Subscription Options */}
                 <div className="space-y-4 mb-8">
                   {/* Premium Subscription */}
-                  <div className="btn-gradient-red rounded-[30px] py-3 flex justify-around shadow-lg">
+                  <div className="red_gradient_bg rounded-[30px] py-3 flex justify-around shadow-lg">
                     <div className="flex items-center gap-4">
                       <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                         <div className="flex">
@@ -683,8 +685,8 @@ const AudiobookComponent = ({
                           <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
                         </div>
                       </div>
-                      <p className="text-white text-[17px]  font-semibold leading-tight flex-1">
-                        সাবস্ক্রাইব করুন অ্যাড-ফ্রি প্রিমিয়াম অ্যাক্সেসের জন্য
+                      <p className="text-white  text-[17px]  font-semibold leading-tight flex-1">
+                       <Link href={'/subscribe'}> সাবস্ক্রাইব করুন অ্যাড-ফ্রি প্রিমিয়াম অ্যাক্সেসের জন্য</Link>
                       </p>
                     </div>
                   </div>
@@ -725,7 +727,7 @@ const AudiobookComponent = ({
                     <h3 className="text-black text-2xl font-bold mb-2">সংক্ষিপ্ত জীবনী:</h3>
                     <p 
                       onClick={()=>setExpand(!expand)}
-                      className="text-black text-[21px] cursor-pointer leading-relaxed"
+                      className="text-black text-[21px] cursor-pointer leading-relaxed max-h-40 overflow-y-auto"
                     >
                       { expand? audiobookData?.description :
                         textSlice( audiobookData?.description,160, true,"এই বইটির সংক্ষিপ্ত বিবরণ এখানে দেওয়া হবে।") 

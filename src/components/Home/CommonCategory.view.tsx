@@ -148,7 +148,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                         </p>
                                         )}
                                         <div className={podcast?'hidden ':styles.hovered_item}>
-                                            <div className={'w-full h-6 '+styles.shadow_blur}></div>
+                                            <div className={'w-full h-6 opacity-80 '+styles.shadow_blur}></div>
                                             <div className='flex items-start justify-around bg-bg'>
                                                 <div className='z-10'>
                                                     <CommonButton >

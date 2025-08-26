@@ -291,6 +291,7 @@ export function textSlice(
   addEllipsis = true,
   defaultText = "N/A"
 ): string {
+  if(!text)return '';
   if(text.length === 0) return defaultText;
   if (text.length <= length) return text
   return addEllipsis ? text.slice(0, length) + "…" : text.slice(0, length)

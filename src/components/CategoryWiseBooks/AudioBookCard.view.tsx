@@ -1,8 +1,11 @@
+'use client'
 import Link from 'next/link';
 import { TAudiobookCardProps } from './static/category.types';
 import { paths } from '@/utils/Paths';
+import { useEffect } from 'react';
 
 export function AudiobookCard({ audiobook, className = '',category }: TAudiobookCardProps) {
+  useEffect(()=>{console.log(audiobook,"podcast")},[])
   return (
     <div className={`group  cursor-pointer transition-all duration-300 hover:scale-105 ${className}`}>
       <div className="relative overflow-hidden rounded-[6px] border border-white/20 bg-black/20 backdrop-blur-sm">

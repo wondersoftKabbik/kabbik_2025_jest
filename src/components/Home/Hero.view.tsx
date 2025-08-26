@@ -28,8 +28,9 @@ const Hero = ({
   const router = useRouter();
 
   return (
-    <div>
+    <div className="relative">
       <div className=" relative bg-[black]">
+        
         <Swiper
           // slidesPerView={1}
           // spaceBetween={1}
@@ -61,7 +62,7 @@ const Hero = ({
                   router.push(`/audiobook/${topbannerinfo?.id}`);
                 }}
               >
-                <div className="relative h-[130vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
+                <div className="relative h-[140vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
                   <div className={styles.backdrop_filter}>
                     <div className="">
                       <picture className={styles.thumb_path}>
@@ -80,8 +81,8 @@ const Hero = ({
                       <h5>{topbannerinfo.name}</h5>
                     </div> */}
                       <div className="w-full z-10  text-white">
-                        <h3 className="text-[64px] font-semibold">{topbannerinfo.name}</h3>
-                        <p className="text-[42px] my-7">{topbannerinfo.author_name}</p>
+                        <h3 className="text-[55px] w-full 1350:w-[70%] font-semibold">{topbannerinfo.name}</h3>
+                        <p className="text-[39px] my-7">{topbannerinfo.author_name}</p>
                         <CommonButton className={styles.hue_btn}>
                           <div className="flex gap-2">
                             <span className="mr-4 w-9 h-9 inline-block">
@@ -113,7 +114,17 @@ const Hero = ({
             ))}
         </Swiper>
       </div>
-      <div className={styles.play_icons+' bg-bg'}>
+        {/* <div className="z-10 w-full h-24 flex items-center justify-between">
+          <div className="w-[50%]">
+            <div className="rect-gradient1 z-10  h-12 "></div>
+            <div className="rect-gradient2 z-10  h-12 "></div>
+          </div>
+
+          <div className="rect-gradient z-10 w-[50%] h-12 "></div>
+        </div> */}
+        <div className="circular_gradient left-[-10%] bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
+      <div className="bg-bg">
+        <div className={styles.play_icons+' z-20 relative '}>
           <div className="mr-[3vw]">
             <h6 className={styles.download_txt}>এখনই আমাদের অডিওবুক অ্যাপটি 
               মোবাইলে ডাউনলোড করে নিন!</h6>
@@ -135,13 +146,14 @@ const Hero = ({
           </div>
           <div className="flex min-w-[55%]">
             <span className="max-w-[297px] max-h-[297px] mr-[3vw] inline-block">
-              <AppStoreIcon/>
+              <a href={"https://apps.apple.com/us/app/kabbik/id6459885875"}><AppStoreIcon/></a>
             </span>
             <span className="max-w-[297px] max-h-[297px] inline-block">
-              <PlayStoreIcon/>
+              <a href="https://play.google.com/store/apps/details?id=com.kabbik.app"><PlayStoreIcon/></a>
             </span>
           </div>
         </div>
+      </div>
     </div>
     
   );

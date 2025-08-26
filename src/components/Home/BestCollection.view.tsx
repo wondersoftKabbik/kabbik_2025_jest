@@ -83,8 +83,8 @@ const BestCollection = (props:TBestCollection) => {
                                         </div>
                                         <h6 className='text-[39px] mt-8 font-[600]'>{item.heading}</h6>
                                         <p className='text-[30px] my-10 mb-20'>{item.para}</p>
-                                        <div className='bg-white  text-black px-4 py-2 max-w-[450px] w-[30vw] '>
-                                            <Link className='flex items-center justify-around font-[600] text-[22px]' href={'/subscribe'} >
+                                        <div className='bg-white rounded-[4px] text-black px-4 py-2 max-w-[450px] w-[30vw] '>
+                                            <Link className='flex items-center  justify-around font-[600] text-[22px]' href={'/subscribe'} >
                                                 সাবস্ক্রাইব করুন এবং শুনুন  
                                                 <span className='max-w-[37px] inline-block '>
                                                     <RightArrow/>

@@ -14,7 +14,7 @@ import UkFlagIcon, { BdFlagIcon } from "@/svgs/UkFlag.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#06152B] text-white mt-16">
+    <footer className="bg-[#06152B] z-10 relative text-white mt-16">
       {/* Newsletter Section */}
       <div className="px-4 max-w-[1400px] w-[97%] mx-auto py-8">
         <div className="flex flex-col lg:flex-row items-start justify-between lg:items-center gap-8 ">
@@ -79,7 +79,7 @@ export default function Footer() {
 
           {/* Footer Links Grid */}
             {/* About Section */}
-            <div className="space-y-4 mb-5 min-w-[110px]">
+            <div className="space-y-4 mb-5 max-1350:hidden min-w-[110px]">
               <div className="flex items-center gap-3">
                 <span className="w-5 h-5">
                     <AboutIcon/>
@@ -120,7 +120,20 @@ export default function Footer() {
               <div className="space-y-1">
                 <p className="text-sm text-white/90 font-hind">Call or WhatsApp: +8801915225026</p>
                 <p className="text-sm text-white/90 font-hind">Email: support@wondersoftsolution.com</p>
+
               </div>
+
+              <div className="mb-5 1350:hidden min-w-[110px]">
+              <div className="flex items-center">
+                <span className="w-5 h-5 inline-block">
+                    <AboutIcon/>
+                </span>
+                <h3 className="text-lg font-bold bg-gradient-to-r from-[#CC4473] to-[#871C68] bg-clip-text text-transparent font-hind">
+                  About
+                </h3>
+              </div>
+              <p className="text-white/90 font-hind">About Kabbik</p>
+            </div>
             </div>
 
           {/* Office Locations */}

@@ -11,10 +11,12 @@ import { setUser } from "@/store/slicers/userSlice";
 const useNavbar = () => {
     const [showCategories,setShowCategories]=useState<boolean>(false)
     const [mobileMenu,setMobileMenu]=useState<boolean>(false);
+    const [showLoginModal,setShowLoginModal]=useState(false);
+    const [showOTPModal,setShowOTPModal]=useState(false);
+    const [showPasswordModal,setShowPasswordModal]=useState(false);
+    const [showLoginPasswordModal,setShowLoginPasswordModal]=useState(false);
     
-    // const [categoriesData,setCategoriesData]=useState<TCategoryItem[] | null>(null)
-    // const [userData,setUserData]=useState<TUserProfile | null>(null);
-    // const [isSubscribed,setIsSubscribed]=useState<boolean>(false);
+    
     const user=useAppSelector(store=>store.user?.userData)
     const categories=useAppSelector(store=>store.categories?.CategoriesData)
     const dispatch=useAppDispatch();
@@ -45,7 +47,31 @@ const useNavbar = () => {
       getCategories();
       getProfileData();
     },[])
-  return {showCategories,setShowCategories,user,categories,setMobileMenu,mobileMenu}
+
+    const handleLoginClick=()=>{
+      setShowLoginModal(true)
+    }
+
+    const closeLoginClick=()=>{
+      setShowLoginModal(false)
+    }
+
+    const closePasswordClick=()=>{
+      setShowPasswordModal(false);
+    }
+
+    const closeOTPClick=()=>{
+      setShowOTPModal(false);
+    }
+
+    const handleloginSubmit=()=>{
+      setShowOTPModal(true);
+    }
+
+    const handleVerifyOtp=()=>{
+      setShowPasswordModal(true);
+    }
+  return {showCategories,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick}
 }
 
 export default useNavbar

@@ -82,7 +82,7 @@ const AudiobookComponent = ({
             opacity: 0.5,
           }}
         ></div>
-        <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient"></div>
+        <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient opacity-70"></div>
 
        <div className={"flex my-20 rounded-[32px] items-start"+ " " + styles.bigPlayer}>
             <div className=" flex items-center z-[5] justify-center p-1">

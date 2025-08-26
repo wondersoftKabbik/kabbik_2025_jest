@@ -52,7 +52,7 @@ const ElaborateBlog = ({ blog }: { blog: BlogInfoFromDB }) => {
                 <figure>
                     <img className="max-w-[100%] rounded-[8px] max-h-[100%]" src={blog?.featured_image} />
                 </figure>
-                <p className="text-white font-medium max-w-[1000px] mx-auto mt-5 text-[18px]">
+                <div className="text-white font-medium max-w-[1000px] mx-auto mt-5 text-[18px]">
                     {<Editor
                         readOnly={true}
                         editorState={editorState}
@@ -61,7 +61,7 @@ const ElaborateBlog = ({ blog }: { blog: BlogInfoFromDB }) => {
                         ref={editorRef}
                         spellCheck={true}
                     />}
-                </p>
+                </div>
             </div>
             <div>
                 <CommentSection/>
