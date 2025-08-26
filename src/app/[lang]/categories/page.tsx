@@ -23,7 +23,7 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
         <div className="max-w-7xl mx-auto">
             {/* Content Grid */}
             {staticTexts?new Array(Math.ceil(staticTexts.popular_categories.length/4),0).map((Item:any,index:number)=>(
-                <div className="flex flex-col gap-8 my-8">
+                <div key={index} className="flex flex-col gap-8 my-8">
             
             {/* First Row - Creative Recommended + Right Column */}
                 <div className="flex flex-col lg:flex-row gap-6">

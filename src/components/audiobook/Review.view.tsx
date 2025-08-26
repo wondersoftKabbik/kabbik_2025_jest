@@ -25,8 +25,9 @@ export default function Review({reviews}:{reviews:RatingReviewInfo[]}) {
 
         {/* Review List */}
         <div className="space-y-6 sm:space-y-7 px-2 max-h-[205vh] overflow-y-auto">
-          {reviews.map((review) => (
+          {reviews.map((review,index) => (
             <div
+                key={index}
                 className={
                     "flex p-3 bg-gray-50 rounded-[12px] sm:p-4 justify-start items-start gap-3 sm:gap-4 w-full"
                     // "rounded-xl bg-white shadow-[0_1px_4px_1px_rgba(0,0,0,0.25)]"

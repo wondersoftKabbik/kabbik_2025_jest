@@ -667,7 +667,7 @@ const AudiobookComponent = ({
                   </h2>
                   <div className="flex justify-center gap-3">
                     {[...Array(5)].map((_, i) => (
-                      <span className="w-6 h-6 fill-audio-star text-audio-star">
+                      <span key={i} className="w-6 h-6 fill-audio-star text-audio-star">
                         <Star key={i}  />
                       </span>
                     ))}

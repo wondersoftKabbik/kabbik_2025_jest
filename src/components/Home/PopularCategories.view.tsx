@@ -32,7 +32,7 @@ const PopularCategories = () => {
             </div>
             <div className='w-[48%]'>
                 {PopularCategories.slice(2,5).map((item,index:number)=>(
-                    <div className="  h-[24.5vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
+                    <div key={index} className="  h-[24.5vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
                             <Link href={paths.categoryWiseBooks(item.path)}>
                                 <img src={item.img} className=" h-[24.5vh] w-full object-cover object-bottom" />
                             </Link>
