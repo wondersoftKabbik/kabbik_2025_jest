@@ -9,7 +9,7 @@ import AudiobookComponent from "@/components/audiobook/BookDetails.view";
 
 const Audiobook = async(params: {
   params: { id: string;   };
-  lang: 'en' | 'bl';
+  // lang: 'en' | 'bl';
   searchParams: { episodeId: string; time: string };
 }) => {
   const bookId = parseInt(await params.params.id);
@@ -21,7 +21,7 @@ const Audiobook = async(params: {
   const castName = audiobookData.contributing_artists;
   const castData: {data:castCrewInfo[]} = await castDetails(castName);
   const reviewData: {data:RatingReviewInfo[]} = await ratingReviewList(bookId);
-  const { lang } =  await params;
+  // const { lang } =  await params;
   // const dict = await getDictionary(lang) 
   const doesAudiobookExist = audiobookData.success === "false";
   console.log(castData,"castData")
