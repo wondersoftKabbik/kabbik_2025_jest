@@ -3,7 +3,8 @@ import { TCommonApiCallArgs } from "@/helpers/commonTypes";
 import Cookies from "js-cookie";
 
 export const getHeaders=(defaultTokenAllowed:boolean|undefined,noToken?:boolean,extraHeaders?:any)=>{
-  const defaultToken =defaultTokenAllowed===false?'':siteConfig.defaultToken
+  // const defaultToken =defaultTokenAllowed===false?'':siteConfig.defaultToken
+  const defaultToken=siteConfig.defaultToken;
   const userToken = Cookies.get("token") ? Cookies.get("token") : defaultToken;
 
   const myHeaders = new Headers();

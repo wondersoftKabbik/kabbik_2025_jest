@@ -30,7 +30,7 @@ const LoginModal = () => {
             {/* <h2 className="text-white text-2xl md:text-3xl">লগইন করুন</h2> */}
             
             {/* Facebook Button */}
-            <button className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-2 px-4 flex items-center gap-8 md:gap-12">
+            {/* <button className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-2 px-4 flex items-center gap-8 md:gap-12">
                 <div className='w-full flex justify-center'>
                     <div className="w-8 h-8 mr-4 flex-shrink-0">
                         <Facebook/>
@@ -39,7 +39,7 @@ const LoginModal = () => {
                         ফেসবুক
                     </span>
                 </div>
-            </button>
+            </button> */}
 
             {/* Google Button */}
             <button className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-2 px-4 flex items-center gap-8 md:gap-12">
