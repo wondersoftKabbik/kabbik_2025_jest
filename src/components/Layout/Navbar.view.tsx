@@ -4,7 +4,6 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import CommonButton from '../ui/button'
 import { SearchIcon } from 'lucide-react'
-import { siteConfig } from '@/config/config'
 import style from './static/style.module.css'
 import { TNavbar } from './static/navbar.types'
 import useNavbar from './Navbar.presenter'
@@ -17,13 +16,17 @@ import CommonModal from '../ui/CommonModal/CommonModal.view'
 import LoginModal from '../Login/LoginModal'
 import OTPVerification from '../Login/OtpComponent'
 import { PasswordCreationForm } from '../Login/PasswordCreationForm.view'
-import LoginWithPassword from '../Login/LoginWithPassword'
 import ShobderaJibonta from '../Login/ShobderaJibonta'
+import { PasswordLoginForm } from '../Login/PasswordLogin'
+import PasswordChangePhoneModal from '../Login/PassWordChangePhoneModal'
+import Bell from '@/svgs/Bell.svg'
+import Trophy from '@/svgs/Trophy.svg'
+import { siteConfig } from '@/config/config'
 // import OTPVerification from '../Login/OtpComponent'
 
 
 const Navbar = (props:TNavbar) => {
-    const {showCategories,setShowCategories,user: profile,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick} = useNavbar();
+    const {showCategories,setShowCategories,user: profile,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick, handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword} = useNavbar();
 
     return (
     <nav className='w-full bg-[#D9D9D91A] relative z-10'>
@@ -53,7 +56,7 @@ const Navbar = (props:TNavbar) => {
                                 <li key={name?.name} className="w-100">
                                     <Link
                                     // className="d-block"
-                                    href={`/${name?.name}`}
+                                        href={`/${name?.name}`}
                                     >
                                     <div className=" w-100">
                                         <span className='w-7 h-7 inline-block mr-2'>
@@ -94,13 +97,40 @@ const Navbar = (props:TNavbar) => {
                         <SearchIcon/>
                     </span>
                 </Link>
-                <CommonButton
+                {(!profile?.is_subscribed && profile?.id && profile?.id!==2820) ?<CommonButton
+                    isLoading={false}
+                    // handleClick={handleLoginClick}
+                    disabled={false}
+                >
+                    <Link href={'/subscribe'}>সাবস্ক্রাইব</Link>
+                </CommonButton>:''}
+                {profile?.id && profile?.id!==2820?
+                    <span className='cursor-pointer flex items-center gap-3'>
+                        <span className='w-5 h-5 inline-block cursor-pointer'>
+                            <Bell/>
+                        </span>
+                        <span className='w-5 h-5 inline-block cursor-pointer'>
+                            <Trophy/>
+                        </span>
+                        {profile?.is_subscribed?'':<figure>
+                            <Link href={paths.profile}>
+                                <img className='max-w-8 max-h-8' src={profile?.image_url ?? siteConfig.defaultProfilePic}/>
+                            </Link>
+                        </figure>}
+                        {profile?.is_subscribed?<figure>
+                            <Link href={paths.profile}>
+                                <img className='max-w-11 max-h-11 mt-[-14px]' src={profile?.image_url ?? siteConfig.defaultPremiumPic}/>
+                            </Link>
+                        </figure>:''}
+                    </span>
+                :<CommonButton
                     isLoading={false}
                     handleClick={handleLoginClick}
                     disabled={false}
                 >
                     লগ ইন
-                </CommonButton>
+                </CommonButton>}
+                
                 <span onClick={()=>setMobileMenu(!mobileMenu)} className={'w-11 h-7 inline-block '+style.menuIcon}>
                     <MenuIcons color='white'/>
                 </span>
@@ -113,9 +143,10 @@ const Navbar = (props:TNavbar) => {
             isOpen={showLoginModal}
             onClose={closeLoginClick}
         >
-            <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
+            <div className='bg-[#050F1E] p-4 px-8 relative  rounded-[8px] overflow-y-auto overflow-hidden'>
+                <div className="circular_gradient2 right-[-80%] z-10   top-[-90%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
                 <ShobderaJibonta/>
-                {showLoginModal?<LoginModal/>:''}
+                {showLoginModal?<LoginModal  handleSubmit={handleSubmit}/>:''}
             </div>
         </CommonModal>
         <CommonModal
@@ -124,16 +155,39 @@ const Navbar = (props:TNavbar) => {
         >
             <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
                 <ShobderaJibonta/>
-                {showOTPModal?<OTPVerification/>:''}
+                {showOTPModal?<OTPVerification handleShowPasswordModal={handleShowPasswordModal} closeModal={closeOTPClick}/>:''}
             </div>
         </CommonModal>
         <CommonModal
             isOpen={showPasswordModal}
-            onClose={closePasswordClick}
+            // onClose={closePasswordClick}
+            onClose={()=>{}}
         >
             <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
                 <ShobderaJibonta/>
-                 {showPasswordModal?<PasswordCreationForm/>:''}
+                 {showPasswordModal?<PasswordCreationForm  closeModal={closePasswordClick} />:''}
+            </div>
+        </CommonModal>
+        <CommonModal
+            isOpen={showLoginPasswordModal}
+            onClose={closeLoginPasswordClick}
+        >
+            <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
+                <ShobderaJibonta/>
+                 {showLoginPasswordModal?<PasswordLoginForm handleClickForgetPassword={handleClickForgetPassword} closeModal={closeLoginPasswordClick}/>:''}
+            </div>
+        </CommonModal>
+        <CommonModal
+            isOpen={showPhoneOfChangePass}
+            onClose={closeShowPhoneOfChangePass}
+        >
+            <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
+                <ShobderaJibonta/>
+                 {showPhoneOfChangePass?
+                    <PasswordChangePhoneModal 
+                        handleSubmit={handlePhoneOfChangePassword} 
+                        closeShowPhoneOfChangePass={closeShowPhoneOfChangePass}
+                    />:''}
             </div>
         </CommonModal>
     </nav>

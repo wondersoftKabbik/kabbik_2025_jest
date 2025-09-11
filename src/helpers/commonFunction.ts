@@ -119,6 +119,44 @@ export function normalizeBLNumber(input:string ) {
   return null;
 }
 
+export function isValidMsisdn(msisdn: string): boolean {
+  // Ensure only digits
+  if (!/^\d+$/.test(msisdn)) return false;
+
+  // Check length (10 or 11)
+  if (!(msisdn.length === 10 || msisdn.length === 11)) return false;
+
+  // Check prefix
+  if (!(msisdn.startsWith("01") || msisdn.startsWith("1"))) return false;
+
+  return true;
+}
+
+export function normalizeMsisdn(input: string): string | null {
+  // Remove spaces, dots, non-digits
+  let msisdn = input.replace(/\D/g, "");
+
+  // Case 1: Already in 8801XXXXXXXXX format (13 digits)
+  if (/^8801\d{9}$/.test(msisdn)) {
+    return msisdn;
+  }
+
+  // Case 2: Local 01XXXXXXXXX (11 digits)
+  if (/^01\d{9}$/.test(msisdn)) {
+    return "88" + msisdn;
+  }
+
+  // Case 3: Local 1XXXXXXXXX (10 digits, missing leading 0)
+  if (/^1\d{9}$/.test(msisdn)) {
+    return "880" + msisdn;
+  }
+
+  // Not valid
+  return null;
+}
+
+
+
 
 export async function verifyConsent(
   phoneNumber:string, 
@@ -341,6 +379,21 @@ export function convertToBanglaDigits(input:string|number) {
 
 export const findObj=(name:string,arr:any)=>{
   let item = arr.find((item:any)=>item.methodName?.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
-  console.log(arr,"kkkkkkkkk")
   return item;
+}
+
+export const  clearSessionAndRedirect=()=> {
+  // 1. Clear all cookies
+  document.cookie.split(";").forEach(cookie => {
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  });
+
+  // 2. Clear localStorage
+  localStorage.clear();
+
+  // 3. Redirect to home and reload
+  window.location.reload();
+  window.location.href = "/";
 }

@@ -9,6 +9,21 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		spacing: {
+			'128': '32rem',   // custom spacing -> w-128 = 32rem
+			'144': '36rem',
+		},
+		fontSize: {
+			'cxs': '10px', // smaller than sm
+			'cs': '12px', // between xl and 2xl
+			'cs2': '14px', // for big headings
+			'cn':'16px',
+			'cn2':'18px',
+			'clg':'20px',
+			'clg2':'22px',
+			'cxl':'26px',
+			'cxl2':'30px',
+		},
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'

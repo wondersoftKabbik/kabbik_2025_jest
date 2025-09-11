@@ -2,7 +2,7 @@ export type TCommonBtnProps={
     isLoading?:boolean;
     disabled?:boolean;
     children:string | React.ReactNode;
-    handleClick?:() => void;
+    handleClick?:(val:any) => void;
     className?:string;
 }
 

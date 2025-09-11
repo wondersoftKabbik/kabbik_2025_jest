@@ -6,6 +6,8 @@ export const siteConfig = {
     logo: '/assets/logo.png',
     defaultToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjgyMCIsInJvbGUiOjEsImlhdCI6MTY2NTc0NjIyNX0.dSY47sipaGTI_OtsysFWw_kaKZKWHWRtp4vklstVgVc",
     defaultUserId:"2820",
+    defaultProfilePic:"https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/profile.svg",
+    defaultPremiumPic:"https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/image323231.png",
     socialLinks: {
         facebook: 'https://facebook.com/kabbik',
         twitter: 'https://twitter.com/kabbik',

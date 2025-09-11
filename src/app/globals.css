@@ -89,6 +89,16 @@ body{
   filter: blur(120px);
   opacity: 0.99;
 }
+
+.circular_gradient2{
+  backdrop-filter: blur(494px);
+  background: radial-gradient(
+    circle,
+    rgba(201, 66, 115, 0.9) 0%,   /* strong pinkish center */
+    rgba(136, 29, 105, 0.7) 40%,  /* purple blend */
+    rgba(136, 29, 105, 0.0) 80%   /* fade to transparent edges */
+  );
+}
 /* 
 .rect-gradient{
   position: relative;

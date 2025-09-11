@@ -1,3 +1,5 @@
+import { loginWithPassword } from "./apiServices";
+
 const BASE_URL = "https://api.kabbik.com";
 // const BASE_URL = "http://localhost:8080/api";
 
@@ -20,9 +22,12 @@ export const apiEndPoints = {
   catagoryItems: `${BASE_URL}/v2/audiobooks/category/`,
   homeCategoryItems: `${BASE_URL}/v1/audiobooks/home/seemore?name=`,
   catagoryList: `${BASE_URL}/v1/categories`,
-  sendOtp: `${BASE_URL}/v1/auth/otpnew`,
-  verifyOtp: `${BASE_URL}/v1/auth/otp/verify`,
+  sendOtp: `${BASE_URL}/v1/auth/otpnew2`,
+  sendOtpOlder: `${BASE_URL}/v1/auth/otpnew`,
+  verifyOtp: `${BASE_URL}/v1/auth/otp/verify2`,
+  loginWithPassword:`${BASE_URL}/v1/auth/login-password`,
   loginApi: `${BASE_URL}/v2/auth/login`,
+  setPassword:`${BASE_URL}/v1/auth/set-password`,
   addReview: `${BASE_URL}/v2/audiobooks/`,
   favPostApi: `${BASE_URL}/v1/favs`,
   favDeleteApi: `${BASE_URL}/v1/favs/`,

@@ -1,11 +1,15 @@
 'use client'
-import { getCategoryData, getUserProfile } from "@/utils/apiServices"
-import { useEffect, useState } from "react"
+import { getCategoryData, getUserProfile, postSendOtp } from "@/utils/apiServices"
+import { MouseEvent, useCallback, useEffect, useState } from "react"
 import Cookies from "js-cookie";
 import { TCategoryItem, TUserProfile } from "../ui/static/types";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setCategories } from "@/store/slicers/categoriesSlice";
 import { setUser } from "@/store/slicers/userSlice";
+import { isValidMsisdn, normalizeMsisdn } from "@/helpers/commonFunction";
+import { toast } from "react-toastify";
+import { usePathname } from "next/navigation";
+import { apiEndPoints } from "@/utils/apiEndpoints";
 
 
 const useNavbar = () => {
@@ -15,11 +19,39 @@ const useNavbar = () => {
     const [showOTPModal,setShowOTPModal]=useState(false);
     const [showPasswordModal,setShowPasswordModal]=useState(false);
     const [showLoginPasswordModal,setShowLoginPasswordModal]=useState(false);
-    
-    
+    const [showPhoneOfChangePass,setShowPhoneOfChangePass]=useState(false);
+    const header = usePathname();
+    const dispatch=useAppDispatch();
     const user=useAppSelector(store=>store.user?.userData)
     const categories=useAppSelector(store=>store.categories?.CategoriesData)
-    const dispatch=useAppDispatch();
+
+  const [categoryNameData, setCategoryNameData]: any = useState();
+  const [userData, setUserData]: any = useState();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSubscribed, setIsSubscribed]: any = useState();
+
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  useEffect(() => {
+    getProfileData();
+    getCategoryData();
+    const checkLoginStatus = () => {
+      const storedLoginStatus = Cookies.get("isLogin");
+      // Use the stored value or a default value if it's not set
+      const loginStatus = storedLoginStatus === "true";
+      // const subscribeStatus = storedSubscribeStatus === "1";
+
+      setIsLoggedIn(loginStatus);
+      // setIsSubscribed(subscribeStatus);
+      setIsLoading(false);
+    };
+
+    checkLoginStatus();
+  }, [getCategoryData, getUserProfile]);
+
+  
 
     const getCategories=async()=>{
       if(categories && categories.length){
@@ -62,6 +94,11 @@ const useNavbar = () => {
 
     const closeOTPClick=()=>{
       setShowOTPModal(false);
+      // setShowPasswordModal(true);
+    }
+
+     const closeLoginPasswordClick=()=>{
+      setShowLoginPasswordModal(false);
     }
 
     const handleloginSubmit=()=>{
@@ -71,7 +108,51 @@ const useNavbar = () => {
     const handleVerifyOtp=()=>{
       setShowPasswordModal(true);
     }
-  return {showCategories,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick}
+
+    const handleShowPasswordModal=()=>{
+      setShowPasswordModal(true);
+    }
+
+    const closeShowPhoneOfChangePass=()=>{
+      setShowPhoneOfChangePass(false);
+    }
+
+    const handleSubmit=async(e:MouseEvent<HTMLButtonElement>,phoneNumbers:string)=>{
+      e.preventDefault();
+      Cookies.set("msisdn", normalizeMsisdn(phoneNumbers)??'',{
+        expires: 365,secure: true,          
+        sameSite: 'None'
+      });
+      
+      // setSubmitLoader(true);
+      const data = await postSendOtp(normalizeMsisdn(phoneNumbers));
+      setShowLoginModal(false)
+
+      if(data.created){
+        setShowOTPModal(true);
+      }else if(data.message==="password settled"){
+        setShowLoginPasswordModal(true);
+      }else{
+        toast.error("কিছু ভুল হয়েছে। দয়া করে গ্রাহক সেবার সাথে যোগাযোগ করুন।")
+      }
+      
+      // setSubmitLoader(false)
+    }
+
+    const handleClickForgetPassword=()=>{
+      setShowLoginPasswordModal(false);
+      setShowPhoneOfChangePass(true);
+    }
+
+    const handlePhoneOfChangePassword= async(phone:string):Promise<void>=>{
+      let result=await  postSendOtp(phone,true)
+      if(!result?.created){
+      }else{
+        setShowOTPModal(true);
+        setShowPhoneOfChangePass(false);
+      }
+    }
+  return {showCategories,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick,handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword}
 }
 
 export default useNavbar

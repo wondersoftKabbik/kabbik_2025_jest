@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import BookIcon from '@/svgs/bookIcon';
 import LoveIcon from '@/svgs/LoveIcon';
@@ -8,6 +9,7 @@ import TakaIcon from '@/svgs/TakaIcon.svg';
 import DownloadIconWithBg from '@/svgs/DownloadIconWithBg';
 import MyPlayList from '@/svgs/MyPlayList.svg';
 import { cn } from '@/lib/utils';
+import { clearSessionAndRedirect } from '@/helpers/commonFunction';
 
 interface MenuItemProps {
   title: string;
@@ -15,22 +17,23 @@ interface MenuItemProps {
   gradient: string;
   hasNewBadge?: boolean;
   className?: string;
+  handleClick?:()=>void
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ title, icon, gradient, hasNewBadge, className }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ title, icon, gradient, hasNewBadge, className,handleClick }) => {
   return (
-    <div className={cn('relative', className)}>
-      <div className="profile_btn_gradients rounded-xl p-4">
+    <div onClick={()=>handleClick?handleClick():''} className={cn('relative cursor-pointer', className)}>
+      <div className="profile_btn_gradients rounded-xl p-2">
         <div className="flex items-center space-x-4">
           <div
             className={cn(
-              'w-[48px] h-[48px] rounded-lg flex text-white items-center justify-center',
+              'w-[36px] h-[36px] rounded-lg flex text-white items-center justify-center',
               gradient
             )}
           >
             {icon}
           </div>
-          <h3 className="text-white text-[18px] font-semibold flex-1">{title}</h3>
+          <h3 className="text-white text-cn font-semibold flex-1">{title}</h3>
         </div>
       </div>
 
@@ -65,7 +68,7 @@ export default function Profiles() {
     { title: 'অ্যাবাউট আস', icon: <InfoIcon />, gradient: 'bg-blue-gradient' },
     { title: 'কন্ট্যাক্ট আস', icon: <PersonStandingIcon />, gradient: 'bg-purple-gradient' },
     { title: 'রেটিং', icon: <StarIcon />, gradient: 'bg-red-gradient' },
-    { title: 'লগ আউট', icon: <LogOut />, gradient: 'bg-green-gradient' }
+    { title: 'লগ আউট', icon: <LogOut />, gradient: 'bg-green-gradient',handleClick:clearSessionAndRedirect }
   ];
 
   const firstNine = menuItems.slice(0, 9);
@@ -96,6 +99,7 @@ export default function Profiles() {
                   <MenuItem
                     title={item.title}
                     icon={item.icon}
+                    handleClick={item.handleClick}
                     gradient={item.gradient}
                     hasNewBadge={item.hasNewBadge}
                   />

@@ -1,3 +1,4 @@
+// 'use client'
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
@@ -7,6 +8,11 @@ import { categorySuggestions } from "@/utils/apiServices";
 import { CatagorySugges, CatagorySuggestionsInfo } from "@/pageTypes/home.types";
 import { getDictionary } from "./dictionaries";
 import Footer from "@/components/Home/Footer";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "../lib/auth";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,11 +32,14 @@ export default async function RootLayout({
    const categoryData: CatagorySugges = await categorySuggestions();
      const { lang } = await params
     const dict = await getDictionary(lang);
+    const session = await auth();
   return (
     <html lang={(await params).lang}>
       <body className={inter.className+" bg-bg"}>
+        <ToastContainer/>
         <ReduxProvider>
             <Navbar lang={dict}  categories={categoryData}/>
+            {/* <SessionProvider>{children}</SessionProvider> */}
             {children}
             <Footer/>
         </ReduxProvider>

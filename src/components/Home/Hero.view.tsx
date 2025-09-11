@@ -74,15 +74,15 @@ const Hero = ({
                     </div>
                     <div
                       // className={styles.mobile_slider_icons}
-                      className="flex p-[6vw] max-p-[160px] mt-[100px]"
+                      className="flex px-[6vw] py-[4vw] max-w-[1130px] items-center mx-auto max-p-[160px] mt-[100px]"
                       // style={{backgroundImage:`url(${topbannerinfo.thumb_path})`}}
                     >
                       {/* <div className={styles.book_on_banner}>
                       <h5>{topbannerinfo.name}</h5>
                     </div> */}
                       <div className="w-full z-10  text-white">
-                        <h3 className="text-[55px] w-full 1350:w-[70%] font-semibold">{topbannerinfo.name}</h3>
-                        <p className="text-[39px] my-7">{topbannerinfo.author_name}</p>
+                        <h3 className="text-[45px] w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
+                        <p className="text-[31px] my-7">{topbannerinfo.author_name}</p>
                         <CommonButton className={styles.hue_btn}>
                           <div className="flex gap-2">
                             <span className="mr-4 w-9 h-9 inline-block">
@@ -104,7 +104,7 @@ const Hero = ({
                         <img
                           src={topbannerinfo.thumb_path}
                           alt="Description"
-                          className="max-w-[608px] max-h-[710px] border-2 rounded-[12px] border-white w-[30vw] h-[40vw] z-10 relative"
+                          className="max-w-[400px] max-h-[495px] border-2 rounded-[12px] border-white w-[30vw] h-[40vw] z-10 relative"
                         />
                       </div>
                     </div>
@@ -122,37 +122,39 @@ const Hero = ({
 
           <div className="rect-gradient z-10 w-[50%] h-12 "></div>
         </div> */}
-        <div className="circular_gradient left-[-10%] bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
-      <div className="bg-bg">
+        <div className="circular_gradient left-[-10%] bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] z-20 "></div>
+      <div className="mt-[-10%]">
+        <div className="bg-bg z-10 relative">
         <div className={styles.play_icons+' z-20 relative '}>
           <div className="mr-[3vw]">
             <h6 className={styles.download_txt}>এখনই আমাদের অডিওবুক অ্যাপটি 
               মোবাইলে ডাউনলোড করে নিন!</h6>
-            <p className="text-[22px] mb-7">বইপড়ার নতুন উপায় — অডিওবুক অ্যাপ এখনই 
+            <p className="text-[19px] mb-[22px]">বইপড়ার নতুন উপায় — অডিওবুক অ্যাপ এখনই 
               ডাউনলোড করুন!</p>
               <div className="flex items-center">
                 <picture className="mr-3">
                   <img
                     src="/assets/users.png"
                     alt="users profiles"
-                    className="max-w-[97px] max-h-[32px]"
+                    className="max-w-[94px] max-h-[30px]"
                   />
                 </picture>
-                <h6 className="text-[27px] leading-none">
+                <h6 className="text-[22px] leading-none">
                   সারা বিশ্বে ৫০০০+ <br/>
                   <span className="text-[16px] mt-0">সক্রিয় ব্যবহারকারী রয়েছে</span>
                 </h6>
               </div>
           </div>
-          <div className="flex min-w-[55%]">
-            <span className="max-w-[297px] max-h-[297px] mr-[3vw] inline-block">
+          <div className="flex justify-end min-w-[55%]">
+            <span className="max-w-[220px] max-h-[220px] mr-[3vw] inline-block">
               <a href={"https://apps.apple.com/us/app/kabbik/id6459885875"}><AppStoreIcon/></a>
             </span>
-            <span className="max-w-[297px] max-h-[297px] inline-block">
+            <span className="max-w-[220px] max-h-[220px] inline-block">
               <a href="https://play.google.com/store/apps/details?id=com.kabbik.app"><PlayStoreIcon/></a>
             </span>
           </div>
         </div>
+      </div>
       </div>
     </div>
     

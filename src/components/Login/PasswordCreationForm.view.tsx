@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { EyeOff } from 'lucide-react';
+import { setPasswordApi } from '@/utils/apiServices';
+import { toast } from 'react-toastify';
+import Spinner from '../ui/Spinner.view';
 
-export function PasswordCreationForm() {
+export function PasswordCreationForm({closeModal}:{closeModal:()=>void}) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState('');
+  const [error,setError]=useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loader,setLoader]=useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -15,8 +20,25 @@ export function PasswordCreationForm() {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if(password!==confirmPassword){
+      setError('Password not matched')
+      return;
+    }
+    if(password.length<8){
+      setError('Passwod Must Contain at least 8 charecter')
+      return;
+    }
+    setLoader(true);
+    let result:any= await setPasswordApi(password);
+    if(result.success===true){
+      toast.success("Your password has been set successfully.")
+      closeModal();
+    }else{
+      toast.error("Something Went Wrong")
+    }
+    setLoader(false);
     // Handle form submission
     console.log('Password creation submitted');
   };
@@ -57,8 +79,8 @@ export function PasswordCreationForm() {
                     </button>
                   </div>
                 </div>
-                <p className="text-[#B7B7B7]/60 text-[13px] pt-0 mt-0">
-                  অন্তত ৮ টি অক্ষর থাকতে হবে
+                <p className="text-red-400 text-[13px] pt-0 mt-0">
+                 {error}
                 </p>
               </div>
 
@@ -90,8 +112,10 @@ export function PasswordCreationForm() {
             {/* Continue Button */}
             <button
               type="submit"
+              disabled={loader}
               className="w-full py-2 rounded-[4px] bg-[#DF1E1E] text-white text-lg font-medium shadow-lg hover:bg-[#c41a1a] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DF1E1E] focus:ring-offset-2 focus:ring-offset-background"
             >
+              {loader?<Spinner size='w-6 h-6'/>:''}
               কন্টিনিউ
             </button>
           </form>

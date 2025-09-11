@@ -27,47 +27,7 @@ const HomeComponent = (props:THomeProps) => {
     const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3} = useHomeComponent();
     
     
-    const cityTouch = async () => {
-    // Step 1: Get token from your backend
-    const tokenRes:any = await fetch("https://api.kabbik.com/v4/city-pay/create-payment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
-
-
-
     
-    const payload = tokenRes.data;
-    // const payload={mydata:"habijabi",transactionId:'124232322555'}
-    
-    const form = document.createElement("form");
-    form.method = "POST";
-    const url = "https://uat-ibmb.thecitybank.com:8085/CityBank/merchant/userlogin";
-    // const url="https://kabbik.com/api/routes/city-bank-payment-status";
-    // const url="https://kabbik.com"
-    // const url="http://localhost:8097/api/routes/city-bank-payment-status";
-    form.action=url;
-    console.log(url,form)
-    // debugger;
-    // form.action="http://localhost:8097/";
-    // payload.resendpoint="http://localhost:8097/api/routes/city-bank-payment-status"
-
-
-    console.log(payload,"payload");
-
-    Object.entries(payload).forEach(([key, value]) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = key;
-      input.value = value as string;
-      form.appendChild(input);
-    });
-
-    document.body.appendChild(form);
-    form.submit();
-  };
 
   const makeRefferenceId = (length = 10) => {
     return Math.random().toString(36).substring(2, 2 + length).toUpperCase();

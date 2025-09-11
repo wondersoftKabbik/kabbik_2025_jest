@@ -1,13 +1,43 @@
+'use client'
 import BdFlag from '@/svgs/BdFlag.svg'
 import FaceBook from '@/svgs/FaceBook'
 import Facebook from '@/svgs/Facebook.svg'
 import Google from '@/svgs/Google.svg'
-import React, { useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
+import { signIn } from "next-auth/react";
+import Cookies from 'js-cookie'
+import { usePathname } from 'next/navigation'
+import { postSendOtp } from '@/utils/apiServices'
+import { isValidMsisdn } from '@/helpers/commonFunction'
+import Spinner from '../ui/Spinner.view'
+import { TLoginModal } from './static/login.type'
+import { toast } from 'react-toastify'
 
-const LoginModal = () => {
+const LoginModal = ({handleSubmit}:TLoginModal) => {
     const [showSignUp,setShowSignUp]=useState(false);
+    const router = usePathname();
+    const [phoneNumbers,setPhoneNumbers]=useState('')
+    const [errors,setErrors]=useState('');
+    const [submitLoader,setSubmitLoader]=useState(false);
+
+    const googleBtn = async () => {
+      await signIn("google", { callbackUrl: `/redirecting?route=${router}` });
+    };
+
+    const handleLogin=async(e:MouseEvent<HTMLButtonElement>)=>{
+      if(!isValidMsisdn(phoneNumbers)){
+        setErrors('আপনার নম্বর সঠিক নয়, দয়া করে ১১ টি সংখ্যা প্রবেশ করুন')
+        return;
+      }
+      setSubmitLoader(true);
+      await handleSubmit(e,phoneNumbers)
+      setSubmitLoader(false);
+    }
+
+    
+
   return (
-      <div className="w-full max-w-2xl  border border-gray-300 rounded-2xl shadow-lg p-5">
+      <div className="w-full max-w-2xl  border border-gray-300 rounded-2xl shadow-lg p-5 ">
         <div className="flex flex-col gap-4">
           {/* Header Section */}
           <div className="flex flex-col gap-2">
@@ -42,7 +72,7 @@ const LoginModal = () => {
             </button> */}
 
             {/* Google Button */}
-            <button className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-2 px-4 flex items-center gap-8 md:gap-12">
+            <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-2 px-4 flex items-center gap-8 md:gap-12">
                 <div className='w-full flex justify-center'>
                     <div className="w-8 h-8 mr-4 flex-shrink-0">
                         <Google/>
@@ -82,18 +112,23 @@ const LoginModal = () => {
                   <input
                     type="tel"
                     // value={phoneNumber}
-                    // onChange={(e) => setPhoneNumber(e.target.value)}
+                    onChange={(e) => {setPhoneNumbers(e.target.value);setErrors('');}}
                     placeholder="আপনার ফোন নম্বর লিখুন"
                     className="flex-1 bg-transparent text-white text-lg placeholder-gray-400 px-1 focus:outline-none"
                   />
                 </div>
               </div>
-              <p className='text-xs text-red-600'>আপনার নম্বর সঠিক নয়, দয়া করে 11 টি সংখ্যা প্রবেশ করুন</p>
+              <p className='text-xs text-red-600'>{errors}</p>
             </div>
           </div>
 
           {/* Continue Button */}
-          <button className="w-full bg-red-600 hover:bg-red-700 transition-colors rounded-[4px] shadow-md py-2 px-6">
+          <button 
+            onClick={handleLogin}
+            className="w-full bg-red-600 hover:bg-red-700 transition-colors rounded-[4px] shadow-md py-2 px-6 flex items-center justify-center"
+            disabled={submitLoader}
+          >
+            {submitLoader?<Spinner size='w-6 h-6'/>:''}
             <span className="text-white text-lg font-medium">
               কন্টিনিউ
             </span>

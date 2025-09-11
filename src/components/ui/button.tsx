@@ -9,6 +9,7 @@ const CommonButton = (props:TCommonBtnProps) => {
     <button
       onClick={handleClick}
       disabled={disabled || isLoading}
+      type='button'
       className={className ?? `${styles.commounBtnBg} px-5 py-0.5 rounded flex items-center justify-center`}
     >
       {isLoading?

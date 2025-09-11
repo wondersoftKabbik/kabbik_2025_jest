@@ -12,10 +12,10 @@ import { toast } from 'react-toastify';
 import CommonButton from '../ui/button';
 
 
-const OTPVerification = () => {
+const OTPVerification = ({closeModal,handleShowPasswordModal}:{closeModal:()=>void,handleShowPasswordModal:()=>void}) => {
   const router = usePathname();
     const navigate = useRouter();
-  
+    const [loader,setLoader]=useState(false);
     const [otp, setOtp] = useState("");
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(30);
@@ -47,28 +47,22 @@ const OTPVerification = () => {
   
     const submitOTP = async (event: any) => {
       event.preventDefault();
-  
-      const verifyOtpData = await postVerifyOtp(otp);
-      if (verifyOtpData && verifyOtpData.verified) {
-        const loginData = await postLoginApi();
-        if (loginData.token) {
+      setLoader(true);
+      const loginData = await postVerifyOtp(otp);
+        // const loginData = await postLoginApi();
+        if (loginData?.token) {
+          
           Cookies.set("isLogin", "true", {
-          expires: 365,secure: true,          
-          sameSite: 'None',
-          
-          
-        });
+            expires: 365,secure: true,          
+            sameSite: 'None',
+          });
           Cookies.set("token", loginData.token, {
             expires: 365,secure: true,          
-  sameSite: 'None',
-            
-            
+            sameSite: 'None',
           });
           Cookies.set("id", loginData.user.id,{
             expires: 365,secure: true,          
-  sameSite: 'None',
-            
-            
+            sameSite: 'None',
           });
   
           toast.success("Login Successful!", {
@@ -79,11 +73,14 @@ const OTPVerification = () => {
             draggable: true,
             theme: "dark",
           });
-          window.location.replace(`${router}`);
+          closeModal()
+          handleShowPasswordModal()
+          // window.location.replace(`${router}`);
           // navigate.push(`${router}`);
           // window.location.reload();
         }
-      }
+      
+      setLoader(false);
     };
   
     const resendOTP = async () => {
@@ -162,7 +159,9 @@ const OTPVerification = () => {
             <div className="d-flex j align-items-center mt-3 ">
               <CommonButton
                 // type="submit"
-                className={`btn w-full bg-red-600 text-white ${styles.otp_btn}`}
+                isLoading={loader}
+                handleClick={submitOTP}
+                className={`btn w-full bg-red-600 text-white flex items-center justify-center ${styles.otp_btn}`}
               >
                 ভেরিফাই করুন
               </CommonButton>
@@ -173,7 +172,7 @@ const OTPVerification = () => {
               <>
                 <p className="text-center mt-3 text-sm rext-red-600 leading-normal cursor-pointer">
                 <span className="text-white">কোড পাননি? </span>
-                <span className="text-red-600"> পুনরায় পাঠান।</span>
+                <span className="text-red-600" onClick={resendOTP}> পুনরায় পাঠান।</span>
                 {/* <span className="text-white"></span> */}
               </p>
               </>

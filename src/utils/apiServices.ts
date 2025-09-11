@@ -3,7 +3,7 @@ import { apiEndPoints } from "./apiEndpoints";
 import { toast } from "react-toastify";
 // import { formatTime, showToast } from "";
 import { BlogInfo, DynamicSubscriptionPack, TMethods, TtoastType } from "@/helpers/commonTypes";
-import { formatTime, showToast } from "@/helpers/commonFunction";
+import { formatTime, normalizeMsisdn, showToast } from "@/helpers/commonFunction";
 import { CommonApiHandler, getHeaders } from "./CommonApicalls";
 
 export const subscriptionPack = async (id: any) => {
@@ -31,6 +31,25 @@ export const paymentMethodlist = async (
   return await CommonApiHandler(
     {
       name: "paymentMethodlist",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null, 
+    }
+ )
+};
+
+export const loginWithPassword = async (
+  password: string
+) => {
+  let msisdn=Cookies.get('msisdn')??'';
+  const url = apiEndPoints.loginWithPassword;
+  const raw = JSON.stringify({
+    msisdn:normalizeMsisdn(msisdn),
+    password,
+  });
+  return await CommonApiHandler(
+    {
+      name: "loginWithPassword",
       url,
       method: TMethods.POST,
       body: raw ? raw : null, 
@@ -88,6 +107,23 @@ export const postFavoritesApi = async (id: any) => {
  )
 };
 
+export const setPasswordApi = async (password: string) => {
+ const url = apiEndPoints.setPassword;
+  const raw = JSON.stringify({
+    user_id: Cookies.get("id") ?? Cookies.get("user_id"),
+    password,
+  });
+  return await CommonApiHandler(
+    {
+      name: "setPasswordApi",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null,
+      defaultTokenAllowed:false 
+    }
+ )
+};
+
 export const gpUnsubscribeApi = async () => {
   const url = `${apiEndPoints.gpUnsubscribeApi}?userId=${Cookies.get("id")}`;
   return await CommonApiHandler(
@@ -117,7 +153,7 @@ export const deleteFavoritesApi = async (id: any) => {
 export const postVerifyOtp = async (otp: any) => {
   const url = apiEndPoints.verifyOtp;
   const raw = JSON.stringify({
-    msisdn: `88${Cookies.get("msisdn")}`,
+    msisdn: `${Cookies.get("msisdn")}`,
     password: otp,
   });
   return await CommonApiHandler(
@@ -143,20 +179,14 @@ export const postVerifyOtp = async (otp: any) => {
 
 
 
-export const postSendOtp = async (msisdn: any) => {
+export const postSendOtp = async (msisdn: any,set_password?:boolean) => {
     const url = apiEndPoints.sendOtp;
     const currentTimeLong = Date.now();
     const raw = JSON.stringify({
-        msisdn: `88${msisdn}`,
+        msisdn: `${msisdn}`,
         currentTimeLong: currentTimeLong,
+        set_password
     });
-    // const requestOptions:any = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: raw,
-    //    credentials: "include" as RequestCredentials,  // ✅ This is valid
-    // };
-
     let data:any= CommonApiHandler(
         {
             name: "postSendOtp",
@@ -175,6 +205,40 @@ export const postSendOtp = async (msisdn: any) => {
     showToast(`Please try after ${formatTime(data.remainingTime)}`,TtoastType.success,3000)
     return data;
     }else{
+      console.log(data,"data")
+      if(data.message!=="password settled"){
+        showToast("OTP Sent!",TtoastType?.success,3000)
+      }
+    }
+    return data;
+};
+
+export const postSendOtpOlder = async (msisdn: any) => {
+    const url = apiEndPoints.sendOtpOlder;
+    const currentTimeLong = Date.now();
+    const raw = JSON.stringify({
+        msisdn: `88${msisdn}`,
+        currentTimeLong: currentTimeLong,
+    });
+    let data:any= CommonApiHandler(
+        {
+            name: "postSendOtp",
+            url,
+            method: TMethods.POST,
+            body: raw ? raw : null,
+            defaultTokenAllowed:false,
+            catchCB: (err:any) => {
+                showToast('Something went wrong',TtoastType?.error,3000)
+            }
+        }
+    )
+    if (
+    data?.remainingTime && data?.created!=true
+    ) {
+    showToast(`Please try after ${formatTime(data.remainingTime)}`,TtoastType.success,3000)
+    return data;
+    }else{
+      if(data.message!=="password settled")
         showToast("OTP Sent!",TtoastType?.success,3000)
     }
     return data;
