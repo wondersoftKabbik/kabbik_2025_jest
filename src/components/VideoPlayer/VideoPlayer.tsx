@@ -36,6 +36,45 @@ export default function CustomVideoPlayer({
     }
   };
 
+  const handlePlay = () => {
+    const video = videoRef.current;
+    if (video && video.paused) {
+      video.play().catch(() => {});
+      setPlaying(true)
+    }
+  };
+
+  // function to handle pause
+  const handlePause = () => {
+    const video = videoRef.current;
+    if (video && !video.paused) {
+      video.pause();
+      setPlaying(false)
+    }
+  };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          handlePlay();
+        } else {
+          handlePause();
+        }
+      },
+      { threshold: 0.5 } // 50% of video must be visible
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div
       ref={containerRef}
@@ -46,7 +85,7 @@ export default function CustomVideoPlayer({
       <video
         ref={videoRef}
         src={url}
-        className="w-full h-full object-cover"
+        className="w-full h-full rounded-[8px] object-cover"
         onEnded={() => setPlaying(false)}
         onTimeUpdate={handleTimeUpdate}
       />

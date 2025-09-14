@@ -21,22 +21,22 @@ const UpComing = () => {
   const nextRef = useRef(null);
   const router=useRouter()
   return (
-    <div className='text-white max-w-[1440px]  mx-auto  w-[100%] max-h-[800px]'>
+    <div className='text-white max-w-[1440px]  mx-auto  w-[100%] max-h-[530px]'>
         <div>
-            <div className={common_cat_styles.heading_container + " max-w-[1206px] mx-auto w-[97%] !mb-[0] pb-64"}>
+            <div className={common_cat_styles.heading_container + " max-w-[1206px] mx-auto w-[90%] !mb-[0] pb-64"}>
                 <h3 className={common_cat_styles.heading}>আপকামিং বুক</h3>
                 <div className={common_cat_styles.see_all}>
                     সব দেখুন
                     <span className={common_cat_styles.arrow}><RightArrowIcon/></span>
                 </div>
             </div>
-            <div className='relative  h-[400px]'>
+            <div className='relative  h-[300px]'>
                 
                 <figure className='absolute overflow-hidden left-0 top-0 w-full max-h-[550px]'>
-                        <div className='-rotate-45 w-[400px] text-center top-16  py-2 text-[35px] absolute left-[-100px] bg-[#E53F79] z-10'>
+                        <div className='-rotate-45 w-[300px]  top-9  py-1 text-[20px] text-center absolute left-[-90px] bg-[#E53F79] z-10'>
                             ১১ জুলাই ২০২৫
                         </div>
-                    <img className='w-full max-h-[400px]' src='/assets/upcoming_banner.png'/>
+                    <img className='w-full max-h-[300px]' src='/assets/upcoming_banner.png'/>
                     <button
                         ref={prevRef}
                         className={styles.slider_icons + ` ${styles.slider_left_icons}`}
@@ -87,27 +87,7 @@ const UpComing = () => {
                           );
                         }}
                       >
-                        {/* <div className='skew-y-[-8deg]'>
-                            <article className='absolute left-1/2  -translate-x-1/2 top-[-300px]'>
-                                <div className="cover-back"></div>
-                                <div className="pages">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <div className={`cover bg-[#f3f3f0] bg-center bg-no-repeat`}
-                                    style={{
-                                        backgroundImage: `url(${topbannerinfo.thumb_path})`,
-                                    }}
-                                >
-                                </div>
-                                <div className="spine">
-                                </div>
-                                <div className="spine-shadow"></div>
-                            </article>
-                        </div> */}
+                        
                         <ThreeDBook bg={topbannerinfo?.thumb_path} path=''/>
                       </SwiperSlide>
                     ))}

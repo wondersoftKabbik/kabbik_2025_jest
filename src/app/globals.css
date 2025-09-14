@@ -178,15 +178,24 @@ body{
   top: auto;
 }
 
+/* no-scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 
 /* -------------------------------3d book design started------------------------------------------- */
 article {
   display: block;
-  max-width: 430px;
-  max-height: 680px;
+  max-width: 290px;
+  max-height: 590px;
   transform: skewY(8deg);
-  height: 100vh;
-  width: 38vw;
+  height: 75vh;
+  width: 33vw;
   margin: auto;
   position: relative;
   z-index: 0;

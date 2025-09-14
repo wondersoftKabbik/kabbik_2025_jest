@@ -3,7 +3,7 @@ import React from 'react'
 const Seven = () => {
   return (
     <>
-        <svg style={{height:'100%',width:'100%'}} viewBox="0 0 197 284" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg style={{height:'100%',width:'80%'}} viewBox="0 0 197 284" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="path-1-outside-1_312_31079" maskUnits="userSpaceOnUse" x="0" y="0" style={{height:'100%',width:'100%'}} fill="black">
 <rect fill="white" style={{height:'100%',width:'100%'}}/>
 <path d="M24.5821 278L139.952 49.6435V47.7891H6.03804V6.72726H190.816V48.7162L75.5782 278H24.5821Z"/>

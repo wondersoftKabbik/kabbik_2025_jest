@@ -10,6 +10,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { postLoginApi, postSendOtp, postVerifyOtp } from '@/utils/apiServices';
 import { toast } from 'react-toastify';
 import CommonButton from '../ui/button';
+import { useAppDispatch } from '@/store/store';
+import { setUser } from '@/store/slicers/userSlice';
 
 
 const OTPVerification = ({closeModal,handleShowPasswordModal}:{closeModal:()=>void,handleShowPasswordModal:()=>void}) => {
@@ -19,6 +21,7 @@ const OTPVerification = ({closeModal,handleShowPasswordModal}:{closeModal:()=>vo
     const [otp, setOtp] = useState("");
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(30);
+    const dispatch=useAppDispatch();
   
     useEffect(() => {
       const interval = setInterval(() => {
@@ -51,6 +54,7 @@ const OTPVerification = ({closeModal,handleShowPasswordModal}:{closeModal:()=>vo
       const loginData = await postVerifyOtp(otp);
         // const loginData = await postLoginApi();
         if (loginData?.token) {
+          dispatch(setUser(loginData?.user))
           
           Cookies.set("isLogin", "true", {
             expires: 365,secure: true,          

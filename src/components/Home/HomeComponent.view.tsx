@@ -20,6 +20,8 @@ import Link from 'next/link';
 import PlayerIcon from '@/svgs/PlayerIcon';
 import Blogs from './Blogs.view';
 import Footer from './Footer';
+import { container } from '../ui/static/tailwind.classes';
+import Reels from './Reels.view';
 
 const HomeComponent = (props:THomeProps) => {
     const {homeData,topBannerData,promoData,dict,blogs}=props;
@@ -27,19 +29,6 @@ const HomeComponent = (props:THomeProps) => {
     const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3} = useHomeComponent();
     
     
-    
-
-  const makeRefferenceId = (length = 10) => {
-    return Math.random().toString(36).substring(2, 2 + length).toUpperCase();
-  };
-
-  useEffect(()=>{
-    // cityBankApiTest()
-    console.log(homeData)
-  },[])
-
- 
-
   return (
     <div className=' '>
       
@@ -53,7 +42,7 @@ const HomeComponent = (props:THomeProps) => {
       Pay with City Bank
     </button> */}
         <div>
-          <div className={topTenStyles.heading_container+" my-16  text-white max-w-[1206px] mx-auto"}>
+          <div className={topTenStyles.heading_container+" my-8  text-white max-w-[1206px] w-[90%] mx-auto"}>
               <h3 className={topTenStyles.heading}>শীর্ষ ১০</h3>
               <div className={topTenStyles.see_all}>
                   সব দেখুন
@@ -73,7 +62,7 @@ const HomeComponent = (props:THomeProps) => {
           </div>
         </div>
         
-        <div className='bg-bg relative z-10'>
+        <div className={container('1320px')+' bg-bg relative z-10'}>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="নতুন"
@@ -95,25 +84,25 @@ const HomeComponent = (props:THomeProps) => {
               />
             {/* </Link> */}
         </div>
-        <div className='max-w-[1440px] mx-auto relative mt-20'>
+        <div className='max-w-[1206px] rounded-[8px] w-[90%] mx-auto relative mt-12'>
           
           <div className='relative'>
             {initialPlayer?'':(
               <>
-                <figure className='absolute bottom-0 left-0 z-10'>
-                  <img className='h-[550px] max-w-[100%] w-[1440px]' src='/assets/videoInitPhoto.png'/>
+                {/* <figure className='absolute bottom-0 left-0 z-10'>
+                  <img className='h-[550px] rounded-[8px] max-w-[100%] w-[1440px]' src='/assets/videoInitPhoto.png'/>
                 </figure>
                 <div 
                   onClick={handleInitialPlay}
                   className='absolute z-20 cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                 >
-                  <span className='max-w-[422px] inline-block max-h-[422px] w-[25vw] h-[25vw]'>
+                  <span className='max-w-[422px]  inline-block max-h-[422px] w-[25vw] h-[25vw]'>
                     <BigVideoPlayerIcon/>
                   </span>
-                </div>
+                </div> */}
               </>
             )}
-            <CustomVideoPlayer height=' max-h-[550px] ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
+            <CustomVideoPlayer height=' max-h-[550px]  ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
               url={StaticTexts?.home_video?.video1 ?? ''}
             />
           </div>
@@ -245,7 +234,19 @@ const HomeComponent = (props:THomeProps) => {
             <div className="circular_gradient right-0 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
 
-        <div className='mt-10 bg-bg'>
+        <div className='bg-bg relative'>
+          {/* <Link href={'/home_category_list/নতুন'}> */}
+              <Reels
+                categoryName="কাব্যিক রিল "
+                link="/"
+                data={findCatwiseData(homeData.data,"পডকাস্ট")?.data}
+                // isPopular={true}
+              />
+            {/* </Link> */}
+            <div className="circular_gradient right-0 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
+        </div>
+
+        <div className='mt-4 bg-bg'>
           <UpComing/>
         </div>
 
@@ -254,22 +255,35 @@ const HomeComponent = (props:THomeProps) => {
             <div className="circular_gradient left-1/2 -translate-x-1/2 bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
         </div>
 
-        <div className='max-w-[1440px] max-h-[480px] mx-auto relative mt-20 mb-10'>
+        
+
+
+        <div className='mt-10 max-w-[1206px] mx-auto w-[90%] relative'>
+          <div className="circular_gradient left-[-20%]   top-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
+            <h2 className='gradient-text text-[30px] font-semibold text-center'>আমাদের সাম্প্রতিক কার্যক্রম</h2>
+            <p className='text-[16px] text-white text-center pb-4 pt-0'>নতুন তথ্য, ইভেন্ট এবং বিশেষ অফার সম্পর্কে জানুন সবার আগে আপডেট পেতে আমাদের সাথে থাকুন।</p>
+            <div className='z-20'>
+              <Blogs blogs={blogs}/>
+            </div>
+        </div>
+
+
+        <div className='max-w-[90%] max-h-[480px] mx-auto relative mt-16 mb-16'>
           <div className='relative '>
             {initialPlayer2?'':(
               <>
-                <figure className='absolute bottom-0 left-0 z-10'>
+                {/* <figure className='absolute bottom-0 left-0 z-10'>
                   <img className='h-[480px] z-10 max-w-[90%] w-[1206px]' src={StaticTexts?.campaign_video?.img}/>
 
-                </figure>
-                <div 
+                </figure> */}
+                {/* <div 
                   onClick={handleInitialPlay2}
                   className='absolute z-20 cursor-pointer top-1/2 right-0 -translate-y-1/2'
                 >
                   <span className='max-w-[422px] inline-block max-h-[422px] w-[27vw] h-[27vw]'>
                     <BigVideoPlayerIcon/>
                   </span>
-                </div>
+                </div> */}
               </>
             )}
             <CustomVideoPlayer width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
@@ -279,54 +293,46 @@ const HomeComponent = (props:THomeProps) => {
         </div>
 
 
-        <div className='max-w-[900px]   mx-auto relative mt-40 '>
-          <div className='relative max-w-[422px] mx-auto  w-full z-20'>
+        <div className='max-w-[900px]   mx-auto relative mt-10 '>
+          <div className='relative max-w-[345px] mx-auto  w-full z-20'>
             {initialPlayer3?'':(
               <>
-                <figure className='absolute top-0 left-0 z-10'>
+                {/* <figure className='absolute top-0 left-0 z-10'>
                   <img className='max-h-[105vh] z-10 w-[422px] ' src={StaticTexts?.nepal_tour_video?.thumbnail}/>
 
-                </figure>
-                <div 
+                </figure> */}
+                {/* <div 
                   onClick={handleInitialPlay3}
                   className='absolute z-20 cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '
                 >
                   <span className='max-w-[200px] inline-block max-h-[200px] w-[15vw] h-[15vw]'>
                     <BigVideoPlayerIcon/>
                   </span>
-                </div>
+                </div> */}
               </>
             )}
               <div className='max-w-full z-10   border-[10px] rounded-[10px]'>
-                  <CustomVideoPlayer width=' max-w-[400px] ' height=' max-h-[100vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
+                  <CustomVideoPlayer width=' max-w-[350px] ' height=' max-h-[80vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
 
                   url={StaticTexts?.nepal_tour_video?.video_url ?? ''}
                 />
               </div>
           </div>
             <div className="circular_gradient left-1/2 -translate-x-1/2 top-[-10%] w-[40vw] h-[40vw] absolute  "></div>
-          <div className='text-center py-10 z-20'>
-              <p className='gradient-text text-[45px] font-semibold'>{StaticTexts?.nepal_tour_video?.heading}</p>
-              <p className='text-white text-[37px] py-8'>{StaticTexts?.nepal_tour_video?.para}</p>
+          <div className='text-center pt-10  z-20'>
+              <p className='gradient-text text-[30px] font-semibold'>{StaticTexts?.nepal_tour_video?.heading}</p>
+              <p className='text-white text-[23px] py-3'>{StaticTexts?.nepal_tour_video?.para}</p>
               <Link href={'/subscribe'}>
-                <div className="flex items-center btn-gradient-1 px-3 py-2 rounded-[10px] justify-around gap-2 max-w-[500px] w-[95%] mx-auto">
-                  <span className="mr-4 w-11 h-11 inline-block">
-                    <PlayerIcon />
+                <div className="flex items-center btn-gradient-1 px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[500px] w-[auto] mx-auto">
+                  <span className='max-w-[300px] flex'>
+                      <span className="mr-4 w-11 h-8 inline-block">
+                      <PlayerIcon />
+                    </span>
+                    <p className="my-0 text-[white] text-[20px]">সাবস্ক্রাইব করুন এবং শুনুন</p>
                   </span>
-                  <p className="my-0 text-[white] text-[34px]">সাবস্ক্রাইব করুন এবং শুনুন</p>
                 </div>
               </Link>
           </div>
-        </div>
-
-
-        <div className='mt-20 max-w-[1206px] mx-auto w-[96%] relative'>
-          <div className="circular_gradient left-[-20%]   top-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
-            <h2 className='gradient-text text-[40px] font-semibold text-center'>আমাদের সাম্প্রতিক কার্যক্রম</h2>
-            <p className='text-[18px] text-white text-center py-5 mb-5'>নতুন তথ্য, ইভেন্ট এবং বিশেষ অফার সম্পর্কে জানুন সবার আগে আপডেট পেতে আমাদের সাথে থাকুন।</p>
-            <div className='z-20'>
-              <Blogs blogs={blogs}/>
-            </div>
         </div>
 
         

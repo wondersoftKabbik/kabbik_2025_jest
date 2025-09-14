@@ -1,0 +1,183 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "@/components/Home/static/category.module.css";
+// import MobileGreenPlayer from '../../svgs/MobileGreenPlayer';
+// import DesktopCrown from '../../svgs/DesktopCrown';
+import RightArrowIcon from "@/svgs/RightArrowIcon";
+import PremiumCrownIcon from "@/svgs/PremiumIcon";
+import ReactPlayer from "react-player";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import RedPlayerIcon from "@/svgs/RedPlayerIcon";
+// import { useRouter } from 'next/router';
+import RightAngle from "@/svgs/rightAngle";
+import { TBooks } from "@/pageTypes/home.types";
+import { useRouter } from "next/navigation";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import CommonButton from "../ui/button";
+import PlayerIcon from "@/svgs/PlayerIcon";
+import ExpandableIcon from "@/svgs/ExpandableIcon";
+import { paths } from "@/utils/Paths";
+import CustomVideoPlayer from "../VideoPlayer/VideoPlayer";
+import CommonModal from "../ui/CommonModal/CommonModal.view";
+// import ReelsPlayer from '../VideoPlayer/ReelsVideoplayer/ReelsPlayer.view';
+import { ReelsType, ReelType } from "./static/utils";
+import CustomReels from "../VideoPlayer/ReelsVideoplayer/ReelsPlayer.view";
+import { useAppSelector } from "@/store/store";
+// import DesktopCrown from '../../svgs/DesktopCrown';
+
+type tProps = {
+  categoryName: string;
+  link: string;
+  data: TBooks[] | undefined;
+  isPopular?: boolean;
+};
+const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const router = useRouter();
+  const [podcast, setPodcast] = useState(false);
+  const [expand, setIsExpand] = useState<boolean>(false);
+  const videoRef3 = useRef<HTMLVideoElement>(null);
+  const [player3, setPlayer3] = useState(false);
+  const [reelsModal,setReelsModal]=useState<number|null>(null);
+  const reels=useAppSelector(store=>store.staticTexts.data?.reels)
+
+  useEffect(() => {
+    if (categoryName === "কাব্যিক গ্যালারী" || categoryName === "পডকাস্ট") {
+      setPodcast(true);
+    } else {
+      setPodcast(false);
+    }
+  }, []);
+
+ 
+
+  const CommonTogglePlay = () => {
+    if (!videoRef3) {
+      return;
+    }
+    const video = videoRef3.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.play();
+      setPlayer3(true);
+    } else {
+      video.pause();
+      setPlayer3(false);
+    }
+  };
+  return (
+    <div className={styles.container}>
+      <div className={styles.heading_container}>
+        <h3 className={styles.heading}>{categoryName}</h3>
+        <div className={styles.see_all}>
+          <Link href={paths.categoryWiseBooks(categoryName)}>
+            সব দেখুন
+            <span className={styles.arrow}>
+              <RightArrowIcon />
+            </span>
+          </Link>
+        </div>
+      </div>
+      <div className={styles.slider_box}>
+        {/* Custom Arrows */}
+        <button
+          ref={prevRef}
+          className={styles.slider_icons + ` ${styles.slider_left_icons}`}
+        >
+          <RightAngle color="white" className="rotate-180" />
+        </button>
+        <button
+          ref={nextRef}
+          className={styles.slider_icons + ` ${styles.slider_right_icons}`}
+        >
+          <RightAngle color="white" />
+        </button>
+        <Swiper
+          // slidesPerView={1}
+          // spaceBetween={1}
+          loop={true}
+          pagination={{ clickable: true }}
+          style={{ paddingBottom: "40px" }}
+          // modules={[Navigation, Pagination]}
+          // centeredSlides={true}
+          modules={[Navigation, Autoplay]}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+          onBeforeInit={(swiper: any) => {
+            if (
+              swiper.params.navigation &&
+              typeof swiper.params.navigation !== "boolean"
+            ) {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }
+          }}
+        >
+          <>
+            {reels &&
+              reels.map((item:ReelType, index: number) => (
+                <SwiperSlide
+                  key={index}
+                  className={styles.swiper_slider_custom}
+                >
+                  <div onClick={()=>setReelsModal(index)} className="w-[90%] relative h-[70vh] flex justify-center items-center bg-black">
+                    <div className="absolute cursor-pointer z-10 h-[100%] w-[100%] top-0 left-0 bg-transparent"></div>
+                    <CustomVideoPlayer
+                      width=" max-w-[auto] "
+                      height=" max-h-[70vh]  "
+                      videoRef={videoRef3}
+                      playing={player3}
+                      togglePlay={CommonTogglePlay}
+                      setPlaying={setPlayer3}
+                      url={
+                        item.reelInfo.url
+                      }
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+          </>
+        </Swiper>
+      </div>
+      <CommonModal
+        isOpen={reelsModal===null?false:true}
+        onClose={() => setReelsModal(null)}
+        replaceClassName="relative rounded-lg shadow-lg w-[100vw] max-w-[100vw] h-[100vh] bg-bg"
+      >
+        <div className="flex h-[100vh] items-center justify-center">
+          
+             <div className="overflow-y-auto"> 
+             
+              <CustomReels startIndex={reelsModal??0} reels={reels??[]} />
+            {/* </div>  */}
+          </div>
+        </div>
+      </CommonModal>
+    </div>
+  );
+};
+
+export default Reels;

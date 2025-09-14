@@ -29,7 +29,7 @@ export default async function Home({
 
   console.log(topBannerData,"homeData");
   return (
-    <main className="bg-bg min-h-screen">
+    <main className="bg-bg ">
       <HomeComponent
         homeData={homeData}
         topBannerData={topBannerData}

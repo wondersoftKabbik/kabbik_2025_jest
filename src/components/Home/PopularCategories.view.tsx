@@ -21,9 +21,9 @@ const PopularCategories = () => {
         <div className='flex gap-6 '>
             <div className=''>
                 <figure className='mb-6'>
-                    <img className='h-[53.5vh]' src={PopularCategories[0]?.img}/>
+                    <img className='h-[40vh]' src={PopularCategories[0]?.img}/>
                 </figure>
-                <div className="  h-[24.5vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
+                <div className="  h-[18vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
                     <Link href={paths.categoryWiseBooks(PopularCategories[6]?.path)}>
                         <img src={PopularCategories[6]?.img} className=" h-[24.5vh] w-full object-cover object-bottom" />
                     </Link>
@@ -32,9 +32,9 @@ const PopularCategories = () => {
             </div>
             <div className='w-[48%]'>
                 {PopularCategories.slice(2,5).map((item,index:number)=>(
-                    <div key={index} className="  h-[24.5vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
+                    <div key={index} className="  h-[18vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
                             <Link href={paths.categoryWiseBooks(item.path)}>
-                                <img src={item.img} className=" h-[24.5vh] w-full object-cover object-bottom" />
+                                <img src={item.img} className=" h-[18vh] w-full object-cover object-bottom" />
                             </Link>
                         
                     </div>

@@ -353,7 +353,7 @@ const SubscribeComponent = ({
       </div>
 
       {/* Main Content Container */}
-      <div className="container mx-auto px-4 md:px-8 flex flex-col justify-center min-h-screen relative">
+      <div className="container mx-auto px-4 md:px-8 flex flex-col justify-center  relative">
         
         {/* Main Heading */}
         <div className="text-center mb-8 md:mb-12">

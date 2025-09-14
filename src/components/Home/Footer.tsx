@@ -14,18 +14,18 @@ import UkFlagIcon, { BdFlagIcon } from "@/svgs/UkFlag.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#06152B] z-10 relative text-white mt-16">
+    <footer className="bg-[#06152B] z-10 relative text-white mt-10">
       {/* Newsletter Section */}
       <div className="px-4 max-w-[1400px] w-[97%] mx-auto py-8">
         <div className="flex flex-col lg:flex-row items-start justify-between lg:items-center gap-8 ">
           {/* Newsletter Text */}
           <div className="flex-1 max-w-2xl">
-            <h2 className="gradient-text lg:text-[34px] font-bold mb-3 font-inter">
+            <h2 className="gradient-text lg:text-[24px] font-bold mb-3 font-inter">
               <span className="">
                 আমাদের নিউজলেটারে সাবস্ক্রাইব করুন
               </span>
             </h2>
-            <p className="text-lg md:text-xl  lg:text-2xl text-white/90 font-inter">
+            <p className="text-lg md:text-lg text-white/90 font-inter">
               আপনার ইমেইল দিন, নিয়মিত আপডেট, আসন্ন ইভেন্ট এবং
               <br className="hidden lg:block " />
               বিশেষ অফার সম্পর্কে জানতে।
@@ -38,9 +38,9 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="ইমেইল এড্রেস"
-                className="flex-1 outline-none border-0 text-[#06152B] text-lg md:text-xl placeholder:text-[#06152B]/50 focus-visible:ring-0 bg-transparent font-inter"
+                className="flex-1 outline-none border-0 text-[#06152B]  placeholder:text-[#06152B]/50 focus-visible:ring-0 bg-transparent font-inter"
               />
-              <button className="bg-gradient-to-b from-[#96256A] to-[#C84172] text-white px-6 py-3 text-lg md:text-xl font-semibold rounded hover:opacity-90 transition-opacity font-inter">
+              <button className="bg-gradient-to-b from-[#96256A] to-[#C84172] text-white px-4 py-2 font-semibold rounded hover:opacity-90 transition-opacity font-inter">
                 সাবস্ক্রাইব
               </button>
             </div>

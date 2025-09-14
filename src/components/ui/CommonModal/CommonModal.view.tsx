@@ -8,6 +8,7 @@ interface CommonModalProps {
   closeOnOutsideClick?: boolean;
   showCloseButton?: boolean;
   container_class?:string;
+  replaceClassName?:string;
   modalClassName?: string; // for extra styling
 }
 
@@ -18,7 +19,8 @@ export default function CommonModal({
   closeOnOutsideClick = true,
   showCloseButton = true,
   modalClassName = "",
-  container_class
+  container_class,
+  replaceClassName
 }: CommonModalProps) {
   // Prevent background scroll when modal is open
   useEffect(() => {
@@ -46,12 +48,12 @@ export default function CommonModal({
       className={"fixed inset-0  z-50 flex items-center justify-center bg-black/50 "+{container_class}}
     >
       <div
-        className={`relative max-w-lg bg-transparent rounded-lg shadow-lg w-auto ${modalClassName}`}
+        className={replaceClassName??`relative max-w-lg bg-transparent rounded-lg shadow-lg w-auto ${modalClassName}`}
       >
         {showCloseButton && (
           <button
             onClick={onClose}
-            className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+            className="absolute top-2 right-2 text-gray-400 hover:text-gray-900"
           >
             ✕
           </button>

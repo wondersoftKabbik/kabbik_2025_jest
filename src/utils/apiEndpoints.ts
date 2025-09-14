@@ -81,4 +81,7 @@ export const apiEndPoints = {
   blogsUrl: `${BASE_URL}/v1/blog`,
   getApprovedBlogsUrl: `${BASE_URL}/v1/blog`,
   updateBlogUrl: `${BASE_URL}/v1/blog/update`,
+  notificationGetUrl: `${BASE_URL}/v2/core/get-app-notifications`,
+  markAsRead:`${BASE_URL}/v2/core/read-app-notification`,
+  unreadCount:`${BASE_URL}/v2/core/get-user-unread-notifications`
 };

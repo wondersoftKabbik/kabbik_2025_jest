@@ -22,7 +22,7 @@ const BestCollection = (props:TBestCollection) => {
         return data[index]
     }
   return (
-    <div className='best_collection overflow-x-hidden max-w-[1440px] mx-auto text-white mt-20'>
+    <div className='best_collection overflow-x-hidden max-w-[1440px] mx-auto text-white mt-16'>
         <Swiper
             // slidesPerView={1}
             // spaceBetween={1}

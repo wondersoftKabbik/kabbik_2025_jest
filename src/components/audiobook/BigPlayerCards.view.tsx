@@ -73,7 +73,7 @@ export default function BigPlayerCards() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4 lg:px-8">
+    <div className=" bg-gray-100 py-8 px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Main container matching the figma design */}
         <div className="relative bg-audiobook-container-bg border border-audiobook-container-border rounded-4xl shadow-audiobook p-8 lg:p-12">

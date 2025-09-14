@@ -41,10 +41,11 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
         <div className="flex flex-col gap-4">
           {/* Header Section */}
           <div className="flex flex-col gap-2">
-            <h1 className="text-white text-2xl font-semibold">
-              {showSignUp?"সাইন আপ":"লগইন করুন"}
+            <h1 className="text-white text-lg font-semibold">
+              {/* {showSignUp?"সাইন আপ":"লগইন করুন"} */}
+              লগইন / সাইনআপ করুন
             </h1>
-            <p className="text-white ">
+            {/* <p className="text-white ">
               {showSignUp?"অলরেডি হ্যাভ এন অ্যাকাউন্ট?":"ডোন্ট হ্যাভ এন অ্যাকাউন্ট?"}{" "}
                 <span 
                     onClick={()=>{setShowSignUp(!showSignUp)}}
@@ -52,7 +53,7 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
                 >
                 {!showSignUp?"সাইন আপ":"লগইন করুন"}
               </span>
-            </p>
+            </p> */}
           </div>
 
           {/* Social Login Section */}
@@ -72,12 +73,12 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
             </button> */}
 
             {/* Google Button */}
-            <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-2 px-4 flex items-center gap-8 md:gap-12">
+            <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-1.5 px-4 flex items-center gap-8 md:gap-12">
                 <div className='w-full flex justify-center'>
-                    <div className="w-8 h-8 mr-4 flex-shrink-0">
+                    <div className="w-6 h-6 mr-4 flex-shrink-0">
                         <Google/>
                     </div>
-                    <span className="text-black text-2xl font-semibold">
+                    <span className="text-black text-xl font-semibold">
                         গুগল
                     </span>
                 </div>
@@ -87,13 +88,13 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
           {/* Divider */}
           <div className="flex items-center gap-3">
             <div className="flex-1 h-px bg-white"></div>
-            <span className="text-white text-lg px-4">অথবা</span>
+            <span className="text-white text-sm px-4">অথবা</span>
             <div className="flex-1 h-px bg-white"></div>
           </div>
 
           {/* Phone Input Section */}
           <div className="flex flex-col gap-2">
-            <label className="text-white text-xl font-medium">
+            <label className="text-white font-medium">
               ফোন নম্বর
             </label>
             
@@ -114,7 +115,7 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
                     // value={phoneNumber}
                     onChange={(e) => {setPhoneNumbers(e.target.value);setErrors('');}}
                     placeholder="আপনার ফোন নম্বর লিখুন"
-                    className="flex-1 bg-transparent text-white text-lg placeholder-gray-400 px-1 focus:outline-none"
+                    className="flex-1 bg-transparent text-white placeholder-gray-400 px-1 focus:outline-none"
                   />
                 </div>
               </div>
@@ -125,11 +126,11 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
           {/* Continue Button */}
           <button 
             onClick={handleLogin}
-            className="w-full bg-red-600 hover:bg-red-700 transition-colors rounded-[4px] shadow-md py-2 px-6 flex items-center justify-center"
+            className="w-full bg-red-600 hover:bg-red-700 transition-colors rounded-[4px] shadow-md py-1.5 px-6 flex items-center justify-center"
             disabled={submitLoader}
           >
             {submitLoader?<Spinner size='w-6 h-6'/>:''}
-            <span className="text-white text-lg font-medium">
+            <span className="text-white  font-medium">
               কন্টিনিউ
             </span>
           </button>

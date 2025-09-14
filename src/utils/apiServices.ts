@@ -17,6 +17,46 @@ export const subscriptionPack = async (id: any) => {
  )
 };
 
+export const getNotifications = async (userId:number,page:number) => {
+  const url = `${apiEndPoints.notificationGetUrl}?userId=${userId}&page=${page}&limit=15`;
+ return await CommonApiHandler(
+    {
+      name: "getNotifications",
+      url,
+      method: TMethods.GET,
+    }
+ )
+};
+
+export const unreadNotificationCount = async (userId:number) => {
+  const url = `${apiEndPoints.unreadCount}?userId=${userId}`;
+ return await CommonApiHandler(
+    {
+      name: "unreadNotificationCount",
+      url,
+      method: TMethods.GET,
+    }
+ )
+};
+
+
+export const MakeReadNotification = async (
+  userId: number,
+  notificationId: number
+) => {
+  
+  const url = apiEndPoints.markAsRead;
+  const raw = JSON.stringify( {"userId": userId, "notificationId": notificationId});
+  return await CommonApiHandler(
+    {
+      name: "paymentMethodlist",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null, 
+    }
+ )
+};
+
 export const paymentMethodlist = async (
   forPackage: number,
   withRenewal: number

@@ -25,7 +25,7 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
                <CategorySelector/>
            </div>
            <div>
-                <div className="min-h-screen bg-navy-dark">
+                <div className=" bg-navy-dark">
       {/* Header Section */}
                     <div className="pt-8 lg:pt-16 pb-8 lg:pb-12 px-4">
                         <div className="max-w-4xl mx-auto text-center">

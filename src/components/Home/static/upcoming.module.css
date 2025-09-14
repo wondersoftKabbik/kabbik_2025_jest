@@ -11,8 +11,8 @@
 }
 .slider_left_icons{
   left: 3.5vw;
-  width: 90px;
-  height: 90px;
+  width:70px;
+  height:70px;
   bottom:30%;
 }
 .slider_box{
@@ -29,13 +29,13 @@
   background-color: #D9D9D9B2;
 }
 .slider_icons svg{
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 80%;
+    max-height: 80%;
 }
 .slider_right_icons{
   right: 3.5vw;
-   max-width: 90px;
-  max-height: 90px;
+   max-width: 70px;
+  max-height: 70px;
   bottom:30%;
     padding:5px;
 }

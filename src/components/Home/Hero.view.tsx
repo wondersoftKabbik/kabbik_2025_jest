@@ -62,7 +62,7 @@ const Hero = ({
                   router.push(`/audiobook/${topbannerinfo?.id}`);
                 }}
               >
-                <div className="relative h-[140vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
+                <div className="relative h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
                   <div className={styles.backdrop_filter}>
                     <div className="">
                       <picture className={styles.thumb_path}>
@@ -104,7 +104,7 @@ const Hero = ({
                         <img
                           src={topbannerinfo.thumb_path}
                           alt="Description"
-                          className="max-w-[400px] max-h-[495px] border-2 rounded-[12px] border-white w-[30vw] h-[40vw] z-10 relative"
+                          className="max-w-[350px] max-h-[440px] border-2 rounded-[12px] border-white w-[30vw] h-[40vw] z-10 relative"
                         />
                       </div>
                     </div>
@@ -123,7 +123,7 @@ const Hero = ({
           <div className="rect-gradient z-10 w-[50%] h-12 "></div>
         </div> */}
         <div className="circular_gradient left-[-10%] bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] z-20 "></div>
-      <div className="mt-[-10%]">
+      <div className="mt-[-10%] ">
         <div className="bg-bg z-10 relative">
         <div className={styles.play_icons+' z-20 relative '}>
           <div className="mr-[3vw]">

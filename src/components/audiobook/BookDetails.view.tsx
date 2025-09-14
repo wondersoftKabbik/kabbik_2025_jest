@@ -739,7 +739,7 @@ const AudiobookComponent = ({
             </div>
           </div>
         </div>
-        <div className="min-h-screen z-[5]  py-4 md:py-8">
+        <div className=" z-[5]  py-4 md:py-8">
           <div className="max-w-2xl mx-auto px-4 space-y-8 md:space-y-16">
             {/* Header Section */}
             <div className="bg-gradient-to-r from-[#881D69] to-[#D34974] rounded-xl p-3 md:p-4 text-white">

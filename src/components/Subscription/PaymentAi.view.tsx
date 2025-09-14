@@ -16,7 +16,7 @@ export default function PaymentAi() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0E1D3F] px-4 py-16 md:py-20">
+    <div className=" bg-[#0E1D3F] px-4 py-16 md:py-20">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

@@ -49,12 +49,50 @@ const Blogs = ({blogs}:TBlogsProps) => {
             </div>
         </div>
         <div
-            className={`container ${styles.blogsContainer}`}
+            className={`${styles.blogsContainer}`}
             style={{ color: "white" }}
         >
             {blogs.list.length ? (
             <div className={`${styles.blogsWrapper}`}>
                 {blogs.list?.slice(0,3).map((blog) => (
+                    <div key={blog.id} className="blog">
+                        <Link href={`/blogs/${blog.slug}`}>
+                            <div className={`${styles.blogWrapper} rounded`}>
+                            <div className={styles.featureImageContainer}>
+                                <img
+                                    src={blog.featured_image}
+                                    alt={blog.alter_text_for_featured_image}
+                                />
+                            </div>
+                            <div className='flex items-center justify-between px-2.5 mt-3'>
+                                <div className='flex items-center  '>
+                                    <span className='w-6 h-6 inline-block'>
+                                        <CalenderIcon />
+                                    </span>
+                                    <p>{formatDate(blog?.publish_date,'bn')}</p>
+                                </div>
+                                <div className='flex items-center px-3 '>
+                                    <span className='w-4 h-4 inline-block'>
+                                        <UserIcon />
+                                    </span>
+                                    <p>{blog?.author}</p>
+                                </div>
+                            </div>
+                            <div className={styles.content}>
+                                <h1 className={styles.title}>{blog.title}</h1>
+                                {/* <p className={styles.excerpt}>{blog.excerpt}</p> */}
+                                <div className='btn-gradient-2 w-[150px] py-2 rounded-[3px] text-center text-[13px]'>
+                                    বিস্তারিত পড়ুন
+                                    <span className='w-10 h-2 inline-block '>
+                                        <RightArrow color={'white'}/>
+                                    </span>
+                                </div>
+                            </div>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+                {blogs.list?.slice(0,1).map((blog) => (
                     <div key={blog.id} className="blog">
                         <Link href={`/blogs/${blog.slug}`}>
                             <div className={`${styles.blogWrapper} rounded`}>

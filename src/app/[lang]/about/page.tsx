@@ -26,7 +26,7 @@ const page = async() => {
                     </div>
                 </div>
             </div>
-            <div className="min-h-screen  py-12">
+            <div className="  py-12">
             {/* Header */}
             
 

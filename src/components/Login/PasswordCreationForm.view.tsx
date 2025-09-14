@@ -67,7 +67,7 @@ export function PasswordCreationForm({closeModal}:{closeModal:()=>void}) {
                       value={password}
                     //   type="text"
                       onChange={(e) => setPassword(e.target.value)}
-                      placeholder="আপনার পাসওয়ার্ড লিখুন"
+                      placeholder="পাসওয়ার্ড অন্তত ৮ অক্ষরের হতে হবে"
                       className="w-full py-2 px-6 md:px-8 bg-transparent border transparent_border rounded-[4px] shadow-lg placeholder:text-white/40 text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <button
@@ -95,7 +95,7 @@ export function PasswordCreationForm({closeModal}:{closeModal:()=>void}) {
                     // type="text"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="পাসওয়ার্ড নিশ্চিত করুন"
+                    placeholder="পাসওয়ার্ড অন্তত ৮ অক্ষরের হতে হবে"
                     className="w-full py-2 px-6 md:px-8 bg-transparent border transparent_border rounded-[4px] shadow-lg placeholder:text-white/40 text-white focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                   <button

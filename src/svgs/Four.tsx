@@ -3,7 +3,7 @@ import React from 'react'
 const Four = () => {
   return (
     <>
-        <svg style={{height:'100%',width:'100%'}} viewBox="0 0 223 284" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg style={{height:'100%',width:'80%'}} viewBox="0 0 223 284" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask id="path-1-outside-1_312_31078" maskUnits="userSpaceOnUse" x="-1" y="0" style={{height:'100%',width:'100%'}} fill="black">
         <rect fill="white" x="-1" style={{height:'100%',width:'100%'}}/>
         <path d="M5.99441 227.666V188.591L121.1 6.72726H153.684V62.3594H133.816L56.3282 185.147V187.267H216.999V227.666H5.99441ZM135.405 278V215.745L135.935 198.261V6.72726H182.295V278H135.405Z"/>

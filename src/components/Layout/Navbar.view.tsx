@@ -106,12 +106,12 @@ const Navbar = (props:TNavbar) => {
                 </CommonButton>:''}
                 {profile?.id && profile?.id!==2820?
                     <span className='cursor-pointer flex items-center gap-3'>
-                        <span className='w-5 h-5 inline-block cursor-pointer'>
+                        <Link href={paths.notification} className='w-5 h-5 inline-block cursor-pointer'>
                             <Bell/>
-                        </span>
-                        <span className='w-5 h-5 inline-block cursor-pointer'>
+                        </Link>
+                        <Link href={paths.profile} className='w-5 h-5 inline-block cursor-pointer'>
                             <Trophy/>
-                        </span>
+                        </Link>
                         {profile?.is_subscribed?'':<figure>
                             <Link href={paths.profile}>
                                 <img className='max-w-8 max-h-8' src={profile?.image_url ?? siteConfig.defaultProfilePic}/>

@@ -1,3 +1,5 @@
+import { ReelType } from "@/components/Home/static/utils";
+
 export type TCommonBtnProps={
     isLoading?:boolean;
     disabled?:boolean;
@@ -47,7 +49,8 @@ export type staticTextSlice= {
         title: string;
         description: string;
         imageUrl: string;
-    }[]
+    }[],
+    reels:ReelType[]
   }
 };
 

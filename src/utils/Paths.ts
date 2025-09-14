@@ -3,4 +3,5 @@ export const paths={
     categoryWiseBooks:(category:string)=>`/${category}`,
     upcoming:"/upcoming",
     profile:'/profile',
+    notification:'/notification'
 }

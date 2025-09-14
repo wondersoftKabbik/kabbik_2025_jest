@@ -19,7 +19,7 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
            <div>
                <CategorySelector/>
            </div>
-            <div className="min-h-screen  p-4 lg:p-8">
+            <div className="  p-4 lg:p-8">
         <div className="max-w-7xl mx-auto">
             {/* Content Grid */}
             {staticTexts?new Array(Math.ceil(staticTexts.popular_categories.length/4),0).map((Item:any,index:number)=>(
