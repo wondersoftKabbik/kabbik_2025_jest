@@ -107,16 +107,16 @@ useEffect(() => {
   }, [onScrollStart, onScrollEnd]);
 
   // // Scroll to the specified index initially
-  // useEffect(() => {
-  //   const container = containerRef.current;
-  //   if (!container) return;
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  //   const children = container.children;
-  //   if (startIndex < 0 || startIndex >= children.length) return;
+    const children = container.children;
+    if (startIndex < 0 || startIndex >= children.length) return;
 
-  //   const target = children[startIndex] as HTMLDivElement;
-  //   target.scrollIntoView({ behavior: "smooth" });
-  // }, [startIndex]);
+    const target = children[startIndex] as HTMLDivElement;
+    target.scrollIntoView({ behavior: "smooth" });
+  }, [startIndex]);
   useLayoutEffect(() => {
   const container = containerRef.current;
   if (!container) return;
