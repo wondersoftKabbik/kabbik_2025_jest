@@ -320,10 +320,10 @@ const HomeComponent = (props:THomeProps) => {
           </div>
             <div className="circular_gradient left-1/2 -translate-x-1/2 top-[-10%] w-[40vw] h-[40vw] absolute  "></div>
           <div className='text-center pt-10  z-20'>
-              <p className='gradient-text text-[30px] font-semibold'>{StaticTexts?.nepal_tour_video?.heading}</p>
-              <p className='text-white text-[23px] py-3'>{StaticTexts?.nepal_tour_video?.para}</p>
+              <p className='gradient-text text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.heading}</p>
+              <p className='text-white text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.para}</p>
               <Link href={'/subscribe'}>
-                <div className="flex items-center btn-gradient-1 px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[500px] w-[auto] mx-auto">
+                <div className="flex items-center btn-gradient-1 px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[350px] w-[auto] mx-auto">
                   <span className='max-w-[300px] flex'>
                       <span className="mr-4 w-11 h-8 inline-block">
                       <PlayerIcon />

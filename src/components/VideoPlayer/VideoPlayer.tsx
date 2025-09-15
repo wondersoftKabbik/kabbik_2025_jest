@@ -40,6 +40,9 @@ export default function CustomVideoPlayer({
     const video = videoRef.current;
     if (video && video.paused) {
       video.play().catch(() => {});
+      // setTimeout(()=>{
+      //   if(video && 'current' in video)  videoRef.current.muted = false;
+      // }, 1000)
       setPlaying(true)
     }
   };
@@ -82,13 +85,28 @@ export default function CustomVideoPlayer({
         ${isFullWidth ? 'w-screen max-w-none' : height ?? ' w-[60%] mx-auto '}
         ${isFullscreen ? 'h-screen max-h-none' : width ?? ' max-h-full '}`}
     >
-      <video
+      {/* <video
+        onClick={togglePlay}
         ref={videoRef}
         src={url}
-        className="w-full h-full rounded-[8px] object-cover"
+        muted
+        // autoPlay={true}
+        className="w-full h-full cursor-pointer rounded-[8px] object-cover"
         onEnded={() => setPlaying(false)}
         onTimeUpdate={handleTimeUpdate}
-      />
+      /> */}
+
+      <div className="w-full h-full flex items-center justify-center bg-gray-800 rounded-[8px]">
+        <video
+          onClick={togglePlay}
+          ref={videoRef}
+          src={url}
+          muted
+          className="max-w-full max-h-full cursor-pointer rounded-[8px] object-contain bg-gray-800"
+          onEnded={() => setPlaying(false)}
+          onTimeUpdate={handleTimeUpdate}
+        />
+      </div>
 
       {/* Gradient Control Bar */}
       <div className="absolute bottom-0 w-[95%]  px-4 py-2 flex items-center gap-2">

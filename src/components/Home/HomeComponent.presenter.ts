@@ -27,6 +27,7 @@ const useHomeComponent = () => {
             video.pause();
             setObj(false);
         }
+        if(videoRef && 'current' in videoRef)  videoRef.current.muted = false;
     }
     
     const togglePlay = () => {
