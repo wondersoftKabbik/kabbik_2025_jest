@@ -1,65 +1,69 @@
 'use client'
 import React from 'react'
 import { THomeProps } from './static/home.types'
-import Hero from './Hero.view';
-// import  from '';
+// import Hero from '';
 import { findCatwiseData } from '@/helpers/commonFunction';
-import TopTen from './TopTen.view';
 import topTenStyles from "./static/TopTen.module.css"
-// import CustomVideoPlayer from '../VideoPlayer/VideoPlayer';
 import useHomeComponent from './HomeComponent.presenter';
-// import StepsToListenBookview from './StepsToListenBookview';
-// import { cityBankApiTest } from '@/utils/apiServices';
-// import BestCollection from './BestCollection.view';
-import BigBanners from './BigBanners.view';
-// import UpComing from './UpComing.view';
-// import PopularCategories from './PopularCategories.view';
 import Link from 'next/link';
 import PlayerIcon from '@/svgs/PlayerIcon';
-// import Blogs from './Blogs.view';
 import { container } from '../ui/static/tailwind.classes';
-// import Reels from './Reels.view';
 import Script from 'next/script';
 import dynamic from 'next/dynamic';
 
+const TopTen = dynamic(() => import("./TopTen.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p></p>, // optional fallback
+});
+
+const Hero = dynamic(() => import("./Hero.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p></p>, // optional fallback
+});
+
+const BigBanners = dynamic(() => import("./BigBanners.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p></p>, // optional fallback
+});
+
 const PopularCategories = dynamic(() => import("./PopularCategories.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const CommonCategory = dynamic(() => import("./CommonCategory.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const BestCollection = dynamic(() => import("./BestCollection.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const Reels = dynamic(() => import("./Reels.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const UpComing = dynamic(() => import("./UpComing.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const StepsToListenBookview = dynamic(() => import("./StepsToListenBookview"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const CustomVideoPlayer = dynamic(() => import("../VideoPlayer/VideoPlayer"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const Blogs = dynamic(() => import("./Blogs.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p>Loading...</p>, // optional fallback
+  loading: () => <p></p>, // optional fallback
 });
 
 const HomeComponent = (props:THomeProps) => {
