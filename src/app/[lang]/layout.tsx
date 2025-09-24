@@ -5,7 +5,7 @@ import "@/app/globals.css";
 import { ReduxProvider } from '@/app/Provider';
 import Navbar from "@/components/Layout/Navbar.view";
 import { categorySuggestions } from "@/utils/apiServices";
-import { CatagorySugges, CatagorySuggestionsInfo } from "@/pageTypes/home.types";
+import { CatagorySugges } from "@/pageTypes/home.types";
 import { getDictionary } from "./dictionaries";
 import Footer from "@/components/Home/Footer";
 import { SessionProvider } from "next-auth/react";

@@ -10,15 +10,32 @@ import PlayerIcon from '@/svgs/PlayerIcon';
 import { container } from '../ui/static/tailwind.classes';
 import Script from 'next/script';
 import dynamic from 'next/dynamic';
+import Skeleton from '../Skeleton/Skeleton';
 
 const TopTen = dynamic(() => import("./TopTen.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p></p>, // optional fallback
+  loading: () => (
+    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8 mb-8 max-w-[90%] mx-auto'>
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+    </div>
+  ), // optional fallback
 });
 
 const Hero = dynamic(() => import("./Hero.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p></p>, // optional fallback
+  loading: () => (
+    <div className='flex  max-sm:flex-col justify-around mt-32 items-center'>
+      <div>
+        <Skeleton count={4} height="h-[40px] md:h-[40px]" width='w-[300px]'  className="rounded-b-[4px]" />
+      </div>
+      <div>
+        <Skeleton height="h-[300px] md:h-[400px]" width="w-[250px] md:w-[350px]" className="rounded-b-[10px]" />
+      </div>
+    </div>
+  ), // optional fallback
 });
 
 const BigBanners = dynamic(() => import("./BigBanners.view"), {
@@ -33,7 +50,20 @@ const PopularCategories = dynamic(() => import("./PopularCategories.view"), {
 
 const CommonCategory = dynamic(() => import("./CommonCategory.view"), {
   ssr: false, // optional: disable server-side rendering
-  loading: () => <p></p>, // optional fallback
+  loading: () => (
+    <div className={container('1206px')+' my-10'}>
+      <div className='flex justify-between'>
+        <Skeleton height="h-[25px]" width='w-[60px]'  className="rounded-b-[4px]" />
+        <Skeleton height="h-[25px]" width='w-[60px]'  className="rounded-b-[4px]" />
+      </div>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8 mb-8 max-w-[90%] mx-auto'>
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+        <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
+      </div>
+    </div>
+  ), // optional fallback
 });
 
 const BestCollection = dynamic(() => import("./BestCollection.view"), {
