@@ -18,7 +18,7 @@ interface ReelsProps {
   // onScrollEnd?: () => void;
 }
 
-const Reels = ({ reels, startIndex = 0 }: ReelsProps) => {
+const ReelsPlayer = ({ reels, startIndex = 0 }: ReelsProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentVideo, setCurrentVideo] = useState<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -339,4 +339,4 @@ useEffect(() => {
   );
 };
 
-export default Reels;
+export default ReelsPlayer;

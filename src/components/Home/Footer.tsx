@@ -1,3 +1,4 @@
+'use client'
 import { siteConfig } from "@/config/config";
 import FaceBook from "@/svgs/FaceBook";
 import InstagramIcon from "@/svgs/InstagramIcon";
@@ -11,8 +12,32 @@ import AboutIcon from "@/svgs/AboutIcon";
 import TermsIcon from "@/svgs/Terms&Policy.svg";
 import PhoneIcon from "@/svgs/PhoneIcon";
 import UkFlagIcon, { BdFlagIcon } from "@/svgs/UkFlag.svg";
+import { use, useEffect, useState } from "react";
+import { NewsLetterNotificationSubs } from "@/utils/apiServices";
+import { useAppSelector } from "@/store/store";
+import { toast } from "react-toastify";
+import Spinner from "../ui/Spinner.view";
 
 export default function Footer() {
+  const [email,setEmail]=useState("");
+  const [error,setError]=useState("");
+  const [loading,setLoading]=useState(false);
+  const user=useAppSelector((state)=>state.user.userData);
+
+  const handleSubmit=async(e:any)=>{
+    e.preventDefault();
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setLoading(true);
+    await NewsLetterNotificationSubs(user?.id??0,email)
+    setError("");
+    toast.success("NewsLetter Subscribed Successfully");
+    // Call API to submit email
+    setEmail("");
+    setLoading(false);
+  }
   return (
     <footer className="bg-[#06152B] z-10 relative text-white mt-10">
       {/* Newsletter Section */}
@@ -38,12 +63,20 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="ইমেইল এড্রেস"
+                onChange={(e)=>setEmail(e.target.value)}
+                value={email}
                 className="flex-1 outline-none border-0 text-[#06152B]  placeholder:text-[#06152B]/50 focus-visible:ring-0 bg-transparent font-inter"
               />
-              <button className="bg-gradient-to-b from-[#96256A] to-[#C84172] text-white px-4 py-2 font-semibold rounded hover:opacity-90 transition-opacity font-inter">
+              <button 
+                onClick={handleSubmit}
+                disabled={loading}
+                className="bg-gradient-to-b from-[#96256A] to-[#C84172] text-white px-4 py-2 font-semibold rounded hover:opacity-90 transition-opacity font-inter"
+              >
+                {loading ? <Spinner size = "w-4 h-4"/> : ""}
                 সাবস্ক্রাইব
               </button>
             </div>
+            <p className="text-cxs2 text-red-400">{error}</p>
           </div>
         </div>
       </div>

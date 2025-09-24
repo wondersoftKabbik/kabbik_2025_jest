@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRouter } from 'next/navigation';
 import RightArrow from '@/svgs/RightArrow';
 import { findCatwiseData, stopPropagation } from '@/helpers/commonFunction';
+import { container } from '../ui/static/tailwind.classes';
 
 
 const BigBanners = () => {
@@ -16,7 +17,7 @@ const BigBanners = () => {
 
     
   return (
-    <div className='best_collection my-10 max-w-[1440px] h-[690px] mx-auto overflow-hidden text-white mt-0'>
+    <div className={`best_collection pb-10  max-w-[1440px] h-[auto] mx-auto overflow-hidden text-white  ${container('1206px')}`}>
         <Swiper
             // slidesPerView={1}
             // spaceBetween={1}

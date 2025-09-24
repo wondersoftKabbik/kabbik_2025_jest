@@ -10,7 +10,7 @@ const PopularCategories = () => {
 
     
   return (
-    <div className='mt-24 z-20 text-white max-w-[1206px] mx-auto cursor-pointer w-[90%]'>
+    <div className='mt-12 z-20 text-white max-w-[1206px] mx-auto cursor-pointer w-[90%]'>
         <div className={common_cat_styles.heading_container}>
             <h3 className={common_cat_styles.heading}>মোস্ট পপুলার ক্যাটেগরিজ</h3>
             <Link href={'/categories'} className={common_cat_styles.see_all}>
@@ -18,7 +18,7 @@ const PopularCategories = () => {
                 <span className={common_cat_styles.arrow}><RightArrowIcon/></span>
             </Link>
         </div>
-        <div className='flex gap-6 '>
+        <div className='flex gap-6 mt-3'>
             <div className='w-[48.5%]'>
                 <figure className='mb-6'>
                     <img className='h-[40vh] w-full rounded-[8px] object-cover object-bottom' src={PopularCategories[0]?.img}/>

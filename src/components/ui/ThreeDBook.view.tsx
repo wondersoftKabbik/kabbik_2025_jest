@@ -5,7 +5,7 @@ const ThreeDBook = ({bg,path}:{bg:string,path:string}) => {
   return (
     <Link href={path??''}>
         <div className='skew-y-[-8deg]'>
-            <article className='absolute left-1/2  -translate-x-1/2 top-[-240px]'>
+            <article className='absolute left-1/2  -translate-x-1/2 top-[20px]'>
                 <div className="cover-back"></div>
                 <div className="pages">
                     <span></span>

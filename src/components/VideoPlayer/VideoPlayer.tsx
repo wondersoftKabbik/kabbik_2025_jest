@@ -14,7 +14,9 @@ export default function CustomVideoPlayer({
   playing,
   setPlaying,
   videoRef,
-  togglePlay
+  togglePlay,
+  poster,
+  muted
 }: TVideoPlayerProps) {
   const {
     containerRef,
@@ -23,8 +25,11 @@ export default function CustomVideoPlayer({
     progress,
     toggleFullscreen,
     handleTimeUpdate,
-    handleSeek
+    handleSeek,
+    
   } = useVideoPlayer(videoRef);
+
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   // Skip video by seconds (positive = forward, negative = backward)
   const skip = (seconds: number) => {
@@ -44,6 +49,9 @@ export default function CustomVideoPlayer({
       //   if(video && 'current' in video)  videoRef.current.muted = false;
       // }, 1000)
       setPlaying(true)
+      const isPosterVisible = video.paused && video.currentTime === 0;
+      const isVideoPlaying = !video.paused && video.currentTime > 0;
+      setIsIntersecting(!isPosterVisible || isVideoPlaying);
     }
   };
 
@@ -52,9 +60,18 @@ export default function CustomVideoPlayer({
     const video = videoRef.current;
     if (video && !video.paused) {
       video.pause();
-      setPlaying(false)
+      // setPlaying(false)
     }
   };
+
+  const customTogglePlay = () => {
+    togglePlay();
+    const video = videoRef.current;
+    if(!video)return;
+    const isPosterVisible = video.paused && video.currentTime === 0;
+    const isVideoPlaying = !video.paused && video.currentTime > 0;
+    setIsIntersecting(!isPosterVisible || isVideoPlaying);
+  }
 
   useEffect(() => {
     const video = videoRef.current;
@@ -77,67 +94,63 @@ export default function CustomVideoPlayer({
       observer.disconnect();
     };
   }, []);
+  
 
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 bg-black
+      className={`group relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 bg-black
         ${isFullWidth ? 'w-screen max-w-none' : height ?? ' w-[60%] mx-auto '}
         ${isFullscreen ? 'h-screen max-h-none' : width ?? ' max-h-full '}`}
     >
-      {/* <video
-        onClick={togglePlay}
-        ref={videoRef}
-        src={url}
-        muted
-        // autoPlay={true}
-        className="w-full h-full cursor-pointer rounded-[8px] object-cover"
-        onEnded={() => setPlaying(false)}
-        onTimeUpdate={handleTimeUpdate}
-      /> */}
-
       <div className="w-full h-full flex items-center justify-center bg-gray-800 rounded-[8px]">
         <video
-          onClick={togglePlay}
+          onClick={customTogglePlay}
           ref={videoRef}
           src={url}
-          muted
           className="max-w-full max-h-full cursor-pointer rounded-[8px] object-contain bg-gray-800"
           onEnded={() => setPlaying(false)}
+          muted={muted??false}
           onTimeUpdate={handleTimeUpdate}
+          // priority={false}
+          poster={poster}
+          preload='none'
         />
       </div>
 
       {/* Gradient Control Bar */}
-      <div className="absolute bottom-0 w-[95%]  px-4 py-2 flex items-center gap-2">
+      <div
+        className={!isIntersecting ? 'hidden' : `absolute bottom-0 w-[95%] px-4 py-2 flex items-center gap-2 
+                  opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+      >
         <div className="flex items-center gap-2">
           {/* Backward 10s */}
           <button
             onClick={() => skip(-10)}
-            className="text-white hover:scale-110 transition-transform bg-[#ffffff22] rounded-full w-10 h-10 flex items-center justify-center"
+            className="text-white hover:scale-110 transition-transform bg-[#ffffff22] rounded-full w-8 h-8 flex items-center justify-center"
             title="Rewind 10 seconds"
           >
-            <span className='w-8 inline-block'>
-              <Minus10Sec/>
+            <span className="w-6 inline-block">
+              <Minus10Sec />
             </span>
           </button>
 
           {/* Play/Pause */}
           <button
-            onClick={togglePlay}
-            className="text-[#ca1571] hover:scale-110 transition-transform bg-white rounded-full p-2"
+            onClick={customTogglePlay}
+            className="text-[#ca1571] hover:scale-110 transition-transform bg-white rounded-full p-1.5"
           >
-            {playing ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+            {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
           </button>
 
           {/* Forward 10s */}
           <button
             onClick={() => skip(10)}
-            className="text-white hover:scale-110 transition-transform bg-[#ffffff22] rounded-full w-10 h-10 flex items-center justify-center"
+            className="text-white hover:scale-110 transition-transform bg-[#ffffff22] rounded-full w-8 h-8 flex items-center justify-center"
             title="Forward 10 seconds"
           >
-            <span className='w-8 inline-block'>
-              <Plus10Sec/>
+            <span className="w-6 inline-block">
+              <Plus10Sec />
             </span>
           </button>
         </div>
@@ -159,10 +172,15 @@ export default function CustomVideoPlayer({
             className="text-white hover:scale-110 transition-transform bg-[#ffffff22] rounded-full p-2"
             title="Toggle Fullscreen"
           >
-            {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
+            {isFullscreen ? (
+              <Minimize2 className="w-5 h-5" />
+            ) : (
+              <Maximize2 className="w-5 h-5" />
+            )}
           </button>
         </div>
       </div>
     </div>
+
   );
 }

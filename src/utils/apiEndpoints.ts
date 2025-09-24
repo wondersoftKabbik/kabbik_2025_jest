@@ -83,5 +83,6 @@ export const apiEndPoints = {
   updateBlogUrl: `${BASE_URL}/v1/blog/update`,
   notificationGetUrl: `${BASE_URL}/v2/core/get-app-notifications`,
   markAsRead:`${BASE_URL}/v2/core/read-app-notification`,
-  unreadCount:`${BASE_URL}/v2/core/get-user-unread-notifications`
+  unreadCount:`${BASE_URL}/v2/core/get-user-unread-notifications`,
+  create_email_notification:`${BASE_URL}/v4/email-notification/create-notification`
 };

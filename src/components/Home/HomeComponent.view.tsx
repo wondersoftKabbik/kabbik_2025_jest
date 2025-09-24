@@ -1,30 +1,64 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { THomeProps } from './static/home.types'
 import Hero from './Hero.view';
 import CommonCategory from './CommonCategory.view';
 import { findCatwiseData } from '@/helpers/commonFunction';
 import TopTen from './TopTen.view';
 import topTenStyles from "./static/TopTen.module.css"
-import RightArrowIcon from '@/svgs/RightArrowIcon';
-import CustomVideoPlayer from '../VideoPlayer/VideoPlayer';
-import BigVideoPlayerIcon from '@/svgs/BigVideoPlayer';
+// import CustomVideoPlayer from '../VideoPlayer/VideoPlayer';
 import useHomeComponent from './HomeComponent.presenter';
-import StepsToListenBookview from './StepsToListenBookview';
+// import StepsToListenBookview from './StepsToListenBookview';
 // import { cityBankApiTest } from '@/utils/apiServices';
-import BestCollection from './BestCollection.view';
+// import BestCollection from './BestCollection.view';
 import BigBanners from './BigBanners.view';
-import UpComing from './UpComing.view';
-import PopularCategories from './PopularCategories.view';
+// import UpComing from './UpComing.view';
+// import PopularCategories from './PopularCategories.view';
 import Link from 'next/link';
 import PlayerIcon from '@/svgs/PlayerIcon';
-import Blogs from './Blogs.view';
-import Footer from './Footer';
+// import Blogs from './Blogs.view';
 import { container } from '../ui/static/tailwind.classes';
-import Reels from './Reels.view';
+// import Reels from './Reels.view';
+import Script from 'next/script';
+import dynamic from 'next/dynamic';
+
+const PopularCategories = dynamic(() => import("./PopularCategories.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
+
+const BestCollection = dynamic(() => import("./BestCollection.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
+
+const Reels = dynamic(() => import("./Reels.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
+
+const UpComing = dynamic(() => import("./UpComing.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
+
+const StepsToListenBookview = dynamic(() => import("./StepsToListenBookview"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
+
+const CustomVideoPlayer = dynamic(() => import("../VideoPlayer/VideoPlayer"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
+
+const Blogs = dynamic(() => import("./Blogs.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
 
 const HomeComponent = (props:THomeProps) => {
-    const {homeData,topBannerData,promoData,dict,blogs}=props;
+    const {homeData,topBannerData,blogs}=props;
     // logic separation
     const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3} = useHomeComponent();
     
@@ -44,10 +78,10 @@ const HomeComponent = (props:THomeProps) => {
         <div>
           <div className={topTenStyles.heading_container+" my-8  text-white max-w-[1206px] w-[90%] mx-auto"}>
               <h3 className={topTenStyles.heading}>শীর্ষ ১০</h3>
-              <div className={topTenStyles.see_all}>
+              {/* <div className={topTenStyles.see_all}>
                   সব দেখুন
                   <span className={topTenStyles.arrow}><RightArrowIcon/></span>
-              </div>
+              </div> */}
           </div>
             <div className='bg-ash_blue'>
             {/* <Link href={'/home_category_list/নতুন'}> */}
@@ -102,7 +136,7 @@ const HomeComponent = (props:THomeProps) => {
                 </div> */}
               </>
             )}
-            <CustomVideoPlayer height=' max-h-[550px]  ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
+            <CustomVideoPlayer poster={'/assets/videoInitPhoto.jpg'} height=' max-h-[550px]  ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
               url={StaticTexts?.home_video?.video1 ?? ''}
             />
           </div>
@@ -286,7 +320,7 @@ const HomeComponent = (props:THomeProps) => {
                 </div> */}
               </>
             )}
-            <CustomVideoPlayer width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
+            <CustomVideoPlayer poster={StaticTexts?.campaign_video?.img} width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
               url={StaticTexts?.campaign_video?.video_url ?? ''}
             />
           </div>
@@ -312,7 +346,7 @@ const HomeComponent = (props:THomeProps) => {
               </>
             )}
               <div className='max-w-full z-10   border-[10px] rounded-[10px]'>
-                  <CustomVideoPlayer width=' max-w-[350px] ' height=' max-h-[80vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
+                  <CustomVideoPlayer muted={true} width=' max-w-[350px] ' height=' max-h-[80vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
 
                   url={StaticTexts?.nepal_tour_video?.video_url ?? ''}
                 />
@@ -335,9 +369,29 @@ const HomeComponent = (props:THomeProps) => {
           </div>
         </div>
 
-        
+        <div className='tawk_to_div'>
+          <Script id="tawk-script" strategy="afterInteractive">
+            {`
+              var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+              (function(){
+                var s1 = document.createElement("script"),
+                    s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/68cb9938b695741925a90747/1j5dkt1it';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1, s0);
+              })();
+            `}
+          </Script>
+        </div>
     </div>
   )
 }
 
 export default HomeComponent
+
+
+// "tailwind-merge": "^3.3.1",
+    // "tailwind-variants": "^2.0.1",
+    // "tailwindcss-animate": "^1.0.7",

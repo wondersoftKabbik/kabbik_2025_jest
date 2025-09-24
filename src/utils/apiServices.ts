@@ -49,13 +49,32 @@ export const MakeReadNotification = async (
   const raw = JSON.stringify( {"userId": userId, "notificationId": notificationId});
   return await CommonApiHandler(
     {
-      name: "paymentMethodlist",
+      name: "MakeReadNotification",
       url,
       method: TMethods.POST,
       body: raw ? raw : null, 
     }
  )
 };
+
+
+export const NewsLetterNotificationSubs = async (
+  userId: number |string,
+  email: string
+) => {
+  
+  const url = apiEndPoints.create_email_notification;
+  const raw = JSON.stringify( {"userId":userId,"email":email});
+  return await CommonApiHandler(
+    {
+      name: "NewsLetterNotificationSubs",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null, 
+    }
+ )
+};
+
 
 export const paymentMethodlist = async (
   forPackage: number,

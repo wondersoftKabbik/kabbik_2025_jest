@@ -29,7 +29,7 @@ const Blogs = ({blogs}:TBlogsProps) => {
                                     <span className='w-6 h-6 inline-block'>
                                         <CalenderIcon />
                                     </span>
-                                    <p>{formatDate(blogs.list[0]?.publish_date,'bn')}</p>
+                                    <p>{formatDate(blogs?.list[0]?.publish_date,'bn')}</p>
                                 </div>
                                 
                             </div>

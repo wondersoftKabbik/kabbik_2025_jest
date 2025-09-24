@@ -7,5 +7,7 @@ export type TVideoPlayerProps={
     videoRef:RefObject<HTMLVideoElement>,
     togglePlay:()=>void;
     height?:string;
+    poster?:string;
     width?:string;
+    muted?:boolean;
 }

@@ -30,6 +30,10 @@ export type staticTextSlice= {
             id:string
         }
     ],
+    upcoming:{
+      thumb_path: string;
+      date: string;
+    }[];
     popular_categories:{
       img:string;
       path:string;

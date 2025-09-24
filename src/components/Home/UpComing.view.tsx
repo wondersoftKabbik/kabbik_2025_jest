@@ -15,28 +15,31 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import RightAngle from '@/svgs/rightAngle'
 import ThreeDBook from '../ui/ThreeDBook.view'
+import { container } from '../ui/static/tailwind.classes'
+import { useAppSelector } from '@/store/store'
 
 const UpComing = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const router=useRouter()
+  const upcomingBooks=useAppSelector(store=>store.staticTexts.data?.upcoming)
   return (
-    <div className='text-white max-w-[1440px]  mx-auto  w-[100%] max-h-[530px]'>
+    <div className={`${container('1300px')} text-white mt-10 mx-auto max-h-[530px]`}>
         <div>
-            <div className={common_cat_styles.heading_container + " max-w-[1206px] mx-auto w-[90%] !mb-[0] pb-64"}>
+            <div className={common_cat_styles.heading_container + " mx-auto !mb-[0] "}>
                 <h3 className={common_cat_styles.heading}>আপকামিং বুক</h3>
                 <div className={common_cat_styles.see_all}>
                     সব দেখুন
                     <span className={common_cat_styles.arrow}><RightArrowIcon/></span>
                 </div>
             </div>
-            <div className='relative  h-[300px]'>
+            <div className='relative  h-[420px] overflow-y-hidden overflow-y-scroll-none'>
                 
-                <figure className='absolute overflow-hidden left-0 top-0 w-full max-h-[550px]'>
-                        <div className='-rotate-45 w-[300px]  top-9  py-1 text-[20px] text-center absolute left-[-90px] bg-[#E53F79] z-10'>
+                <figure className='absolute overflow-hidden   left-1/2 -translate-x-1/2 top-0 w-full max-h-[650px]'>
+                        {/* <div className='-rotate-45 w-[300px]  top-9  py-1 text-[20px] text-center absolute left-[-90px] bg-[#E53F79] z-10'>
                             ১১ জুলাই ২০২৫
                         </div>
-                    <img className='w-full max-h-[300px]' src='/assets/upcoming_banner.png'/>
+                    <img className='w-full max-h-full' src='/assets/upcoming_banner.png'/> */}
                     <button
                         ref={prevRef}
                         className={styles.slider_icons + ` ${styles.slider_left_icons}`}
@@ -68,6 +71,17 @@ const UpComing = () => {
                       prevEl: prevRef.current,
                       nextEl: nextRef.current,
                     }}
+                     breakpoints={{
+                        0: {
+                        slidesPerView: 2,
+                        },
+                        768: {
+                        slidesPerView: 3,
+                        },
+                        1024: {
+                        slidesPerView: 4,
+                        },
+                    }}
                     onBeforeInit={(swiper:any) => {
                       if (
                         swiper.params.navigation &&
@@ -78,7 +92,7 @@ const UpComing = () => {
                       }
                     }}
                   >
-                    {data?.map((topbannerinfo,i:number) => (
+                    {upcomingBooks?.map((topbannerinfo,i:number) => (
                       <SwiperSlide
                         key={i}
                         onClick={() => {
@@ -87,8 +101,14 @@ const UpComing = () => {
                           );
                         }}
                       >
+                        <div className='relative w-[210px] h-[370px]'>
+                          <ThreeDBook bg={topbannerinfo?.thumb_path} path=''/>
+                          <div className='absolute w-[195px] text-center right-[-3px] skew-y-[-8deg] bottom-[-8px] bg-[#E53F79] z-40'>
+                              ১১ জুলাই ২০২৫
+                          </div>
+                        </div>
                         
-                        <ThreeDBook bg={topbannerinfo?.thumb_path} path=''/>
+                        
                       </SwiperSlide>
                     ))}
                   </Swiper>

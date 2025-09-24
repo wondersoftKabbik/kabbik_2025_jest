@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/store/store';
-import React, { Dispatch, RefObject, SetStateAction, useRef, useState } from 'react'
+import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from 'react'
 
 const useHomeComponent = () => {
     const [player,setPlayer]=useState(false);
@@ -59,6 +59,15 @@ const useHomeComponent = () => {
         setInitialPlayer3(true)
         togglePlay3()
     }
+
+    // useEffect(()=>{
+    //     if ('Tawk_API' in window) {
+    //         (window.Tawk_API as any).onLoad = function() {
+    //             (window.Tawk_API as any).hideWidget();
+    //         };
+    //     }
+
+    // },[])
 
   return {player,StaticTexts,setPlayer,videoRef,initialPlayer,setInitialPlayer,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2,setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3}
 }

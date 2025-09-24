@@ -92,13 +92,13 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                     }}
                      breakpoints={{
                         0: {
-                        slidesPerView: 1,
-                        },
-                        768: {
                         slidesPerView: 2,
                         },
-                        1024: {
+                        768: {
                         slidesPerView: 3,
+                        },
+                        1024: {
+                        slidesPerView: 4.7,
                         },
                     }}
                     onBeforeInit={(swiper:any) => {
@@ -131,12 +131,26 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             <span><PremiumCrownIcon/></span>
                                         </div>
                                         {item.for_rent?(
-                                            <div className={styles.rent}>রেন্ট ৫০ টাকা</div>
+                                            <div className={styles.rent}>রেন্ট tk. {item?.price}</div>
                                         ):''}
-                                        <picture className={podcast?styles.podcast_pic:styles.picture}>
-                                            {/* <Image  alt={categoryName} width={100}/> */}
-                                            <img className={podcast?styles.podcast_img:styles.img} src={item.rect_banner??item.thumb_path} alt={item.name}/>
-                                        </picture>
+                                        {/* <picture className={podcast?styles.podcast_pic:styles.picture}>
+                                            
+                                            <img className={podcast?styles.podcast_img:styles.img} src={item.thumb_path} alt={item.name}/>
+                                        </picture> */}
+                                        <picture className={podcast ? styles.podcast_pic : styles.picture}>
+                                        <div className="relative w-full" style={{  /* 16:9 */ }}>
+                                          <Image
+                                            src={item.thumb_path}
+                                            alt={item.name}
+                                            width={200}
+                                            priority={false}
+                                            height={320}
+                                            className={`${podcast ? styles.podcast_img : styles.img} object-contain`}
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            loading="lazy"
+                                          />
+                                        </div>
+                                      </picture>
                                         {categoryName==='নতুন'?(
                                             <div className={styles.new_audio_book}>নতুন অডিও বুক </div>
                                         ):(
@@ -161,7 +175,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                                     </CommonButton>
                                                     {!expand?(
                                                       <span >
-                                                        <p className='mt-2 font-[600] text-[18px]'>১ঃ৩০ মিনিট</p>
+                                                        <p className='mt-2 font-[600] text-[18px]'>রেটিংঃ {item.rating.toFixed(1)}</p>
                                                         <p className='text-[14px] mb-2'>{item.author_name}</p>
                                                       </span>
                                                     ):''}

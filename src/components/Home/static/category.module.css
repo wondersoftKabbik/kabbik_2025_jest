@@ -10,7 +10,7 @@
 .heading_container{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 
 }
 
@@ -98,7 +98,7 @@
     margin:0 1vw;
 }
 .item_cont:hover{
-    transform: scale(1.1,1.15);
+    transform: scale(1.05,1.05);
     /* z-index: 15; */
     z-index: 99999;
     position: relative;
@@ -121,9 +121,9 @@
  }
 
 .img{
-    width: 384px;
+    width: 210px;
     max-width: 100%;
-    max-height: 210px;
+    max-height: 384px;
     /* top: 3px; */
     cursor: pointer;
     border-radius: 7px;
@@ -196,6 +196,7 @@
     width:15px;
     padding:4px;
     /* bottom: 35%; */
+    z-index: 10;
     top: 55%;
     transform: translateY(-50%);
     position: absolute;
@@ -204,7 +205,7 @@
 .slider_box{
     margin: 0 20px;
     overflow-x: hidden;
-    padding: 27px 10px 0;
+    padding: 10px 10px 0;
 }
 .slider_left_icons{
     left: -0px;

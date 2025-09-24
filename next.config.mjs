@@ -6,11 +6,25 @@ const nextConfig = {
   // experimental: {
   //   serverActions: true,
   // },
-  images:{domains:[
-    'kabbik-space.sgp1.digitaloceanspaces.com',
-    'kabbik-space.sgp1.cdn.digitaloceanspaces.com',
-    'kabbik-space.sgp1.cdn.digitaloceanspaces.com'
-  ]},
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "kabbik-space.sgp1.digitaloceanspaces.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "kabbik-space.sgp1.cdn.digitaloceanspaces.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "d3t3ozftmdmh3i.cloudfront.net",
+        pathname: "/**",
+      },
+    ],
+  },
   // experimental: {
   //   serverActions: {
   //     allowedOrigins: ["localhost:8097"],

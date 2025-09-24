@@ -121,9 +121,19 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                                             OneToTen[(index+1).toString()]
                                           ):''}
                                         </span>
-                                          <picture className={styles.picture}>
-                                              {/* <Image  alt={categoryName} width={100}/> */}
+                                          {/* <picture className={styles.picture}>
                                               <img className={styles.img} src={item.thumb_path} alt={item.name}/>
+                                          </picture> */}
+                                          <picture className={styles.picture}>
+                                            <Image
+                                              src={item.thumb_path}
+                                              alt={item.name}
+                                              width={210}   // or your preferred size
+                                              height={320}  // or aspect-ratio based
+                                              className={styles.img}
+                                              loading="lazy"
+                                              sizes="(max-width: 768px) 100vw, 50vw"
+                                            />
                                           </picture>
                                           <p className={styles.player_count}>
                                             <span className='w-4 h-4'>
