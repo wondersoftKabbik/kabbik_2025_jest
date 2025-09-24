@@ -74,7 +74,7 @@ const BestCollection = (props:TBestCollection) => {
                         <Link href={`/${item?.category}`}>
                             <div className='relative overflow-hidden   w-full h-[435px]'>
                                 <figure className='absolute w-full h-[555px] top-0 left-0'>
-                                    <img src={item.bg}/>
+                                    <img loading="lazy" src={item.bg}/>
                                 </figure>
                                 <div className='z-10 pt-12 max-w-[1206px] mx-auto w-[90%] text-white relative'>
                                      <div>
@@ -99,12 +99,12 @@ const BestCollection = (props:TBestCollection) => {
                                         <div className='mt-[100px]'>
                                             <figure className='mb-4 max-w-[150px] max-h-[240px] '>
                                                 <Link onClick={stopPropagation} href={`/audiobook/${getDataByIndex(0,item.category)?.id}`}>
-                                                    <img className='max-w-[100%] max-h-[100%]' src={getDataByIndex(0,item.category)?.thumb_path||''}/>
+                                                    <img loading="lazy" className='max-w-[100%] max-h-[100%]' src={getDataByIndex(0,item.category)?.thumb_path||''}/>
                                                     </Link>
                                             </figure>
                                             <figure className='max-w-[150px] max-h-[240px] '>
                                                 <Link onClick={stopPropagation} href={`/audiobook/${getDataByIndex(1,item.category)?.id}`}>
-                                                    <img className='max-w-[100%] max-h-[100%]' src={getDataByIndex(1,item.category)?.thumb_path||''}/>
+                                                    <img loading="lazy" className='max-w-[100%] max-h-[100%]' src={getDataByIndex(1,item.category)?.thumb_path||''}/>
                                                 </Link>
                                                 
                                             </figure>
@@ -112,12 +112,12 @@ const BestCollection = (props:TBestCollection) => {
                                         <div>
                                             <figure className='mb-4 max-w-[150px] max-h-[240px] '>
                                                 <Link onClick={stopPropagation} href={`/audiobook/${getDataByIndex(2,item.category)?.id}`}>
-                                                    <img className='max-w-[100%] max-h-[100%]' src={getDataByIndex(2,item.category)?.thumb_path||''}/>
+                                                    <img loading="lazy" className='max-w-[100%] max-h-[100%]' src={getDataByIndex(2,item.category)?.thumb_path||''}/>
                                                     </Link>
                                             </figure>
                                             <figure className='max-w-[150px] max-h-[240px] '>
                                                 <Link onClick={stopPropagation} href={`/audiobook/${getDataByIndex(3,item.category)?.id}`}>
-                                                    <img className='max-w-[100%] max-h-[100%]' src={getDataByIndex(3,item.category)?.thumb_path||''}/>
+                                                    <img loading="lazy" className='max-w-[100%] max-h-[100%]' src={getDataByIndex(3,item.category)?.thumb_path||''}/>
                                                 </Link>
                                                 
                                             </figure>
@@ -125,7 +125,7 @@ const BestCollection = (props:TBestCollection) => {
                                         <div className=''>
                                             <figure className='mb-4 max-w-[150px] max-h-[240px] '>
                                                 <Link onClick={stopPropagation} href={`/audiobook/${getDataByIndex(5,item.category)?.id}`}>
-                                                    <img className='max-w-[100%] max-h-[100%]' src={getDataByIndex(5,item.category)?.thumb_path||''}/>
+                                                    <img loading="lazy" className='max-w-[100%] max-h-[100%]' src={getDataByIndex(5,item.category)?.thumb_path||''}/>
                                                     </Link>
                                             </figure>
                                         </div>

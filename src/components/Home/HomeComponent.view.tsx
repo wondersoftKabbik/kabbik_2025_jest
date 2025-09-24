@@ -2,7 +2,7 @@
 import React from 'react'
 import { THomeProps } from './static/home.types'
 import Hero from './Hero.view';
-import CommonCategory from './CommonCategory.view';
+// import  from '';
 import { findCatwiseData } from '@/helpers/commonFunction';
 import TopTen from './TopTen.view';
 import topTenStyles from "./static/TopTen.module.css"
@@ -23,6 +23,11 @@ import Script from 'next/script';
 import dynamic from 'next/dynamic';
 
 const PopularCategories = dynamic(() => import("./PopularCategories.view"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p>Loading...</p>, // optional fallback
+});
+
+const CommonCategory = dynamic(() => import("./CommonCategory.view"), {
   ssr: false, // optional: disable server-side rendering
   loading: () => <p>Loading...</p>, // optional fallback
 });

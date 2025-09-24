@@ -19,6 +19,7 @@ const Blogs = ({blogs}:TBlogsProps) => {
                     <div className={`${styles.blogWrapper} rounded flex text-white`}>
                         <div className={' max-w-[70%] p-2'}>
                             <img
+                                loading="lazy"
                                 src={blogs.list[0].featured_image}
                                 alt={blogs.list[0].alter_text_for_featured_image}
                             />
@@ -60,6 +61,7 @@ const Blogs = ({blogs}:TBlogsProps) => {
                             <div className={`${styles.blogWrapper} rounded`}>
                             <div className={styles.featureImageContainer}>
                                 <img
+                                    loading="lazy"
                                     src={blog.featured_image}
                                     alt={blog.alter_text_for_featured_image}
                                 />
@@ -98,6 +100,7 @@ const Blogs = ({blogs}:TBlogsProps) => {
                             <div className={`${styles.blogWrapper} rounded`}>
                             <div className={styles.featureImageContainer}>
                                 <img
+                                    loading="lazy"
                                     src={blog.featured_image}
                                     alt={blog.alter_text_for_featured_image}
                                 />

@@ -22,14 +22,14 @@ const StepsToListenBookview = () => {
     <div className='flex mt-5 items-center justify-between gap-[2vw] w-[90%] mx-auto max-w-[1206px] '>
         <div className='max-w-[44%] relative mb-7'>
             <figure>
-                <img alt='steps to listen audio books'
+                <img loading="lazy" alt='steps to listen audio books'
                     src='/assets/HowToListen.png'
                     className='w-[100%] max-w-[420px]'
                 />
                 <div className='bottom-[-20px] rotate-[18.9deg] absolute max-w-[160px] max-h-[240px] w-[37%] right-[-3vw]'>
                     <div className=' relative'>
-                        <img className='max-w-[100%] max-h-[100%]' src='/assets/BookBgPages.png'/>
-                        <img  className='max-w-[99%] max-h-[100%] absolute z-10 bottom-[1px] left-[-2px] rounded-[5px]' src='https://kabbik-space.sgp1.digitaloceanspaces.com/1721033951064.webp'/>
+                        <img loading="lazy" className='max-w-[100%] max-h-[100%]' src='/assets/BookBgPages.png'/>
+                        <img loading="lazy"  className='max-w-[99%] max-h-[100%] absolute z-10 bottom-[1px] left-[-2px] rounded-[5px]' src='https://kabbik-space.sgp1.digitaloceanspaces.com/1721033951064.webp'/>
                     </div>
                 </div>
             </figure>

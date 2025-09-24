@@ -39,7 +39,7 @@ const UpComing = () => {
                         {/* <div className='-rotate-45 w-[300px]  top-9  py-1 text-[20px] text-center absolute left-[-90px] bg-[#E53F79] z-10'>
                             ১১ জুলাই ২০২৫
                         </div>
-                    <img className='w-full max-h-full' src='/assets/upcoming_banner.png'/> */}
+                    <img loading="lazy" className='w-full max-h-full' src='/assets/upcoming_banner.png'/> */}
                     <button
                         ref={prevRef}
                         className={styles.slider_icons + ` ${styles.slider_left_icons}`}
