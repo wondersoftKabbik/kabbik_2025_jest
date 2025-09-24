@@ -53,8 +53,8 @@ const CommonCategory = dynamic(() => import("./CommonCategory.view"), {
   loading: () => (
     <div className={container('1206px')+' my-10'}>
       <div className='flex justify-between'>
-        <Skeleton height="h-[25px]" width='w-[60px]'  className="rounded-b-[4px]" />
-        <Skeleton height="h-[25px]" width='w-[60px]'  className="rounded-b-[4px]" />
+        <Skeleton height="h-[25px]" width='w-[80px]'  className="rounded-b-[4px]" />
+        <Skeleton height="h-[25px]" width='w-[80px]'  className="rounded-b-[4px]" />
       </div>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8 mb-8 max-w-[90%] mx-auto'>
         <Skeleton  height="h-[250px] md:h-[300px]" width='w-[160px] md:w-[200px]'  className="rounded-b-[4px]" />
@@ -135,7 +135,7 @@ const HomeComponent = (props:THomeProps) => {
           </div>
         </div>
         
-        <div className={container('1320px')+' bg-bg relative z-10'}>
+        <div className={' bg-bg relative z-10'}>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="নতুন"
