@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { usePathname } from "next/navigation";
 import { apiEndPoints } from "@/utils/apiEndpoints";
 import { setuserPreference } from "@/store/slicers/userPreferenceSlice";
+import { siteConfig } from "@/config/config";
 
 
 const useNavbar = () => {
@@ -91,7 +92,7 @@ const useNavbar = () => {
     }
 
     useEffect(()=>{
-      if(user?.id && !showLoginPasswordModal && !showOTPModal && !showPasswordModal && !showLoginModal ){
+      if(user?.id && (user.id!=Number(siteConfig.defaultUserId)) && !showLoginPasswordModal && !showOTPModal && !showPasswordModal && !showLoginModal ){
         getPreference();
       }
     },[user?.id,showLoginPasswordModal,showOTPModal,showPasswordModal,showLoginModal])
