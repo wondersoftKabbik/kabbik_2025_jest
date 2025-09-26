@@ -213,6 +213,7 @@ export default function Footer() {
             src="https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/final2.gif"
             alt="Kabbik Logo"
             className="w-[100%] max-h-[193px]"
+            loading="lazy"
           />
         </div>
 

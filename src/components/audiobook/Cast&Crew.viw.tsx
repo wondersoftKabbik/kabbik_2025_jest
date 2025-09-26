@@ -19,7 +19,7 @@ export default function CastAndCrew(props: { castCrewData: castCrewInfo[]  }) {
                 <img
                   src={author.imageUrl ?? 'https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/manPlaceholder.jpg'}
                   alt={author.name}
-                  className="w-[68px] h-[68px] rounded-full object-cover"
+                  className="w-[58px] h-[58px] rounded-full object-cover"
                 />
               </div>
               
@@ -27,7 +27,7 @@ export default function CastAndCrew(props: { castCrewData: castCrewInfo[]  }) {
               <div className="flex-1 min-w-0">
                 {/* Author Name */}
                 <div className="mb-1">
-                  <span className="text-black text-[18px] sm:text-[22px] lg:text-[24px] font-medium  font-inter block truncate">
+                  <span className="text-black text-cn2 font-medium  font-inter block truncate">
                     {author.name}
                   </span>
                 </div>
@@ -37,7 +37,7 @@ export default function CastAndCrew(props: { castCrewData: castCrewInfo[]  }) {
                   <span className="w-[12px] h-[15px] ">
                     <BookIcon  />
                   </span>
-                  <span className="text-black text-[14.378px] font-medium leading-[9.585px] font-inter">
+                  <span className="text-black text-cs2 font-medium leading-[9.585px] font-inter">
                     {author.total_audiobooks} অডিওবুক
                   </span>
                 </div>

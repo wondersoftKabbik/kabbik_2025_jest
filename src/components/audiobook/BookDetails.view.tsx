@@ -20,38 +20,79 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Rating } from "react-simple-star-rating";
-;
-import Image from "next/image";
 import Cookies from "js-cookie";
-import { Ads } from "./Ads";;
 import { useRouter } from "next/navigation";
 import { PageProps, UserProfileInfo } from "./static/audiobook.type";
-import { ArrowUpIcon, BadgeCheck, BadgeCheckIcon, BookIcon, ChevronRight, Cross, Crosshair, Crown, Expand, ExpandIcon, HeadphoneOff, Lock, LockIcon, Menu, MenuIcon, Shrink, StarIcon, X } from "lucide-react";
-import GoPrevious from "@/svgs/GoPrevious.svg";
-import PauseIcon from "@/svgs/PauseIcon";
-import PlayIcon from "@/svgs/PlayIcon";
-import { formatNumber, formatTime, GetFloatNum, handleShare, numberTranslator, textSlice } from "@/helpers/commonFunction";
-import Skeleton from "../ui/Skeleton.view";
+import {  BookIcon, ChevronRight, ExpandIcon, X } from "lucide-react";
+import {  GetFloatNum, handleShare, textSlice } from "@/helpers/commonFunction";
 import LoveIcon from "@/svgs/LoveIcon";
 import LinkIcon from "@/svgs/LinkIcon.svg";
-import CommonModal from "../ui/CommonModal/CommonModal.view";
+// import CommonModal from "../ui/CommonModal/CommonModal.view";
 // import PaymentOptions from "../ui/PaymentOptions/PaymentOptins.view";
 import Tabs from "../ui/Tab/Tab.view";
-import EpisodeList from "./EpisodeList.view";
-import CastAndCrew from "./Cast&Crew.viw";
+// import EpisodeList from "./EpisodeList.view";
+// import CastAndCrew from "./Cast&Crew.viw";
 import Review from "./Review.view";
 import ShareIcon from "@/svgs/ShareIcon.svg";
 import Star from "@/svgs/Star.svg";
-import GradientAudioPlayer from "../ui/AudioPlayer.view";
+// import GradientAudioPlayer from "../ui/AudioPlayer.view";
 import { container } from "../ui/static/tailwind.classes";
-import CrossIcon from "@/svgs/CrossIcon";
-import ExpandableIcon from "@/svgs/ExpandableIcon";
-import BigPlayerView from "./BigPlayer.view";
-import SleeperTimer from "./SleeperTime.view";
-import AudioSpeed from "./AudioSpeed.view";
-import PaymentOptions from "../Subscription/PaymentOptions.view";
+// import BigPlayerView from "./BigPlayer.view";
+// import SleeperTimer from "./SleeperTime.view";
+// import AudioSpeed from "./AudioSpeed.view";
+import Spinner from "../ui/Spinner.view";
+import EpisodeList from "./EpisodeList.view";
+// import SleeperTimer from "./SleeperTime.view";
+// import PaymentOptions from "../Subscription/PaymentOptions.view";
 
+const AudioSpeed = dynamic(
+        () => import(/* webpackChunkName: "AudioSpeed" */'./AudioSpeed.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const BigPlayerView = dynamic(
+        () => import(/* webpackChunkName: "BigPlayerView" */'./BigPlayer.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const GradientAudioPlayer = dynamic(
+        () => import(/* webpackChunkName: "GradientAudioPlayer" */'../ui/AudioPlayer.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const CastAndCrew = dynamic(
+        () => import(/* webpackChunkName: "CastAndCrew" */'./Cast&Crew.viw'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const CommonModal = dynamic(
+        () => import(/* webpackChunkName: "CommonModal" */'../ui/CommonModal/CommonModal.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const SleeperTimer = dynamic(
+        () => import(/* webpackChunkName: "SleeperTimer" */'./SleeperTime.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const PaymentOptions = dynamic(
+        () => import(/* webpackChunkName: "PaymentOptions" */'../Subscription/PaymentOptions.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
 
 // AudioPlayer Configuration
 
@@ -575,13 +616,10 @@ const AudiobookComponent = ({
  
   return (
     <>
-      <div className="w-full h-[100px] bg-[#0E1D3F] mt-[-100px]"></div>
+      <div className="w-full h-[100px]  bg-[#0E1D3F] mt-[-100px]"></div>
       <ToastContainer />
-      <div className={showBigPlayer?'hidden':"flex justify-around mt-7 items-start relative"}
-        
-      >
-        <div 
-          className={`absolute -top-7 left-0 w-full h-[270vh] ${styles.audioBookBg}`}
+      <div 
+          className={`absolute  left-0 w-full h-[270vh] ${styles.audioBookBg}`}
           style={{
             backgroundImage: `url('${bookId ? audioBookDetailsData?.thumb_path : ""}')`,
             backgroundSize: 'cover',
@@ -589,11 +627,15 @@ const AudiobookComponent = ({
             opacity: 0.4,
           }}
         ></div>
+      <div className={showBigPlayer?'hidden':"flex justify-around mt-7 items-start relative "+container('1206px') }
+        
+      >
+        
         {/* <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient opacity-90"></div> */}
         <div className="circular_gradient left-0 bottom-[-10%] w-[35vw] h-[35vw] absolute rounded-[50%] "></div>
 
         <div className=" flex items-center z-[5] justify-center p-1">
-          <div className="w-full max-w-[45vw] mx-auto">
+          <div className="w-full max-w-[500px] mx-auto">
             {/* Main Card Container */}
             <div className="bg-white rounded-[40px]  overflow-hidden">
               {/* Book Cover Section */}
@@ -627,10 +669,10 @@ const AudiobookComponent = ({
                   <div className="absolute bg_opacity_gradient bottom-0 left-0 right-0 p-4  rounded-b-xl z-[200]">
                     {/* Bottom Stats positioned above title */}
                     <div className="text-center">
-                      <h1 className=" text-[#f9f9f9] text-2xl font-bold leading-[34px] mb-1">
+                      <h1 className=" text-[#f9f9f9] text-clg font-bold leading-[34px] mb-1">
                         {audioBookDetailsData?.name}
                       </h1>
-                      <p className="text-white text-[19px] leading-normal">
+                      <p className="text-white text-cn leading-normal">
                         {audioBookDetailsData?.author_name}
                       </p>
                     </div>
@@ -642,11 +684,11 @@ const AudiobookComponent = ({
               <div className="bg_gradient_bg rounded-t-[32px]  p-9">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-1 ">
-                    <span className="text-[23px] font-medium">{audiobookData?.play_count}</span>
-                    <span className="text-[23px]">🎧</span>
+                    <span className="text-clg font-medium">{audiobookData?.play_count}</span>
+                    <span className="text-clg">🎧</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className=" text-[22px] font-medium">{GetFloatNum(audiobookData?.rating,1)}</span>
+                    <span className=" text-clg font-medium">{GetFloatNum(audiobookData?.rating,1)}</span>
                     <span className="w-6 h-6 fill-audio-gold text-audio-gold">
                       <Star  />
                     </span>
@@ -654,7 +696,7 @@ const AudiobookComponent = ({
                 </div>
                 {/* Premium Header */}
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl font-bold text-black mb-2">
+                  <h2 className="text-clg font-bold text-black mb-2">
                     {isSubscribed ? (
                             <>প্রিমিয়াম ব্যবহারকারী</>
                         ) : audioBookDetailsData?.isPurchased === 1 ? (
@@ -675,7 +717,7 @@ const AudiobookComponent = ({
                 </div>
 
                 {/* Subscription Options */}
-                <div className="space-y-4 mb-8">
+                <div className="space-y-2 mb-8">
                   {/* Premium Subscription */}
                   <div className="red_gradient_bg rounded-[30px] py-3 flex justify-around shadow-lg">
                     <div className="flex items-center gap-4">
@@ -685,27 +727,27 @@ const AudiobookComponent = ({
                           <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
                         </div>
                       </div>
-                      <p className="text-white  text-[17px]  font-semibold leading-tight flex-1">
+                      <p className="text-white  text-cs2  font-semibold leading-tight flex-1">
                        <Link href={'/subscribe'}> সাবস্ক্রাইব করুন অ্যাড-ফ্রি প্রিমিয়াম অ্যাক্সেসের জন্য</Link>
                       </p>
                     </div>
                   </div>
 
                   {/* Or Divider */}
-                  <div className="text-center py-1">
-                    <span className="text-black text-[26px] font-normal">অথবা</span>
+                  <div className="text-center ">
+                    <span className="text-black text-clg font-normal">অথবা</span>
                   </div>
 
                   {/* Rental Option */}
                   <div className="bg-[#7E1663] rounded-[30px] py-3 flex justify-around shadow-lg">
-                    <div className="flex items-center justify-around gap-4">
+                    <div className="flex items-center justify-around gap-1">
                       <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                         <div className="flex">
                           <ChevronRight className="w-5 h-5 text-[#7E1663]" />
                           <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
                         </div>
                       </div>
-                      <p className="text-white text-[21px] font-semibold leading-tight flex-1">
+                      <p className="text-white text-cn2 font-semibold leading-tight flex-1">
                         রেন্ট নিন ৬০ দিনের জন্য, মাত্র ৫০ টাকা
                       </p>
                     </div>
@@ -716,18 +758,18 @@ const AudiobookComponent = ({
                 <div className="space-y-6">
                   {/* Voice Artists */}
                   <div>
-                    <h3 className="text-black text-2xl font-bold mb-2">কণ্ঠ: </h3>
-                    <p className="text-black text-[21px] leading-relaxed">
+                    <h3 className="text-black text-cn2 font-bold mb-2">কণ্ঠ: </h3>
+                    <p className="text-black text-cn leading-relaxed">
                       {audiobookData?.contributing_artists }
                     </p>
                   </div>
 
                   {/* Synopsis */}
                   <div>
-                    <h3 className="text-black text-2xl font-bold mb-2">সংক্ষিপ্ত জীবনী:</h3>
+                    <h3 className="text-black text-cn2 font-bold mb-2">সংক্ষিপ্ত জীবনী:</h3>
                     <p 
                       onClick={()=>setExpand(!expand)}
-                      className="text-black text-[21px] cursor-pointer leading-relaxed max-h-40 overflow-y-auto"
+                      className="text-black text-cn cursor-pointer leading-relaxed max-h-56 overflow-y-auto"
                     >
                       { expand? audiobookData?.description :
                         textSlice( audiobookData?.description,160, true,"এই বইটির সংক্ষিপ্ত বিবরণ এখানে দেওয়া হবে।") 
@@ -740,7 +782,7 @@ const AudiobookComponent = ({
           </div>
         </div>
         <div className=" z-[5]  py-4 md:py-8">
-          <div className="max-w-2xl mx-auto px-4 space-y-8 md:space-y-16">
+          <div className="max-w-[500px] mx-auto px-4 space-y-8 ">
             {/* Header Section */}
             <div className="bg-gradient-to-r from-[#881D69] to-[#D34974] rounded-xl p-3 md:p-4 text-white">
               <div className="flex items-center gap-4 md:gap-6">
@@ -752,17 +794,17 @@ const AudiobookComponent = ({
                   />
                 </div>
                 <div className="flex-1 space-y-2">
-                  <h1 className="text-xl md:text-2xl font-medium">{authorData?.name}</h1>
+                  <h1 className="text-lg md:text-xl font-medium">{authorData?.name}</h1>
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
                     <div className="flex items-center gap-2">
                       <BookIcon />
-                      <span className="text-lg md:text-xl font-medium">{authorData?.total_audiobooks} অডিও বুক</span>
+                      <span className="text-lg md:text-cn font-medium">{authorData?.total_audiobooks} অডিও বুক</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <button className="bg-white text-black px-3 md:px-4 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap">
+                      <button className="bg-white text-black px-3 md:px-3 py-1 rounded-full text-cs font-medium shadow-lg whitespace-nowrap">
                         আরও অডিওবুক শুনুন
                       </button>
-                      <div className="bg-white w-8 rounded-full p-2 shadow-lg">
+                      <div className="bg-white w-6 rounded-full p-2 shadow-lg">
                         <LinkIcon color="black"/>
                       </div>
                     </div>
@@ -772,7 +814,7 @@ const AudiobookComponent = ({
             </div>
 
             {/* Navigation Tabs */}
-            <div className="flex gap-2 md:gap-4">
+            <div className="flex ">
               <Tabs tabs={[
                 { name: 'এপিসোড', 
                   component: 
@@ -899,7 +941,7 @@ const AudiobookComponent = ({
           container_class="rounded-[18px] w-[75vw]"
           modalClassName="max-w-[680px] w-[90vw] w-full h-auto"
         >
-          <SleeperTimer value={timerMin} handleChange={(val)=>{setTimerMin(val)}}/>
+          <SleeperTimer value={timerMin} handleChange={(val:any)=>{setTimerMin(val)}}/>
         </CommonModal>
       ):''}
 
