@@ -158,3 +158,13 @@ export  type RatingProps = {
   /** Accessible label prefix */
   ariaLabel?: string;
 };
+
+export type TuserPreferenceSlice={
+  userPreferenceData:null | TUserPreferenceResponse
+}
+
+export type TUserPreferenceResponse={
+  id: number|string;
+  authors: (string|number)[] | null;
+  categories: (string|number)[] | null;
+}

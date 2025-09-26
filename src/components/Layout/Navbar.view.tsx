@@ -10,23 +10,97 @@ import useNavbar from './Navbar.presenter'
 import AudioBookIcon from '@/svgs/AudioBooksIcon'
 import MenuIcons from '@/svgs/MenuIcons'
 import { CustomDrawer } from '../ui/drawer'
-import MobileNavbar from './MobileNavbar.view'
+// import MobileNavbar from './MobileNavbar.view'
 import { paths } from '@/utils/Paths'
 import CommonModal from '../ui/CommonModal/CommonModal.view'
-import LoginModal from '../Login/LoginModal'
-import OTPVerification from '../Login/OtpComponent'
-import { PasswordCreationForm } from '../Login/PasswordCreationForm.view'
-import ShobderaJibonta from '../Login/ShobderaJibonta'
-import { PasswordLoginForm } from '../Login/PasswordLogin'
-import PasswordChangePhoneModal from '../Login/PassWordChangePhoneModal'
+// import LoginModal from '../Login/LoginModal'
+// import OTPVerification from '../Login/OtpComponent'
+// import { PasswordCreationForm } from '../Login/PasswordCreationForm.view'
+// import ShobderaJibonta from '../Login/ShobderaJibonta'
+// import { PasswordLoginForm } from '../Login/PasswordLogin'
+// import PasswordChangePhoneModal from '../Login/PassWordChangePhoneModal'
 import Bell from '@/svgs/Bell.svg'
 import Trophy from '@/svgs/Trophy.svg'
 import { siteConfig } from '@/config/config'
+// import  from ''
+import dynamic from 'next/dynamic'
+import Spinner from '../ui/Spinner.view'
+// import  from 
 // import OTPVerification from '../Login/OtpComponent'
 
 
+const OTPVerification = dynamic(
+        () => import(/* webpackChunkName: "OTPVerification" */'../Login/OtpComponent'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const LoginModal = dynamic(
+        () => import(/* webpackChunkName: "LoginModal" */'../Login/LoginModal'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+// const CommonModal = dynamic(
+//         () => import(/* webpackChunkName: "CommonModal" */'../ui/CommonModal/CommonModal.view'
+//     ), {
+//   ssr: false, // optional: disable server-side rendering
+//   loading: () => <p></p>, // optional fallback
+// });
+
+const MobileNavbar = dynamic(
+        () => import(/* webpackChunkName: "MobileNavbar" */'./MobileNavbar.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const PasswordCreationForm = dynamic(
+  () => import("../Login/PasswordCreationForm.view").then((mod) => mod.PasswordCreationForm),
+  {
+    ssr: false, // disable SSR if needed
+    loading: () => <Spinner/>, // optional fallback
+  }
+);
+
+const PasswordLoginForm = dynamic(
+  () => import("../Login/PasswordLogin").then((mod) => mod.PasswordLoginForm),
+  {
+    ssr: false, // disable SSR if needed
+    loading: () => <Spinner/>, // optional fallback
+  }
+);
+
+const AuthorModal = dynamic(() => import('../Preferences/AuthorModal'), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const CategoryPreferencesModal = dynamic(
+        () => import(/* webpackChunkName: "category-preferences-modal" */'../Preferences/CategoryPreferencesModal'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const PasswordChangePhoneModal = dynamic(
+        () => import(/* webpackChunkName: "PasswordChangePhoneModal" */'../Login/PassWordChangePhoneModal'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
+const ShobderaJibonta = dynamic(
+        () => import(/* webpackChunkName: "ShobderaJibonta" */'../Login/ShobderaJibonta'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
 const Navbar = (props:TNavbar) => {
-    const {showCategories,setShowCategories,user: profile,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick, handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword} = useNavbar();
+    const {showCategories, setShowCategories, user: profile, categories, setMobileMenu, mobileMenu, showLoginModal, showOTPModal, showPasswordModal, showLoginPasswordModal, handleLoginClick, handleloginSubmit, handleVerifyOtp, closeLoginClick, closePasswordClick, closeOTPClick, handleSubmit, closeLoginPasswordClick,  handleShowPasswordModal, handlePhoneOfChangePassword, showPhoneOfChangePass, closeShowPhoneOfChangePass, handleClickForgetPassword, showPreferenceCatModal, showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal} = useNavbar();
 
     return (
     <nav className='w-full bg-[#D9D9D91A] relative z-10'>
@@ -34,7 +108,7 @@ const Navbar = (props:TNavbar) => {
             <div className='flex items-center gap-4'>
                 <Link href={'/'} >
                     <figure className='mr-3'>
-                        <img className='max-w-[138px] max-h-[54px] max-sm:max-w-[100px] max-:max-h-[46px]' src={'/assets/logo.png'} alt="Logo" />
+                        <img loading="lazy" className='max-w-[138px] max-h-[54px] max-sm:max-w-[100px] max-:max-h-[46px]' src={'/assets/logo.png'} alt="Logo" />
                     </figure>
                 </Link>
                 <ul className={'text-white flex '+ style.navbarList}>
@@ -114,12 +188,12 @@ const Navbar = (props:TNavbar) => {
                         </Link>
                         {profile?.is_subscribed?'':<figure>
                             <Link href={paths.profile}>
-                                <img className='max-w-8 max-h-8' src={profile?.image_url ?? siteConfig.defaultProfilePic}/>
+                                <img loading="lazy" className='max-w-8 rounded-[50%] max-h-8' src={profile?.image_url ?? siteConfig.defaultProfilePic}/>
                             </Link>
                         </figure>}
                         {profile?.is_subscribed?<figure>
                             <Link href={paths.profile}>
-                                <img className='max-w-11 max-h-11 mt-[-14px]' src={profile?.image_url ?? siteConfig.defaultPremiumPic}/>
+                                <img loading="lazy" className='max-w-11 max-h-11 rounded-[50%] mt-[-14px]' src={profile?.image_url ?? siteConfig.defaultPremiumPic}/>
                             </Link>
                         </figure>:''}
                     </span>
@@ -189,6 +263,34 @@ const Navbar = (props:TNavbar) => {
                         closeShowPhoneOfChangePass={closeShowPhoneOfChangePass}
                     />:''}
             </div>
+        </CommonModal>
+        <CommonModal
+            isOpen={showPreferenceCatModal}
+            onClose={closePreferenceCatModal}
+        >
+            <div className='relative'>
+                <img loading="lazy" className='absolute' src='/assets/gradientBG.png'/>
+                {/* <div className='circular_gradient2 right-[-80%] z-40   top-[-90%] w-[30vw] h-[30vw] absolute rounded-[50%] '></div>  */}
+                <img loading="lazy" className='absolute' src='/assets/wave.png'/>
+                <div className='bg-[#050F1E] p-4 px-4 rounded-[8px] overflow-y-auto '>
+                    <CategoryPreferencesModal closeModal={showPrepAuthorModal}/>
+                </div>
+            </div>
+            
+        </CommonModal>
+        <CommonModal
+            isOpen={showPreferenceAuthorModal}
+            onClose={closePreferenceAuthorModal}
+        >
+            <div className='relative'>
+                <img loading="lazy" className='absolute' src='/assets/gradientBG.png'/>
+                {/* <div className='circular_gradient2 right-[-80%] z-40   top-[-90%] w-[30vw] h-[30vw] absolute rounded-[50%] '></div>  */}
+                <img loading="lazy" className='absolute' src='/assets/wave.png'/>
+                <div className='bg-[#050F1E] p-4 px-4 rounded-[8px] overflow-y-auto '>
+                    <AuthorModal closeModal={closePreferenceAuthorModal}/>
+                </div>
+            </div>
+            
         </CommonModal>
     </nav>
   )

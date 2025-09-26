@@ -1,3 +1,4 @@
+import { get } from "http";
 import { loginWithPassword } from "./apiServices";
 
 const BASE_URL = "https://api.kabbik.com";
@@ -84,5 +85,8 @@ export const apiEndPoints = {
   notificationGetUrl: `${BASE_URL}/v2/core/get-app-notifications`,
   markAsRead:`${BASE_URL}/v2/core/read-app-notification`,
   unreadCount:`${BASE_URL}/v2/core/get-user-unread-notifications`,
-  create_email_notification:`${BASE_URL}/v4/email-notification/create-notification`
+  create_email_notification:`${BASE_URL}/v4/email-notification/create-notification`,
+  create_preference:`${BASE_URL}/v4/user-preference/create`,
+  get_preference:`${BASE_URL}/v4/user-preference/get-single`,
+  get_authors:`${BASE_URL}/v4/authors/get-authors`,
 };

@@ -96,10 +96,12 @@ const Blogs = dynamic(() => import("./Blogs.view"), {
   loading: () => <p></p>, // optional fallback
 });
 
+
+
 const HomeComponent = (props:THomeProps) => {
     const {homeData,topBannerData,blogs}=props;
     // logic separation
-    const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3} = useHomeComponent();
+    const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats} = useHomeComponent({homeData});
     
     
   return (
@@ -135,6 +137,17 @@ const HomeComponent = (props:THomeProps) => {
           </div>
         </div>
         
+        <div className='bg-bg  relative'>
+          {/* <Link href={'/home_category_list/নতুন'}> */}
+              <CommonCategory
+                categoryName="ট্রেন্ডিং"
+                link="/"
+                data={findCatwiseData(homeData.data,'ট্রেন্ডিং')?.data}
+                // isPopular={true}
+              />
+            {/* </Link> */}
+        </div>
+
         <div className={' bg-bg relative z-10'}>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
@@ -147,16 +160,7 @@ const HomeComponent = (props:THomeProps) => {
           <div className="circular_gradient left-[50%] -translate-x-1/2 bottom-[-25%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
             
         </div>
-        <div className='bg-bg  relative'>
-          {/* <Link href={'/home_category_list/নতুন'}> */}
-              <CommonCategory
-                categoryName="ট্রেন্ডিং"
-                link="/"
-                data={findCatwiseData(homeData.data,'ট্রেন্ডিং')?.data}
-                // isPopular={true}
-              />
-            {/* </Link> */}
-        </div>
+        
         <div className='max-w-[1206px] rounded-[8px] w-[90%] mx-auto relative mt-12'>
           
           <div className='relative'>
@@ -183,9 +187,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="কাব্যিক রিকমেন্ডেড"
+                categoryName={userPreferdCats[0]}
                 link="/"
-                data={findCatwiseData(homeData.data,'কাব্যিক রিকমেন্ডেড')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[0])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}
@@ -194,9 +198,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="ব্রেইন বুস্টার"
+                categoryName={userPreferdCats[1]}
                 link="/"
-                data={findCatwiseData(homeData.data,'ব্রেইন বুস্টার')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[1])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}
@@ -209,9 +213,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg relative z-10'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="হুমায়ূন আহমেদ স্পেশাল"
+                categoryName={userPreferdCats[2]}
                 link="/"
-                data={findCatwiseData(homeData.data,'হুমায়ূন আহমেদ স্পেশাল')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[2])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}
@@ -220,9 +224,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="সাসপেন্স"
+                categoryName={userPreferdCats[3]}
                 link="/"
-                data={findCatwiseData(homeData.data,'সাসপেন্স')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[3])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}
@@ -237,9 +241,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg relative'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="ক্লাসিক"
+                categoryName={userPreferdCats[4]}
                 link="/"
-                data={findCatwiseData(homeData.data,'ক্লাসিক')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[4])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}
@@ -248,9 +252,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="আত্মউন্নয়নমূলক"
+                categoryName={userPreferdCats[5]}
                 link="/"
-                data={findCatwiseData(homeData.data,'আত্মউন্নয়নমূলক')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[5])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}
@@ -263,9 +267,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg mt-10'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="আলোকিত ইসলাম"
+                categoryName={userPreferdCats[6]}
                 link="/"
-                data={findCatwiseData(homeData.data,'আলোকিত ইসলাম')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[6])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}
@@ -274,9 +278,9 @@ const HomeComponent = (props:THomeProps) => {
         <div className='bg-bg relative z-10'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
-                categoryName="কাব্যিক রিকমেন্ডেড"
+                categoryName={userPreferdCats[7]}
                 link="/"
-                data={findCatwiseData(homeData.data,'কাব্যিক রিকমেন্ডেড')?.data}
+                data={findCatwiseData(homeData.data,userPreferdCats[7])?.data}
                 // isPopular={true}
               />
             {/* </Link> */}

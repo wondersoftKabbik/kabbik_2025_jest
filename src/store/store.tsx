@@ -4,6 +4,7 @@ import counterReducer from '@/store/slicers/testSlice'; // Adjust the import pat
 import userReducer from '@/store/slicers/userSlice';
 import categoriesReducer from '@/store/slicers/categoriesSlice';
 import StaticTextsSlice from '@/store/slicers/staticTextSlice';
+import userPreferense from '@/store/slicers/userPreferenceSlice';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
@@ -12,7 +13,8 @@ export const store = configureStore({
     counter: counterReducer,
     user:userReducer,
     categories:categoriesReducer,
-    staticTexts:StaticTextsSlice
+    staticTexts:StaticTextsSlice, 
+    userPreference:userPreferense
   },
 });
 

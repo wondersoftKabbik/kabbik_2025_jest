@@ -38,7 +38,10 @@ const config: Config = {
 			grey:'#5E5E5E',
 			pink: "#E319BC", // custom primary
 			ash_blue:"#4E4E4E24",
+			c_success:"#38EF7D",
+			c_gray:"#B3B3B3",
 			black:"#050F1E",
+			c_black:"#060F1E",
 			silicon:"#565656",
 			deep_pink: "#64748B",
 			deep_pink2:"#ae346e",

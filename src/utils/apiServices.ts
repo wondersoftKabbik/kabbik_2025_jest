@@ -183,6 +183,22 @@ export const setPasswordApi = async (password: string) => {
  )
 };
 
+export const getPreferenceData = async (userId: string |number) => {
+ const url = apiEndPoints.get_preference;
+  const raw = JSON.stringify({
+    user_id: userId
+  });
+  return await CommonApiHandler(
+    {
+      name: "getPreferenceData",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null,
+      defaultTokenAllowed:false 
+    }
+ )
+};
+
 export const gpUnsubscribeApi = async () => {
   const url = `${apiEndPoints.gpUnsubscribeApi}?userId=${Cookies.get("id")}`;
   return await CommonApiHandler(
@@ -246,7 +262,7 @@ export const postSendOtp = async (msisdn: any,set_password?:boolean) => {
         currentTimeLong: currentTimeLong,
         set_password
     });
-    let data:any= CommonApiHandler(
+    let data:any=await CommonApiHandler(
         {
             name: "postSendOtp",
             url,
@@ -298,7 +314,7 @@ export const postSendOtpOlder = async (msisdn: any) => {
     return data;
     }else{
       if(data.message!=="password settled")
-        showToast("OTP Sent!",TtoastType?.success,3000)
+        showToast("OTP Sent!1",TtoastType?.success,3000)
     }
     return data;
 };
@@ -1140,6 +1156,18 @@ export const subscriptionList = async () => {
   )
 };
 
+export const create_preference = async (payload:any):Promise<any> => {
+  const url = apiEndPoints.create_preference ;
+  return await CommonApiHandler(
+    {
+      name: "create_preference",
+      url:url,
+      method: TMethods.POST,
+      body:JSON.stringify(payload)
+    }
+  )
+};
+
 export async function addFavorite( audioBookId:string) {
   const userId= Cookies.get("user_id");
   const bodyData = {
@@ -1165,6 +1193,22 @@ export const cityBankApiTest = async () => {
       method: TMethods.POST,
       body:JSON.stringify({txnStatus:1,merchanRefNo:"fgfdhhfdfb436",
 transactionId:"fhdh3747719084f2892710e9",txnamount:10000} )
+    }
+  )
+};
+
+export const getAuthors = async (searchparams?:string) => {
+  let url = `${apiEndPoints.get_authors}?limit=100`;
+  if(searchparams){
+    url=url+`&search=${searchparams}`
+    console.log(url,"url")
+  }
+  return await CommonApiHandler(
+    {
+      name: "getAuthors",
+      url:url,
+      method: TMethods.GET,
+      noToken:true
     }
   )
 };

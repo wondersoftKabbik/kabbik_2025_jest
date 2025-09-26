@@ -1,5 +1,5 @@
 'use client'
-import { getCategoryData, getUserProfile, postSendOtp } from "@/utils/apiServices"
+import { getCategoryData, getPreferenceData, getUserProfile, postSendOtp } from "@/utils/apiServices"
 import { MouseEvent, useCallback, useEffect, useState } from "react"
 import Cookies from "js-cookie";
 import { TCategoryItem, TUserProfile } from "../ui/static/types";
@@ -10,6 +10,7 @@ import { isValidMsisdn, normalizeMsisdn } from "@/helpers/commonFunction";
 import { toast } from "react-toastify";
 import { usePathname } from "next/navigation";
 import { apiEndPoints } from "@/utils/apiEndpoints";
+import { setuserPreference } from "@/store/slicers/userPreferenceSlice";
 
 
 const useNavbar = () => {
@@ -22,6 +23,8 @@ const useNavbar = () => {
     const [showPhoneOfChangePass,setShowPhoneOfChangePass]=useState(false);
     const header = usePathname();
     const dispatch=useAppDispatch();
+    const [showPreferenceCatModal,setShowPreferenceCatModal]=useState(false);
+    const [showPreferenceAuthorModal,setShowPreferenceAuthorModal]=useState(false);
     const user=useAppSelector(store=>store.user?.userData)
     const categories=useAppSelector(store=>store.categories?.CategoriesData)
 
@@ -74,6 +77,24 @@ const useNavbar = () => {
           // Cookies.set("is_subscribed",(data && data?.is_subscribed) ?'1' : '0');
         }
     }
+
+    const getPreference=async()=>{
+      if(user?.id){
+        let data=await getPreferenceData(user.id as number);
+        // alert(JSON.stringify(data.data))
+        if(data && data.data.length===0){
+          setShowPreferenceCatModal(true);
+        }else{
+          dispatch(setuserPreference({id:data?.data[0].id,authors:JSON.parse(data?.data[0].authors),categories:JSON.parse(data?.data[0].categories)}))
+        }
+      }
+    }
+
+    useEffect(()=>{
+      if(user?.id && !showLoginPasswordModal && !showOTPModal && !showPasswordModal && !showLoginModal ){
+        getPreference();
+      }
+    },[user?.id,showLoginPasswordModal,showOTPModal,showPasswordModal,showLoginModal])
 
     useEffect(()=>{
       getCategories();
@@ -152,7 +173,19 @@ const useNavbar = () => {
         setShowPhoneOfChangePass(false);
       }
     }
-  return {showCategories,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick,handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword}
+
+    const closePreferenceCatModal=()=>{
+      setShowPreferenceCatModal(false);
+    }
+    const closePreferenceAuthorModal=()=>{
+      setShowPreferenceAuthorModal(false);
+    }
+
+    const showPrepAuthorModal=()=>{
+      setShowPreferenceCatModal(false);
+      setShowPreferenceAuthorModal(true);
+    }
+  return {showCategories,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick,handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword,showPreferenceCatModal,showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal}
 }
 
 export default useNavbar

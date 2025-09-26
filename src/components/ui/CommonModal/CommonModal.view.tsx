@@ -53,7 +53,7 @@ export default function CommonModal({
         {showCloseButton && (
           <button
             onClick={onClose}
-            className="absolute top-2 right-2 text-gray-400 hover:text-gray-900"
+            className="absolute top-2 z-10 right-2 bg-slate-500 rounded-[50%] px-2 py-0.5 text-gray-400 hover:text-gray-300"
           >
             ✕
           </button>
