@@ -13,6 +13,7 @@ export function AudiobookCard({ audiobook, className = '',category }: TAudiobook
             <img
               src={audiobook.thumb_path}
               alt={audiobook.name}
+              loading='lazy'
               className="aspect-[3/4] max-w-full z-10 object-cover transition-transform duration-300 group-hover:scale-110"
             />
         

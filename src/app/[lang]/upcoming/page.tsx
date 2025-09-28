@@ -24,15 +24,15 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
            <div>
                <CategorySelector/>
            </div>
-           <div>
+           <div className={container('1300px')}>
                 <div className=" bg-navy-dark">
       {/* Header Section */}
-                    <div className="pt-8 lg:pt-16 pb-8 lg:pb-12 px-4">
+                    <div className="pt-4 pb-8 lg:pb-6 px-4">
                         <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-white font-bengali font-bold text-3xl sm:text-4xl lg:text-[60px] mb-4 lg:mb-6 leading-tight">
+                        <h1 className="text-white font-bengali font-bold text-cxl2 mb-1 leading-tight">
                             আপকামিং বুক
                         </h1>
-                        <p className="text-white font-bengali text-lg sm:text-xl lg:text-[42px] font-normal leading-tight lg:leading-[50.4px]">
+                        <p className="text-white font-bengali text-lg sm:text-cxl font-normal leading-tight lg:leading-[50.4px]">
                             শ্রোতাদের প্রথম পছন্দ এখন এক ক্লিকে।
                         </p>
                         </div>

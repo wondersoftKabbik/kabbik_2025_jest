@@ -22,13 +22,13 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
       <div >
          {isPodCast?(
            <div className='relative'>
-              <div className={`bg-[url('https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/kabbikGalaryBg-min2-min.jpg')] bg-cover opacity-20 w-full h-[256px] absolute left-0 bottom-[-15px]`}></div>
-             <div className="container mx-auto px-4 pt-16 pb-12 ">
+              <div className={`bg-[url('https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/kabbikGalaryBg-min2-min.jpg')] bg-cover opacity-20 w-full h-[123px] absolute left-0 bottom-[-15px]`}></div>
+             <div className="container mx-auto px-4 pt-4 pb-2 ">
               <div className="text-center max-w-4xl mx-auto">
-                <h1 className="font-bengali text-[45px] md:text-[52px] font-bold text-white mb-6 leading-tight">
+                <h1 className="font-bengali text-cxl2 font-bold text-white mb-1 leading-tight">
                   {decodeWord(categoryName)}
                 </h1>
-                <p className="font-bengali text-2xl md:text-4xl text-white/90 font-normal leading-relaxed">
+                <p className="font-bengali text-cxl text-white/90 font-normal leading-relaxed">
                   শ্রোতাদের প্রথম পছন্দ এখন এক ক্লিকে।
                 </p>
               </div>
@@ -43,12 +43,12 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
             {isPodCast?
               <div className='mt-10'/>
             :
-              <div className="container mx-auto px-4 pt-16 pb-12">
+              <div className="container mx-auto px-4 pt-5 pb-5">
                 <div className="text-center max-w-4xl mx-auto">
-                  <h1 className="font-bengali text-[45px] md:text-[55px] font-bold text-white mb-6 leading-tight">
+                  <h1 className="font-bengali text-cxl2 font-bold text-white mb-2 leading-tight">
                     {decodeWord(categoryName)}
                   </h1>
-                  <p className="font-bengali text-2xl md:text-4xl text-white/90 font-normal leading-relaxed">
+                  <p className="font-bengali text-cn2 text-white/90 font-normal leading-relaxed">
                     শ্রোতাদের প্রথম পছন্দ এখন এক ক্লিকে।
                   </p>
                 </div>
@@ -61,14 +61,14 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
              />
            </div>
            <div>
-            {categoryData?.data?.[0]?.data?.[8]?
-              <ThreeDBanner dict={dict} book={categoryData?.data?.[0]?.data?.[8]}/>
+            {categoryData?.data?.[0]?.data?.[11]?
+              <ThreeDBanner dict={dict} book={categoryData?.data?.[0]?.data?.[11]}/>
             :''}
            </div>
            <div className={`${container('1209px')} relative`}>
             
-              <div className="grid mt-20 grid-cols-2  lg:grid-cols-4  gap-6 md:gap-8">
-                {categoryData?.data ? categoryData?.data?.[0]?.data.slice(9,17).map((audiobook) => (
+              <div className="grid mt-10 grid-cols-2  lg:grid-cols-5  gap-6 md:gap-8">
+                {categoryData?.data ? categoryData?.data?.[0]?.data.slice(12,22).map((audiobook) => (
                   <AudiobookCard 
                     key={audiobook.id} 
                     category={categoryName}
@@ -78,14 +78,14 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
                 )):''}
               </div>
            </div>
-           <div className='mt-16 bg-[#09152B] border-[#8D8D8D]'>
+           <div className='mt-10 bg-[#09152B] border-[#8D8D8D]'>
                 {isPodCast?"":<ReferAndEarn/>}
            </div>
            <div className={`${container('1209px')} relative`}>
               <div className="circular_gradient left-[-10%] top-[0%] w-[30vw] h-[30vw] absolute  "></div>
               <div className="circular_gradient right-[-20%] bottom-[-15vh] w-[40vw] h-[40vw] absolute  "></div>
-              <div className="mt-20  grid grid-cols-2  lg:grid-cols-4  gap-6 md:gap-8">
-                {categoryData?.data ? categoryData?.data?.[0]?.data.slice(17,).map((audiobook) => (
+              <div className="mt-10  grid grid-cols-2  lg:grid-cols-5  gap-6 md:gap-8">
+                {categoryData?.data ? categoryData?.data?.[0]?.data.slice(23,).map((audiobook) => (
                   <AudiobookCard 
                     key={audiobook.id} 
                     category={categoryName}

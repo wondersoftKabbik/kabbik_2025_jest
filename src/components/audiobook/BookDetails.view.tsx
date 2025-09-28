@@ -215,7 +215,6 @@ const AudiobookComponent = ({
     };
   }, []);
 
-  useEffect(()=>{console.log(audioBookDetailsData,"dddddddddddddddddddddddddddddddddddd")},[audioBookDetailsData])
 
   useEffect(() => {
     audioBookDetails();
@@ -781,8 +780,8 @@ const AudiobookComponent = ({
             </div>
           </div>
         </div>
-        <div className=" z-[5]  py-4 md:py-8">
-          <div className="max-w-[500px] mx-auto px-4 space-y-8 ">
+        <div className=" z-[5] w-[44%] py-4 md:py-8">
+          <div className="max-w-[600px] w-[100%] mx-auto px-0 space-y-8 ">
             {/* Header Section */}
             <div className="bg-gradient-to-r from-[#881D69] to-[#D34974] rounded-xl p-3 md:p-4 text-white">
               <div className="flex items-center gap-4 md:gap-6">
@@ -814,7 +813,7 @@ const AudiobookComponent = ({
             </div>
 
             {/* Navigation Tabs */}
-            <div className="flex ">
+            <div className="flex w-full">
               <Tabs tabs={[
                 { name: 'এপিসোড', 
                   component: 

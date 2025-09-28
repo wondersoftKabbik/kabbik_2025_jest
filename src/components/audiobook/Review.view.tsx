@@ -14,7 +14,7 @@ export default function Review({reviews}:{reviews:RatingReviewInfo[]}) {
   };
 
   return (
-    <div className="  py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+    <div className="  py-4 sm:py-6 ">
       <div className="max-w-2xl mx-auto">
         {/* Add Review Button */}
         <div className="mb-6 sm:mb-8">
@@ -24,12 +24,12 @@ export default function Review({reviews}:{reviews:RatingReviewInfo[]}) {
         </div>
 
         {/* Review List */}
-        <div className="space-y-6 sm:space-y-7 px-2 max-h-[205vh] overflow-y-auto">
+        <div className="space-y-4  max-h-[160vh] pr-3 overflow-y-auto">
           {reviews.map((review,index) => (
             <div
                 key={index}
                 className={
-                    "flex p-3 bg-gray-50 rounded-[12px] sm:p-4 justify-start items-start gap-3 sm:gap-4 w-full"
+                    "flex px-3 bg-gray-50 rounded-[12px] py-1 justify-start items-start gap-3 sm:gap-4 w-full"
                     // "rounded-xl bg-white shadow-[0_1px_4px_1px_rgba(0,0,0,0.25)]"
                     }
                 >
@@ -46,7 +46,7 @@ export default function Review({reviews}:{reviews:RatingReviewInfo[]}) {
                 <div className="flex flex-col gap-3 flex-1 min-w-0">
                     {/* Header with name, rating, and date */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-                    <h3 className="text-lg font-normal text-black leading-5 truncate">
+                    <h3 className="text-cn font-normal text-black leading-2 truncate">
                         {review?review.full_name:''}
                     </h3>
                     <div className="flex items-center gap-2 flex-shrink-0">

@@ -1,6 +1,6 @@
 'use client'
 import { getCategoryData, getPreferenceData, getUserProfile, postSendOtp } from "@/utils/apiServices"
-import { MouseEvent, useCallback, useEffect, useState } from "react"
+import { MouseEvent, RefObject, useCallback, useEffect, useRef, useState } from "react"
 import Cookies from "js-cookie";
 import { TCategoryItem, TUserProfile } from "../ui/static/types";
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -36,6 +36,7 @@ const useNavbar = () => {
   const [isSubscribed, setIsSubscribed]: any = useState();
 
   const [isLoading, setIsLoading] = useState(true);
+  const boxRef=useRef<HTMLLIElement>(null);
 
 
   useEffect(() => {
@@ -101,6 +102,19 @@ const useNavbar = () => {
       getCategories();
       getProfileData();
     },[])
+
+    useEffect(() => {
+      function handleClickOutside(event: globalThis.MouseEvent) {
+        if (boxRef.current && !boxRef.current.contains(event.target as Node)) {
+          setShowCategories(false);
+        }
+      }
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
 
     const handleLoginClick=()=>{
       setShowLoginModal(true)
@@ -186,7 +200,7 @@ const useNavbar = () => {
       setShowPreferenceCatModal(false);
       setShowPreferenceAuthorModal(true);
     }
-  return {showCategories,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick,handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword,showPreferenceCatModal,showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal}
+  return {showCategories,boxRef,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick,handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword,showPreferenceCatModal,showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal}
 }
 
 export default useNavbar

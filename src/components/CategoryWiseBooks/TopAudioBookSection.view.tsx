@@ -15,8 +15,8 @@ export default function TopAudioBookSection(props:TCategoryWiseTopBooksSection) 
 
         {/* Audiobooks Grid */}
         <div className={container('1209px')}>
-          <div className="grid grid-cols-2  lg:grid-cols-4  gap-6 md:gap-8">
-            {data ? data.slice(0,8).map((audiobook) => (
+          <div className="grid grid-cols-2  lg:grid-cols-5  gap-6 md:gap-8">
+            {data ? data.slice(0,10).map((audiobook) => (
               <AudiobookCard 
                 key={audiobook.id} 
                 category={category}

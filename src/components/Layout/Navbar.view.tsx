@@ -100,10 +100,10 @@ const ShobderaJibonta = dynamic(
 });
 
 const Navbar = (props:TNavbar) => {
-    const {showCategories, setShowCategories, user: profile, categories, setMobileMenu, mobileMenu, showLoginModal, showOTPModal, showPasswordModal, showLoginPasswordModal, handleLoginClick, handleloginSubmit, handleVerifyOtp, closeLoginClick, closePasswordClick, closeOTPClick, handleSubmit, closeLoginPasswordClick,  handleShowPasswordModal, handlePhoneOfChangePassword, showPhoneOfChangePass, closeShowPhoneOfChangePass, handleClickForgetPassword, showPreferenceCatModal, showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal} = useNavbar();
+    const {showCategories,boxRef, setShowCategories, user: profile, categories, setMobileMenu, mobileMenu, showLoginModal, showOTPModal, showPasswordModal, showLoginPasswordModal, handleLoginClick, handleloginSubmit, handleVerifyOtp, closeLoginClick, closePasswordClick, closeOTPClick, handleSubmit, closeLoginPasswordClick,  handleShowPasswordModal, handlePhoneOfChangePassword, showPhoneOfChangePass, closeShowPhoneOfChangePass, handleClickForgetPassword, showPreferenceCatModal, showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal} = useNavbar();
 
     return (
-    <nav className='w-full bg-[#D9D9D91A] relative z-10'>
+    <nav className='w-full bg-[#D9D9D91A] relative z-40'>
         <div className='max-w-[1440px]  flex justify-between items-center px-4 py-2 mx-auto'>
             <div className='flex items-center gap-4'>
                 <Link href={'/'} >
@@ -111,13 +111,14 @@ const Navbar = (props:TNavbar) => {
                         <img loading="lazy" className='max-w-[138px] max-h-[54px] max-sm:max-w-[100px] max-:max-h-[46px]' src={'/assets/logo.png'} alt="Logo" />
                     </figure>
                 </Link>
-                <ul className={'text-white flex '+ style.navbarList}>
+                <ul  className={'text-white flex '+ style.navbarList}>
                     <li>
                         <Link href={'/'}>হোম</Link>
                     </li>
                     <li 
                         onClick={()=>setShowCategories(!showCategories)}
                         className='relative cursor-pointer'
+                        ref={boxRef}
                     >
                         {/* <Link href={'/'} className='flex' onClick={()=>{setShowCategories(!showCategories)}}> */}
                             ক্যাটাগরি
@@ -152,9 +153,9 @@ const Navbar = (props:TNavbar) => {
                     <li>
                         <Link href={'/পডকাস্ট'}>পডকাস্ট</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link href={'/'}>মোর</Link>
-                    </li>
+                    </li> */}
                     <li>
                         <CommonButton
                             isLoading={false}

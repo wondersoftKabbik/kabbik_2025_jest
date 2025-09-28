@@ -15,14 +15,14 @@ export default function CategorySelector() {
 
   return (
     <div>
-        <div className="w-full cursor-pointer  px-4 btn-gradient-2 mt-4">
+        <div className="w-full cursor-pointer  px-4 btn-gradient-2 mt-3">
             <div onClick={()=>setShowCategories(!showCategories)} className="max-w-[1440px] mx-auto rounded-lg shadow-lg overflow-hidden">
-                <div className="flex items-center justify-between w-full  min-h-[75px]">
-                <div className="flex items-center gap-4 sm:gap-6 lg:gap-8 xl:gap-10 flex-1 min-w-0">
-                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-[60px] lg:h-[60px]">
+                <div className="flex items-center justify-between w-full  py-2">
+                <div className="flex items-center gap-4 sm:gap-6 flex-1 min-w-0">
+                    <div className="flex-shrink-0 w-10 h-10 ">
                     <CategoryIcon />
                     </div>
-                    <h1 className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[36px] font-medium leading-tight flex-1 min-w-0">
+                    <h1 className="text-white text-lg sm:text-clg2 font-medium leading-tight flex-1 min-w-0">
                     ক্যাটেগরি নির্বাচন করুন
                     </h1>
                 </div>

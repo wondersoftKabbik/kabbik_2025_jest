@@ -12,10 +12,10 @@ import Traingle from "@/svgs/Traingle.svg";
 
 export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:DictionaryType}) {
   return (
-   <div className={`mt-96 ${styles.ThreeDBannerGradient} `}>
-  <div className={`flex justify-between  max-w-[1209px] w-[97%] mx-auto`}>
+   <div className={`mt-28 ${styles.ThreeDBannerGradient} `}>
+  <div className={`flex justify-between  max-w-[1209px] w-[90%] mx-auto`}>
     {/* Book Cover Image */}
-    <div className="min-w-[40%] mt-[-20px]">
+    <div className="min-w-[40%] mt-[-120px]">
       {book ? (
         <ThreeDBook path={paths.book_details(book.id)} bg={book?.thumb_path} />
       ) : null}
@@ -26,7 +26,7 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
       
       {/* Main Heading */}
       <div className="">
-        <h1 className="text-2xl sm:text-[30px] lg:text-[36px] text-white font-medium leading-tight lg:leading-[50.4px] ">
+        <h1 className="text-2xl sm:text-cxl text-white font-medium leading-tight lg:leading-[50.4px] ">
           {numberTranslator(book?.play_count??0,dict.numbers)}-এরও বেশি মানুষ এই বইটি শুনেছেন!
         </h1>
 
@@ -38,7 +38,7 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
             {[...Array(Math.ceil(Number(book?.rating)))].map((_, index) => (
               <div
                 key={index}
-                className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-[#D9D9D9] flex items-center justify-center"
+                className="w-10 h-10 lg:w-8 lg:h-8 rounded-full bg-[#D9D9D9] flex items-center justify-center"
               >
                 <CircularStar/>
               </div>
@@ -46,7 +46,7 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
           </div>
 
           {/* Rating Text */}
-          <h2 className="text-xl sm:text-2xl lg:text-[36px] text-white font-medium leading-tight lg:leading-[50.4px]">
+          <h2 className="text-xl sm:text-cxl text-white font-medium leading-tight lg:leading-[50.4px]">
             পাঠকের রিভিউ – ৫/{numberTranslator(Number((book?.rating)?.toFixed(1))??0,dict.numbers)} রেটিং!
           </h2>
         </div>
@@ -54,11 +54,11 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
 
       {/* Play Button */}
       <div className="w-full max-w-[421px] mx-auto ">
-        <button className="w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-4 lg:py-[15px] px-6 hover:opacity-90 transition-opacity">
-          <span className="w-7">
+        <button className="w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-2 px-6 hover:opacity-90 transition-opacity">
+          <span className="w-5">
             <Traingle/>
           </span>
-          <span className="text-white text-lg sm:text-xl lg:text-[27px] font-medium">
+          <span className="text-white text-lg sm:text-clg font-medium">
             এখনই শুনুন
           </span>
         </button>

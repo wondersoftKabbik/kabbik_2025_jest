@@ -8,7 +8,7 @@
     position: absolute;
     max-height: 350px;
     overflow-y: scroll;
-    z-index: 100;
+    z-index: 999999;
     width: 280px;
     background-color: #D9D9D91A;
     margin-top: 10px;
@@ -20,6 +20,8 @@
     align-items: center;
     background-color: white;
     color: #001F29;
+    z-index: 999999;
+    position: relative;
     margin: 8px 0;
     border-radius: 8px;
     padding: 5px;

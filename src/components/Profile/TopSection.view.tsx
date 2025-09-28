@@ -29,10 +29,10 @@ export default function TopSection() {
 
               {/* User Info */}
               <div className="min-w-0">
-                <h1 className="text-2xl md:text-3xl font-semibold text-white mb-1 truncate">
+                <h1 className="text-clg font-semibold text-white mb-1 truncate">
                   সারা অ্যান্ডারসন
                 </h1>
-                <p className="text-white/80 text-sm">সদস্য সেপ্টেম্বর ২০২৩ থেকে</p>
+                <p className="text-white/80 text-cs">সদস্য সেপ্টেম্বর ২০২৩ থেকে</p>
               </div>
             </div>
 
