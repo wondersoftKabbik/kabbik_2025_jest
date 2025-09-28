@@ -4,7 +4,8 @@ const LeftAngle = () => {
   return (
     <>
          <svg 
-          className="w-16 h-16 md:w-20 lg:w-24 xl:w-[122px] md:h-20 lg:h-24 xl:h-[122px] text-white cursor-pointer hover:opacity-80 transition-opacity" 
+          
+          className=" w-full h-full text-white cursor-pointer hover:opacity-80 transition-opacity" 
           viewBox="0 0 122 122" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"

@@ -23,6 +23,12 @@ const config: Config = {
 			'clg2':'22px',
 			'cxl':'26px',
 			'cxl2':'30px',
+			'cxxl':'34px',
+			'cxxl2':'38px',
+			'c3xl':'42px',
+			'c3xl2':'46px',
+			'c4xl':'50px',
+			'c4xl2':'54px'
 		},
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

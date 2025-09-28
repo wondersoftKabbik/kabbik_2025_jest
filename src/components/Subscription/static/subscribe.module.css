@@ -47,12 +47,12 @@
   position: absolute;
   width: 70%;
   transform: rotate(40deg);
-  right: -50px;
+  right: -65px;
   text-align: center;
   padding-left: 30px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
-  top: 21px;
+  top: 15px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -67,14 +67,14 @@
   font-family: Inter;
   font-weight: 600;
   color: white;
-  font-size: 38px;
+  font-size: 30px;
   line-height: 1;
   letter-spacing: 0px;
   text-align: center;
   text-transform: uppercase;
-  margin-top: 74px;
-  height: 70px;
-  margin-bottom: 10px;
+  margin-top: 44px;
+  height: 40px;
+  margin-bottom: 0px;
 }
 
 .pack_name p{

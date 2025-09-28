@@ -341,57 +341,57 @@ const SubscribeComponent = ({
     <>
        <div className="w-full h-[100px] bg-[#0E1D3F] mt-[-100px]"></div>
       <div className="  relative ">
-      {/* Back Arrow */}
-      <div className="absolute left-4 md:left-8 top-4 md:top-8 ">
-        <span 
-          onClick={()=>{router.back()}}
-          className="w-16 h-16 text-white md:w-20 lg:w-24 xl:w-[122px] md:h-20 lg:h-24 xl:h-[122px]"
-        >
-          <LeftAngle />
-        </span>
-       
-      </div>
-
-      {/* Main Content Container */}
-      <div className="container mx-auto px-4 md:px-8 flex flex-col justify-center  relative">
+        {/* Back Arrow */}
+        <div className="absolute left-4 md:left-4 top-2  ">
+          <span 
+            onClick={()=>{router.back()}}
+            className="w-20 h-20 inline-block text-white "
+          >
+            <LeftAngle />
+          </span>
         
-        {/* Main Heading */}
-        <div className="text-center mb-8 md:mb-12">
-          <h1 className={"font-lexend font-bold text-[10vw] xl:leading-[10vw] "+styles.gradient_text}>
-            সাবস্ক্রিপশন
-          </h1>
         </div>
 
-        {/* Hero Text */}
-        <div className="text-center mb-8 md:mb-16 max-w-5xl mx-auto">
-          <p className="font-bengali text-white text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-[52px] leading-tight md:leading-[1.425] font-normal">
-            ৩০০০+ অডিওবুক ও এক্সক্লুসিভ কনটেন্ট আনলক করুন,<br className="hidden md:block" />
-            যখন খুশি যেখানে খুশি!
-          </p>
-        </div>
+        {/* Main Content Container */}
+        <div className="container mx-auto px-4 md:px-8 flex flex-col justify-center  relative">
+          
+          {/* Main Heading */}
+          <div className="text-center mb-2">
+            <h1 className={"font-lexend font-bold text-[6vw] xl:leading-[10vw] "+styles.gradient_text}>
+              সাবস্ক্রিপশন
+            </h1>
+          </div>
 
-        {/* Plan Selection Section */}
-        <div className="text-center mb-8 md:mb-16 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className={"font-bengali font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px] leading-tight  gradient-text mb-4 md:mb-6 "+styles.gradient_para}>
-              আপনার সেরা প্ল্যানটি বেছে নিন
-            </h2>
-            <p className="font-bengali text-white text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[26px] leading-tight md:leading-[2.005] font-normal max-w-2xl mx-auto">
-              কাব্যিক-এর প্রিমিয়াম ফিচার উপভোগ করতে সাবস্ক্রাইব করুন
+          {/* Hero Text */}
+          <div className="text-center mb-8 md:mb-2 max-w-5xl mx-auto">
+            <p className="font-bengali text-white text-lg sm:text-clg2  leading-[30px] font-normal">
+              ৩০০০+ অডিওবুক ও এক্সক্লুসিভ কনটেন্ট আনলক করুন,<br className="hidden md:block" />
+              যখন খুশি যেখানে খুশি!
             </p>
           </div>
-          <div className="circular_gradient right-[-20%] top-[-10%] w-[30vw] h-[30vw] absolute  "></div>
-        </div>
 
-        {/* Premium Package Text */}
-        <div className="text-center">
-          <p className="font-bengali text-white text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[26px] leading-tight md:leading-[2.005] font-semibold">
-            প্রিমিয়াম প্যাকেজে পাচ্ছেন
-          </p>
-        </div>
+          {/* Plan Selection Section */}
+          <div className="text-center mb-4 relative z-10">
+            <div className="max-w-4xl mx-auto">
+              <h2 className={"font-bengali font-bold text-2xl sm:text-3xl md:text-cxl leading-tight  gradient-text mb-2 "+styles.gradient_para}>
+                আপনার সেরা প্ল্যানটি বেছে নিন
+              </h2>
+              <p className="font-bengali text-white text-cn leading-tight md:leading-[2.005] font-normal max-w-2xl mx-auto">
+                কাব্যিক-এর প্রিমিয়াম ফিচার উপভোগ করতে সাবস্ক্রাইব করুন
+              </p>
+            </div>
+            <div className="circular_gradient right-[-20%] top-[-10%] w-[30vw] h-[30vw] absolute  "></div>
+          </div>
 
+          {/* Premium Package Text */}
+          <div className="text-center">
+            <p className="font-bengali text-white text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[26px] leading-tight md:leading-[2.005] font-semibold">
+              প্রিমিয়াম প্যাকেজে পাচ্ছেন
+            </p>
+          </div>
+
+        </div>
       </div>
-    </div>
     {loader?
       <div className="subscribe-loader"><Spinner/></div>
       :(
