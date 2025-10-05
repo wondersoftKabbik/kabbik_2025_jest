@@ -5,6 +5,7 @@ import userReducer from '@/store/slicers/userSlice';
 import categoriesReducer from '@/store/slicers/categoriesSlice';
 import StaticTextsSlice from '@/store/slicers/staticTextSlice';
 import userPreferense from '@/store/slicers/userPreferenceSlice';
+import playListSlice from '@/store/slicers/PlaylistSlice'
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
@@ -14,7 +15,8 @@ export const store = configureStore({
     user:userReducer,
     categories:categoriesReducer,
     staticTexts:StaticTextsSlice, 
-    userPreference:userPreferense
+    userPreference:userPreferense,
+    playList:playListSlice,
   },
 });
 

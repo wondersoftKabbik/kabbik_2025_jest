@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 
-export default function CategorySelector() {
+export default function CategorySelector({folders}:{folders?:string}) {
     const categories=useAppSelector(store=>store?.categories?.CategoriesData)
     const [showCategories,setShowCategories]=useState<boolean>(false);
 
@@ -42,7 +42,7 @@ export default function CategorySelector() {
                         <li key={name?.name} className="w-100">
                             <Link
                             // className="d-block"
-                            href={`/${name?.name}`}
+                            href={`/${name?.name}${folders?`?folders=${folders}`:''}`}
                             >
                             <div className=" w-100">
                                 <span className='w-7 h-7 inline-block mr-2'>

@@ -284,12 +284,32 @@ export const handleShare = async () => {
 };
 
 export function formatDateDDMMYY(dateStr: string): string {
+  if(!dateStr)return '';
   const date = new Date(dateStr.replace(" ", "T")); // Ensure ISO format
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
   const year = String(date.getFullYear()).slice(-2); // Last two digits
   return `${day}/${month}/${year}`;
 }
+
+export function formatTimePlus6(dateStr: string): string {
+  if (!dateStr) return "";
+  const date = new Date(dateStr.replace(" ", "T")); // ensure valid ISO
+
+  // Add 6 hours for BD time
+  date.setHours(date.getHours() + 6);
+
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 0 -> 12
+
+  return `${hours}:${minutes} ${ampm}`;
+}
+
+
 
 export function formatTimeForAudio(secs: number) {
   if (!isFinite(secs) || secs < 0) return "0:00";

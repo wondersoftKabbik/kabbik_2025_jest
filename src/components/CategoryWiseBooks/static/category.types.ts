@@ -13,6 +13,8 @@ export type TCategoryComponent={
 export type TCategoryWiseTopBooksSection={
     category:string;
     data:TBooks[]|null;
+    playlistBooks?:{[key:string]:string};
+    handleAddToBookList?:(id:number|string,name:string)=>void
 }
 
 
@@ -20,4 +22,15 @@ export interface TAudiobookCardProps {
   audiobook: TBooks;
   className?: string;
   category:string;
+  isInPlayList?:string;
+  handleAddToBookList?:(val1:number|string,name:string)=>void
+}
+
+
+export type TPlaylistBooks={
+    categoryName:string;
+    categoryData:TCategoryComponent['categoryData'];
+    dict:any;
+    isPodCast:boolean;
+    folders:string;
 }

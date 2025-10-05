@@ -31,6 +31,7 @@ const config: Config = {
 			'c4xl2':'54px'
 		},
   		backgroundImage: {
+        	"btn-gradient-1": "linear-gradient(90deg, #E319BC 0%, #A36AE9 100%)",
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
   		},
@@ -41,6 +42,7 @@ const config: Config = {
   		},
   		colors: {
 			bg:'#050f1e',
+			dark_bg:"#060F1E",
 			grey:'#5E5E5E',
 			pink: "#E319BC", // custom primary
 			ash_blue:"#4E4E4E24",

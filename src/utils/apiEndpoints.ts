@@ -89,4 +89,9 @@ export const apiEndPoints = {
   create_preference:`${BASE_URL}/v4/user-preference/create`,
   get_preference:`${BASE_URL}/v4/user-preference/get-single`,
   get_authors:`${BASE_URL}/v4/authors/get-authors`,
+  get_playlist_books:`${BASE_URL}/v1/playlist/get-folder-books-user`,
+  update_playlist_folder:`${BASE_URL}/v1/playlist/update-folders`,
+  create_new_folders:`${BASE_URL}/v1/playlist/create-folder`,
+  add_books_tofolder:`${BASE_URL}/v1/playlist/add-book-playlist`,
+  removeBooksFromPlaylist:`${BASE_URL}/v1/playlist/`
 };

@@ -86,6 +86,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                       // modules={[Navigation, Pagination]}
                     // centeredSlides={true}
                     modules={[Navigation, Autoplay]}
+                    slidesPerGroupSkip={0}
                     navigation={{
                       prevEl: prevRef.current,
                       nextEl: nextRef.current,
@@ -93,12 +94,15 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                      breakpoints={{
                         0: {
                         slidesPerView: 2,
+                        slidesPerGroup:2
                         },
                         768: {
                         slidesPerView: 3,
+                        slidesPerGroup:3
                         },
                         1024: {
-                        slidesPerView: 4.7,
+                        slidesPerView: 5,
+                        slidesPerGroup:5
                         },
                     }}
                     onBeforeInit={(swiper:any) => {

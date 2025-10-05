@@ -9,9 +9,11 @@ import { homeCatagoryItems } from '@/utils/apiServices';
 import React from 'react'
 import { getDictionary } from '../dictionaries';
 import ReferAndEarn from '@/components/CategoryWiseBooks/ReferAndEarn.view';
+import PlayListBooks from '@/components/CategoryWiseBooks/PlayListBooks';
 
-const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'bl' } }) => {
+const CategoryPage = async({ params ,searchParams}: {searchParams: { [key: string]: string | string[] | undefined }, params: { category: string,lang:'en'|'bl' } }) => {
   const categoryName = params.category;
+  let folders=searchParams.folders;
   const { lang } = await params
     const dict = await getDictionary(lang) // en
   const categoryData:TCategoryComponent['categoryData'] = await homeCatagoryItems(categoryName);
@@ -38,7 +40,7 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
          <div>
           
            <div>
-               <CategorySelector/>
+               <CategorySelector folders={folders as string}/>
            </div>
             {isPodCast?
               <div className='mt-10'/>
@@ -54,47 +56,58 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
                 </div>
               </div>
             }
-           <div>
-             <TopAudioBookSection
-               category={decodeWord(categoryName)}
-               data={categoryData?.data?.[0]?.data}
-             />
-           </div>
-           <div>
-            {categoryData?.data?.[0]?.data?.[11]?
-              <ThreeDBanner dict={dict} book={categoryData?.data?.[0]?.data?.[11]}/>
-            :''}
-           </div>
-           <div className={`${container('1209px')} relative`}>
-            
-              <div className="grid mt-10 grid-cols-2  lg:grid-cols-5  gap-6 md:gap-8">
-                {categoryData?.data ? categoryData?.data?.[0]?.data.slice(12,22).map((audiobook) => (
-                  <AudiobookCard 
-                    key={audiobook.id} 
-                    category={categoryName}
-                    audiobook={audiobook}
-                    className="max-w-sm mx-auto"
-                  />
-                )):''}
+           {folders?
+            <PlayListBooks 
+              categoryName={categoryName}
+              categoryData={categoryData}
+              dict={dict}
+              isPodCast={isPodCast}
+              folders={folders as string}
+            />:(
+              <>
+                  <div>
+                <TopAudioBookSection
+                  category={decodeWord(categoryName)}
+                  data={categoryData?.data?.[0]?.data}
+                />
               </div>
-           </div>
-           <div className='mt-10 bg-[#09152B] border-[#8D8D8D]'>
-                {isPodCast?"":<ReferAndEarn/>}
-           </div>
-           <div className={`${container('1209px')} relative`}>
-              <div className="circular_gradient left-[-10%] top-[0%] w-[30vw] h-[30vw] absolute  "></div>
-              <div className="circular_gradient right-[-20%] bottom-[-15vh] w-[40vw] h-[40vw] absolute  "></div>
-              <div className="mt-10  grid grid-cols-2  lg:grid-cols-5  gap-6 md:gap-8">
-                {categoryData?.data ? categoryData?.data?.[0]?.data.slice(23,).map((audiobook) => (
-                  <AudiobookCard 
-                    key={audiobook.id} 
-                    category={categoryName}
-                    audiobook={audiobook}
-                    className="max-w-sm mx-auto"
-                  />
-                )):''}
+              <div>
+                {categoryData?.data?.[0]?.data?.[11]?
+                  <ThreeDBanner dict={dict} book={categoryData?.data?.[0]?.data?.[11]}/>
+                :''}
               </div>
-           </div>
+              <div className={`${container('1209px')} relative`}>
+                
+                  <div className="grid mt-10 grid-cols-2  lg:grid-cols-5  gap-6 md:gap-8">
+                    {categoryData?.data ? categoryData?.data?.[0]?.data.slice(12,22).map((audiobook) => (
+                      <AudiobookCard 
+                        key={audiobook.id} 
+                        category={categoryName}
+                        audiobook={audiobook}
+                        className="max-w-sm mx-auto"
+                      />
+                    )):''}
+                  </div>
+              </div>
+              <div className='mt-10 bg-[#09152B] border-[#8D8D8D]'>
+                    {isPodCast?"":<ReferAndEarn/>}
+              </div>
+              <div className={`${container('1209px')} relative`}>
+                  <div className="circular_gradient left-[-10%] top-[0%] w-[30vw] h-[30vw] absolute  "></div>
+                  <div className="circular_gradient right-[-20%] bottom-[-15vh] w-[40vw] h-[40vw] absolute  "></div>
+                  <div className="mt-10  grid grid-cols-2  lg:grid-cols-5  gap-6 md:gap-8">
+                    {categoryData?.data ? categoryData?.data?.[0]?.data.slice(23,).map((audiobook) => (
+                      <AudiobookCard 
+                        key={audiobook.id} 
+                        category={categoryName}
+                        audiobook={audiobook}
+                        className="max-w-sm mx-auto"
+                      />
+                    )):''}
+                  </div>
+              </div>
+              </>
+           )}
          </div>
        </div>
     </div>

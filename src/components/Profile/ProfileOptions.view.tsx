@@ -10,6 +10,8 @@ import DownloadIconWithBg from '@/svgs/DownloadIconWithBg';
 import MyPlayList from '@/svgs/MyPlayList.svg';
 import { cn } from '@/lib/utils';
 import { clearSessionAndRedirect } from '@/helpers/commonFunction';
+import { paths } from '@/utils/Paths';
+import Link from 'next/link';
 
 interface MenuItemProps {
   title: string;
@@ -64,7 +66,7 @@ export default function Profiles() {
     { title: 'অ্যাকাউন্ট ডিঅ্যাকটিভেট', icon: <Delete />, gradient: 'bg-purple-gradient' },
 
     // Remaining items (to be shown in a single horizontal row)
-    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient' },
+    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient' ,url:paths.myPlayList },
     { title: 'অ্যাবাউট আস', icon: <InfoIcon />, gradient: 'bg-blue-gradient' },
     { title: 'কন্ট্যাক্ট আস', icon: <PersonStandingIcon />, gradient: 'bg-purple-gradient' },
     { title: 'রেটিং', icon: <StarIcon />, gradient: 'bg-red-gradient' },
@@ -95,7 +97,7 @@ export default function Profiles() {
           <div className="mt-6">
             <div className="my">
               {remainder.map((item, idx) => (
-                <div key={idx} className="w-full my-3 flex-shrink-0">
+                <Link href={item.url??''} key={idx} className="w-full block my-3 flex-shrink-0">
                   <MenuItem
                     title={item.title}
                     icon={item.icon}
@@ -103,7 +105,7 @@ export default function Profiles() {
                     gradient={item.gradient}
                     hasNewBadge={item.hasNewBadge}
                   />
-                </div>
+                </Link>
               ))}
             </div>
           </div>

@@ -132,6 +132,20 @@ export const bkashUnSubscribeUserApi = async (subscription_id: any) => {
  )
 };
 
+export const RemoveBooksFromPlaylist = async (id: number|string) => {
+  const url = `${apiEndPoints.removeBooksFromPlaylist}${id}`;
+
+  return await CommonApiHandler(
+    {
+      name: "RemoveBooksFromPlaylist",
+      url,
+      method: TMethods.DELETE,
+      body:null,
+      defaultTokenAllowed:false
+    }
+ )
+};
+
 export const robiUnSubscribeUserApi = async (msisdn: any) => {
   const url = `${apiEndPoints.robiUnsubscribeApi}`;
   const raw = JSON.stringify({
@@ -365,6 +379,23 @@ export const postSearch = async (search_text: any) => {
   return CommonApiHandler(
     {
       name: "postSearch",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null,
+      defaultTokenAllowed:false 
+    }
+ )
+};
+
+export const addBooksToPlaylistFolders = async (audiobook_id:number|string,folders_id:string) => {
+  const url = apiEndPoints.add_books_tofolder;
+  const raw = JSON.stringify({
+    folders_id,
+    audiobook_id
+  });
+  return CommonApiHandler(
+    {
+      name: "addBooksToPlaylistFolders",
       url,
       method: TMethods.POST,
       body: raw ? raw : null,
@@ -1144,6 +1175,18 @@ export const catagoryList = async () => {
   )
 };
 
+export const getPlayListBooks = async () => {
+  const url = apiEndPoints.get_playlist_books;
+  return await CommonApiHandler(
+    {
+      name: "getPlayListBooks",
+      url:url,
+      method: TMethods.GET,
+      defaultTokenAllowed:false
+    }
+  )
+};
+
 export const subscriptionList = async () => {
   const url = apiEndPoints.new_packageList ;
   return await CommonApiHandler(
@@ -1390,6 +1433,30 @@ export const postBlog = async (payload: BlogInfo) => {
       url:apiEndPoints.postBlogUrl,
       method: TMethods.POST,
       body: JSON.stringify({ ...payload, userId: Cookies.get("id") }),
+      defaultTokenAllowed:false
+    }
+  )
+};
+
+export const createNewPlaylistFolders = async (folder_name: string) => {
+    return await CommonApiHandler(
+    {
+      name: "createNewPlaylistFolders",
+      url:apiEndPoints.create_new_folders,
+      method: TMethods.POST,
+      body: JSON.stringify({ folder_name:folder_name }),
+      defaultTokenAllowed:false
+    }
+  )
+};
+
+export const updatePlaylistFolders = async (folderId:number|string,folder:string) => {
+    return await CommonApiHandler(
+    {
+      name: "updatePlaylistFolders",
+      url:apiEndPoints.update_playlist_folder,
+      method: TMethods.PATCH,
+      body: JSON.stringify({ id:folderId,folder_name:folder }),
       defaultTokenAllowed:false
     }
   )

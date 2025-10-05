@@ -22,6 +22,8 @@ body{
   margin: 0;
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
+  overflow-y: visible;   /* don't clip Y-axis */
+  height: auto;
 }
 
 
@@ -42,6 +44,12 @@ body{
 .btn-gradient-1{
   background: linear-gradient(90deg, #E319BC 0%, #A36AE9 100%);
 
+}
+.hover_btn-gradient-1:hover{
+  background: linear-gradient(90deg, #E319BC 0%, #A36AE9 100%);
+}
+.btn-gradient-3{
+  background: linear-gradient(90deg, #6B4CE6 0%, #3C2A80 100%);
 }
 
 .btn-gradient-2{

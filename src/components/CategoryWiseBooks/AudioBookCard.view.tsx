@@ -3,12 +3,41 @@ import Link from 'next/link';
 import { TAudiobookCardProps } from './static/category.types';
 import { paths } from '@/utils/Paths';
 import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import AddIcon from '@/svgs/Add.svg';
+import { addBooksToPlaylistFolders } from '@/utils/apiServices';
+import { toast } from 'react-toastify';
+import Tik from '@/svgs/Tik.svg';
+import GreenTik from '@/svgs/GreenTik.svg';
 
-export function AudiobookCard({ audiobook, className = '',category }: TAudiobookCardProps) {
-  useEffect(()=>{console.log(audiobook,"podcast")},[])
+export function AudiobookCard({ audiobook, className = '',category,isInPlayList,handleAddToBookList }: TAudiobookCardProps) {
+  const searchParams = useSearchParams();
+  let folders=searchParams.get('folders')
+
+  const addToPlayList=async()=>{
+    if(!folders)return;
+      let result = await addBooksToPlaylistFolders(audiobook.id,folders)
+      if(result.success===false){
+        toast.error("Something Went wrong")
+      }else{
+        console.log(handleAddToBookList)
+        handleAddToBookList && handleAddToBookList(audiobook.id,audiobook.name)
+        toast.success("Book is added to your playlist")
+      }
+  }
+  
   return (
     <div className={`group  cursor-pointer transition-all duration-300 hover:scale-105 ${className}`}>
       <div className="relative overflow-hidden rounded-[6px] border border-white/20 bg-black/20 backdrop-blur-sm">
+        {folders?(
+          !isInPlayList?
+          <span onClick={addToPlayList} className='w-8 z-[1] h-8 inline-block absolute top-1 right-1'>
+            <AddIcon />
+          </span>:
+          <span  className='w-7 z-[1] h-7 inline-block absolute top-1 right-1'>
+            <GreenTik />
+          </span>
+        ):''}
         <Link href={paths.book_details(audiobook.id)}>
             <img
               src={audiobook.thumb_path}

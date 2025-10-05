@@ -115,7 +115,8 @@ export type TAudioBookDetails= {
   approval_status: number
   author_name: string
   banner_path: string
-  c_name: string | null
+  c_name: string | null;
+  total_played:number;
   category_id: number | null
   channel_id: number
   contributing_artists: string
