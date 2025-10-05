@@ -21,8 +21,8 @@ export default function Categories({folders}:{folders:number|string}) {
     <div className="max-h-[95vh] overflow-y-auto  relative bg-gray-50 p-1 sm:p-2 md:p-3">
       <div className=" mx-auto">
         {/* First Section */}
-        {totaldiv.map((item)=>(
-            <>
+        {totaldiv.map((item,i)=>(
+            <div key={i}>
             <div className="grid grid-cols-1 sm:grid-cols-2  relative gap-2 lg:gap-3 mb-3">
            
                 <div className="  h-[185px] rounded-[4px] overflow-hidden border border-gray-300">
@@ -52,7 +52,7 @@ export default function Categories({folders}:{folders:number|string}) {
                         <img loading="lazy" src={categories?.[item-4+3].thumb_path ?? ''} className=" h-[110px] w-full object-cover object-left-bottom" />
                     </Link>                
             </div>
-            </>
+            </div>
         ))}
       </div>
     </div>

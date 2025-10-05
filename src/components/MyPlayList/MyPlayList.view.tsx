@@ -107,6 +107,7 @@ export default function MyPlayList() {
                 <button
                   className={`text-white relative border py-2 px-4 rounded-[4px] border-gray-300 hover_btn-gradient-1 ${folders[item]===activeFolders?' btn-gradient-1 ':'' }`}
                   onClick={()=>{setActiveFolders(folders[item])}}
+                  key={folders[item]}
                 >
                   {folders[item]}
                   <span onClick={()=>{setEditFoldersModal(item)}} className="absolute -top-1 right-0.5">
@@ -165,13 +166,13 @@ export default function MyPlayList() {
           <tbody>
             {activeBooks.map((book, index) => (
               !book.audiobook_id?(
-                <>
+                <span key={index}>
                   <Skeleton height="50px" width="80vw"/>
                   <Skeleton height="50px" width="80vw"/>
                   <Skeleton height="50px" width="80vw"/>
                   <Skeleton height="50px" width="80vw"/>
                   <Skeleton height="50px" width="80vw"/>
-                </>
+                </span>
               ):
               <tr
                 key={book.audiobook_id}
