@@ -43,7 +43,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
   const [expand,setIsExpand]=useState<boolean>(false);
   return (
 
-    <div className={styles.container+" pt-8"}>
+    <div className={styles.container+" pt-8 px-2"}>
         {/* <div className={styles.heading_container}>
             <h3 className={styles.heading}>{categoryName}</h3>
             <div className={styles.see_all}>
@@ -81,16 +81,19 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                     }}
                      breakpoints={{
                         0: {
-                        slidesPerView: 1,
+                          slidesPerView: 2,
                         },
                         768: {
-                        slidesPerView: 2,
+                          slidesPerView: 2.5,
+                        },
+                        868: {
+                          slidesPerView: 3,
                         },
                         1000: {
-                        slidesPerView: 3,
+                          slidesPerView: 3,
                         },
-                        1200: {
-                        slidesPerView: 4,
+                        1150: {
+                          slidesPerView: 4,
                         },
                     }}
                     onBeforeInit={(swiper:any) => {

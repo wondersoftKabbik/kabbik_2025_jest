@@ -106,6 +106,7 @@ export type TUserProfile = {
   next_purchase_time: number;
   total_earnings: number;
   total_payout: number;
+  subscriptionDetails:SubscriptionPack;
   total_withdraw: number;
   refer_code: string | null;
   user_id_fb: string | null;
@@ -117,6 +118,45 @@ export type TUserProfile = {
   created_at: string; // or Date if parsed
   updated_at: string; // or Date if parsed
 };
+
+type SubscriptionPack = {
+  accessible_content: string;
+  amount: string;
+  banner_name: string;
+  base_amount_bn: string;
+  benefit: string; // JSON string — can parse into BenefitItem[]
+  bn_name: string;
+  country: string;
+  country_access: string;
+  created_at: string;
+  days: number;
+  description: string;
+  display_pack_name: string;
+  dynamicPrice: string;
+  excluded_payment_methods: string | null;
+  forDomain: string | null;
+  for_affiliate: number;
+  free_trial_in_day: number;
+  frequency: string;
+  globalPrice: string;
+  id: number;
+  isOnetime: number;
+  is_free_trail: number;
+  is_promo_applicable: number;
+  length: string;
+  name: string;
+  priority: string;
+  rawPrice: number;
+  recommendation: string;
+  recurring_banner_name: string | null;
+  sku: string;
+  status: string;
+  subscriptionItemId: string;
+  subtitle: string;
+  updated_at: string | null;
+  vat: number;
+};
+
 
 
 // export type TCommonBtnProps={

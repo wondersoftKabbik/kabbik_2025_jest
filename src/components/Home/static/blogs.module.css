@@ -60,6 +60,15 @@
   transition: all 0.3s ease;
 }
 
+@media screen and (max-width: 1000px) {
+  .excerpt{
+    font-size: 13px;
+  }
+  .blogsWrapper{
+    gap:1rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .blogsWrapper {
     grid-template-columns: auto auto;

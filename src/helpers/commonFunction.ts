@@ -418,6 +418,28 @@ export const  clearSessionAndRedirect=()=> {
   window.location.href = "/";
 }
 
+export function formatDateToBengali(dateString:string|number) {
+  const bengaliMonths = [
+    "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল",
+    "মে", "জুন", "জুলাই", "আগস্ট",
+    "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
+  ];
+
+  // Convert string to Date
+  const date = new Date(dateString);
+
+  // Get month and year
+  const month = bengaliMonths[date.getMonth()];
+  const year = date.getFullYear().toString();
+
+  // Convert year to Bengali digits
+  const bengaliDigits:any = { 0: "০", 1: "১", 2: "২", 3: "৩", 4: "৪", 5: "৫", 6: "৬", 7: "৭", 8: "৮", 9: "৯" };
+  const bengaliYear = year.split("").map(d => bengaliDigits[d]).join("");
+
+  return `${month} ${bengaliYear}`;
+}
+
+
 
 export function timeAgo(dateString:string) {
   const now = new Date();

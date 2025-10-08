@@ -15,11 +15,12 @@ const Blogs = ({blogs}:TBlogsProps) => {
     <div>
         <div>
             <div  className="blog mb-5">
-                <Link href={`/blogs/${blogs.list[0].slug}`}>
+                <Link href={`/blogs/${blogs?.list[0].slug}`}>
                     <div className={`${styles.blogWrapper} rounded flex text-white`}>
                         <div className={' max-w-[70%] p-2'}>
                             <img
                                 loading="lazy"
+                                className='h-full'
                                 src={blogs.list[0].featured_image}
                                 alt={blogs.list[0].alter_text_for_featured_image}
                             />
@@ -36,8 +37,8 @@ const Blogs = ({blogs}:TBlogsProps) => {
                             </div>
                             <div className={styles.content}>
                                 <h1 className={styles.title}>{blogs.list[0].title}</h1>
-                                <p className={styles.excerpt+" mt-9"}>{blogs.list[0].excerpt}</p>
-                                <div className='btn-gradient-2 mt-9 w-[150px] py-2 rounded-[3px] text-center text-[13px]'>
+                                <p className={styles.excerpt+" mt-3 lg2:mt-9"}>{blogs.list[0].excerpt}</p>
+                                <div className='btn-gradient-2 mt-3 lg2:mt-9 w-[150px] py-2 rounded-[3px] text-center text-cs lg2:text-[13px]'>
                                     বিস্তারিত পড়ুন
                                     <span className='w-10 h-2 inline-block '>
                                         <RightArrow color={'white'}/>
@@ -71,13 +72,13 @@ const Blogs = ({blogs}:TBlogsProps) => {
                                     <span className='w-6 h-6 inline-block'>
                                         <CalenderIcon />
                                     </span>
-                                    <p>{formatDate(blog?.publish_date,'bn')}</p>
+                                    <p className='max-lg:text-cs'>{formatDate(blog?.publish_date,'bn')}</p>
                                 </div>
                                 <div className='flex items-center px-3 '>
                                     <span className='w-4 h-4 inline-block'>
                                         <UserIcon />
                                     </span>
-                                    <p>{blog?.author}</p>
+                                    <p className='max-lg:text-cs'>{blog?.author}</p>
                                 </div>
                             </div>
                             <div className={styles.content}>
@@ -110,13 +111,13 @@ const Blogs = ({blogs}:TBlogsProps) => {
                                     <span className='w-6 h-6 inline-block'>
                                         <CalenderIcon />
                                     </span>
-                                    <p>{formatDate(blog?.publish_date,'bn')}</p>
+                                    <p className='max-lg:text-cs'>{formatDate(blog?.publish_date,'bn')}</p>
                                 </div>
                                 <div className='flex items-center px-3 '>
                                     <span className='w-4 h-4 inline-block'>
                                         <UserIcon />
                                     </span>
-                                    <p>{blog?.author}</p>
+                                    <p className='max-lg:text-cs'>{blog?.author}</p>
                                 </div>
                             </div>
                             <div className={styles.content}>

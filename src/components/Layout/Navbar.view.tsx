@@ -111,7 +111,7 @@ const Navbar = (props:TNavbar) => {
                         <img loading="lazy" className='max-w-[138px] max-h-[54px] max-sm:max-w-[100px] max-:max-h-[46px]' src={'/assets/logo.png'} alt="Logo" />
                     </figure>
                 </Link>
-                <ul  className={'text-white flex '+ style.navbarList}>
+                <ul  className={' text-white flex '+ style.navbarList}>
                     <li>
                         <Link href={'/'}>হোম</Link>
                     </li>

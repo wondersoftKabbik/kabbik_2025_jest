@@ -118,7 +118,10 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
             0: {
               slidesPerView: 1,
             },
-            768: {
+            580: {
+              slidesPerView: 1.5,
+            },
+            748: {
               slidesPerView: 2,
             },
             1024: {

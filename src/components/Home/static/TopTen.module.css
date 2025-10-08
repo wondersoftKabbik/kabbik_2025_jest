@@ -5,7 +5,7 @@
     overflow-x:hidden ;
     margin:0 auto;
     color: white;
-    z-index: 20; 
+    z-index: 5; 
     /* background-color: ; */
     position: relative;
 }
@@ -41,7 +41,7 @@
     margin-left: 5px;
     border-radius: 50%;
     display: flex;
-    overflow-x:hidden ;
+    /* overflow-x:hidden ; */
     align-items: center;
 }
 
@@ -95,7 +95,7 @@
     z-index: 100;
     bottom: 120px;
     position: absolute;
-    background: #D9D9D933;
+    background: #d9d9d98d;
 }
 
 .player_count{
@@ -119,10 +119,10 @@
  
     .heading{
         font-weight: 600;
-        font-size: 34px;
+        font-size: 22px;
     }
     .see_all{
-        font-size: 18px;
+        font-size: 16px;
     }
     /* .arrow{
         padding: 5px 2.5px;

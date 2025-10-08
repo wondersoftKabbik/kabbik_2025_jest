@@ -42,7 +42,7 @@ export default function Footer() {
     <footer className="bg-[#06152B] z-10 relative text-white mt-10">
       {/* Newsletter Section */}
       <div className="px-4 max-w-[1400px] w-[97%] mx-auto py-8">
-        <div className="flex flex-col lg:flex-row items-start justify-between lg:items-center gap-8 ">
+        <div className="flex flex-col md:flex-row items-start justify-between lg:items-center gap-8 ">
           {/* Newsletter Text */}
           <div className="flex-1 max-w-2xl">
             <h2 className="gradient-text lg:text-[24px] font-bold mb-3 font-inter">
@@ -58,14 +58,14 @@ export default function Footer() {
           </div>
 
           {/* Newsletter Form */}
-          <div className=" lg:w-auto lg:max-w-[520px] w-[35%]">
-            <div className="flex bg-white rounded-[8px] p-2">
+          <div className=" lg:w-auto lg:max-w-[520px] w-[40%] lg2:w-[35%]">
+            <div className="flex bg-white justify-between rounded-[8px] p-2">
               <input
                 type="email"
                 placeholder="ইমেইল এড্রেস"
                 onChange={(e)=>setEmail(e.target.value)}
                 value={email}
-                className="flex-1 outline-none border-0 text-[#06152B]  placeholder:text-[#06152B]/50 focus-visible:ring-0 bg-transparent font-inter"
+                className="flex-1 max-w-[65%] outline-none border-0 text-[#06152B]  placeholder:text-[#06152B]/50 focus-visible:ring-0 bg-transparent font-inter"
               />
               <button 
                 onClick={handleSubmit}

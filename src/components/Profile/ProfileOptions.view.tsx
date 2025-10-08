@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import BookIcon from '@/svgs/bookIcon';
 import LoveIcon from '@/svgs/LoveIcon';
 import { Delete, GraduationCap, HandshakeIcon, InfoIcon, LogOut, PersonStandingIcon, StarIcon } from 'lucide-react';
@@ -12,47 +12,121 @@ import { cn } from '@/lib/utils';
 import { clearSessionAndRedirect } from '@/helpers/commonFunction';
 import { paths } from '@/utils/Paths';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { UserProfileInfo } from '../audiobook/static/audiobook.type';
+import { UserSummaryInfo } from './static/profile.type';
+import { bkashUnSubscribeUserApi, gpUnsubscribeApi, postBookRequest, redeemCodePostApi, robiUnSubscribeUserApi, updateProfile, userProfile, userSummary } from '@/utils/apiServices';
+import { toast } from 'react-toastify';
+import { signOut } from 'next-auth/react';
+import TopSection from './TopSection.view';
+import { useAppSelector } from '@/store/store';
+import { MenuItem } from './MenuItem.view';
+import CommonModal from '../ui/CommonModal/CommonModal.view';
+import RobiNumberInput from './RobiNumberModal.view';
+import CancelSubscriptionModal from './TakingConfirmation.view';
+import BookInfoForm from './BookRequestModal.view';
+import ReedemCodeActivate from './ReedemCode.view';
 
-interface MenuItemProps {
-  title: string;
-  icon: React.ReactNode;
-  gradient: string;
-  hasNewBadge?: boolean;
-  className?: string;
-  handleClick?:()=>void
-}
+export default function Profiles(profileData: any) {
+  const router = useRouter();
+  const [isLogin, setIsLogin]: any = useState();
+  const user=useAppSelector((store)=>store.user.userData);
+  const [showRobiNumberModal,setShowRobiNumberModal]=useState(false);
+  const [showConfirmationModal,setShowConfirmationModal]=useState(false);
+  const [showBookRequestModal,setShowBookRequestModal]=useState(false);
+  const [showRedeemModal,setShowRedeemModal]=useState(false);
 
-const MenuItem: React.FC<MenuItemProps> = ({ title, icon, gradient, hasNewBadge, className,handleClick }) => {
-  return (
-    <div onClick={()=>handleClick?handleClick():''} className={cn('relative cursor-pointer', className)}>
-      <div className="profile_btn_gradients rounded-xl p-2">
-        <div className="flex items-center space-x-4">
-          <div
-            className={cn(
-              'w-[36px] h-[36px] rounded-lg flex text-white items-center justify-center',
-              gradient
-            )}
-          >
-            {icon}
-          </div>
-          <h3 className="text-white text-cn font-semibold flex-1">{title}</h3>
-        </div>
-      </div>
+  const isAuthenticated = useCallback(async () => {
+    setIsLogin(Cookies.get("isLogin"));
+    if (isLogin === "false") {
+      window.location.replace("/");
+    }
+  }, [isLogin]);
 
-      {hasNewBadge && (
-        <div className="absolute -top-2 right-2 bg-red-600 text-white px-2 py-0.5 rounded-lg text-xs font-bold shadow-md">
-          নতুন
-        </div>
-      )}
-    </div>
-  );
-};
+  useEffect(() => {
+    isAuthenticated();
+  }, [isAuthenticated]);
 
-export default function Profiles() {
+  
+
+  const [userName, setUserName] = useState("");
+  const [bookName, setbookName] = useState("");
+  const [writerName, setWriterName] = useState("");
+  const [language, setLanguage] = useState("");
+  const [category, setCategory] = useState("");
+
+  
+
+
+  const unSubscribeHandler = async () => {
+    switch (user?.payment_method) {
+      case "bKash":
+        await bkashUnSubscribeUserApi(user?.subscription_id);
+        router.push("/");
+        break;
+      case "Robi":
+        setShowRobiNumberModal(true);
+        break;
+      case "GPDCB_SUBS":
+        const result = await gpUnsubscribeApi();
+        if (result?.success) {
+          router.push("/");
+          toast.success(result.message, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "dark",
+          });
+        } else if(result){
+          toast.error("Could not unsubscribe");
+        }
+        break;
+    }
+  };
+
+  const robiUnsubscribed = async (robiMsisdn:string) => {
+    await robiUnSubscribeUserApi(robiMsisdn);
+    router.push("/");
+  };
+
+  
+
+  /*-----------------GOOGLE AUTH LOGIN------------------*/
+
+  const logOutHandle = () => {
+    if (!profileData.session) {
+      const cookies = Cookies.get();
+      for (const cookie in cookies) {
+        Cookies.remove(cookie);
+      }
+      localStorage.clear();
+      window.location.replace("/");
+    } else {
+      const cookies = Cookies.get();
+      for (const cookie in cookies) {
+        Cookies.remove(cookie);
+      }
+      localStorage.clear();
+      signOut({ callbackUrl: "/" });
+    }
+  };
+
+  /*-----------------GOOGLE AUTH LOGIN------------------*/
+
+
+
+  
+
+
+
+
   const menuItems = [
     // Row 1
-    { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', hasNewBadge: true },
-    { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient' },
+    { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', hasNewBadge: true, handleClick:()=>{setShowBookRequestModal(true)} },
+    { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{setShowRedeemModal(true)} },
     { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' },
 
     // Row 2
@@ -77,6 +151,8 @@ export default function Profiles() {
   const remainder = menuItems.slice(9);
 
   return (
+    <div>
+      <TopSection unSubscribeHandler={()=>{setShowConfirmationModal(true)}}/>
     <div className=" p-4">
       <div className="max-w-6xl mx-auto">
         {/* 3 columns x 3 rows */}
@@ -85,6 +161,7 @@ export default function Profiles() {
             <MenuItem
               key={index}
               title={item.title}
+              handleClick={item.handleClick??(()=>{})}
               icon={item.icon}
               gradient={item.gradient}
               hasNewBadge={item.hasNewBadge}
@@ -111,6 +188,32 @@ export default function Profiles() {
           </div>
         )}
       </div>
+    </div>
+    <CommonModal
+      isOpen={showRobiNumberModal}
+      onClose={()=>setShowRobiNumberModal(false)}
+    >
+      <RobiNumberInput onSubmit={robiUnsubscribed}/>
+    </CommonModal>
+    <CommonModal
+      isOpen={showConfirmationModal}
+      onClose={()=>setShowConfirmationModal(false)}
+    >
+      <CancelSubscriptionModal onCancel={()=>setShowConfirmationModal(false)} onConfirm={unSubscribeHandler}/>
+    </CommonModal>
+    <CommonModal
+      isOpen={showBookRequestModal}
+      onClose={()=>{setShowBookRequestModal(false)}}
+    >
+      <BookInfoForm onclose={()=>{setShowBookRequestModal(false)}}/>
+    </CommonModal>
+    <CommonModal
+      isOpen={showRedeemModal}
+      onClose={()=>{setShowRedeemModal(false)}}
+    >
+      <ReedemCodeActivate onClose={()=>{setShowRedeemModal(false)}}/>
+    </CommonModal>
+
     </div>
   );
 }

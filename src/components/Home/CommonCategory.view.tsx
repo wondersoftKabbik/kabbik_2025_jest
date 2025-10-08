@@ -96,9 +96,17 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                         slidesPerView: 2,
                         slidesPerGroup:2
                         },
+                        500: {
+                          slidesPerView: 2.5,
+                          slidesPerGroup:2
+                        },
                         768: {
-                        slidesPerView: 3,
-                        slidesPerGroup:3
+                          slidesPerView: 3.3,
+                          slidesPerGroup:3
+                        },
+                        900: {
+                        slidesPerView: 4,
+                        slidesPerGroup:4
                         },
                         1024: {
                         slidesPerView: 5,
@@ -127,7 +135,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                           className={styles.swiper_slider_custom}
                         >
                                 <Link href={`/audiobook/${item?.id}`}>
-                                    <div className={podcast?' mx-4':styles.item_cont} key={index}>
+                                    <div className={podcast?' mx-2.5':styles.item_cont} key={index}>
                                         {isPopular?
                                             <p className={styles.popular}>Most Popular</p>
                                         :''}
@@ -159,7 +167,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             <div className={styles.new_audio_book}>নতুন অডিও বুক </div>
                                         ):(
                                             <p className={styles.player_count}>
-                                            <span className='w-5 h-5'>
+                                            <span className='w-4 h-4'>
                                                 <RedPlayerIcon/>
                                             </span>
                                             <span >{(item?.play_count/1000).toFixed(2)}k listen</span>
@@ -179,8 +187,8 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                                     </CommonButton>
                                                     {!expand?(
                                                       <span >
-                                                        <p className='mt-2 font-[600] text-[18px]'>রেটিংঃ {item.rating.toFixed(1)}</p>
-                                                        <p className='text-[14px] mb-2'>{item.author_name}</p>
+                                                        <p className='mt-2 font-[500] text-cn'>রেটিংঃ {item.rating.toFixed(1)}</p>
+                                                        <p className='text-cs mb-2'>{item.author_name}</p>
                                                       </span>
                                                     ):''}
                                                 </div>

@@ -1,8 +1,10 @@
+import { auth } from '@/app/lib/auth';
 import Profiles from '@/components/Profile/ProfileOptions.view'
 import TopSection from '@/components/Profile/TopSection.view'
 import React from 'react'
 
-const page = () => {
+const page = async() => {
+  const session = await auth();
   return (
     <div>
         <div className='h-[100px] mt-[-100px] bg-[#0E1D3F]'/>
@@ -20,9 +22,9 @@ const page = () => {
          </div>
         </div>
         <div>
-            <TopSection/>
+            
             <div>
-                <Profiles/>
+                <Profiles session={session}/>
             </div>
         </div>
     </div>

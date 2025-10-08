@@ -62,7 +62,7 @@ const Hero = ({
                   router.push(`/audiobook/${topbannerinfo?.id}`);
                 }}
               >
-                <div className="relative h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
+                <div className="relative h-[95vh] md2:h-[105vh] lg:h-[115vh] lg2:h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
                   <div className={styles.backdrop_filter}>
                     <div className="">
                       <picture className={styles.thumb_path}>
@@ -81,22 +81,22 @@ const Hero = ({
                       <h5>{topbannerinfo.name}</h5>
                     </div> */}
                       <div className="w-full z-10  text-white">
-                        <h3 className="text-[45px] w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
-                        <p className="text-[31px] my-7">{topbannerinfo.author_name}</p>
+                        <h3 className="text-cxl2 md2:text-cxxl2 w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
+                        <p className="text-cxl my-7">{topbannerinfo.author_name}</p>
                         <CommonButton className={styles.hue_btn}>
                           <div className="flex gap-2">
-                            <span className="mr-4 w-9 h-9 inline-block">
+                            <span className="mr-4 w-7 h-7 inline-block">
                               <PlayerIcon />
                             </span>
-                            <p className="mt-0">এখনই শুনুন</p>
+                            <p className="text-cn2 mt-0">এখনই শুনুন</p>
                           </div>
                         </CommonButton>
                         <CommonButton className={styles.secondary_btn+` bg-grey`}>
                           <div className="flex gap-2">
-                            <span className="mr-4 w-9 h-9 inline-block">
+                            <span className="mr-4 w-7 h-7 inline-block">
                               <IIcon />
                             </span>
-                            <p className="mt-0"> বিস্তারিত তথ্য</p>
+                            <p className="text-cn2 mt-0"> বিস্তারিত তথ্য</p>
                           </div>
                         </CommonButton>
                       </div>
@@ -129,7 +129,7 @@ const Hero = ({
           <div className="mr-[3vw]">
             <h6 className={styles.download_txt}>এখনই আমাদের অডিওবুক অ্যাপটি 
               মোবাইলে ডাউনলোড করে নিন!</h6>
-            <p className="text-[19px] mb-[22px]">বইপড়ার নতুন উপায় — অডিওবুক অ্যাপ এখনই 
+            <p className="text-cn lg:text-cn2 mb-[12px] lg:mb-[22px]">বইপড়ার নতুন উপায় — অডিওবুক অ্যাপ এখনই 
               ডাউনলোড করুন!</p>
               <div className="flex items-center">
                 <picture className="mr-3">
@@ -139,9 +139,9 @@ const Hero = ({
                     className="max-w-[94px] max-h-[30px]"
                   />
                 </picture>
-                <h6 className="text-[22px] leading-none">
-                  সারা বিশ্বে ৫০০০+ <br/>
-                  <span className="text-[16px] mt-0">সক্রিয় ব্যবহারকারী রয়েছে</span>
+                <h6 className="text-cn lg:text-clg leading-none">
+                  সারা বিশ্বে ১৮ লক্ষ + <br/>
+                  <span className="text-cs2 lg:text-[16px] mt-0">সক্রিয় ব্যবহারকারী রয়েছে</span>
                 </h6>
               </div>
           </div>

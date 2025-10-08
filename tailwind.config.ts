@@ -125,7 +125,10 @@ const config: Config = {
       'xs': '480px',   // Extra small devices
       'sm': '640px',
       'md': '768px',
+	  'md1':'810px',
+	  "md2":'900px',
       'lg': '1024px',
+	  'lg2':'1100px',
       'xl': '1280px',
 	  '1350':'1350px',
       '2xl': '1536px',
