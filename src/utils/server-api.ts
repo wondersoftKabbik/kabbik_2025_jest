@@ -137,3 +137,77 @@ export const userDetailsFromServer = async () => {
     return false;
   }
 };
+
+
+export const getPurchasedAudiobooks = async (id: any) => {
+  const userId = getCookieInServerByName("id") ?? defaultId;
+  const userToken = getCookieInServerByName("token") ?? defaultToken;
+
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${userToken}`);
+  myHeaders.append("Content-Type", "application/json");
+
+  const url = `${apiEndPoints.getPurchasedAudiobooks}/${id}`;
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+  };
+
+  try {
+    const response = await fetch(url, requestOptions);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return false;
+  }
+}
+
+
+export const getPurchasedCourse = async (id: any) => {
+  const userId = getCookieInServerByName("id") ?? defaultId;
+  const userToken = getCookieInServerByName("token") ?? defaultToken;
+
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${userToken}`);
+  myHeaders.append("Content-Type", "application/json");
+
+  const url = `${apiEndPoints.getPurchasedCourse}/${id}`;
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+  };
+
+  try {
+    const response = await fetch(url, requestOptions);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return false;
+  }
+}
+
+export const getFavoriteBooks = async (id: any) => {
+  const userId = getCookieInServerByName("id") ?? defaultId;
+  const userToken = getCookieInServerByName("token") ?? defaultToken;
+
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${userToken}`);
+  myHeaders.append("Content-Type", "application/json");
+
+  const url = `${apiEndPoints.favoriteAudioBookList}?user_id=${userId}`;
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+  };
+
+  try {
+    const response = await fetch(url, requestOptions);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return false;
+  }
+}

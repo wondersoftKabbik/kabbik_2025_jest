@@ -136,9 +136,9 @@ export default function Profiles(profileData: any) {
     { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' , handleClick:()=>{router.push(paths.favorites)} },
 
     // Row 2
-    { title: 'রেন্ট বুক', icon: <UserIcon />, gradient: 'bg-purple-gradient', hasNewBadge: true },
+    { title: 'রেন্ট বুক', icon: <UserIcon />, gradient: 'bg-purple-gradient', hasNewBadge: true, handleClick:()=>{router.push(paths.my_rents)} },
     { title: 'রেফার অ্যান্ড আর্ন', icon: <TakaIcon />, gradient: 'bg-orange-gradient' },
-    { title: 'আমার কোর্স', icon: <GraduationCap />, gradient: 'bg-green-gradient', hasNewBadge: true },
+    { title: 'আমার কোর্স', icon: <GraduationCap />, gradient: 'bg-green-gradient', hasNewBadge: true,handleClick:()=>{router.push(paths.my_courses)} },
 
     // Row 3
     // { title: 'ডাউনলোড', icon: <DownloadIconWithBg />, gradient: 'bg-red-gradient' },

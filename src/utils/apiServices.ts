@@ -890,7 +890,7 @@ export const accountDeletion = async (
   )
 };
 
-export const getPurchasedAudiobooks = async (userId: number) => {
+export const getPurchasedAudiobooks = async (userId: number|string) => {
   const url = `${apiEndPoints.getPurchasedAudiobooks}${userId}`;
  
   return await CommonApiHandler(

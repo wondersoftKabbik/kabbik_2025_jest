@@ -33,3 +33,38 @@ export interface FavoriteAudioBookInfo {
     is_favorite: true,
 
 }
+
+
+export type TRentAudiobook = {
+  user_id: string;
+  audiobook_id: string;
+  is_purchased: string;
+  name: string;
+  price: number;
+  thumb_path: string;
+  banner_path: string;
+  play_count: number;
+};
+
+export type TMyCourse = {
+  id: number;
+  name: string;
+  image_url: string;
+  routine_path: string;
+  excluded_payment_methods: string; // JSON string like ["Robi","Gp","Bl"]
+  base_price: string;
+  total_class: string;
+  duration_hour: string;
+  duration_month: string;
+  description: string;
+  fb_group_link: string | null;
+  offer_price: string;
+  start_date: string;
+  end_date: string | null;
+  created_at: string;
+  instructor: string;
+  enrolled_count: string;
+  is_active: number;
+  user_id: string;
+  is_purchased: number;
+};

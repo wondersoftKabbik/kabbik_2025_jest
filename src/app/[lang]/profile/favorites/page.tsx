@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { favoriteAudiobook } from "@/utils/apiServices";
+import { deleteFavoritesApi, favoriteAudiobook, RemoveBooksFromPlaylist } from "@/utils/apiServices";
 import { FavoriteAudioBookInfo } from "@/components/Profile/static/profile.type";
 import Link from "next/link";
 import { paths } from "@/utils/Paths";
+import { toast } from "react-toastify";
+import Spinner from "@/components/ui/Spinner.view";
 
 interface Book {
   id: number;
@@ -12,13 +14,33 @@ interface Book {
   banner: string;
 }
 
-export default async function FavoritesPage () {
-     const result: {data:FavoriteAudioBookInfo[]} = await favoriteAudiobook();
-     let books=result.data;
-  
-//   const handleDelete = (id: number) => {
-//     setBooks((prev) => prev.filter((book) => book.id !== id));
-//   };
+export default  function FavoritesPage () {
+    let [books,setBooks]=useState<FavoriteAudioBookInfo[]>([]);
+    let [loaderId,setLoaderId]=useState<number|string>(0);
+     
+    //  let books=result.data;
+    const getBooks=async()=>{
+      const result: {data:FavoriteAudioBookInfo[]} = await favoriteAudiobook();
+      setBooks(result?.data);
+    }
+
+    let handleDeleteFromList=async(id:number|string)=>{
+      setLoaderId(id)
+      let result=await deleteFavoritesApi(id);
+      if(result?.success){
+        toast.success("Removed From list successfully!")
+        let newBooks=[...books];
+        newBooks=newBooks.filter((item)=>item.id!==id);
+        setBooks(newBooks);
+      }else{
+        toast.error("Something went wrong!")
+      }
+      setLoaderId(0);
+    }
+
+    useEffect(()=>{
+      getBooks();
+    },[])
 
   return (
     <div className="min-h-screen bg-[#050f1e] px-4 py-8">
@@ -52,9 +74,11 @@ export default async function FavoritesPage () {
             </h2>
 
             <button
-            //   onClick={() => handleDelete(book.id)}
+              disabled={loaderId===book.id}
+              onClick={() => handleDeleteFromList(book.id)}
               className="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-[4px] text-sm transition"
             >
+              {loaderId===book.id?<Spinner size="w-3 h-3"/>:''}
               Delete
             </button>
           </div>

@@ -8,5 +8,7 @@ export const paths={
     myPlayList:'/my-playlist',
     playlist_search:'/my-playlist/search',
     subscribe:'/subscribe',
-    favorites:'/profile/favorites'
+    favorites:'/profile/favorites',
+    my_rents:'/profile/my-rents',
+    my_courses:'/profile/my-courses'
 }
