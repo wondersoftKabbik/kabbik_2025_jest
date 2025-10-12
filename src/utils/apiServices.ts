@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { BlogInfo, DynamicSubscriptionPack, TMethods, TtoastType } from "@/helpers/commonTypes";
 import { formatTime, normalizeMsisdn, showToast } from "@/helpers/commonFunction";
 import { CommonApiHandler, getHeaders } from "./CommonApicalls";
+import { TSponsorRequest } from "./types";
 
 export const subscriptionPack = async (id: any) => {
   const url = `${apiEndPoints.packDetailsApi}${id}`;
@@ -155,6 +156,20 @@ export const robiUnSubscribeUserApi = async (msisdn: any) => {
   return await CommonApiHandler(
     {
       name: "robiUnSubscribeUserApi",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null, 
+      defaultTokenAllowed:false
+    }
+ )
+};
+
+export const sponsor_request = async (payload:TSponsorRequest) => {
+  const url = `${apiEndPoints.sponsor_request}`;
+  const raw = JSON.stringify(payload);
+  return await CommonApiHandler(
+    {
+      name: "sponsor_request",
       url,
       method: TMethods.POST,
       body: raw ? raw : null, 
@@ -1211,8 +1226,8 @@ export const create_preference = async (payload:any):Promise<any> => {
   )
 };
 
-export async function addFavorite( audioBookId:string) {
-  const userId= Cookies.get("user_id");
+export async function addFavorite( audioBookId:string|number) {
+  const userId= Cookies.get("id");
   const bodyData = {
     user_id: userId,
     audiobook_id: audioBookId.toString(),

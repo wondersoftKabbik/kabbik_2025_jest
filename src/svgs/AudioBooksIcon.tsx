@@ -19,8 +19,8 @@ const AudioBookIcon = () => {
         </g>
         <defs>
         <linearGradient id="paint0_linear_307_27712" x1="17.3312" y1="17.3312" x2="336.669" y2="336.669" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#00DBDE"/>
-        <stop offset="1" stop-color="#FC00FF"/>
+        <stop stopColor="#00DBDE"/>
+        <stop offset="1" stopColor="#FC00FF"/>
         </linearGradient>
         <clipPath id="clip0_307_27712">
         <rect style={{height:"100%",width:"100%"}} fill="white"/>

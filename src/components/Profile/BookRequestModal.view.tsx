@@ -91,14 +91,16 @@ const BookInfoForm = ({onclose}:{onclose:()=>void}) => {
   };
 
   return (
-    <div className="w-full max-h-[95vh] overflow-y-auto profile_btn_gradients max-w-md mx-auto p-6 rounded-[8px] bg-white/50 shadow-lg">
-      <h2 className="text-xl mt-4 font-semibold text-center mb-5 text-white/90">
+    <div className="w-full max-h-[95vh] overflow-y-auto profile_btn_gradients max-w-md mx-auto px-8 pb-4 pt-6 rounded-2xl shadow-2xl text-white relative">
+      {/* Header */}
+      <h2 className="text-2xl font-semibold text-center mb-8 text-white drop-shadow-md">
         📚 বই সম্পর্কিত তথ্য দিন
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
+        {/* Name */}
         <div>
-          <label className="block text-sm font-medium mb-1 text-white/80">
+          <label className="block text-sm font-medium mb-0.5 text-white/90">
             আপনার নাম লিখুন
           </label>
           <input
@@ -107,15 +109,15 @@ const BookInfoForm = ({onclose}:{onclose:()=>void}) => {
             value={formData.name}
             onChange={handleChange}
             placeholder="আপনার নাম"
-            className="w-full border border-gray-300 rounded-[4px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-white/text-white/90"
+            className="w-full px-4 py-2 rounded-[4px] bg-white/10 text-white placeholder-gray-300 
+                      focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all duration-200"
           />
-          {errors.name && (
-            <p className="text-red-500 text-xs mt-1">{errors.name}</p>
-          )}
+          {errors.name && <p className="text-yellow-300 text-xs mt-1">{errors.name}</p>}
         </div>
 
+        {/* Book Name */}
         <div>
-          <label className="block text-sm font-medium mb-1 text-white/80">
+          <label className="block text-sm font-medium mb-0.5 text-white/90">
             বই এর নাম লিখুন
           </label>
           <input
@@ -124,15 +126,15 @@ const BookInfoForm = ({onclose}:{onclose:()=>void}) => {
             value={formData.bookName}
             onChange={handleChange}
             placeholder="বই এর নাম"
-            className="w-full border border-gray-300 rounded-[4px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-white/text-white/90"
+            className="w-full px-4 py-2 rounded-[4px] bg-white/10 text-white placeholder-gray-300 
+                      focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all duration-200"
           />
-          {errors.name && (
-            <p className="text-red-500 text-xs mt-1">{errors.bookName}</p>
-          )}
+          {errors.bookName && <p className="text-yellow-300 text-xs mt-1">{errors.bookName}</p>}
         </div>
 
+        {/* Author */}
         <div>
-          <label className="block text-sm font-medium mb-1 text-white/80">
+          <label className="block text-sm font-medium mb-0.5 text-white/90">
             বই এর লেখক এর নাম লিখুন
           </label>
           <input
@@ -141,15 +143,15 @@ const BookInfoForm = ({onclose}:{onclose:()=>void}) => {
             value={formData.author}
             onChange={handleChange}
             placeholder="লেখকের নাম"
-            className="w-full border border-gray-300 rounded-[4px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-white/text-white/90"
+            className="w-full px-4 py-2 rounded-[4px] bg-white/10 text-white placeholder-gray-300 
+                      focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all duration-200"
           />
-          {errors.name && (
-            <p className="text-red-500 text-xs mt-1">{errors.author}</p>
-          )}
+          {errors.author && <p className="text-yellow-300 text-xs mt-1">{errors.author}</p>}
         </div>
 
+        {/* Language */}
         <div>
-          <label className="block text-sm font-medium mb-1 text-white/80">
+          <label className="block text-sm font-medium mb-0.5 text-white/90">
             বই এর ভাষার নাম লিখুন
           </label>
           <input
@@ -158,15 +160,15 @@ const BookInfoForm = ({onclose}:{onclose:()=>void}) => {
             value={formData.language}
             onChange={handleChange}
             placeholder="যেমন: বাংলা, ইংরেজি"
-            className="w-full border border-gray-300 rounded-[4px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-white/text-white/90"
+            className="w-full px-4 py-2 rounded-[4px] bg-white/10 text-white placeholder-gray-300 
+                      focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all duration-200"
           />
-          {errors.name && (
-            <p className="text-red-500 text-xs mt-1">{errors.language}</p>
-          )}
+          {errors.language && <p className="text-yellow-300 text-xs mt-1">{errors.language}</p>}
         </div>
 
+        {/* Publisher */}
         <div>
-          <label className="block text-sm font-medium mb-1 text-white/80">
+          <label className="block text-sm font-medium mb-0.5 text-white/90">
             প্রকাশনী (যদি থাকে)
           </label>
           <input
@@ -175,21 +177,25 @@ const BookInfoForm = ({onclose}:{onclose:()=>void}) => {
             value={formData.publisher}
             onChange={handleChange}
             placeholder="প্রকাশনীর নাম (ঐচ্ছিক)"
-            className="w-full border border-gray-300 rounded-[4px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-white/text-white/90"
+            className="w-full px-4 py-2 rounded-[4px] bg-white/10 text-white placeholder-gray-300 
+                      focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all duration-200"
           />
         </div>
       </div>
 
-      <div className="mt-6 flex justify-center">
+      {/* Submit Button */}
+      <div className="mt-4 flex justify-center">
         <CommonButton
           handleClick={bookRequestForm}
-          className="bg-white/50 text-white/90  text-white px-6 py-2 rounded-[4px] font-semibold transition-all duration-200 w-full"
+          className="w-full py-2 bg-white text-[#3A2768] font-semibold rounded-[4px] 
+                    hover:bg-gray-100 transition-all duration-200 shadow-md"
         >
-            {loading?<Spinner size="w-3 h-3"/>:''}
+          {loading ? <Spinner size="w-4 h-4" /> : ""}
           জমা দিন
         </CommonButton>
       </div>
     </div>
+
   );
 };
 

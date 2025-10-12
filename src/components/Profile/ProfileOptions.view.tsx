@@ -27,6 +27,9 @@ import RobiNumberInput from './RobiNumberModal.view';
 import CancelSubscriptionModal from './TakingConfirmation.view';
 import BookInfoForm from './BookRequestModal.view';
 import ReedemCodeActivate from './ReedemCode.view';
+import ProfileInfoForm from './UpdateProfile.view';
+import ContactUsModal from './ContactUsModal.view';
+import SponsorFormModal from './SponsorShipModal.view';
 
 export default function Profiles(profileData: any) {
   const router = useRouter();
@@ -36,6 +39,9 @@ export default function Profiles(profileData: any) {
   const [showConfirmationModal,setShowConfirmationModal]=useState(false);
   const [showBookRequestModal,setShowBookRequestModal]=useState(false);
   const [showRedeemModal,setShowRedeemModal]=useState(false);
+  const [profileInfoModal,setProfileInfoModal]=useState(false);
+  const [showContactModal,setShowContactModal]=useState(false);
+  const [sponsorShipModal,setSponsorShipModal]=useState(false);
 
   const isAuthenticated = useCallback(async () => {
     setIsLogin(Cookies.get("isLogin"));
@@ -127,7 +133,7 @@ export default function Profiles(profileData: any) {
     // Row 1
     { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', hasNewBadge: true, handleClick:()=>{setShowBookRequestModal(true)} },
     { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{setShowRedeemModal(true)} },
-    { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' },
+    { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' , handleClick:()=>{router.push(paths.favorites)} },
 
     // Row 2
     { title: 'রেন্ট বুক', icon: <UserIcon />, gradient: 'bg-purple-gradient', hasNewBadge: true },
@@ -135,15 +141,15 @@ export default function Profiles(profileData: any) {
     { title: 'আমার কোর্স', icon: <GraduationCap />, gradient: 'bg-green-gradient', hasNewBadge: true },
 
     // Row 3
-    { title: 'ডাউনলোড', icon: <DownloadIconWithBg />, gradient: 'bg-red-gradient' },
-    { title: 'স্পনসরশিপ', icon: <HandshakeIcon />, gradient: 'bg-yellow-gradient' },
+    // { title: 'ডাউনলোড', icon: <DownloadIconWithBg />, gradient: 'bg-red-gradient' },
+    { title: 'স্পনসরশিপ', icon: <HandshakeIcon />, gradient: 'bg-yellow-gradient', handleClick:()=>setSponsorShipModal(true) },
     { title: 'অ্যাকাউন্ট ডিঅ্যাকটিভেট', icon: <Delete />, gradient: 'bg-purple-gradient' },
 
     // Remaining items (to be shown in a single horizontal row)
-    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient' ,url:paths.myPlayList },
-    { title: 'অ্যাবাউট আস', icon: <InfoIcon />, gradient: 'bg-blue-gradient' },
-    { title: 'কন্ট্যাক্ট আস', icon: <PersonStandingIcon />, gradient: 'bg-purple-gradient' },
-    { title: 'রেটিং', icon: <StarIcon />, gradient: 'bg-red-gradient' },
+    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient' ,handleClick:()=>router.push(paths.myPlayList) },
+    { title: 'অ্যাবাউট আস', icon: <InfoIcon />, gradient: 'bg-blue-gradient' ,handleClick:()=>router.push('/about')},
+    { title: 'কন্ট্যাক্ট আস', icon: <PersonStandingIcon />, gradient: 'bg-purple-gradient',handleClick:()=>{setShowContactModal(true)} },
+    { title: 'রেইট আস', icon: <StarIcon />, gradient: 'bg-red-gradient',handleClick:()=>router.push('/download-app') },
     { title: 'লগ আউট', icon: <LogOut />, gradient: 'bg-green-gradient',handleClick:clearSessionAndRedirect }
   ];
 
@@ -152,12 +158,13 @@ export default function Profiles(profileData: any) {
 
   return (
     <div>
-      <TopSection unSubscribeHandler={()=>{setShowConfirmationModal(true)}}/>
+      <TopSection editProfile={()=>{setProfileInfoModal(true)}} unSubscribeHandler={()=>{setShowConfirmationModal(true)}}/>
     <div className=" p-4">
       <div className="max-w-6xl mx-auto">
         {/* 3 columns x 3 rows */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {firstNine.map((item, index) => (
+            // <Link href={item.url??''} key={index} className=" flex-shrink-0">
             <MenuItem
               key={index}
               title={item.title}
@@ -166,15 +173,16 @@ export default function Profiles(profileData: any) {
               gradient={item.gradient}
               hasNewBadge={item.hasNewBadge}
             />
+            // </Link>
           ))}
         </div>
 
         {/* Remaining items in a single horizontal row */}
         {remainder.length > 0 && (
           <div className="mt-6">
-            <div className="my">
+            <div className="my grid gap-4">
               {remainder.map((item, idx) => (
-                <Link href={item.url??''} key={idx} className="w-full block my-3 flex-shrink-0">
+                // <Link href={item.url??''} key={idx} className="w-full block my-3 flex-shrink-0">
                   <MenuItem
                     title={item.title}
                     icon={item.icon}
@@ -182,7 +190,7 @@ export default function Profiles(profileData: any) {
                     gradient={item.gradient}
                     hasNewBadge={item.hasNewBadge}
                   />
-                </Link>
+                // </Link>
               ))}
             </div>
           </div>
@@ -213,7 +221,24 @@ export default function Profiles(profileData: any) {
     >
       <ReedemCodeActivate onClose={()=>{setShowRedeemModal(false)}}/>
     </CommonModal>
-
+    <CommonModal
+      isOpen={profileInfoModal}
+      onClose={()=>{setProfileInfoModal(false)}}
+    >
+      <ProfileInfoForm onclose={()=>{setProfileInfoModal(false)}}/>
+    </CommonModal>
+    <CommonModal
+      isOpen={showContactModal}
+      onClose={()=>{setShowContactModal(false)}}
+    >
+      <ContactUsModal/>
+    </CommonModal>
+     <CommonModal
+      isOpen={sponsorShipModal}
+      onClose={()=>{setSponsorShipModal(false)}}
+    >
+      <SponsorFormModal onClose={()=>{setSponsorShipModal(false)}}/>
+    </CommonModal>
     </div>
   );
 }

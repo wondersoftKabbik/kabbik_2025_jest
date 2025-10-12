@@ -11,24 +11,24 @@ const Crown = () => {
         <path d="M4.71484 21.252L5.17597 24.8153H14.4707H23.7654L24.2265 21.252H4.71484Z" fill="url(#paint4_linear_600_33817)"/>
         <defs>
         <linearGradient id="paint0_linear_600_33817" x1="1.92021" y1="3.04102" x2="1.92021" y2="6.44784" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#98266B"/>
-        <stop offset="1" stop-color="#B93A70"/>
+        <stop stopColor="#98266B"/>
+        <stop offset="1" stopColor="#B93A70"/>
         </linearGradient>
         <linearGradient id="paint1_linear_600_33817" x1="27.0198" y1="3.04102" x2="27.0198" y2="6.44784" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#98266B"/>
-        <stop offset="1" stop-color="#B93A70"/>
+        <stop stopColor="#98266B"/>
+        <stop offset="1" stopColor="#B93A70"/>
         </linearGradient>
         <linearGradient id="paint2_linear_600_33817" x1="14.471" y1="0.1875" x2="14.471" y2="3.59343" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#98266B"/>
-        <stop offset="1" stop-color="#B93A70"/>
+        <stop stopColor="#98266B"/>
+        <stop offset="1" stopColor="#B93A70"/>
         </linearGradient>
         <linearGradient id="paint3_linear_600_33817" x1="17.5255" y1="10.4644" x2="6.32633" y2="31.8447" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#98266B"/>
-        <stop offset="1" stop-color="#BA3A71"/>
+        <stop stopColor="#98266B"/>
+        <stop offset="1" stopColor="#BA3A71"/>
         </linearGradient>
         <linearGradient id="paint4_linear_600_33817" x1="14.4707" y1="21.252" x2="14.4707" y2="24.8153" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#98266B"/>
-        <stop offset="1" stop-color="#B93A70"/>
+        <stop stopColor="#98266B"/>
+        <stop offset="1" stopColor="#B93A70"/>
         </linearGradient>
         </defs>
         </svg>

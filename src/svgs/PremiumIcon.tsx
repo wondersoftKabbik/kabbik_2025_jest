@@ -24,8 +24,8 @@ const PremiumCrownIcon = ({color}:TCommonProps) => {
         </g>
         </g>
         <defs>
-        <filter id="filter0_d_167_1605" x="0" y="0" width="44" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <filter id="filter0_d_167_1605" x="0" y="0" width="44" height="44" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
         <feOffset dy="1"/>
         <feGaussianBlur stdDeviation="1"/>
@@ -35,24 +35,24 @@ const PremiumCrownIcon = ({color}:TCommonProps) => {
         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_167_1605" result="shape"/>
         </filter>
         <linearGradient id="paint0_linear_167_1605" x1="12.7886" y1="15.2285" x2="12.7886" y2="17.7403" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#B93A70"/>
-        <stop offset="1" stop-color="#831A68"/>
+        <stop stopColor="#B93A70"/>
+        <stop offset="1" stopColor="#831A68"/>
         </linearGradient>
         <linearGradient id="paint1_linear_167_1605" x1="31.2808" y1="15.2285" x2="31.2808" y2="17.7403" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#B93A70"/>
-        <stop offset="1" stop-color="#831A68"/>
+        <stop stopColor="#B93A70"/>
+        <stop offset="1" stopColor="#831A68"/>
         </linearGradient>
         <linearGradient id="paint2_linear_167_1605" x1="22.0347" y1="13.1328" x2="22.0347" y2="15.6446" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#B93A70"/>
-        <stop offset="1" stop-color="#831A68"/>
+        <stop stopColor="#B93A70"/>
+        <stop offset="1" stopColor="#831A68"/>
         </linearGradient>
         <linearGradient id="paint3_linear_167_1605" x1="22.0345" y1="16.7617" x2="22.0345" y2="27.3328" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#B93A70"/>
-        <stop offset="1" stop-color="#831A68"/>
+        <stop stopColor="#B93A70"/>
+        <stop offset="1" stopColor="#831A68"/>
         </linearGradient>
         <linearGradient id="paint4_linear_167_1605" x1="22.0343" y1="28.6484" x2="22.0343" y2="31.2788" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#B93A70"/>
-        <stop offset="1" stop-color="#831A68"/>
+        <stop stopColor="#B93A70"/>
+        <stop offset="1" stopColor="#831A68"/>
         </linearGradient>
         <clipPath id="clip0_167_1605">
         <rect x="2" y="1" width="40" height="40" rx="20" fill="white"/>

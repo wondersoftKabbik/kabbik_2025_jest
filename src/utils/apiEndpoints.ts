@@ -93,5 +93,6 @@ export const apiEndPoints = {
   update_playlist_folder:`${BASE_URL}/v1/playlist/update-folders`,
   create_new_folders:`${BASE_URL}/v1/playlist/create-folder`,
   add_books_tofolder:`${BASE_URL}/v1/playlist/add-book-playlist`,
-  removeBooksFromPlaylist:`${BASE_URL}/v1/playlist/`
+  removeBooksFromPlaylist:`${BASE_URL}/v1/playlist/`,
+  sponsor_request:`${BASE_URL}/v4/home/sponsor-request`,
 };

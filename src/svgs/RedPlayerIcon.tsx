@@ -12,8 +12,8 @@ const RedPlayerIcon = () => {
         </g>
         <defs>
         <linearGradient id="paint0_linear_16_229" x1="10" y1="0.517578" x2="10" y2="20.5176" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#D24874"/>
-        <stop offset="1" stop-color="#831A68"/>
+        <stop stopColor="#D24874"/>
+        <stop offset="1" stopColor="#831A68"/>
         </linearGradient>
         <clipPath id="clip0_16_229">
         <rect width="11" height="11" fill="white" transform="translate(4.5 5.01758)"/>

@@ -8,8 +8,8 @@ const One = () => {
 <path d="M131.901 5.94814H80.679L6.82167 53.3965V102.732L76.3257 58.3305H78.0672V303.12H131.901V5.94814ZM137.78 308.999H72.1874V67.9507L0.941895 113.466V50.1859L78.9531 0.0683594H137.78V308.999Z" fill="url(#paint0_linear_0_1)"/>
 <defs>
 <linearGradient id="paint0_linear_0_1" x1="69.3611" y1="0.0683594" x2="69.3611" y2="308.999" gradientUnits="userSpaceOnUse">
-<stop stop-color="white"/>
-<stop offset="1" stop-color="#999999"/>
+<stop stopColor="white"/>
+<stop offset="1" stopColor="#999999"/>
 </linearGradient>
 </defs>
 </svg>

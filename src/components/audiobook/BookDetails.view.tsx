@@ -4,6 +4,7 @@ import styles from "./static/audioBook.module.css";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import {
+  addFavorite,
   deleteFavoritesApi,
   getCurrentEpisodePath,
   getDynamicPaymentMethods,
@@ -108,8 +109,9 @@ const AudiobookComponent = ({
   const id = bookId;
   const audioBookDetailsData = audiobookData;
   const authorData = authorDetailsData?.data[0];
-  const castCrewData = castData.data;
+  const castCrewData = castData?.data;
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isFavorite,setIsFavorite]=useState(audioBookDetailsData?.is_favorite??false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const reviewData = reviewDetailsData.data;
   const [expand,setExpand] = useState(false);
@@ -612,6 +614,33 @@ const AudiobookComponent = ({
       setShowMiniPlayer(false);
     },1000)
   }
+
+  // const hand
+
+  useEffect(()=>{
+    console.log(audioBookDetailsData,"audio book data")
+  },[])
+
+  const handleFavourite=async()=>{
+    if(isFavorite){
+      const result = await deleteFavoritesApi(audioBookDetailsData.id)
+      if(result?.success){
+        setIsFavorite(false);
+        toast.info("Removed From Favorites")
+      }else{
+        toast.error("Something Went wrong");
+      }
+    }else{
+      const result = await addFavorite(audioBookDetailsData.id)
+      if(result?.id){
+        setIsFavorite(true);
+        toast.success("Favorites Created successfully")
+      }else{
+        toast.error("Something Went wrong");
+      }
+      
+    }
+  }
  
   return (
     <>
@@ -652,9 +681,9 @@ const AudiobookComponent = ({
 
                   </div>
                   <div className="absolute top-4 right-4 flex items-center gap-2 cursor-pointer z-[100]">
-                    <div className="w-8 h-8 bg-red-500/50 rounded-full flex items-center justify-center">
-                      <span className="w-4 h-4 text-white fill-white" >
-                        <LoveIcon />
+                    <div className={`w-8 h-8 ${isFavorite?"bg-white/70":"bg-red-500/50"} rounded-full flex items-center justify-center`}>
+                      <span onClick={handleFavourite} className={`w-4 h-4 text-white fill-white`} >
+                        <LoveIcon fill={isFavorite?'#D14874':'white'}/>
                       </span>
                     </div>
                     <div onClick={handleShare} className="w-8 h-8 bg-gray-500/60 rounded-full flex items-center justify-center">

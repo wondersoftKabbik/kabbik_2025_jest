@@ -189,7 +189,7 @@ export default function Footer() {
             </div>
 
             {/* Bangladesh Office */}
-            <div className="space-y-3">
+            {/* <div className="space-y-3">
               <div className="flex items-center gap-1">
                 <div className="w-6 h-4 flex items-center justify-center">
                   <span className="w-6 h-4" >
@@ -203,7 +203,7 @@ export default function Footer() {
               <p className="text-sm text-white/90 font-hind">
                 House: JA-70, 2nd Floor, Link Road, Gudaraghat,Dhaka-1212
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
 

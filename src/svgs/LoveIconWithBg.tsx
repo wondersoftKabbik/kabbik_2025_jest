@@ -9,8 +9,8 @@ const LoveIconWithBg = () => {
 <path d="M39.0175 61.8269L18.6775 42.2789C16.0375 39.447 14.1655 36.033 14.1655 31.953C14.1655 24.177 20.4655 17.877 28.2415 17.877C32.5375 17.877 36.3776 19.797 38.9575 22.8269L39.0175 61.8269L39.0175 61.8269Z" fill="#DB6574"/>
 <defs>
 <linearGradient id="paint0_linear_0_1" x1="39.0278" y1="0.705078" x2="39.0278" y2="76.9657" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3B87E6"/>
-<stop offset="1" stop-color="#9D05D9"/>
+<stop stopColor="#3B87E6"/>
+<stop offset="1" stopColor="#9D05D9"/>
 </linearGradient>
 </defs>
 </svg>

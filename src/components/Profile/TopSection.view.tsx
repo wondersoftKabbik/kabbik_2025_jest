@@ -8,7 +8,10 @@ import { paths } from "@/utils/Paths";
 import { Edit, Clock, BookOpen, CreditCard, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function TopSection({unSubscribeHandler}:{unSubscribeHandler:()=>void}) {
+export default function TopSection({unSubscribeHandler,editProfile}:{
+  unSubscribeHandler:()=>void,
+  editProfile:()=>void
+}) {
   const user=useAppSelector(store=>store.user.userData)
   let router= useRouter();
 
@@ -46,7 +49,7 @@ export default function TopSection({unSubscribeHandler}:{unSubscribeHandler:()=>
                   // }}
                 >
                   <img className="max-w-full max-h-full" src={user?.is_subscribed ?siteConfig.defaultPremiumPic :siteConfig.defaultProfilePic}/>
-                  <div className="absolute bottom-1 right-1 w-6 h-6 bg-white/90 rounded-full flex items-center justify-center shadow-sm cursor-pointer">
+                  <div onClick={editProfile} className="absolute bottom-1 right-1 w-6 h-6 bg-white/90 rounded-full flex items-center justify-center shadow-sm cursor-pointer">
                     <Edit className="w-3.5 h-3.5 text-[#060F1E]" />
                   </div>
                 </div>
@@ -136,10 +139,11 @@ export default function TopSection({unSubscribeHandler}:{unSubscribeHandler:()=>
                   <span className="w-32 rounded-[100%] h-3w-32 inline-block absolute top-[-30px] left-[-40px] bg-[#121B46]">
                     <CurrentPackage/>
                   </span>
+                  {user?.subscriptionDetails?.banner_name?
                   <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#FF8FA4] to-[#BD3856] text-white text-[10px] px-2 py-1 rounded-full shadow">
                     {/* 🔥 টপ পিক */}
                     {decodeWord(user?.subscriptionDetails?.banner_name)}
-                  </div>
+                  </div>:''}
 
                   {/* Duration */}
                   <div className="text-center mb-2 z-10 relative">

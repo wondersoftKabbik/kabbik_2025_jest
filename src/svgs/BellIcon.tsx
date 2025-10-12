@@ -15,38 +15,38 @@ const BellIcon = () => {
         </g>
         <defs>
         <linearGradient id="paint0_linear_99_1902" x1="25.273" y1="-0.320554" x2="50.2119" y2="64.7954" gradientUnits="userSpaceOnUse">
-        <stop offset="0.34" stop-color="#BB33FD"/>
-        <stop offset="0.49" stop-color="#C43AFD"/>
-        <stop offset="0.74" stop-color="#DD50FE"/>
-        <stop offset="1" stop-color="#FF6DFF"/>
+        <stop offset="0.34" stopColor="#BB33FD"/>
+        <stop offset="0.49" stopColor="#C43AFD"/>
+        <stop offset="0.74" stopColor="#DD50FE"/>
+        <stop offset="1" stopColor="#FF6DFF"/>
         </linearGradient>
         <linearGradient id="paint1_linear_99_1902" x1="40.6898" y1="0.119141" x2="40.6898" y2="79.7038" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#34E67E"/>
-        <stop offset="1" stop-color="#14A08C"/>
+        <stop stopColor="#34E67E"/>
+        <stop offset="1" stopColor="#14A08C"/>
         </linearGradient>
         <linearGradient id="paint2_linear_99_1902" x1="25.273" y1="-0.320554" x2="50.2119" y2="64.7954" gradientUnits="userSpaceOnUse">
-        <stop offset="0.34" stop-color="#BB33FD"/>
-        <stop offset="0.49" stop-color="#C43AFD"/>
-        <stop offset="0.74" stop-color="#DD50FE"/>
-        <stop offset="1" stop-color="#FF6DFF"/>
+        <stop offset="0.34" stopColor="#BB33FD"/>
+        <stop offset="0.49" stopColor="#C43AFD"/>
+        <stop offset="0.74" stopColor="#DD50FE"/>
+        <stop offset="1" stopColor="#FF6DFF"/>
         </linearGradient>
         <linearGradient id="paint3_linear_99_1902" x1="40.6898" y1="0.119141" x2="40.6898" y2="79.7038" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#34E67E"/>
-        <stop offset="1" stop-color="#14A08C"/>
+        <stop stopColor="#34E67E"/>
+        <stop offset="1" stopColor="#14A08C"/>
         </linearGradient>
         <linearGradient id="paint4_linear_99_1902" x1="39.0961" y1="32.3957" x2="17.235" y2="4.84614" gradientUnits="userSpaceOnUse">
-        <stop stop-color="white" stop-opacity="0"/>
-        <stop offset="0.37" stop-color="white" stop-opacity="0"/>
-        <stop offset="0.51" stop-color="white" stop-opacity="0.03"/>
-        <stop offset="0.6" stop-color="white" stop-opacity="0.08"/>
-        <stop offset="0.68" stop-color="white" stop-opacity="0.15"/>
-        <stop offset="0.75" stop-color="white" stop-opacity="0.23"/>
-        <stop offset="0.8" stop-color="white" stop-opacity="0.34"/>
-        <stop offset="0.86" stop-color="white" stop-opacity="0.47"/>
-        <stop offset="0.91" stop-color="white" stop-opacity="0.61"/>
-        <stop offset="0.95" stop-color="white" stop-opacity="0.78"/>
-        <stop offset="0.99" stop-color="white" stop-opacity="0.96"/>
-        <stop offset="1" stop-color="white"/>
+        <stop stopColor="white" stop-opacity="0"/>
+        <stop offset="0.37" stopColor="white" stop-opacity="0"/>
+        <stop offset="0.51" stopColor="white" stop-opacity="0.03"/>
+        <stop offset="0.6" stopColor="white" stop-opacity="0.08"/>
+        <stop offset="0.68" stopColor="white" stop-opacity="0.15"/>
+        <stop offset="0.75" stopColor="white" stop-opacity="0.23"/>
+        <stop offset="0.8" stopColor="white" stop-opacity="0.34"/>
+        <stop offset="0.86" stopColor="white" stop-opacity="0.47"/>
+        <stop offset="0.91" stopColor="white" stop-opacity="0.61"/>
+        <stop offset="0.95" stopColor="white" stop-opacity="0.78"/>
+        <stop offset="0.99" stopColor="white" stop-opacity="0.96"/>
+        <stop offset="1" stopColor="white"/>
         </linearGradient>
         <clipPath id="clip0_99_1902">
         <rect width="28" height="36" fill="white" transform="translate(26.8975 21.9121)"/>

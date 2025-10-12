@@ -25,8 +25,8 @@ const PlayStoreIcon = () => {
 <path d="M200.043 212.646H249.547V252.986C249.547 255.382 247.604 257.325 245.21 257.325H240.252V269.611C240.252 272.731 237.763 275.259 234.691 275.259C231.612 275.259 229.127 272.731 229.127 269.611V257.325H220.467V269.611C220.467 272.731 217.974 275.259 214.902 275.259C211.831 275.259 209.338 272.731 209.338 269.611V257.325H204.384C201.989 257.325 200.043 255.382 200.043 252.986L200.043 212.646ZM190.342 212.317C187.239 212.317 184.726 214.869 184.726 218.02V240.312C184.726 243.459 187.239 246.016 190.342 246.016C193.446 246.016 195.959 243.459 195.959 240.312V218.02C195.959 214.869 193.446 212.317 190.342 212.317ZM249.547 208.581H200.043C200.654 201.528 205.229 195.459 211.815 191.945L207.108 185.034C206.473 184.102 206.713 182.831 207.647 182.196C208.579 181.561 209.848 181.803 210.486 182.734L215.616 190.272C218.46 189.288 221.548 188.723 224.795 188.723C228.046 188.723 231.133 189.288 233.977 190.273L239.107 182.737C239.737 181.803 241.01 181.562 241.943 182.196C242.877 182.831 243.116 184.102 242.482 185.034L237.779 191.945C244.364 195.457 248.936 201.526 249.547 208.581ZM217.092 198.998C217.092 197.485 215.867 196.259 214.355 196.259C212.84 196.259 211.615 197.485 211.615 198.998C211.615 200.51 212.844 201.736 214.355 201.736C215.867 201.736 217.092 200.51 217.092 198.998ZM238.321 198.998C238.321 197.485 237.093 196.259 235.581 196.259C234.065 196.259 232.844 197.485 232.844 198.998C232.844 200.51 234.065 201.736 235.581 201.736C237.093 201.736 238.321 200.51 238.321 198.998ZM259.251 212.309C256.152 212.309 253.631 214.865 253.631 218.016V240.316C253.631 243.467 256.152 246.024 259.251 246.024C262.355 246.024 264.864 243.467 264.864 240.316V218.016C264.864 214.865 262.355 212.309 259.251 212.309Z" fill="white"/>
 </g>
 <defs>
-<filter id="filter0_d_74_3802" x="21.7446" y="18.1562" width="253" height="72.7695" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<filter id="filter0_d_74_3802" x="21.7446" y="18.1562" width="253" height="72.7695" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+<feFlood floodOpacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="2"/>
 <feComposite in2="hardAlpha" operator="out"/>
@@ -35,28 +35,28 @@ const PlayStoreIcon = () => {
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_74_3802" result="shape"/>
 </filter>
 <linearGradient id="paint0_linear_74_3802" x1="199.5" y1="96.4996" x2="21.9735" y2="18.0593" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3B3A3A"/>
-<stop offset="0.593139" stop-color="#0C0C0C"/>
-<stop offset="1" stop-color="#151515"/>
+<stop stopColor="#3B3A3A"/>
+<stop offset="0.593139" stopColor="#0C0C0C"/>
+<stop offset="1" stopColor="#151515"/>
 </linearGradient>
 <linearGradient id="paint1_linear_74_3802" x1="47.1187" y1="43.4503" x2="71.5022" y2="43.4503" gradientUnits="userSpaceOnUse">
-<stop stop-color="#63BE6B"/>
-<stop offset="0.506" stop-color="#5BBC6A"/>
-<stop offset="1" stop-color="#4AB96A"/>
+<stop stopColor="#63BE6B"/>
+<stop offset="0.506" stopColor="#5BBC6A"/>
+<stop offset="1" stopColor="#4AB96A"/>
 </linearGradient>
 <linearGradient id="paint2_linear_74_3802" x1="47.1322" y1="53.8191" x2="63.8767" y2="53.8191" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3EC6F2"/>
-<stop offset="1" stop-color="#45AFE3"/>
+<stop stopColor="#3EC6F2"/>
+<stop offset="1" stopColor="#45AFE3"/>
 </linearGradient>
 <linearGradient id="paint3_linear_74_3802" x1="63.8742" y1="54.3836" x2="85.1215" y2="54.3836" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FAA51A"/>
-<stop offset="0.387" stop-color="#FAB716"/>
-<stop offset="0.741" stop-color="#FAC412"/>
-<stop offset="1" stop-color="#FAC80F"/>
+<stop stopColor="#FAA51A"/>
+<stop offset="0.387" stopColor="#FAB716"/>
+<stop offset="0.741" stopColor="#FAC412"/>
+<stop offset="1" stopColor="#FAC80F"/>
 </linearGradient>
 <linearGradient id="paint4_linear_74_3802" x1="47.281" y1="65.1965" x2="72.4849" y2="65.1965" gradientUnits="userSpaceOnUse">
-<stop stop-color="#EC3B50"/>
-<stop offset="1" stop-color="#E7515B"/>
+<stop stopColor="#EC3B50"/>
+<stop offset="1" stopColor="#E7515B"/>
 </linearGradient>
 <clipPath id="clip0_74_3802">
 <rect width="43.4952" height="43.4952" fill="white" transform="translate(44.3735 33.0078)"/>

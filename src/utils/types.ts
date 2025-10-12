@@ -58,5 +58,15 @@ export interface Data {
   release_date: string;
 }
 
+export type TSponsorRequest= {
+  userId: number | string;
+  productName: string;
+  companyProductDetails: string;
+  productLink: string;
+  contactPersonName: string;
+  contactPersonPhone: string;
+  contactPersonEmail: string;
+};
+
 
 export type { BlogInfo, BlogInfoFromDB };

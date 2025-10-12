@@ -9,16 +9,16 @@ const TermsIcon = () => {
 <path d="M17.478 15.5703C15.2146 15.5703 13.3794 17.4056 13.3794 19.669C13.3794 21.9324 15.2146 23.7676 17.478 23.7676C19.7414 23.7676 21.5767 21.9323 21.5767 19.669C21.5767 17.4056 19.7419 15.5703 17.478 15.5703ZM19.5013 20.4231H17.9202V22.0047C17.9202 22.2665 17.7076 22.4787 17.4458 22.4787C17.184 22.4787 16.9713 22.2665 16.9713 22.0047V20.4236L15.3902 20.4231C15.1279 20.4236 14.9157 20.2115 14.9162 19.9496C14.9162 19.6873 15.1284 19.4751 15.3902 19.4751H16.9718V17.894C16.9718 17.6322 17.184 17.4201 17.4458 17.4205C17.7071 17.4205 17.9197 17.6322 17.9202 17.8945V19.4751H19.5009C19.7627 19.4751 19.9749 19.6873 19.9754 19.9496C19.9753 20.211 19.7631 20.4231 19.5013 20.4231Z" fill="url(#paint2_linear_1283_2596)"/>
 <defs>
 <linearGradient id="paint0_linear_1283_2596" x1="3.62988" y1="6.81389" x2="15.8637" y2="6.81389" gradientUnits="userSpaceOnUse">
-<stop stop-color="#CA4272"/>
-<stop offset="1" stop-color="#A42D6D"/>
+<stop stopColor="#CA4272"/>
+<stop offset="1" stopColor="#A42D6D"/>
 </linearGradient>
 <linearGradient id="paint1_linear_1283_2596" x1="0.848633" y1="17.0162" x2="17.4783" y2="17.0162" gradientUnits="userSpaceOnUse">
-<stop stop-color="#CA4272"/>
-<stop offset="1" stop-color="#A42D6D"/>
+<stop stopColor="#CA4272"/>
+<stop offset="1" stopColor="#A42D6D"/>
 </linearGradient>
 <linearGradient id="paint2_linear_1283_2596" x1="13.3794" y1="19.6689" x2="21.5767" y2="19.6689" gradientUnits="userSpaceOnUse">
-<stop stop-color="#CA4272"/>
-<stop offset="1" stop-color="#A42D6D"/>
+<stop stopColor="#CA4272"/>
+<stop offset="1" stopColor="#A42D6D"/>
 </linearGradient>
 </defs>
 </svg>

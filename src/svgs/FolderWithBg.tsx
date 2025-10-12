@@ -10,8 +10,8 @@ const FolderWithBgIcon = () => {
         <path d="M32.1542 43.9001C31.5611 44.4882 31.5611 45.4683 32.1542 46.0564C32.3519 46.2525 32.7473 46.4483 33.1427 46.4483C33.5381 46.4483 33.9335 46.2525 34.1312 46.0564L38.0853 42.136C38.283 41.9399 38.283 41.744 38.4808 41.744C38.4808 41.548 38.6785 41.3519 38.6785 41.156C38.6785 40.9599 38.6785 40.7639 38.4808 40.568C38.4808 40.3719 38.283 40.1758 38.0853 40.1758L34.1312 36.2555C33.5381 35.6674 32.5496 35.6674 31.9565 36.2555C31.3633 36.8435 31.3633 37.8237 31.9565 38.4117L33.3404 39.7839H25.2345C24.4436 39.7839 23.6528 40.3719 23.6528 41.3519C23.6528 42.3321 24.2459 42.9201 25.2345 42.9201H33.5381L32.1542 43.9001Z" fill="#E9EEF5"/>
         </g>
         <defs>
-        <filter id="filter0_d_18_657" x="0.897461" y="0.859375" width="87.5845" height="84.2598" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <filter id="filter0_d_18_657" x="0.897461" y="0.859375" width="87.5845" height="84.2598" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
         <feOffset dy="2"/>
         <feGaussianBlur stdDeviation="2"/>
@@ -21,8 +21,8 @@ const FolderWithBgIcon = () => {
         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_18_657" result="shape"/>
         </filter>
         <linearGradient id="paint0_linear_18_657" x1="44.6898" y1="2.85937" x2="44.6898" y2="79.12" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#BA3F6B"/>
-        <stop offset="1" stop-color="#8D1F69"/>
+        <stop stopColor="#BA3F6B"/>
+        <stop offset="1" stopColor="#8D1F69"/>
         </linearGradient>
         </defs>
         </svg>

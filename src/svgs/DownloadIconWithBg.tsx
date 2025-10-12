@@ -15,46 +15,46 @@ const DownloadIconWithBg = () => {
 <path d="M50.5556 13.248H30.8105C29.8923 13.248 29.1479 13.9924 29.1479 14.9106V14.9381C29.1479 15.8563 29.8923 16.6007 30.8105 16.6007H50.5556C51.4738 16.6007 52.2181 15.8563 52.2181 14.9381V14.9106C52.2181 13.9924 51.4738 13.248 50.5556 13.248Z" fill="url(#paint6_linear_99_1888)"/>
 <defs>
 <linearGradient id="paint0_linear_99_1888" x1="25.273" y1="0.525149" x2="50.2119" y2="65.6411" gradientUnits="userSpaceOnUse">
-<stop offset="0.34" stop-color="#BB33FD"/>
-<stop offset="0.49" stop-color="#C43AFD"/>
-<stop offset="0.74" stop-color="#DD50FE"/>
-<stop offset="1" stop-color="#FF6DFF"/>
+<stop offset="0.34" stopColor="#BB33FD"/>
+<stop offset="0.49" stopColor="#C43AFD"/>
+<stop offset="0.74" stopColor="#DD50FE"/>
+<stop offset="1" stopColor="#FF6DFF"/>
 </linearGradient>
 <linearGradient id="paint1_linear_99_1888" x1="25.273" y1="0.525149" x2="50.2119" y2="65.6411" gradientUnits="userSpaceOnUse">
-<stop offset="0.34" stop-color="#BB33FD"/>
-<stop offset="0.49" stop-color="#C43AFD"/>
-<stop offset="0.74" stop-color="#DD50FE"/>
-<stop offset="1" stop-color="#FF6DFF"/>
+<stop offset="0.34" stopColor="#BB33FD"/>
+<stop offset="0.49" stopColor="#C43AFD"/>
+<stop offset="0.74" stopColor="#DD50FE"/>
+<stop offset="1" stopColor="#FF6DFF"/>
 </linearGradient>
 <linearGradient id="paint2_linear_99_1888" x1="39.0961" y1="33.2414" x2="17.235" y2="5.69185" gradientUnits="userSpaceOnUse">
-<stop stop-color="white" stop-opacity="0"/>
-<stop offset="0.37" stop-color="white" stop-opacity="0"/>
-<stop offset="0.51" stop-color="white" stop-opacity="0.03"/>
-<stop offset="0.6" stop-color="white" stop-opacity="0.08"/>
-<stop offset="0.68" stop-color="white" stop-opacity="0.15"/>
-<stop offset="0.75" stop-color="white" stop-opacity="0.23"/>
-<stop offset="0.8" stop-color="white" stop-opacity="0.34"/>
-<stop offset="0.86" stop-color="white" stop-opacity="0.47"/>
-<stop offset="0.91" stop-color="white" stop-opacity="0.61"/>
-<stop offset="0.95" stop-color="white" stop-opacity="0.78"/>
-<stop offset="0.99" stop-color="white" stop-opacity="0.96"/>
-<stop offset="1" stop-color="white"/>
+<stop stopColor="white" stop-opacity="0"/>
+<stop offset="0.37" stopColor="white" stop-opacity="0"/>
+<stop offset="0.51" stopColor="white" stop-opacity="0.03"/>
+<stop offset="0.6" stopColor="white" stop-opacity="0.08"/>
+<stop offset="0.68" stopColor="white" stop-opacity="0.15"/>
+<stop offset="0.75" stopColor="white" stop-opacity="0.23"/>
+<stop offset="0.8" stopColor="white" stop-opacity="0.34"/>
+<stop offset="0.86" stopColor="white" stop-opacity="0.47"/>
+<stop offset="0.91" stopColor="white" stop-opacity="0.61"/>
+<stop offset="0.95" stopColor="white" stop-opacity="0.78"/>
+<stop offset="0.99" stopColor="white" stop-opacity="0.96"/>
+<stop offset="1" stopColor="white"/>
 </linearGradient>
 <linearGradient id="paint3_linear_99_1888" x1="19.8181" y1="15.8322" x2="67.7447" y2="79.0244" gradientUnits="userSpaceOnUse">
-<stop offset="0.03" stop-color="white"/>
-<stop offset="0.4" stop-color="#FFEFF9"/>
+<stop offset="0.03" stopColor="white"/>
+<stop offset="0.4" stopColor="#FFEFF9"/>
 </linearGradient>
 <linearGradient id="paint4_linear_99_1888" x1="26.6884" y1="10.6375" x2="74.6013" y2="73.8298" gradientUnits="userSpaceOnUse">
-<stop offset="0.03" stop-color="#FFD7FF"/>
-<stop offset="0.4" stop-color="#FFEFF9"/>
+<stop offset="0.03" stopColor="#FFD7FF"/>
+<stop offset="0.4" stopColor="#FFEFF9"/>
 </linearGradient>
 <linearGradient id="paint5_linear_99_1888" x1="30.6869" y1="7.60075" x2="78.5998" y2="70.793" gradientUnits="userSpaceOnUse">
-<stop offset="0.03" stop-color="#FFD7FF"/>
-<stop offset="0.4" stop-color="#FFEFF9"/>
+<stop offset="0.03" stopColor="#FFD7FF"/>
+<stop offset="0.4" stopColor="#FFEFF9"/>
 </linearGradient>
 <linearGradient id="paint6_linear_99_1888" x1="33.5037" y1="5.45721" x2="81.4166" y2="68.6495" gradientUnits="userSpaceOnUse">
-<stop offset="0.03" stop-color="#FFD7FF"/>
-<stop offset="0.4" stop-color="#FFEFF9"/>
+<stop offset="0.03" stopColor="#FFD7FF"/>
+<stop offset="0.4" stopColor="#FFEFF9"/>
 </linearGradient>
 </defs>
 </svg>

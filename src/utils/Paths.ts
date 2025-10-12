@@ -7,5 +7,6 @@ export const paths={
     notification:'/notification',
     myPlayList:'/my-playlist',
     playlist_search:'/my-playlist/search',
-    subscribe:'/subscribe'
+    subscribe:'/subscribe',
+    favorites:'/profile/favorites'
 }
