@@ -7,6 +7,7 @@ import Link from "next/link";
 import { paths } from "@/utils/Paths";
 import { toast } from "react-toastify";
 import Spinner from "@/components/ui/Spinner.view";
+import { siteConfig } from "@/config/config";
 
 interface Book {
   id: number;
@@ -48,7 +49,7 @@ export default  function FavoritesPage () {
         ❤️ My Favorite Books
       </h1>
 
-      <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {books.map((book) => (
           <div
             key={book.id}
@@ -61,10 +62,12 @@ export default  function FavoritesPage () {
             <div className="relative w-full h-48 rounded-xl overflow-hidden">
               <Link href={`${paths.book_details(book.id)}`} >
                 <Image
-                    src={book.banner_path??''}
+                    src={book.thumb_path??book.banner_path ??"https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/bookPlaceholder.jpg"}
                     alt={book.name}
+                    blurDataURL={siteConfig.placeholderBook}
                     fill
                     className="object-cover"
+                    loading="lazy"
                 />
               </Link>
             </div>

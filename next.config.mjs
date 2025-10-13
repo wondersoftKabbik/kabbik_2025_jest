@@ -15,6 +15,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "kabbik-ab-bucket.s3.ap-south-1.amazonaws.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "kabbik-space.sgp1.cdn.digitaloceanspaces.com",
         pathname: "/**",
       },

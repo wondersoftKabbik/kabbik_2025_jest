@@ -15,8 +15,11 @@ import Skeleton from "../Skeleton/Skeleton";
 import EditFoldersModal from "./EditFoldersModal.view";
 import { toast } from "react-toastify";
 import { setPlaylistValue } from "@/store/slicers/PlaylistSlice";
+import { useRouter } from "next/navigation";
+import { paths } from "@/utils/Paths";
 
 export default function MyPlayList() {
+  const router=useRouter();
   const user=useAppSelector(store=>store.user.userData);
   const [showWarningModal,setWarningModal]=useState(false);
   let [books,setbooks]=useState<PlaylistAudioBook[]>([])
@@ -94,7 +97,7 @@ export default function MyPlayList() {
       {/* Radial gradient background */}
       <div className={"flex  justify-around "+container('1280px')}>
         
-        <figure>
+        <figure className="hidden md1:block">
           <img
             src="/assets/booksStack.png"
             className="max-w-[200px]"
@@ -145,11 +148,11 @@ export default function MyPlayList() {
       </div>
       <div className={container('1280px')+" "}>
         <div className=" pb-8 px-4 lg:px-12">
-      <div className="max-w-[1449px] mx-auto relative ">
+      <div className=" mx-auto relative overflow-x-auto overflow-y-hidden">
         {/* Table Header */}
 
         {/* Table Rows */}
-        <table className="w-full border-collapse z-30 relative">
+        <table className="w-full min-w-[800px] border-collapse z-30 relative">
           {/* Table Head */}
           <thead>
             <tr className="text-gray-400  bg-white bg-opacity-10 text-cn text-left">
@@ -176,7 +179,8 @@ export default function MyPlayList() {
               ):
               <tr
                 key={book.audiobook_id}
-                className={`hover:bg-white/5`}
+                className={`hover:bg-white/5 cursor-pointer`}
+                onClick={()=>{router.push(paths.book_details(book.audiobook_id))}}
               >
                 {/* Row Number */}
                 <td className="px-6 py-0 text-gray-300 text-clg2 font-normal">
@@ -216,7 +220,7 @@ export default function MyPlayList() {
                 {/* Action */}
                 <td className="px-6 py-1">
                   <button
-                    onClick={() => RemoveFromPlaylist(book.playlist_book_id)}
+                    onClick={(e) => {e.stopPropagation();RemoveFromPlaylist(book.playlist_book_id)}}
                     className="bg-red-500/20 hover:bg-red-600/20 text-white rounded p-2 flex items-center justify-center"
                   >
                     <Trash2 className="w-6 h-6 text-red-600" />
@@ -232,40 +236,7 @@ export default function MyPlayList() {
      </div>
       </div>
       <div className="bg-deep-blue text-white px-4 py-8 md:px-8">
-      {/* <div className={container("1320px")}>
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center h-4">
-            <h1 className="text-[24px] font-bold text-white">Recommended</h1>
-          </div>
-
-          <div className="grid grid-cols-5 justify-center lg:justify-start gap-6 lg:gap-12 xl:gap-16 2xl:gap-[81px]">
-            {books.map((book) => (
-              <div
-                key={book.audiobook_id}
-                className={`w-[209px] h-[312px] rounded-lg relative transition-all duration-300 hover:scale-105 ${
-                  false
-                    ? "border border-green-glow shadow-[0_-2px_36px_0_#0BBA0B]"
-                    : "border border-card-border"
-                } bg-deep-blue`}
-              >
-                <div className="p-4">
-                  <img
-                    src={book.banner_path}
-                    alt={`Book ${book.audiobook_id}`}
-                    className="w-[177px] h-[236px] object-cover rounded"
-                  />
-                </div>
-
-                <div className="absolute bottom-4 left-4 right-4">
-                  <button className="w-[177px] h-[30px] bg-transparent border border-button-border rounded-md text-white text-[14px] font-normal hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center px-3">
-                    প্লেলিস্ট যোগ করুন
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div> */}
+     
     </div>
       <CommonModal
         isOpen={showWarningModal}

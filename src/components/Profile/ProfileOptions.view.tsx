@@ -143,7 +143,7 @@ export default function Profiles(profileData: any) {
     // Row 3
     // { title: 'ডাউনলোড', icon: <DownloadIconWithBg />, gradient: 'bg-red-gradient' },
     { title: 'স্পনসরশিপ', icon: <HandshakeIcon />, gradient: 'bg-yellow-gradient', handleClick:()=>setSponsorShipModal(true) },
-    { title: 'অ্যাকাউন্ট ডিঅ্যাকটিভেট', icon: <Delete />, gradient: 'bg-purple-gradient' },
+    { title: 'অ্যাকাউন্ট ডিঅ্যাকটিভেট', icon: <Delete />, gradient: 'bg-purple-gradient',handleClick:clearSessionAndRedirect },
 
     // Remaining items (to be shown in a single horizontal row)
     { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient' ,handleClick:()=>router.push(paths.myPlayList) },
