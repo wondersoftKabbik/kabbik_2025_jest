@@ -184,6 +184,7 @@ export default function Profiles(profileData: any) {
               {remainder.map((item, idx) => (
                 // <Link href={item.url??''} key={idx} className="w-full block my-3 flex-shrink-0">
                   <MenuItem
+                    key={idx}
                     title={item.title}
                     icon={item.icon}
                     handleClick={item.handleClick}
