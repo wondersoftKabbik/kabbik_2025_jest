@@ -94,6 +94,18 @@ export default function CustomVideoPlayer({
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.pause(); // stop previous video
+      videoRef.current.load();  // reload new src
+      videoRef.current.play().catch(() => {
+        // autoplay may fail if browser blocks it without mute
+        videoRef.current!.muted = true;
+        videoRef.current!.play();
+      });
+    }
+  }, [url]); 
   
 
   return (
@@ -108,6 +120,7 @@ export default function CustomVideoPlayer({
           onClick={customTogglePlay}
           ref={videoRef}
           src={url}
+          key={url}
           className="max-w-full max-h-full cursor-pointer rounded-[8px] object-contain bg-gray-800"
           onEnded={() => setPlaying(false)}
           muted={muted??false}

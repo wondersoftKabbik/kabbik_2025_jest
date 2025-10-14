@@ -16,6 +16,31 @@ const useHomeComponent = ({homeData}:{homeData:HomeInfo}) => {
     const userPreference=useAppSelector((store)=>store.userPreference?.userPreferenceData)
     const categories=useAppSelector(store=>store.categories?.CategoriesData)
     const [userPreferdCats,setUserPreferdCats]=useState<string[]>([])
+    const [topVideo,setTopVideo]=useState({video:StaticTexts?.home_video?.videos[0],index:0});
+    const [middleVideo,setMiddleVideo]=useState({video:StaticTexts?.campaign_video?.videos[0],index:0});
+    const [lastVideo,setLastVideo]=useState({video:StaticTexts?.nepal_tour_video?.videos[0],index:0});
+
+
+    useEffect(()=>{
+        setTopVideo({video:StaticTexts?.home_video?.videos[0],index:0});
+        setMiddleVideo({video:StaticTexts?.campaign_video?.videos[0],index:0})
+        setLastVideo({video:StaticTexts?.nepal_tour_video?.videos[0],index:0})
+    },[StaticTexts])
+
+    const goToNext=(type:'top'|'middle'|'last')=>{
+        if(type==='top'){
+            console.log({video:StaticTexts?.home_video?.videos[topVideo.index+1],index:topVideo.index+1})
+            setTopVideo({video:StaticTexts?.home_video?.videos[topVideo.index+1],index:topVideo.index+1})
+        }
+        if(type==='middle'){
+            console.log({video:StaticTexts?.campaign_video?.videos[middleVideo.index+1],index:middleVideo.index+1});
+            setMiddleVideo({video:StaticTexts?.campaign_video?.videos[middleVideo.index+1],index:middleVideo.index+1})
+        }
+        if(type==='last'){
+            console.log({video:StaticTexts?.nepal_tour_video?.videos[lastVideo.index+1],index:lastVideo.index+1})
+           setLastVideo({video:StaticTexts?.nepal_tour_video?.videos[lastVideo.index+1],index:lastVideo.index+1})
+        }
+    }
 
     const CommonTogglePlay=(videoRef:RefObject<HTMLVideoElement>,setObj:Dispatch<SetStateAction<boolean>>)=>{
         if(!videoRef ){
@@ -92,16 +117,8 @@ const useHomeComponent = ({homeData}:{homeData:HomeInfo}) => {
         togglePlay3()
     }
 
-    // useEffect(()=>{
-    //     if ('Tawk_API' in window) {
-    //         (window.Tawk_API as any).onLoad = function() {
-    //             (window.Tawk_API as any).hideWidget();
-    //         };
-    //     }
-
-    // },[])
-
-  return {player,StaticTexts,setPlayer,videoRef,initialPlayer,setInitialPlayer,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2,setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats}
+   
+  return {player,StaticTexts,setPlayer,videoRef,initialPlayer,setInitialPlayer,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2,setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats,topVideo,middleVideo,lastVideo,goToNext}
 }
 
 export default useHomeComponent

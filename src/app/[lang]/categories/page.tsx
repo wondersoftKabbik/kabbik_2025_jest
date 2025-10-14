@@ -7,6 +7,11 @@ import { staticTextSlice } from '@/components/ui/static/types';
 import Link from 'next/link';
 import { paths } from '@/utils/Paths';
 
+export const metadata = {
+  title: "Popular Categories | Kabbik",
+  description: "Learn more about Kabbik and our story.",
+};
+
 const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'bl' } }) => {
   const { lang } = await params
     const dict = await getDictionary(lang) // en

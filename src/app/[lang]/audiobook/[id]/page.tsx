@@ -7,6 +7,11 @@ import { getDictionary } from "../../dictionaries";
 import GradientAudioPlayer from "@/components/ui/AudioPlayer.view";
 import AudiobookComponent from "@/components/audiobook/BookDetails.view";
 
+export const metadata = {
+  title: "Audiobook details | Kabbik",
+  description: "Learn more about Kabbik and our story.",
+};
+
 const Audiobook = async(params: {
   params: { id: string;   };
   // lang: 'en' | 'bl';

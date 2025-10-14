@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 // import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import styles from './static/otp.module.css'
 import OTPInput from 'react-otp-input';
 import { WarningIcon } from '@/svgs/WarningIcon.svg';

@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import SubscribeComponent from "@/components/Subscription/Subscription.view"
 import DynamicSubscriptionPack from "@/components/Subscription/static/subscription.type";
 
+
 export const metadata: Metadata = {
   title:
     "Kabbik App Subscription | Daily | Monthly | Half Yearly | Yearly Pack",

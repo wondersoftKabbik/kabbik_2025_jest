@@ -55,7 +55,7 @@ export type TBigPlayerProps={
   index:number;
   isPlaying:boolean;
   setIsPlaying:(val:boolean)=>void;
-  hasAccess:()=>boolean;
+  hasAccess:(val:number)=>boolean;
   audioRef: React.RefObject<HTMLAudioElement>;
   epList: TEpisode[];
   audioPlayer: string;

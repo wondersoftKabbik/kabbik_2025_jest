@@ -2,6 +2,11 @@ import ElaborateBlog from "@/components/ElaborateBlog/ElaborateBlog.view";
 import PageNotFound from "@/components/ui/NotFound.view";
 import { getApprovedBlogBySlug } from "@/utils/server-api";
 
+export const metadata = {
+  title: "Blogs | Kabbik",
+  description: "Learn more about Kabbik and our story.",
+};
+
 export async function generateMetadata({
   params,
 }: {

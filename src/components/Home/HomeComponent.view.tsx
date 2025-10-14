@@ -11,6 +11,7 @@ import { container } from '../ui/static/tailwind.classes';
 import Script from 'next/script';
 import dynamic from 'next/dynamic';
 import Skeleton from '../Skeleton/Skeleton';
+import BigVideoPlayerIcon from '@/svgs/BigVideoPlayer';
 
 const TopTen = dynamic(() => import("./TopTen.view"), {
   ssr: false, // optional: disable server-side rendering
@@ -101,7 +102,7 @@ const Blogs = dynamic(() => import("./Blogs.view"), {
 const HomeComponent = (props:THomeProps) => {
     const {homeData,topBannerData,blogs}=props;
     // logic separation
-    const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats} = useHomeComponent({homeData});
+    const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats,topVideo,middleVideo,lastVideo,goToNext} = useHomeComponent({homeData});
     
     
   return (
@@ -161,15 +162,22 @@ const HomeComponent = (props:THomeProps) => {
             
         </div>
         
-        <div className='max-w-[1206px] rounded-[8px] w-[90%] mx-auto relative mt-12'>
+        <div className={`${topVideo?.video?.link?'':'hidden'} max-w-[1206px] rounded-[8px] w-[90%] mx-auto relative mt-12`}>
           
           <div className='relative'>
+            <span
+              onClick={()=>{goToNext('top')}}
+              className="cursor-pointer z-[1] absolute top-5 right-5 select-none text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors duration-200 px-3 py-1 border border-gray-400 rounded-full hover:bg-gray-100 active:scale-95"
+            >
+              Skip
+            </span>
+
             {initialPlayer?'':(
               <>
                 {/* <figure className='absolute bottom-0 left-0 z-10'>
                   <img className='h-[550px] rounded-[8px] max-w-[100%] w-[1440px]' src='/assets/videoInitPhoto.png'/>
-                </figure>
-                <div 
+                </figure> */}
+                {/* <div 
                   onClick={handleInitialPlay}
                   className='absolute z-20 cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                 >
@@ -179,8 +187,9 @@ const HomeComponent = (props:THomeProps) => {
                 </div> */}
               </>
             )}
-            <CustomVideoPlayer poster={'/assets/videoInitPhoto.jpg'} height=' max-h-[550px]  ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
-              url={StaticTexts?.home_video?.video1 ?? ''}
+
+            <CustomVideoPlayer  poster={topVideo?.video?.thumbnail} height=' max-h-[550px]  ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
+              url={topVideo?.video?.link ?? ''}
             />
           </div>
         </div>
@@ -345,9 +354,15 @@ const HomeComponent = (props:THomeProps) => {
         </div>
 
 
-        <div className='max-w-[90%] max-h-[480px] mx-auto relative mt-16 mb-16'>
+        <div className={`${middleVideo?.video?.link?"":'hidden'} max-w-[90%] max-h-[480px] mx-auto relative mt-16 mb-16`}>
           <div className='relative '>
-            {initialPlayer2?'':(
+            <span
+              onClick={()=>{goToNext('middle')}}
+              className="cursor-pointer z-[1] absolute top-5 right-5 select-none text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors duration-200 px-3 py-1 border border-gray-400 rounded-full hover:bg-gray-100 active:scale-95"
+            >
+              Skip
+            </span>
+           {initialPlayer2?'':(
               <>
                 {/* <figure className='absolute bottom-0 left-0 z-10'>
                   <img className='h-[480px] z-10 max-w-[90%] w-[1206px]' src={StaticTexts?.campaign_video?.img}/>
@@ -363,15 +378,21 @@ const HomeComponent = (props:THomeProps) => {
                 </div> */}
               </>
             )}
-            <CustomVideoPlayer poster={StaticTexts?.campaign_video?.img} width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
-              url={StaticTexts?.campaign_video?.video_url ?? ''}
+            <CustomVideoPlayer muted={true} poster={middleVideo?.video?.thumbnail} width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
+              url={middleVideo?.video?.link ?? ''}
             />
           </div>
         </div>
 
 
-        <div className='max-w-[900px]   mx-auto relative mt-10 '>
+        <div className={`${lastVideo?.video?.thumbnail?"":'hidden'} max-w-[900px]   mx-auto relative mt-10 `}>
           <div className='relative max-w-[345px] mx-auto  w-full z-20'>
+            <span
+              onClick={()=>{goToNext('last')}}
+              className="cursor-pointer z-[1] absolute top-5 right-5 select-none text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors duration-200 px-3 py-1 border border-gray-400 rounded-full hover:bg-gray-100 active:scale-95"
+            >
+              Skip
+            </span>
             {initialPlayer3?'':(
               <>
                 {/* <figure className='absolute top-0 left-0 z-10'>
@@ -390,15 +411,16 @@ const HomeComponent = (props:THomeProps) => {
             )}
               <div className='max-w-full z-10   border-[10px] rounded-[10px]'>
                   <CustomVideoPlayer muted={true} width=' max-w-[350px] ' height=' max-h-[80vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
+                  poster={lastVideo?.video?.thumbnail}
 
-                  url={StaticTexts?.nepal_tour_video?.video_url ?? ''}
+                  url={lastVideo?.video?.video_url ?? ''}
                 />
               </div>
           </div>
             <div className="circular_gradient left-1/2 -translate-x-1/2 top-[-10%] w-[40vw] h-[40vw] absolute  "></div>
           <div className='text-center pt-10  z-20'>
-              <p className='gradient-text text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.heading}</p>
-              <p className='text-white text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.para}</p>
+              <p className='gradient-text text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.videos[0].heading}</p>
+              <p className='text-white text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.videos[0].para}</p>
               <Link href={'/subscribe'}>
                 <div className="flex items-center btn-gradient-1 px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[350px] w-[auto] mx-auto">
                   <span className='max-w-[300px] flex'>
@@ -434,7 +456,3 @@ const HomeComponent = (props:THomeProps) => {
 
 export default HomeComponent
 
-
-// "tailwind-merge": "^3.3.1",
-    // "tailwind-variants": "^2.0.1",
-    // "tailwindcss-animate": "^1.0.7",

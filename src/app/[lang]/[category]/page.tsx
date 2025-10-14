@@ -11,6 +11,11 @@ import { getDictionary } from '../dictionaries';
 import ReferAndEarn from '@/components/CategoryWiseBooks/ReferAndEarn.view';
 import PlayListBooks from '@/components/CategoryWiseBooks/PlayListBooks';
 
+export const metadata = {
+  title: "Audiobooks | Kabbik",
+  description: "Learn more about Kabbik and our story.",
+};
+
 const CategoryPage = async({ params ,searchParams}: {searchParams: { [key: string]: string | string[] | undefined }, params: { category: string,lang:'en'|'bl' } }) => {
   const categoryName = params.category;
   let folders=searchParams.folders;

@@ -8,7 +8,7 @@ import PauseIcon from '@/svgs/PauseIcon';
 import { audioBookDetails } from '@/utils/server-api';
 import WhitePlayer from '@/svgs/WhitePlayer.svg';
 
-const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDetails,hasAccess:()=>boolean,togglePlay:(i:number,id:number)=>void,index:number,isPlaying:boolean}) => {
+const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDetails,hasAccess:(val:number)=>boolean,togglePlay:(i:number,id:number)=>void,index:number,isPlaying:boolean}) => {
 
     
   return (
@@ -23,7 +23,7 @@ const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDe
                     className="w-12 h-14 md:w-16 md:h-18 rounded-md object-cover flex-shrink-0"
                   />
                     <div className="w-8 z-50 absolute top-[10px] left-[10px] h-8 md:w-10 md:h-10" onClick={()=>togglePlay(i,episode.id)}>
-                      {hasAccess() ? (
+                      {hasAccess(episode.id) ? (
                         isPlaying && index === i ? <PauseIcon  /> : <><WhitePlayer  /></>
                       ) : <LockIcon />}
                     </div>

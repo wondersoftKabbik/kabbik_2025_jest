@@ -42,35 +42,12 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
           {/* Header Section */}
           <div className="flex flex-col gap-2">
             <h1 className="text-white text-lg font-semibold">
-              {/* {showSignUp?"সাইন আপ":"লগইন করুন"} */}
               লগইন / সাইনআপ করুন
             </h1>
-            {/* <p className="text-white ">
-              {showSignUp?"অলরেডি হ্যাভ এন অ্যাকাউন্ট?":"ডোন্ট হ্যাভ এন অ্যাকাউন্ট?"}{" "}
-                <span 
-                    onClick={()=>{setShowSignUp(!showSignUp)}}
-                    className="text-red-500 cursor-pointer hover:underline"
-                >
-                {!showSignUp?"সাইন আপ":"লগইন করুন"}
-              </span>
-            </p> */}
           </div>
 
           {/* Social Login Section */}
           <div className="flex flex-col justify-center gap-7">
-            {/* <h2 className="text-white text-2xl md:text-3xl">লগইন করুন</h2> */}
-            
-            {/* Facebook Button */}
-            {/* <button className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-2 px-4 flex items-center gap-8 md:gap-12">
-                <div className='w-full flex justify-center'>
-                    <div className="w-8 h-8 mr-4 flex-shrink-0">
-                        <Facebook/>
-                    </div>
-                    <span className="text-black text-2xl font-semibold">
-                        ফেসবুক
-                    </span>
-                </div>
-            </button> */}
 
             {/* Google Button */}
             <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-1.5 px-4 flex items-center gap-8 md:gap-12">

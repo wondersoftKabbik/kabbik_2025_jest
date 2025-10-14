@@ -262,7 +262,7 @@ const AudiobookComponent = ({
 
         // audioPlayer.current.currentTime = continueRunningTime;
         if(
-          hasAccess()
+          hasAccess(continueEpisodeId)
         ){
           setPlaying(true);
           // setisPlaying(true);
@@ -275,12 +275,12 @@ const AudiobookComponent = ({
     }
   }, [continueEpisodeId, isRunning, continueRunningTime, epList,audioBookDetailsData,isSubscribed]);
 
-  const hasAccess=()=>{
+  const hasAccess=(episodeId:number)=>{
     return (!audioBookDetailsData?.isSubRestricted && isSubscribed) || 
     (audioBookDetailsData?.isSubRestricted && audioBookDetailsData?.for_rent===0 && isSubscribed) || 
     audioBookDetailsData?.isPurchased === 1 ||
     audioBookDetailsData?.price === 0 ||
-    epList[0].isfree
+    epList[0]?.isfree
   }
 
   useEffect(() => {
@@ -641,6 +641,8 @@ const AudiobookComponent = ({
       
     }
   }
+
+
  
   return (
     <>
@@ -655,19 +657,19 @@ const AudiobookComponent = ({
             opacity: 0.4,
           }}
         ></div>
-      <div className={showBigPlayer?'hidden':"flex justify-around mt-7 items-start relative "+container('1206px') }
+      <div className={showBigPlayer?'hidden':"flex flex-col md:flex-row justify-around mt-7 items-start relative "+container('1206px') }
         
       >
         
         {/* <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient opacity-90"></div> */}
         <div className="circular_gradient left-0 bottom-[-10%] w-[35vw] h-[35vw] absolute rounded-[50%] "></div>
 
-        <div className=" flex items-center z-[5] justify-center p-1">
+        <div className=" flex max-md:mx-auto mr-4 items-center z-[5] justify-center p-1">
           <div className="w-full max-w-[500px] mx-auto">
             {/* Main Card Container */}
-            <div className="bg-white rounded-[40px]  overflow-hidden">
+            <div className="bg-white rounded-[20px] md2:rounded-[40px]  overflow-hidden">
               {/* Book Cover Section */}
-              <div className="relative m-7 mb-0">
+              <div className="relative m-3 md1:m-7 mb-0">
                 <div 
                   className="w-full aspect-[516/674] rounded-[12px]  overflow-hidden"
                   style={{
@@ -709,7 +711,7 @@ const AudiobookComponent = ({
               </div>
 
               {/* Premium Content Section */}
-              <div className="bg_gradient_bg rounded-t-[32px]  p-9">
+              <div className="bg_gradient_bg rounded-t-[32px] p-3  md2:p-9">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-1 ">
                     <span className="text-clg font-medium">{audiobookData?.play_count}</span>
@@ -724,7 +726,7 @@ const AudiobookComponent = ({
                 </div>
                 {/* Premium Header */}
                 <div className="text-center mb-8">
-                  <h2 className="text-clg font-bold text-black mb-2">
+                  <h2 className="text-cn md2:text-clg font-bold text-black mb-2">
                     {isSubscribed ? (
                             <>প্রিমিয়াম ব্যবহারকারী</>
                         ) : audioBookDetailsData?.isPurchased === 1 ? (
@@ -748,14 +750,14 @@ const AudiobookComponent = ({
                 <div className="space-y-2 mb-8">
                   {/* Premium Subscription */}
                   <div className="red_gradient_bg rounded-[30px] py-3 flex justify-around shadow-lg">
-                    <div className="flex items-center gap-4">
-                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="flex items-center gap-1 md2:gap-4">
+                      <div className="w-6 h-6 bg-white rounded-full flex  items-center justify-center flex-shrink-0">
                         <div className="flex">
                           <ChevronRight className="w-5 h-5 text-[#7E1663]" />
                           <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
                         </div>
                       </div>
-                      <p className="text-white  text-cs2  font-semibold leading-tight flex-1">
+                      <p className="text-white text-center text-cs  md2:text-cs2  font-semibold leading-tight flex-1">
                        <Link href={'/subscribe'}> সাবস্ক্রাইব করুন অ্যাড-ফ্রি প্রিমিয়াম অ্যাক্সেসের জন্য</Link>
                       </p>
                     </div>
@@ -775,7 +777,7 @@ const AudiobookComponent = ({
                           <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
                         </div>
                       </div>
-                      <p className="text-white text-cn2 font-semibold leading-tight flex-1">
+                      <p className="text-white text-cs2 md2:text-cn2 font-semibold leading-tight flex-1">
                         রেন্ট নিন ৬০ দিনের জন্য, মাত্র ৫০ টাকা
                       </p>
                     </div>
@@ -809,12 +811,12 @@ const AudiobookComponent = ({
             </div>
           </div>
         </div>
-        <div className=" z-[5] w-[44%] py-4 md:py-8">
+        <div className=" z-[5] w-full md:w-[50%] xl:w-[44%] py-4 md:py-8">
           <div className="max-w-[600px] w-[100%] mx-auto px-0 space-y-8 ">
             {/* Header Section */}
             <div className="bg-gradient-to-r from-[#881D69] to-[#D34974] rounded-xl p-3 md:p-4 text-white">
-              <div className="flex items-center gap-4 md:gap-6">
-                <div className="w-16 h-16 md:w-17 md:h-17 rounded-full bg-gray-300 flex-shrink-0 overflow-hidden">
+              <div className="flex items-center gap-2 md:gap-6">
+                <div className="w-14 h-14 md:w-16 md:h-16 md:w-17 md:h-17 rounded-full bg-gray-300 flex-shrink-0 overflow-hidden">
                   <img
                     src={authorData?.imageUrl??''}
                     alt="Sir Arthur Conan Doyle"
@@ -822,14 +824,14 @@ const AudiobookComponent = ({
                   />
                 </div>
                 <div className="flex-1 space-y-2">
-                  <h1 className="text-lg md:text-xl font-medium">{authorData?.name}</h1>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-                    <div className="flex items-center gap-2">
-                      <BookIcon />
-                      <span className="text-lg md:text-cn font-medium">{authorData?.total_audiobooks} অডিও বুক</span>
+                  <h1 className="text-cs2 md:text-xl font-medium">{authorData?.name}</h1>
+                  <div className="flex max-xxs:flex-col flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <div className="flex items-center gap-1">
+                      <BookIcon className="w-4 md:w-5"/>
+                      <span className="text-cs md:text-cn font-medium">{authorData?.total_audiobooks} অডিও বুক</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <button className="bg-white text-black px-3 md:px-3 py-1 rounded-full text-cs font-medium shadow-lg whitespace-nowrap">
+                      <button className="bg-white text-black px-1 md:px-3 py-1 rounded-full text-cs font-medium shadow-lg whitespace-nowrap">
                         আরও অডিওবুক শুনুন
                       </button>
                       <div className="bg-white w-6 rounded-full p-2 shadow-lg">
@@ -853,7 +855,7 @@ const AudiobookComponent = ({
                       isPlaying={isPlaying}
                       togglePlay={(i,episodeId)=>{
                         console.log("working")
-                        if(hasAccess()){
+                        if(hasAccess(episodeId)){
                           togglePlayList(i,episodeId)
                         }else{
                           setShowPayModal(true)

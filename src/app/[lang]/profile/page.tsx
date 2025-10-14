@@ -3,6 +3,11 @@ import Profiles from '@/components/Profile/ProfileOptions.view'
 import TopSection from '@/components/Profile/TopSection.view'
 import React from 'react'
 
+export const metadata = {
+  title: "Profile | Kabbik",
+  description: "Learn more about Kabbik and our story.",
+};
+
 const page = async() => {
   const session = await auth();
   return (

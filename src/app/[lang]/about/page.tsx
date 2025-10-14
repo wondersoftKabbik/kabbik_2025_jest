@@ -4,6 +4,10 @@ import { staticTextSlice } from '@/components/ui/static/types';
 import { fetchDataFromJson } from '@/utils/apiServices';
 import React from 'react'
 
+export const metadata = {
+  title: "About us | Kabbik",
+  description: "Learn more about Kabbik and our story.",
+};
 
 
 const page = async() => {

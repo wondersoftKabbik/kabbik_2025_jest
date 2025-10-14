@@ -18,14 +18,14 @@ export default function Tabs({ tabs, showShadow = true }: TabsProps) {
   return (
     <div className="w-full">
       {/* Tab Buttons */}
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-2 md:gap-4 flex-wrap">
         {tabs.map((tab, index) => (
           <button
             key={index}
             onClick={() => setActiveIndex(index)}
-            className={`
-              w-[31%] h-[58px] rounded-[12px] text-[21px] py-[19px] flex items-center justify-center
-              text-base font-medium transition-all duration-200
+            className={`max-xxs2:h-[50px]
+              w-[31%] md:h-[58px] rounded-[12px] max-xxs2:text-cs2 text-cn max-xxs2:py-[10px] py-[19px] flex items-center justify-center
+               font-medium transition-all duration-200
               ${activeIndex === index
                 ? "text-white shadow-md bg-gradient-to-r from-[#BF3D71] to-[#9E2A6C]"
                 : "bg-white shadow-md text-black"

@@ -22,7 +22,10 @@ export type staticTextSlice= {
       category: string;
     }[];
     home_video:{
-        "video1":string;
+        videos: {
+          link: string;
+          thumbnail: string;
+        }[]
     },
     big_book_banners:[
         {
@@ -39,14 +42,18 @@ export type staticTextSlice= {
       path:string;
     }[],
     campaign_video:{
-      video_url:string,
-      img:string
+      videos: {
+        link: string;
+        thumbnail: string;
+      }[]
     },
     nepal_tour_video:{
-        video_url:string;
-        heading:  string;
-        para:string;
-        thumbnail:string;
+      videos: {
+        video_url: string;
+        heading: string;
+        para: string;
+        thumbnail: string;
+      }[]
     },
     teamMembers:{
         name: string;
