@@ -97,9 +97,13 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                         slidesPerGroup:2
                         },
                         500: {
-                          slidesPerView: 2.5,
+                          slidesPerView: 2.9,
                           slidesPerGroup:2
                         },
+                        // 650: {
+                        //   slidesPerView: 2.9,
+                        //   slidesPerGroup:2
+                        // },
                         768: {
                           slidesPerView: 3.3,
                           slidesPerGroup:3

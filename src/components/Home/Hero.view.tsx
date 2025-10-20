@@ -62,7 +62,7 @@ const Hero = ({
                   router.push(`/audiobook/${topbannerinfo?.id}`);
                 }}
               >
-                <div className="relative h-[95vh] md2:h-[105vh] lg:h-[115vh] lg2:h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
+                <div className="relative h-[70vh]  sm:h-[95vh] md2:h-[105vh] lg:h-[115vh] lg2:h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
                   <div className={styles.backdrop_filter}>
                     <div className="">
                       <picture className={styles.thumb_path}>
@@ -81,22 +81,22 @@ const Hero = ({
                       <h5>{topbannerinfo.name}</h5>
                     </div> */}
                       <div className="w-full z-10  text-white">
-                        <h3 className="text-cxl2 md2:text-cxxl2 w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
-                        <p className="text-cxl my-7">{topbannerinfo.author_name}</p>
+                        <h3 className=" leading-[1.3] text-lg xxs2:text-cxl md2:text-cxxl2 w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
+                        <p className="text-clg sm:text-cxl my-2 sm:my-7">{topbannerinfo.author_name}</p>
                         <CommonButton className={styles.hue_btn}>
                           <div className="flex gap-2">
-                            <span className="mr-4 w-7 h-7 inline-block">
+                            <span className=" xxs2:mr-4 w-5 h-5 sm:w-7 sm:h-7 inline-block">
                               <PlayerIcon />
                             </span>
-                            <p className="text-cn2 mt-0">এখনই শুনুন</p>
+                            <p className="text-cn sm:text-cn2 mt-0">এখনই শুনুন</p>
                           </div>
                         </CommonButton>
                         <CommonButton className={styles.secondary_btn+` bg-grey`}>
                           <div className="flex gap-2">
-                            <span className="mr-4 w-7 h-7 inline-block">
+                            <span className="xxs2:mr-4 w-5 h-5 sm:w-7 sm:h-7 inline-block">
                               <IIcon />
                             </span>
-                            <p className="text-cn2 mt-0"> বিস্তারিত তথ্য</p>
+                            <p className="text-cn sm:text-cn2 mt-0"> বিস্তারিত তথ্য</p>
                           </div>
                         </CommonButton>
                       </div>
@@ -104,7 +104,7 @@ const Hero = ({
                         <img
                           src={topbannerinfo.thumb_path}
                           alt="Description"
-                          className="max-w-[350px] max-h-[440px] border-2 rounded-[12px] border-white w-[30vw] h-[40vw] z-10 relative"
+                          className="max-w-[350px] max-h-[440px] border-2 rounded-[12px] border-white w-[35vw] h-[48vw]  xs:w-[30vw] xs:h-[40vw] z-10 relative"
                         />
                       </div>
                     </div>
@@ -122,11 +122,11 @@ const Hero = ({
 
           <div className="rect-gradient z-10 w-[50%] h-12 "></div>
         </div> */}
-        <div className="circular_gradient left-[-10%] bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] z-20 "></div>
+        <div className="circular_gradient left-[-10%] bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] z-[2] "></div>
       <div className="mt-[-10%] ">
         <div className="bg-bg z-10 relative">
-        <div className={styles.play_icons+' z-20 relative '}>
-          <div className="mr-[3vw]">
+        <div className={styles.play_icons+' z-[5] relative '}>
+          <div className="mr-[1vw] sm:mr-[3vw]">
             <h6 className={styles.download_txt}>এখনই আমাদের অডিওবুক অ্যাপটি 
               মোবাইলে ডাউনলোড করে নিন!</h6>
             <p className="text-cn lg:text-cn2 mb-[12px] lg:mb-[22px]">বইপড়ার নতুন উপায় — অডিওবুক অ্যাপ এখনই 
@@ -145,7 +145,7 @@ const Hero = ({
                 </h6>
               </div>
           </div>
-          <div className="flex justify-end min-w-[55%]">
+          <div className="flex max-md:mt-7 md:justify-end min-w-[55%]">
             <span className="max-w-[220px] max-h-[220px] mr-[3vw] inline-block">
               <a href={"https://apps.apple.com/us/app/kabbik/id6459885875"}><AppStoreIcon/></a>
             </span>

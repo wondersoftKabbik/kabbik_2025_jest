@@ -18,10 +18,10 @@ const PopularCategories = () => {
                 <span className={common_cat_styles.arrow}><RightArrowIcon/></span>
             </Link>
         </div>
-        <div className='flex gap-6 mt-3'>
+        <div className='flex gap-2 sm:gap-6 mt-3'>
             <div className='w-[48.5%]'>
-                <figure className='mb-6'>
-                    <img loading="lazy" className='h-[40vh] w-full rounded-[8px] object-cover object-left-bottom' src={PopularCategories[0]?.img}/>
+                <figure className='mb-2 sm:mb-6'>
+                    <img loading="lazy" className='h-[30vh] sm:h-[40vh] w-full rounded-[8px] object-cover object-left-bottom' src={PopularCategories[0]?.img}/>
                 </figure>
                 <div className="  h-[18vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
                     <Link href={paths.categoryWiseBooks(PopularCategories[6]?.path)}>
@@ -32,9 +32,9 @@ const PopularCategories = () => {
             </div>
             <div className='w-[48.5%]'>
                 {PopularCategories.slice(2,5).map((item,index:number)=>(
-                    <div key={index} className="  h-[18vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
+                    <div key={index} className=" h-[15.6vh] sm:h-[18vh] mb-2 sm:mb-6 rounded-[4px] overflow-hidden border border-gray-300">
                             <Link href={paths.categoryWiseBooks(item.path)}>
-                                <img loading="lazy" src={item.img} className=" h-[18vh] w-full object-cover object-bottom" />
+                                <img loading="lazy" src={item.img} className="h-[15.6vh] sm:h-[18vh] w-full object-cover object-left-bottom" />
                             </Link>
                         
                     </div>

@@ -73,6 +73,12 @@ const UpComing = () => {
                     }}
                      breakpoints={{
                         0: {
+                          slidesPerView: 1.1,
+                        },
+                        350: {
+                          slidesPerView: 1.4,
+                        },
+                        450: {
                         slidesPerView: 2,
                         },
                         768: {

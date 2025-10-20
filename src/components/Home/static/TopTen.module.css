@@ -152,8 +152,14 @@
     
 }
 
-/* @media only screen and (max-width: 768px){
-    .mobile_banner_cont{
-
+@media only screen and (max-width: 400px){
+    .slider_right_icons,.slider_left_icons{
+        bottom: 30%;
     }
-} */
+    .slider_icons{
+        display: none;
+    }
+    .container{
+        max-width: 94%;
+    };
+}

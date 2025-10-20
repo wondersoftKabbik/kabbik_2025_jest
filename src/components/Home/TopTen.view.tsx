@@ -83,8 +83,17 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                         0: {
                           slidesPerView: 2,
                         },
+                        350: {
+                          slidesPerView: 2.2,
+                        },
+                        500: {
+                          slidesPerView: 2.4,
+                        },
+                        600: {
+                          slidesPerView: 2.6,
+                        },
                         768: {
-                          slidesPerView: 2.5,
+                          slidesPerView: 2.8,
                         },
                         868: {
                           slidesPerView: 3,
@@ -119,7 +128,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                                 >
                                   <Link href={`/audiobook/${item?.id}`}>
                                       <div className={styles.item_cont} key={index}>
-                                        <span className='max-w-[280px] max-h-[210px] inline-block'>
+                                        <span className='max-w-[280px] max-h-[20vh]  xxs2:max-h-[25vh] md:max-h-[210px] inline-block'>
                                           {OneToTen[(index+1).toString()] ?(
                                             OneToTen[(index+1).toString()]
                                           ):''}
@@ -142,7 +151,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                                             <span className='w-4 h-4'>
                                                 <RedPlayerIcon/>
                                             </span>
-                                            <span className='text-cxs'>{(item?.play_count/1000).toFixed(2)}k listen</span>
+                                            <span className='text-cxs'>{(item?.play_count/1000).toFixed(2)}k <span className='max-xs:hidden'>listen</span></span>
                                         </p>
                                       </div>
                                   </Link>

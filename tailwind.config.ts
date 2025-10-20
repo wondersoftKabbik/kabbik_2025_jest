@@ -123,7 +123,9 @@ const config: Config = {
 	screens: {
 	  'xxs':'350px',
 	  'xxs2':'400px',
-      'xs': '480px',   // Extra small devices
+      'xs': '480px', 
+	  'xs2':'540px',
+	  'w-600':'600px',  // Extra small devices
       'sm': '640px',
       'md': '768px',
 	  'md1':'810px',

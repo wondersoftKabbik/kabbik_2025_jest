@@ -6,6 +6,7 @@ import { TVideoPlayerProps } from './static/vidoPlayer.types';
 import useVideoPlayer from './VideoPlayer.presenter';
 import Plus10Sec from '@/svgs/Plus10Sec';
 import Minus10Sec from '@/svgs/Minus10Sec';
+import Spinner from '../ui/Spinner.view';
 
 export default function CustomVideoPlayer({
   height,
@@ -30,6 +31,7 @@ export default function CustomVideoPlayer({
   } = useVideoPlayer(videoRef);
 
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [loading,setLoading]=useState(true);
 
   // Skip video by seconds (positive = forward, negative = backward)
   const skip = (seconds: number) => {
@@ -58,8 +60,12 @@ export default function CustomVideoPlayer({
   // function to handle pause
   const handlePause = () => {
     const video = videoRef.current;
+    console.log(video,"handlepause");
+    
     if (video && !video.paused) {
       video.pause();
+      console.log("from inside handlepause");
+      
       // setPlaying(false)
     }
   };
@@ -79,6 +85,8 @@ export default function CustomVideoPlayer({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        console.log(entry.isIntersecting,"kdfjdkf");
+        
         if (entry.isIntersecting) {
           handlePlay();
         } else {
@@ -95,21 +103,29 @@ export default function CustomVideoPlayer({
     };
   }, []);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.pause(); // stop previous video
-      videoRef.current.load();  // reload new src
-      videoRef.current.play().catch(() => {
-        // autoplay may fail if browser blocks it without mute
-        videoRef.current!.muted = true;
-        videoRef.current!.play();
-      });
-    }
-  }, [url]); 
+  // useEffect(() => {
+  //   if (videoRef.current) {
+  //     videoRef.current.pause(); // stop previous video
+  //     videoRef.current.load();  // reload new src
+  //     console.log("url changed");
+      
+  //     videoRef.current.play().catch(() => {
+  //       // autoplay may fail if browser blocks it without mute
+  //       videoRef.current!.muted = true;
+  //       videoRef.current!.play();
+  //     });
+  //   }
+  // }, [url]); 
   
 
   return (
-    <div
+   <div  className='relative lll'>
+    {loading?
+      <span className='absolute z-[1] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+        <Spinner size='w-12 h-12' />
+      </span>
+    :''}
+     <div
       ref={containerRef}
       className={`group relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 bg-black
         ${isFullWidth ? 'w-screen max-w-none' : height ?? ' w-[60%] mx-auto '}
@@ -123,10 +139,20 @@ export default function CustomVideoPlayer({
           key={url}
           className="max-w-full max-h-full cursor-pointer rounded-[8px] object-contain bg-gray-800"
           onEnded={() => setPlaying(false)}
-          muted={muted??false}
+          muted={muted}
           onTimeUpdate={handleTimeUpdate}
+          autoPlay={true}
           // priority={false}
           poster={poster}
+          // onPlay={()=>{setLoading(false);console.log('playing');}
+          // }
+          // onCanPlay={()=>{setLoading(false);console.log('playing');}
+          // }
+          // onWaiting={()=>{setLoading(true);console.log("loading");
+          // }}
+          onLoadStart={()=>{setLoading(true);console.log("loading");
+          }}
+          onLoadedData={()=>setLoading(false)}
           preload='none'
         />
       </div>
@@ -194,6 +220,7 @@ export default function CustomVideoPlayer({
         </div>
       </div>
     </div>
+   </div>
 
   );
 }

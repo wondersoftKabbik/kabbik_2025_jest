@@ -91,6 +91,10 @@ const CustomVideoPlayer = dynamic(() => import("../VideoPlayer/VideoPlayer"), {
   ssr: false, // optional: disable server-side rendering
   loading: () => <p></p>, // optional fallback
 });
+const CustomVideoPlayer2 = dynamic(() => import("../VideoPlayer/CustomVideoPlayer2"), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <p></p>, // optional fallback
+});
 
 const Blogs = dynamic(() => import("./Blogs.view"), {
   ssr: false, // optional: disable server-side rendering
@@ -149,7 +153,7 @@ const HomeComponent = (props:THomeProps) => {
             {/* </Link> */}
         </div>
 
-        <div className={' bg-bg relative z-10'}>
+        <div className={' bg-bg relative z-[2]'}>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName="নতুন"
@@ -165,12 +169,12 @@ const HomeComponent = (props:THomeProps) => {
         <div className={`${topVideo?.video?.link?'':'hidden'} max-w-[1206px] rounded-[8px] w-[90%] mx-auto relative mt-12`}>
           
           <div className='relative'>
-            <span
+            {/* <span
               onClick={()=>{goToNext('top')}}
               className="cursor-pointer z-[1] absolute top-5 right-5 select-none text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors duration-200 px-3 py-1 border border-gray-400 rounded-full hover:bg-gray-100 active:scale-95"
             >
               Skip
-            </span>
+            </span> */}
 
             {initialPlayer?'':(
               <>
@@ -188,8 +192,11 @@ const HomeComponent = (props:THomeProps) => {
               </>
             )}
 
-            <CustomVideoPlayer  poster={topVideo?.video?.thumbnail} height=' max-h-[550px]  ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
+            {/* <CustomVideoPlayer  poster={topVideo?.video?.thumbnail} height=' max-h-[550px]  ' width=' max-w-full ' videoRef={videoRef} playing={player} togglePlay={togglePlay} setPlaying={setPlayer} 
               url={topVideo?.video?.link ?? ''}
+            /> */}
+            <CustomVideoPlayer2
+              videos={StaticTexts?.home_video?.videos??[]}
             />
           </div>
         </div>
@@ -219,7 +226,7 @@ const HomeComponent = (props:THomeProps) => {
           <StepsToListenBookview/>
           <div className="circular_gradient right-[10%]  bottom-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
         </div>
-        <div className='bg-bg relative z-10'>
+        <div className='bg-bg relative z-[1]'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName={userPreferdCats[2]}
@@ -241,7 +248,7 @@ const HomeComponent = (props:THomeProps) => {
             {/* </Link> */}
             
         </div>
-        <div className='relative z-10'>
+        <div className='relative z-[1]'>
           <BestCollection
             homeData={homeData}
           />
@@ -284,7 +291,7 @@ const HomeComponent = (props:THomeProps) => {
             {/* </Link> */}
             
         </div>
-        <div className='bg-bg relative z-10'>
+        <div className='bg-bg relative z-[1]'>
           {/* <Link href={'/home_category_list/নতুন'}> */}
               <CommonCategory
                 categoryName={userPreferdCats[7]}
@@ -348,7 +355,7 @@ const HomeComponent = (props:THomeProps) => {
           <div className="circular_gradient left-[-20%]   top-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
             <h2 className='gradient-text text-[30px] font-semibold text-center'>আমাদের সাম্প্রতিক কার্যক্রম</h2>
             <p className='text-[16px] text-white text-center pb-4 pt-0'>নতুন তথ্য, ইভেন্ট এবং বিশেষ অফার সম্পর্কে জানুন সবার আগে আপডেট পেতে আমাদের সাথে থাকুন।</p>
-            <div className='z-20'>
+            <div className='z-[5]'>
               <Blogs blogs={blogs}/>
             </div>
         </div>
@@ -356,12 +363,12 @@ const HomeComponent = (props:THomeProps) => {
 
         <div className={`${middleVideo?.video?.link?"":'hidden'} max-w-[90%] max-h-[480px] mx-auto relative mt-16 mb-16`}>
           <div className='relative '>
-            <span
+            {/* <span
               onClick={()=>{goToNext('middle')}}
               className="cursor-pointer z-[1] absolute top-5 right-5 select-none text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors duration-200 px-3 py-1 border border-gray-400 rounded-full hover:bg-gray-100 active:scale-95"
             >
               Skip
-            </span>
+            </span> */}
            {initialPlayer2?'':(
               <>
                 {/* <figure className='absolute bottom-0 left-0 z-10'>
@@ -378,21 +385,24 @@ const HomeComponent = (props:THomeProps) => {
                 </div> */}
               </>
             )}
-            <CustomVideoPlayer muted={true} poster={middleVideo?.video?.thumbnail} width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
+            {/* <CustomVideoPlayer muted={true} poster={middleVideo?.video?.thumbnail} width=' max-w-full ' height=' max-h-[480px] ' videoRef={videoRef2} playing={player2} togglePlay={togglePlay2} setPlaying={setPlayer2} 
               url={middleVideo?.video?.link ?? ''}
+            /> */}
+            <CustomVideoPlayer2
+              videos={StaticTexts?.campaign_video?.videos??[]}
             />
           </div>
         </div>
 
 
         <div className={`${lastVideo?.video?.thumbnail?"":'hidden'} max-w-[900px]   mx-auto relative mt-10 `}>
-          <div className='relative max-w-[345px] mx-auto  w-full z-20'>
-            <span
+          <div className='relative max-w-[345px] mx-auto  w-full z-[5]'>
+            {/* <span
               onClick={()=>{goToNext('last')}}
               className="cursor-pointer z-[1] absolute top-5 right-5 select-none text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors duration-200 px-3 py-1 border border-gray-400 rounded-full hover:bg-gray-100 active:scale-95"
             >
               Skip
-            </span>
+            </span> */}
             {initialPlayer3?'':(
               <>
                 {/* <figure className='absolute top-0 left-0 z-10'>
@@ -409,16 +419,25 @@ const HomeComponent = (props:THomeProps) => {
                 </div> */}
               </>
             )}
-              <div className='max-w-full z-10   border-[10px] rounded-[10px]'>
-                  <CustomVideoPlayer muted={true} width=' max-w-[350px] ' height=' max-h-[80vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
+              <div 
+                // className='max-w-full z-10   border-[10px] rounded-[10px]'
+              >
+                  {/* <CustomVideoPlayer muted={true} width=' max-w-[350px] ' height=' max-h-[80vh]  ' videoRef={videoRef3} playing={player3} togglePlay={togglePlay3} setPlaying={setPlayer3} 
                   poster={lastVideo?.video?.thumbnail}
 
                   url={lastVideo?.video?.video_url ?? ''}
+                /> */}
+
+                <CustomVideoPlayer2
+                  className="max-h-[87vh] rounded-[4px]"
+                  videos={StaticTexts?.nepal_tour_video?.videos.map((item)=>{
+                    return {link:item.video_url,thumbnail:item?.thumbnail}
+                  })??[]}
                 />
               </div>
           </div>
             <div className="circular_gradient left-1/2 -translate-x-1/2 top-[-10%] w-[40vw] h-[40vw] absolute  "></div>
-          <div className='text-center pt-10  z-20'>
+          <div className='text-center pt-10  z-[5]'>
               <p className='gradient-text text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.videos[0].heading}</p>
               <p className='text-white text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.videos[0].para}</p>
               <Link href={'/subscribe'}>

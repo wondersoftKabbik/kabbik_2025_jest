@@ -20,7 +20,7 @@ const StepsToListenBookview = () => {
     },[])
   return (
     <div className='flex mt-5 items-center justify-between gap-[2vw] w-[90%] mx-auto max-w-[1206px] '>
-        <div className='max-w-[40%] lg2:max-w-[44%] mr-8 relative mb-7'>
+        <div className='max-sm:hidden max-w-[40%] lg2:max-w-[44%] mr-8 relative mb-7'>
             <figure>
                 <img loading="lazy" alt='steps to listen audio books'
                     src='/assets/HowToListen.png'
@@ -34,16 +34,16 @@ const StepsToListenBookview = () => {
                 </div>
             </figure>
         </div>
-        <div>
+        <div className='max-sm:mx-auto'>
             <div className='mb-3'>
-                <p className='text-white'>কিভাবে এটি কাজ করে</p>
+                <p className='text-white text-cs2 md:text-cn'>কিভাবে এটি কাজ করে</p>
                 <div className='hr_gradient w-16 h-0.5'></div>
             </div>
-            <h2 className='gradient-text z-10 text-cxl2 lg2:text-[38px] font-[600] mb-4'>{staticText?.heading}</h2>
+            <h2 className='gradient-text z-10 text-clg2 md:text-cxl2 lg2:text-[38px] font-[600] mb-4'>{staticText?.heading}</h2>
             {staticText?.datas?(
                 staticText.datas?.map((item,i:number)=>(
-                    <div key={i} className='flex items-center text-white font-medium text-cn2 lg2:text-clg mb-3 lg2:mb-4'>
-                        <span className='inline-block mr-3 max-w-[35px] max-h-[35px] lg2:max-w-[40px] lg2:max-h-[40px]'>{IconsForSteps[i]}</span>
+                    <div key={i} className='flex items-center text-white font-medium text-cs2 md:text-cn2 lg2:text-clg mb-3 lg2:mb-4'>
+                        <span className='inline-block mr-3 max-w-[26px] md:max-w-[35px] max-h-[35px] lg2:max-w-[40px] lg2:max-h-[40px]'>{IconsForSteps[i]}</span>
                         <p>{item}</p>
                     </div>
                 ))
