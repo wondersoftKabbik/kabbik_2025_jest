@@ -254,7 +254,8 @@ export default function CustomVideoPlayer({
         poster={current?.thumbnail}
         className="w-full h-full object-contain"
         playsInline
-        preload="metadata"
+        // priority={false}
+        preload="none"
         muted={!userInteracted || muted}
       />
 
