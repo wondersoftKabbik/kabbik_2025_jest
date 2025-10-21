@@ -9,12 +9,13 @@ import CommonButton from '../ui/button';
 import { menuItems } from './static/menues';
 import { TmobileNavbarProps } from './static/types';
 import CrossIcon from '@/svgs/CrossIcon';
+import { useAppSelector } from '@/store/store';
 
 
 
-export default function MobileNavbarContent({categories,setMobileMenu}:TmobileNavbarProps) {
+export default function MobileNavbarContent({setMobileMenu}:TmobileNavbarProps) {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-
+  const categories=useAppSelector((store)=>store.categories.CategoriesData)
   return (
     <div className="w-100 bg-bg text-white  h-full shadow-lg flex flex-col">
       <div className="flex items-center justify-between p-4 border-b">
@@ -54,7 +55,7 @@ export default function MobileNavbarContent({categories,setMobileMenu}:TmobileNa
                   <Link
                     key={sub.id}
                     href={`/${sub?.name}`}
-                    className="text-sm py-1 px-3 rounded hover:bg-gray-100 hover:text-bg"
+                    className="text-sm py-1 z-[3] px-3 rounded hover:bg-gray-100 hover:text-bg"
                   >
                     {sub.name}
                   </Link>

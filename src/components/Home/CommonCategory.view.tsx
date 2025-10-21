@@ -28,6 +28,7 @@ import CommonButton from '../ui/button';
 import PlayerIcon from '@/svgs/PlayerIcon';
 import ExpandableIcon from '@/svgs/ExpandableIcon';
 import { paths } from '@/utils/Paths';
+import { siteConfig } from '@/config/config';
 // import DesktopCrown from '../../svgs/DesktopCrown';
 
 type tProps={
@@ -156,7 +157,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                         <picture className={podcast ? styles.podcast_pic : styles.picture}>
                                         <div className="relative w-full" style={{  /* 16:9 */ }}>
                                           <Image
-                                            src={item.thumb_path}
+                                            src={item.thumb_path }
                                             alt={item.name}
                                             width={200}
                                             priority={false}
@@ -164,6 +165,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             className={`${podcast ? styles.podcast_img : styles.img} object-contain`}
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                             loading="lazy"
+                                            blurDataURL ={siteConfig.placeholderBook}
                                           />
                                         </div>
                                       </picture>

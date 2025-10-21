@@ -45,12 +45,12 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start justify-between lg:items-center gap-8 ">
           {/* Newsletter Text */}
           <div className="flex-1 max-w-2xl">
-            <h2 className="gradient-text lg:text-[24px] font-bold mb-3 font-inter">
+            <h2 className="gradient-text text-cn2 sm:text-clg md:text-[24px] font-bold mb-3 font-inter">
               <span className="">
                 আমাদের নিউজলেটারে সাবস্ক্রাইব করুন
               </span>
             </h2>
-            <p className="text-lg md:text-lg text-white/90 font-inter">
+            <p className="text-cs2 sm:text-cn md:text-lg text-white/90 font-inter">
               আপনার ইমেইল দিন, নিয়মিত আপডেট, আসন্ন ইভেন্ট এবং
               <br className="hidden lg:block " />
               বিশেষ অফার সম্পর্কে জানতে।
@@ -58,19 +58,19 @@ export default function Footer() {
           </div>
 
           {/* Newsletter Form */}
-          <div className=" lg:w-auto lg:max-w-[520px] w-[40%] lg2:w-[35%]">
+          <div className=" lg:w-auto lg:max-w-[520px] w-full md:w-[40%] lg2:w-[35%]">
             <div className="flex bg-white justify-between rounded-[8px] p-2">
               <input
                 type="email"
                 placeholder="ইমেইল এড্রেস"
                 onChange={(e)=>setEmail(e.target.value)}
                 value={email}
-                className="flex-1 max-w-[65%] outline-none border-0 text-[#06152B]  placeholder:text-[#06152B]/50 focus-visible:ring-0 bg-transparent font-inter"
+                className="flex-1 max-md:text-cs2 max-w-[65%] outline-none border-0 text-[#06152B]  placeholder:text-[#06152B]/50 focus-visible:ring-0 bg-transparent font-inter"
               />
               <button 
                 onClick={handleSubmit}
                 disabled={loading}
-                className="bg-gradient-to-b from-[#96256A] to-[#C84172] text-white px-4 py-2 font-semibold rounded hover:opacity-90 transition-opacity font-inter"
+                className="bg-gradient-to-b from-[#96256A] to-[#C84172] text-white px-1 md:px-4 py-1 md:py-2 font-medium sm:font-semibold text-cs2 md:text-cn2 rounded hover:opacity-90 transition-opacity font-inter"
               >
                 {loading ? <Spinner size = "w-4 h-4"/> : ""}
                 সাবস্ক্রাইব
@@ -208,7 +208,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Logo */}
-        <div className="flex justify-center  w-[18%]">
+        <div className=" max-md:hidden flex justify-center  w-[18%]">
           <img
             src="https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/final2.gif"
             alt="Kabbik Logo"

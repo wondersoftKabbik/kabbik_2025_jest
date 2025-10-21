@@ -81,10 +81,13 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                     }}
                      breakpoints={{
                         0: {
-                          slidesPerView: 2,
+                          slidesPerView: 1.4,
                         },
                         350: {
-                          slidesPerView: 2.2,
+                          slidesPerView: 1.7,
+                        },
+                        400: {
+                          slidesPerView: 2,
                         },
                         500: {
                           slidesPerView: 2.4,

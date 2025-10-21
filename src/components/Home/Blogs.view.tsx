@@ -16,8 +16,8 @@ const Blogs = ({blogs}:TBlogsProps) => {
         <div>
             <div  className="blog mb-5">
                 <Link href={`/blogs/${blogs?.list[0].slug}`}>
-                    <div className={`${styles.blogWrapper} rounded flex text-white`}>
-                        <div className={' max-w-[70%] p-2'}>
+                    <div className={`${styles.blogWrapper} rounded max-sm:flex-col flex text-white`}>
+                        <div className={'max-w-[100%] sm:max-w-[70%] p-2'}>
                             <img
                                 loading="lazy"
                                 className='h-full'
@@ -51,7 +51,7 @@ const Blogs = ({blogs}:TBlogsProps) => {
             </div>
         </div>
         <div
-            className={`${styles.blogsContainer}`}
+            className={`${styles.blogsContainer} max-sm:hidden`}
             style={{ color: "white" }}
         >
             {blogs.list.length ? (

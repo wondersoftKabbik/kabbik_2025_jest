@@ -45,10 +45,10 @@ export default function CommonModal({
   return (
     <div
       onClick={handleBackdropClick}
-      className={"fixed inset-0  z-[999] flex items-center justify-center bg-black/50 "+{container_class}}
+      className={"fixed inset-0  z-[999] overflow-y-auto  flex items-center justify-center bg-black/50 "+{container_class}}
     >
       <div
-        className={replaceClassName??`relative z-[999] max-w-lg bg-transparent rounded-lg shadow-lg w-auto ${modalClassName}`}
+        className={replaceClassName??`relative  z-[999] max-w-lg bg-transparent rounded-lg shadow-lg w-auto ${modalClassName}`}
       >
         {showCloseButton && (
           <button

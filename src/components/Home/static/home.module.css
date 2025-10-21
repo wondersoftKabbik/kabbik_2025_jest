@@ -101,13 +101,13 @@
         /* font-size: 14px; */
     }
     .hue_btn{
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     .thumb_path{
-        top: -200px;
+        top: 0px;
     }
     .download_txt{
-        font-size: 18px;
+        font-size: 20px;
     }
 }
 

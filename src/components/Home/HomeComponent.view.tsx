@@ -353,15 +353,15 @@ const HomeComponent = (props:THomeProps) => {
 
         <div className='mt-10 max-w-[1206px] mx-auto w-[90%] relative'>
           <div className="circular_gradient left-[-20%]   top-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
-            <h2 className='gradient-text text-[30px] font-semibold text-center'>আমাদের সাম্প্রতিক কার্যক্রম</h2>
-            <p className='text-[16px] text-white text-center pb-4 pt-0'>নতুন তথ্য, ইভেন্ট এবং বিশেষ অফার সম্পর্কে জানুন সবার আগে আপডেট পেতে আমাদের সাথে থাকুন।</p>
+            <h2 className='gradient-text text-clg leading-[1.2] sm:text-cxl md:text-[30px] font-semibold text-center'>আমাদের সাম্প্রতিক কার্যক্রম</h2>
+            <p className='text-cs2 sm:text-[16px] text-white text-center pb-4 pt-0'>নতুন তথ্য, ইভেন্ট এবং বিশেষ অফার সম্পর্কে জানুন সবার আগে আপডেট পেতে আমাদের সাথে থাকুন।</p>
             <div className='z-[5]'>
               <Blogs blogs={blogs}/>
             </div>
         </div>
 
 
-        <div className={`${middleVideo?.video?.link?"":'hidden'} max-w-[90%] max-h-[480px] mx-auto relative mt-16 mb-16`}>
+        <div className={`${middleVideo?.video?.link?"":'hidden'} max-w-[90%]  mx-auto relative mt-16 mb-16`}>
           <div className='relative '>
             {/* <span
               onClick={()=>{goToNext('middle')}}
@@ -395,7 +395,7 @@ const HomeComponent = (props:THomeProps) => {
         </div>
 
 
-        <div className={`${lastVideo?.video?.thumbnail?"":'hidden'} max-w-[900px]   mx-auto relative mt-10 `}>
+        <div className={`${lastVideo?.video?.thumbnail?"":'hidden'} w-[90%] max-w-[900px]   mx-auto relative mt-10 `}>
           <div className='relative max-w-[345px] mx-auto  w-full z-[5]'>
             {/* <span
               onClick={()=>{goToNext('last')}}
@@ -438,37 +438,24 @@ const HomeComponent = (props:THomeProps) => {
           </div>
             <div className="circular_gradient left-1/2 -translate-x-1/2 top-[-10%] w-[40vw] h-[40vw] absolute  "></div>
           <div className='text-center pt-10  z-[5]'>
-              <p className='gradient-text text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.videos[0].heading}</p>
-              <p className='text-white text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.videos[0].para}</p>
+              <p className='gradient-text text-lg sm:text-cxl md:text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.videos[0].heading}</p>
+              <p className='text-white text-cs2 sm:text-cn2 md:text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.videos[0].para}</p>
               <Link href={'/subscribe'}>
                 <div className="flex items-center btn-gradient-1 px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[350px] w-[auto] mx-auto">
                   <span className='max-w-[300px] flex'>
-                      <span className="mr-4 w-11 h-8 inline-block">
+                      <span className="mr-4 w-6 sm:w-9 md:w-11 h-6 sm:h-7 md:h-8 inline-block">
                       <PlayerIcon />
                     </span>
-                    <p className="my-0 text-[white] text-[20px]">সাবস্ক্রাইব করুন এবং শুনুন</p>
+                    <p className="my-0 text-[white] text-cs2 sm:text-cn2 md:text-[20px]">সাবস্ক্রাইব করুন এবং শুনুন</p>
                   </span>
                 </div>
               </Link>
           </div>
         </div>
 
-        <div className='tawk_to_div'>
-          <Script id="tawk-script" strategy="afterInteractive">
-            {`
-              var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-              (function(){
-                var s1 = document.createElement("script"),
-                    s0 = document.getElementsByTagName("script")[0];
-                s1.async = true;
-                s1.src = 'https://embed.tawk.to/68cb9938b695741925a90747/1j5dkt1it';
-                s1.charset = 'UTF-8';
-                s1.setAttribute('crossorigin','*');
-                s0.parentNode.insertBefore(s1, s0);
-              })();
-            `}
-          </Script>
-        </div>
+        {/* <div className='tawk_to_div'>
+          
+        </div> */}
     </div>
   )
 }

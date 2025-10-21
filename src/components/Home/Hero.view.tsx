@@ -62,7 +62,7 @@ const Hero = ({
                   router.push(`/audiobook/${topbannerinfo?.id}`);
                 }}
               >
-                <div className="relative h-[70vh]  sm:h-[95vh] md2:h-[105vh] lg:h-[115vh] lg2:h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
+                <div className="relative h-[70vh] xxs:h-[70vh] xs:h-[80vh] sm:h-[85vh] md:h-[95vh] md2:h-[105vh] lg:h-[115vh] lg2:h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
                   <div className={styles.backdrop_filter}>
                     <div className="">
                       <picture className={styles.thumb_path}>
@@ -80,9 +80,9 @@ const Hero = ({
                       {/* <div className={styles.book_on_banner}>
                       <h5>{topbannerinfo.name}</h5>
                     </div> */}
-                      <div className="w-full z-10  text-white">
-                        <h3 className=" leading-[1.3] text-lg xxs2:text-cxl md2:text-cxxl2 w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
-                        <p className="text-clg sm:text-cxl my-2 sm:my-7">{topbannerinfo.author_name}</p>
+                      <div className="w-full z-10 max-sm:mt-[7.5vh]  text-white">
+                        <h3 className=" leading-[1.3] text-clg2 xxs2:text-cxl md2:text-cxxl2 w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
+                        <p className="text-clg sm:text-cxl my-4 sm:my-7">{topbannerinfo.author_name}</p>
                         <CommonButton className={styles.hue_btn}>
                           <div className="flex gap-2">
                             <span className=" xxs2:mr-4 w-5 h-5 sm:w-7 sm:h-7 inline-block">
