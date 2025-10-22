@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RewardPoint = () => {
+const TopPointCard = () => {
   return (
     <div>
       <div
@@ -27,4 +27,4 @@ const RewardPoint = () => {
   )
 }
 
-export default RewardPoint
+export default TopPointCard

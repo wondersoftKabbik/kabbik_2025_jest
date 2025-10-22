@@ -1,4 +1,7 @@
+import RewrdItems from '@/components/RewardPoint/RewrdItems.view'
+import TopPointCard from '@/components/RewardPoint/TopPointCard.view'
 import { container } from '@/components/ui/static/tailwind.classes'
+import { ChevronRight, Clock, File, FileChartColumn, FileChartLine, FileQuestion, GitGraph, PlayCircle, Users } from 'lucide-react'
 import React from 'react'
 
 const page = () => {
@@ -19,81 +22,106 @@ const page = () => {
             />
         </div>
         <h3 className='text-white mt-0 pt-8 text-clg2 font-semibold text-center'>কাব্যিক রিওয়ার্ডস</h3>
-        <div className=" flex items-center justify-center bg-bg px-4 py-8 text-white">
-        <div className="w-full max-w-md space-y-5">
+        <div  className='w-[90%] relative mx-auto'>
+            <div className="circular_gradient right-[30%] bottom-[-10%] w-[30vw] h-[30vw] absolute  "></div>
+            <div className="circular_gradient left-[25%] top-[10%] w-[30vw] h-[30vw] absolute  "></div>
+            <div className="z-[4] relative  flex items-center justify-center  px-4 py-8 text-white">
+                <div className="w-full max-w-lg space-y-5">
 
-            {/* --- Top Card --- */}
+                    {/* --- Top Card --- */}
+                    <TopPointCard/>
+
+                    {/* --- Bottom Card --- */}
+                    <div
+                        className="rounded-2xl space-y-6"
+                
+                    >
+                        <RewrdItems/>
+                    </div>
+                </div>
+                
+            </div>
+
             <div
-            className="rounded-2xl p-6"
-            style={{
-                background:
-                "linear-gradient(150.34deg, #162751 22.16%, #985A8D 64.47%)",
-            }}
+                className="z-[3] relative flex w-[90%] mx-auto items-center justify-center px-4  text-white"
             >
-            <div className="flex justify-between mb-6">
-                <p className="font-medium">মোঃ সুভন আলী</p>
-                <p className="font-semibold">১১,৮৬০ পয়েন্ট</p>
-            </div>
+                <div className="w-full max-w-lg  rounded-2xl overflow-hidden">
+                    {/* Section 1 */}
+                    <div className="border-b border-white/20">
+                    <div className="flex items-center justify-between px-5 py-4">
+                        <div className="flex items-center space-x-2">
+                        <File className="text-[#F2B5C2]" size={18} />
+                        <p className="text-cs sm:text-cs2 md:text-cn font-medium">পয়েন্ট বিবরণী</p>
+                        </div>
+                        <ChevronRight size={18} />
+                    </div>
+                    </div>
 
-            {/* Progress bar */}
-            <p className="text-sm mb-2">শ্রবণ সূচনা</p>
-            <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
-                <div className="h-2 bg-white/90 w-[85%]" />
-            </div>
+                    {/* Section 2 */}
+                    <div className="border-b border-white/20">
+                    <div className="flex items-center justify-between px-5 py-4">
+                        <div className="flex items-center space-x-2">
+                        <FileChartLine className="text-[#F2B5C2]" size={18} />
+                        <p className="text-cs sm:text-cs2 md:text-cn font-medium">কিভাবে কাজ করে</p>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                        <p className="text-cs sm:text-cs2 md:text-cn font-medium">ভিডিও দেখুন</p>
+                        <PlayCircle className="text-[#F2B5C2]" size={18} />
+                        </div>
+                    </div>
+                    </div>
 
-            <p className="text-xs mt-2 opacity-90">
-                পয়েন্ট ব্যবহার করলে লেভেলের অগ্রগতির উপর কোনো প্রভাব পড়বে না
-            </p>
-            </div>
+                    {/* Section 3 */}
+                    <div className="border-b border-white/20">
+                    <div className="flex items-center justify-between px-5 py-4">
+                        <div className="flex items-center space-x-2">
+                        <GitGraph className="text-[#F2B5C2]" size={18} />
+                        <p className="text-cs sm:text-cs2 md:text-cn font-medium">যেসব টাস্কে পয়েন্ট পাওয়া যাবে</p>
+                        </div>
+                        <ChevronRight size={18} />
+                    </div>
+                    </div>
 
-            {/* --- Bottom Card --- */}
-            <div
-            className="rounded-2xl space-y-6"
-           
-            >
-            {/* Expiry Info */}
-            {/* <div className="text-center">
-                <p className="text-sm">
-                <span className="font-semibold">৭৩১ পয়েন্ট</span> ৬ দিনের মধ্যে মেয়াদ শেষ হবে
-                </p>
-                <p className="text-sm mt-1">মেয়াদ শেষ হবে: ২৮/০২/২৫</p>
-            </div> */}
+                    {/* Task list */}
+                    <div className="px-5 py-4 space-y-4">
+                    <div className="flex items-start space-x-2">
+                        <Users className="text-[#F2B5C2] mt-1" size={16} />
+                        <p className="text-cs sm:text-cs2 md:text-cn leading-snug">
+                        বন্ধুকে রেফার করে সাবস্ক্রিপশন করালে – ৫০ পয়েন্ট
+                        </p>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                        <Clock className="text-[#F2B5C2] mt-1" size={16} />
+                        <p className="text-cs sm:text-cs2 md:text-cn leading-snug">সপ্তাহে ৪০০ মিনিট শুনলে – ৩০ পয়েন্ট</p>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                        <Clock className="text-[#F2B5C2] mt-1" size={16} />
+                        <p className="text-cs sm:text-cs2 md:text-cn leading-snug">মাসে ১০০০ মিনিট শুনলে – ৪০ পয়েন্ট</p>
+                    </div>
+                    </div>
 
-            {/* Divider */}
-            {/* <div className="border-t border-white/30" /> */}
+                    {/* FAQ */}
+                    <div className="border-t border-white/20">
+                    <div className="flex items-center justify-between px-5 py-4">
+                        <div className="flex items-center space-x-2">
+                        <FileQuestion className="text-[#F2B5C2]" size={18} />
+                        <p className="text-cs sm:text-cs2 md:text-cn font-medium">সচরাচর জিজ্ঞাসা</p>
+                        </div>
+                    </div>
+                    </div>
 
-            {/* Rewards Header */}
-            <div className="flex justify-between items-center">
-                <p className="font-semibold">কার্যকর রিওয়ার্ডস</p>
-                <button className="text-sm">সবগুলো দেখুন</button>
-            </div>
-
-            {/* Rewards List */}
-            <div className="space-y-4">
-                {/* Reward 1 */}
-                <div className="flex justify-between items-center bg-white/10 rounded-xl p-4">
-                <div>
-                    <p className="text-sm font-medium">২০ টাকা মোবাইল রিচার্জ</p>
-                    <p className="text-xs opacity-80">৬০০ পয়েন্ট</p>
+                    {/* Terms */}
+                    <div className="border-t border-white/20">
+                    <div className="flex items-center justify-between px-5 py-4">
+                        <div className="flex items-center space-x-2">
+                        <FileChartColumn className="text-[#F2B5C2]" size={18} />
+                        <p className="text-cs sm:text-cs2 md:text-cn font-medium">শর্তাবলী</p>
+                        </div>
+                        <ChevronRight size={18} />
+                    </div>
+                    </div>
                 </div>
-                <button className="bg-[#F2B5C2] text-black px-4 py-1.5 rounded-md text-sm font-medium">
-                    সংরক্ষ করুন
-                </button>
-                </div>
-
-                {/* Reward 2 */}
-                <div className="flex justify-between items-center bg-white/10 rounded-xl p-4">
-                <div>
-                    <p className="text-sm font-medium">৫০০ এমবি মোবাইল ডাটা</p>
-                    <p className="text-xs opacity-80">১৫০০ পয়েন্ট</p>
-                </div>
-                <button className="bg-[#F2B5C2] text-black px-4 py-1.5 rounded-md text-sm font-medium">
-                    সংরক্ষ করুন
-                </button>
-                </div>
             </div>
-            </div>
-        </div>
         </div>
     </div>
   )
