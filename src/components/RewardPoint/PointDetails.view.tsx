@@ -61,8 +61,8 @@ function EarnedPoints() {
     <div className="relative">
         <div className="circular_gradient left-[0%] bottom-[0%] w-[30vh] h-[30vh] absolute  "></div>
           <div className="w-full z-[2] relative  text-left">
-            {earnedPoints?.map((item)=>(
-              <div className="pt-5">
+            {earnedPoints?.map((item,i)=>(
+              <div key={i} className="pt-5">
                 <h3 className="font-semibold text-lg text-white">{item?.ui_additional_info?.title}</h3>
                 <div className="flex justify-between items-center mt-3">
                     <p className="text-gray-400 text-sm">{item?.ui_additional_info?.sub_title}</p>
@@ -101,8 +101,8 @@ function UsedPoints() {
     <div className="relative">
         <div className="circular_gradient left-[0%] bottom-[0%] w-[30vh] h-[30vh] absolute  "></div>
           <div className="w-full z-[2] relative  text-left">
-            {usedPoints?.map((item:any)=>(
-              <div className="pt-5">
+            {usedPoints?.map((item:any,i)=>(
+              <div key={i} className="pt-5">
                 <h3 className="font-semibold text-lg text-white">{item?.reward_title}</h3>
                 <div className="flex justify-between items-center mt-3">
                     <p className="text-gray-400 text-sm mr-2">{item?.offer}</p>
