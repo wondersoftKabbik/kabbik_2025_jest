@@ -10,5 +10,6 @@ export const paths={
     subscribe:'/subscribe',
     favorites:'/profile/favorites',
     my_rents:'/profile/my-rents',
-    my_courses:'/profile/my-courses'
+    my_courses:'/profile/my-courses',
+    reward_point:'/profile/reward-point'
 }

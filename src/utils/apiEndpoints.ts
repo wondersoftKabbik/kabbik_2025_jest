@@ -95,4 +95,16 @@ export const apiEndPoints = {
   add_books_tofolder:`${BASE_URL}/v1/playlist/add-book-playlist`,
   removeBooksFromPlaylist:`${BASE_URL}/v1/playlist/`,
   sponsor_request:`${BASE_URL}/v4/home/sponsor-request`,
+  // reward point
+  create_reward: `${BASE_URL}/v4/reward/create-reward`,
+  // ?userId=1323204&taskId=1
+  claim_reward:`${BASE_URL}/v4/reward/claim-reward`,
+  all_tier_reward:`${BASE_URL}/v4/reward/get-all-tier_reward`,
+  // ?userId=33677
+  getUser_reward_profile:`${BASE_URL}/v4/reward/get-user-reward-profile`,
+  // ?userId=1323204
+  reward_faq:`${BASE_URL}/v4/reward/tier-faq`,
+  reward_tasks:`${BASE_URL}/v4/reward/get-all-task`,
+  user_point_details:`${BASE_URL}/v4/reward/user-point-details`
+  // ?type=earned&userId=1323204&page=1&limit=15
 };

@@ -107,6 +107,11 @@ body{
     rgba(136, 29, 105, 0.0) 80%   /* fade to transparent edges */
   );
 }
+
+.bg_pink_gray{
+  background-image: linear-gradient(to right, #f9a8d4, #ec4899);
+}
+
 /* 
 .rect-gradient{
   position: relative;

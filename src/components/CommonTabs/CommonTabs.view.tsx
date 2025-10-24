@@ -34,7 +34,7 @@ export default function CommonTabs({ tabs }: TabsProps) {
       </div>
 
       {/* Active Tab Content */}
-      <div className="p-4 flex items-center justify-center">{tabs[activeIndex].component}</div>
+      <div className="p-4 flex items-center justify-center">{tabs[activeIndex]?.component}</div>
     </div>
   );
 }

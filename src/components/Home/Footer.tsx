@@ -39,7 +39,7 @@ export default function Footer() {
     setLoading(false);
   }
   return (
-    <footer className="bg-[#06152B] z-10 relative text-white mt-10">
+    <footer className="bg-[#06152B] z-[2] relative text-white mt-10">
       {/* Newsletter Section */}
       <div className="px-4 max-w-[1400px] w-[97%] mx-auto py-8">
         <div className="flex flex-col md:flex-row items-start justify-between lg:items-center gap-8 ">

@@ -279,7 +279,7 @@ export const handleShare = async () => {
 			console.error('Error sharing:', error);
 		}
 	} else {
-		alert('Share not supported on this browser.');
+		toast.info('Share not supported on this browser.');
 	}
 };
 

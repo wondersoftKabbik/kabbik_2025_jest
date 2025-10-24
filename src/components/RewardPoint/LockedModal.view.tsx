@@ -18,8 +18,7 @@ const LockedModal = () => {
 
       {/* Description */}
       <p className="text-center text-sm pb-8 font-medium leading-relaxed max-w-xs">
-        কার্যক থেকে ৬০০ পয়েন্ট অর্জন করলে ২০ টাকা <br />
-        মোবাইল রিচার্জ নিতে পারবেন
+        আপনি এখনও এই পুরষ্কার স্তরটি আনলক করেননি। আনলক করতে, কাব্যিক ব্যবহার চালিয়ে যান
       </p>
     </div>
     </div>

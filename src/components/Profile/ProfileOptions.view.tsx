@@ -133,6 +133,7 @@ export default function Profiles(profileData: any) {
     // Row 1
     { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', hasNewBadge: true, handleClick:()=>{setShowBookRequestModal(true)} },
     { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{setShowRedeemModal(true)} },
+    { title: 'রিওয়ার্ড পয়েন্ট', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{router.push(paths.reward_point)},hasNewBadge: true },
     { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' , handleClick:()=>{router.push(paths.favorites)} },
 
     // Row 2

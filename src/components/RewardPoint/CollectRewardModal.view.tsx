@@ -1,7 +1,13 @@
 import Message from '@/svgs/Message.svg'
 import React from 'react'
 
-const CollectRewardModal = () => {
+const CollectRewardModal = ({
+  onSubmit,
+  onClose
+}:{
+  onSubmit:()=>void;
+  onClose:()=>void
+}) => {
   return (
     <div>
         <div className=" flex rounded-[8px] flex-col items-center justify-center bg-white px-4 py-6">
@@ -22,10 +28,10 @@ const CollectRewardModal = () => {
 
       {/* Buttons */}
       <div className="flex gap-4">
-        <button className="px-8 py-2 border-2 border-[#0B1537] text-[#0B1537] font-medium rounded-full">
+        <button onClick={()=>onClose()} className="px-8 py-2 border-2 border-[#0B1537] text-[#0B1537] font-medium rounded-full">
           না
         </button>
-        <button className="px-8 py-2 bg-[#FBD9D7] text-[#0B1537] font-medium rounded-full">
+        <button onClick={onSubmit} className="px-8 py-2 bg-[#FBD9D7] text-[#0B1537] font-medium rounded-full">
           হ্যাঁ
         </button>
       </div>
