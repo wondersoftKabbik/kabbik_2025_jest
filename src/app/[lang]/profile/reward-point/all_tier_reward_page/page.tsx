@@ -16,7 +16,7 @@ import { all_tier_reward, getUser_reward_profile } from '@/utils/apiServices'
 import Link from 'next/link'
 import { decodeWord } from '@/helpers/commonFunction'
 
-const page = () => {
+const Page = () => {
     const router=useRouter();
     const [userRewardData,setUserRewardData]=useState<RewardData|null>(null);
     const user=useAppSelector(store=>store?.user?.userData)
@@ -102,4 +102,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

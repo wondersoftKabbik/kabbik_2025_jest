@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 import { decodeWord } from '@/helpers/commonFunction'
 import Link from 'next/link'
 
-const page = async() => {
+const Page = () => {
     const router=useRouter();
     const [userRewardData,setUserRewardData]=useState<RewardData|null>(null);
     const user=useAppSelector(store=>store?.user?.userData)
@@ -127,7 +127,7 @@ const page = async() => {
 
                     {/* Task list */}
                     {userRewardData?.featureList?.map((item,index)=>item?.type_reward==='reward'?'':(
-                        <div onClick={()=>router.push(`/profile/reward-point/${item?.goto_page}`)} key={index} className="px-5 cursor-pointer py-4 border-b border-white/20  space-y-4">
+                        <div key={index} onClick={()=>router.push(`/profile/reward-point/${item?.goto_page}`)}  className="px-5 cursor-pointer py-4 border-b border-white/20  space-y-4">
                             <div className="flex items-start space-x-2">
                                 <img className='max-w-5' src={item?.leading_icon}/>
                                 <p className="text-cs sm:text-cs2 md:text-cn leading-snug">
@@ -135,7 +135,7 @@ const page = async() => {
                                 </p>
                             </div>
                             {item?.items?.map((subItems:any,index)=>(
-                                <div className="flex items-start space-x-2">
+                                <div key={index} className="flex items-start space-x-2">
                                     <img className='w-4' src={subItems?.leading_icon??''}/>
                                     <p className="text-cs sm:text-cs2 md:text-cn leading-snug">{subItems?.title}</p>
                                 </div>
@@ -170,4 +170,4 @@ const page = async() => {
   )
 }
 
-export default page
+export default Page
