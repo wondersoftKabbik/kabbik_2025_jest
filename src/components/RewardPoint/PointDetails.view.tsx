@@ -3,11 +3,24 @@
 import { useEffect, useState } from "react";
 import CommonTabs from "../CommonTabs/CommonTabs.view";
 import { RewardHistory, RewardHistoryList, TEarnedRewardRecord } from "./static/rewardPoint.type";
-import { user_point_details } from "@/utils/apiServices";
+import { getUser_reward_profile, user_point_details } from "@/utils/apiServices";
 import { useAppSelector } from "@/store/store";
 import { convertToBanglaDigits, formatDateDDMMYY, formatTimePlus6 } from "@/helpers/commonFunction";
+import { RewardData } from "@/app/[lang]/profile/reward-point/reward-point.type";
 
 export default function PointsPage() {
+   const user=useAppSelector(store=>store.user.userData);
+  const [userRewardData,setUserRewardData]=useState<RewardData|null>(null)
+
+  const getUserRewardData=async()=>{
+    let result = await getUser_reward_profile(user?.id??'')
+    setUserRewardData(result?.data?.data)
+  }
+  useEffect(()=>{
+    if(user?.id){
+      getUserRewardData()
+    }
+  },[user?.id])
 
   return (
     <div className=" text-white relative max-w-[600px] mx-auto px-5 py-10">
@@ -18,8 +31,8 @@ export default function PointsPage() {
 
         <div>
           <p className="text-sm text-gray-300">ব্যবহারযোগ্য পয়েন্ট</p>
-          <h2 className="text-5xl font-extrabold tracking-wide py-2">১২৮৯৭</h2>
-          <p className="text-sm text-gray-400">শেষ আপডেটঃ ২৫/০৫/২৫</p>
+          <h2 className="text-c3xl md:text-5xl font-extrabold tracking-wide py-2">{convertToBanglaDigits(userRewardData?.user_tier?.user_acquired_point??0)}</h2>
+          <p className="text-sm text-gray-400">শেষ আপডেটঃ {formatDateDDMMYY(new Date().toISOString())}</p>
         </div>
 
         <div className="mt-6">
@@ -63,7 +76,7 @@ function EarnedPoints() {
           <div className="w-full z-[2] relative  text-left">
             {earnedPoints?.map((item,i)=>(
               <div key={i} className="pt-5">
-                <h3 className="font-semibold text-lg text-white">{item?.ui_additional_info?.title}</h3>
+                <h3 className="font-semibold text-cs2 md:text-lg text-white">{item?.ui_additional_info?.title}</h3>
                 <div className="flex justify-between items-center mt-3">
                     <p className="text-gray-400 text-sm">{item?.ui_additional_info?.sub_title}</p>
                 <span className="text-pink-400 font-semibold text-sm">+ {convertToBanglaDigits(item?.point)} পয়েন্ট</span>
@@ -103,7 +116,7 @@ function UsedPoints() {
           <div className="w-full z-[2] relative  text-left">
             {usedPoints?.map((item:any,i)=>(
               <div key={i} className="pt-5">
-                <h3 className="font-semibold text-lg text-white">{item?.reward_title}</h3>
+                <h3 className="font-semibold text-cs2 md:text-lg text-white">{item?.reward_title}</h3>
                 <div className="flex justify-between items-center mt-3">
                     <p className="text-gray-400 text-sm mr-2">{item?.offer}</p>
                 <span className="text-pink-400 font-semibold text-sm"> - {convertToBanglaDigits(item?.usage_point)} পয়েন্ট</span>

@@ -39,7 +39,7 @@ export default function FaqSection() {
             >
               <button
                 onClick={() => toggle(index)}
-                className="w-full flex justify-between items-center px-5 py-4 text-left font-medium text-base focus:outline-none"
+                className="w-full flex justify-between items-center md:px-5 py-2 md:py-4 text-left font-medium text-cs md:text-base focus:outline-none"
               >
                 {faq.question}
                 {activeIndex === index ? (
@@ -54,7 +54,7 @@ export default function FaqSection() {
                   activeIndex === index ? "max-h-40" : "max-h-0"
                 }`}
               >
-                <div className="px-5 pb-4 text-gray-300 text-sm leading-relaxed">
+                <div className="md:px-5 pb-4 text-gray-300 text-cs md:text-sm leading-relaxed">
                   {faq.answer}
                 </div>
               </div>

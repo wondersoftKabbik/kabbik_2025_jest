@@ -65,7 +65,7 @@ export default function TopSection({unSubscribeHandler,editProfile}:{
             </div>
 
             {/* Middle Stats */}
-            <div className="flex items-center w-[45%] flex-wrap gap-8 text-white text-sm flex-1 ">
+            <div className="flex items-center md:w-[45%] flex-wrap gap-8 text-white text-sm flex-1 ">
               {/* Hours */}
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-full bg-[#2D7FF9] flex items-center justify-center">

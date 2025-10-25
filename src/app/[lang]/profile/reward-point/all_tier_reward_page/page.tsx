@@ -62,7 +62,7 @@ const Page = () => {
         <div  className='w-[90%] relative mx-auto'>
             <div className="circular_gradient right-[30%] bottom-[-10%] w-[30vw] h-[30vw] absolute  "></div>
             <div className="circular_gradient left-[25%] top-[10%] w-[30vw] h-[30vw] absolute  "></div>
-            <div className="z-[4] max-w-[600px] mx-auto relative  flex items-center justify-center  px-4 py-8 text-white">
+            <div className="z-[4] max-w-[600px] mx-auto relative  flex items-center justify-center  md:px-4 py-3 md:py-8 text-white">
                 <CommonTabs
                     tabs={all_tier_rewards.map((item,index)=>(
                         {

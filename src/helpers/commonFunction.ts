@@ -285,6 +285,7 @@ export const handleShare = async () => {
 
 export function formatDateDDMMYY(dateStr: string): string {
   if(!dateStr)return '';
+  // dateStr=dateStr??new Date().toISOString()
   const date = new Date(dateStr.replace(" ", "T")); // Ensure ISO format
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based

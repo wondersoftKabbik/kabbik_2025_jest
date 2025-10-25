@@ -6,12 +6,13 @@ import { TCategoryItem, TUserProfile } from "../ui/static/types";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setCategories } from "@/store/slicers/categoriesSlice";
 import { setUser } from "@/store/slicers/userSlice";
-import { isValidMsisdn, normalizeMsisdn } from "@/helpers/commonFunction";
+import { decodeWord, isValidMsisdn, normalizeMsisdn } from "@/helpers/commonFunction";
 import { toast } from "react-toastify";
 import { usePathname } from "next/navigation";
 import { apiEndPoints } from "@/utils/apiEndpoints";
 import { setuserPreference } from "@/store/slicers/userPreferenceSlice";
 import { siteConfig } from "@/config/config";
+import { paths } from "@/utils/Paths";
 
 
 const useNavbar = () => {
@@ -200,7 +201,22 @@ const useNavbar = () => {
       setShowPreferenceCatModal(false);
       setShowPreferenceAuthorModal(true);
     }
-  return {showCategories,boxRef,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick,handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword,showPreferenceCatModal,showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal}
+
+    const isCategoryPage=(pathname:string)=>{
+      let result = true;
+      
+      if(pathname==='')return false;
+      
+      Object.values(paths).forEach((item)=>{
+        if(typeof item ==='string' && decodeWord(pathname).includes(item) && pathname!=='' ){
+          console.log(item,decodeWord(pathname))
+          result= false;
+          return;
+        }
+      })
+      return result;
+    }
+  return {showCategories,isCategoryPage,boxRef,setShowCategories,user,categories,setMobileMenu,mobileMenu,showLoginModal,showOTPModal,showPasswordModal,showLoginPasswordModal,handleLoginClick,handleloginSubmit,handleVerifyOtp,closeLoginClick,closePasswordClick,closeOTPClick,handleSubmit,closeLoginPasswordClick,handleShowPasswordModal,handlePhoneOfChangePassword,showPhoneOfChangePass,closeShowPhoneOfChangePass,handleClickForgetPassword,showPreferenceCatModal,showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal}
 }
 
 export default useNavbar

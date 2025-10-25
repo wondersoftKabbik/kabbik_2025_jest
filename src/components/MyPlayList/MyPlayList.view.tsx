@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import FoldersModal from "./FoldersModal.view";
 import { createNewPlaylistFolders, getPlayListBooks, RemoveBooksFromPlaylist, updatePlaylistFolders } from "@/utils/apiServices";
 import { PlaylistAudioBook } from "./static/myplaylist.type";
-import { formatDateDDMMYY, formatTimePlus6 } from "@/helpers/commonFunction";
+import { convertToBanglaDigits, formatDateDDMMYY, formatTimePlus6 } from "@/helpers/commonFunction";
 import Skeleton from "../Skeleton/Skeleton";
 import EditFoldersModal from "./EditFoldersModal.view";
 import { toast } from "react-toastify";
@@ -108,7 +108,7 @@ export default function MyPlayList() {
             {
               Object.keys(folders).map(item=>(
                 <button
-                  className={`text-white relative border py-2 px-4 rounded-[4px] border-gray-300 hover_btn-gradient-1 ${folders[item]===activeFolders?' btn-gradient-1 ':'' }`}
+                  className={`text-white relative border text-cs md:text-cn py-2 px-0.5 sm:px-2 md:px-4 rounded-[4px] border-gray-300 hover_btn-gradient-1 ${folders[item]===activeFolders?' btn-gradient-1 ':'' }`}
                   onClick={()=>{setActiveFolders(folders[item])}}
                   key={folders[item]}
                 >
@@ -120,7 +120,7 @@ export default function MyPlayList() {
               ))
             }
           </div>
-          <div className="flex items-center mt-2 text-white gap-x-3">
+          <div className="flex items-center text-cs-2 md:text-cn-2 mt-2 text-white gap-x-3">
             <figure>
               <img className="max-w-8 max-h-8" src={user?.image_url??siteConfig.defaultProfilePic}/>
             </figure>
@@ -138,16 +138,16 @@ export default function MyPlayList() {
               <img className="max-w-12" src={books?.[0]?.banner_path}/>
             </div>
             <div>
-              <button className="text-white flex items-center gap-1 btn-gradient-3 py-2 px-4 rounded-[8px]" onClick={()=>{setFolderModal(true)}}>
+              <button className="text-white text-cs2 md:text-cn2 flex items-center gap-1 btn-gradient-3 py-2 px-4 rounded-[8px]" onClick={()=>{setFolderModal(true)}}>
                 <PlusIcon className="text-white w-4"/>
-                ক্রিয়েট নিউ প্লেলিস্ট
+               {books.length?"এড নিউ বুক":" ক্রিয়েট নিউ প্লেলিস্ট"}
               </button>
             </div>
           </div>
           
       </div>
       <div className={container('1280px')+" "}>
-        <div className=" pb-8 px-4 lg:px-12">
+        <div className=" pb-8 md:px-4 lg:px-12">
       <div className=" mx-auto relative overflow-x-auto overflow-y-hidden">
         {/* Table Header */}
 
@@ -155,13 +155,13 @@ export default function MyPlayList() {
         <table className="w-full min-w-[800px] border-collapse z-30 relative">
           {/* Table Head */}
           <thead>
-            <tr className="text-gray-400  bg-white bg-opacity-10 text-cn text-left">
-              <th className="px-6 py-3">#</th>
-              <th className="px-6 py-3">টাইটেল</th>
-              <th className="px-6 py-3">লেখক</th>
-              <th className="px-6 py-3">তারিখ</th>
-              <th className="px-6 py-3">সময়</th>
-              <th className="px-6 py-3">অ্যাকশন</th>
+            <tr className="text-gray-400 text-cs md:text-cn bg-white bg-opacity-10 text-left">
+              <th className="px-1.5 md:px-6 py-3">#</th>
+              <th className="px-1.5 md:px-6 py-3">টাইটেল</th>
+              <th className="px-1.5 md:px-6 py-3">লেখক</th>
+              <th className="px-1.5 md:px-6 py-3">তারিখ</th>
+              <th className="px-1.5 md:px-6 py-3">সময়</th>
+              <th className="px-1.5 md:px-6 py-3">অ্যাকশন</th>
             </tr>
           </thead>
 
@@ -179,46 +179,44 @@ export default function MyPlayList() {
               ):
               <tr
                 key={book.audiobook_id}
-                className={`hover:bg-white/5 cursor-pointer`}
+                className={`hover:bg-white/5 cursor-pointer text-cs md:text-cn`}
                 onClick={()=>{router.push(paths.book_details(book.audiobook_id))}}
               >
                 {/* Row Number */}
-                <td className="px-6 py-0 text-gray-300 text-clg2 font-normal">
-                  {book.audiobook_id === 10
-                    ? '১০'
-                    : ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'][book.audiobook_id - 1]}
+                <td className="px-1.5 md:px-6 py-0 text-gray-300 text-cs2 md:text-clg2 font-normal">
+                  {convertToBanglaDigits(index+1)}
                 </td>
 
                 {/* Title + Cover */}
-                <td className="px-6 py-1 flex items-center gap-4 max-w-[300px]">
+                <td className="px-1.5 md:px-6 py-1 flex items-center gap-4 max-w-[300px]">
                   <img
                     src={book.banner_path}
                     alt={book.name}
                     className="w-[51px] h-[60px] object-cover rounded"
                   />
-                  <span className="text-white text-cn leading-tight">
+                  <span className="text-white  leading-tight">
                     {book.name}
                   </span>
                 </td>
 
                 {/* Author */}
-                <td className="px-6 py-1 text-gray-300 text-cn leading-tight">
+                <td className="px-1.5 md:px-6 py-1 text-gray-300  leading-tight">
                   {book.author_name}
                 </td>
 
                 {/* Date */}
-                <td className="px-6 py-1 text-gray-400 text-cn">
+                <td className="px-1.5 md:px-6 py-1 text-gray-400 ">
                   {formatDateDDMMYY(book.created_at)}
                 </td>
 
                 {/* Time */}
-                <td className="px-6 py-1 text-gray-400 text-cn">
+                <td className="px-1.5 md:px-6 py-1 text-gray-400 ">
                   {/* {book.time} */}
                   {formatTimePlus6(book.created_at)}
                 </td>
 
                 {/* Action */}
-                <td className="px-6 py-1">
+                <td className="px-1.5 md:px-6 py-1">
                   <button
                     onClick={(e) => {e.stopPropagation();RemoveFromPlaylist(book.playlist_book_id)}}
                     className="bg-red-500/20 hover:bg-red-600/20 text-white rounded p-2 flex items-center justify-center"

@@ -15,10 +15,24 @@ export default function CommonTabs({ tabs }: TabsProps) {
 
   return (
     <div
-      className="w-full text-white"
+      className="w-full  text-white"
     >
       {/* Tab Header */}
-      <div className="flex items-center justify-around border-b border-white/20">
+      <div className="max-w-full">
+        <div 
+        // className="flex items-center  justify-around border-b border-white/20"
+        className="
+          flex items-center gap-6 border-b border-white/20
+          overflow-x-auto scroll-smooth
+          whitespace-nowrap
+          overflow-y-hidden
+        "
+
+        style={{
+          scrollbarWidth: "thin",
+          scrollbarColor: "#7F1867 #050f1e",
+        }}
+      >
         {tabs.map((tab, index) => (
           <button
             key={index}
@@ -32,9 +46,10 @@ export default function CommonTabs({ tabs }: TabsProps) {
           </button>
         ))}
       </div>
+      </div>
 
       {/* Active Tab Content */}
-      <div className="p-4 flex items-center justify-center">{tabs[activeIndex]?.component}</div>
+      <div className="py-3 md:p-4 flex items-center justify-center">{tabs[activeIndex]?.component}</div>
     </div>
   );
 }

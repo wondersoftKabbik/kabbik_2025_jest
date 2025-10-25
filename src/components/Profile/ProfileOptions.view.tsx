@@ -163,7 +163,7 @@ export default function Profiles(profileData: any) {
     <div className=" p-4">
       <div className="max-w-6xl mx-auto">
         {/* 3 columns x 3 rows */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-4">
           {firstNine.map((item, index) => (
             // <Link href={item.url??''} key={index} className=" flex-shrink-0">
             <MenuItem

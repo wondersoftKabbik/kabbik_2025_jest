@@ -12,8 +12,8 @@ import Traingle from "@/svgs/Traingle.svg";
 
 export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:DictionaryType}) {
   return (
-   <div className={`mt-28 ${styles.ThreeDBannerGradient} `}>
-  <div className={`flex justify-between  max-w-[1209px] w-[90%] mx-auto`}>
+   <div className={`mt-28  ${styles.ThreeDBannerGradient} `}>
+  <div className={`flex relative max-xs2:flex-col  justify-between  max-w-[1209px] w-[94%] md:w-[90%] mx-auto`}>
     {/* Book Cover Image */}
     <div className="min-w-[40%] mt-[-120px]">
       {book ? (
@@ -22,11 +22,11 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
     </div>
 
     {/* Content Section */}
-    <div className="">
+    <div className="max-sm:text-right z-[3]  max-xs2:hidden">
       
       {/* Main Heading */}
       <div className="">
-        <h1 className="text-2xl sm:text-cxl text-white font-medium leading-tight lg:leading-[50.4px] ">
+        <h1 className="text-cn sm:text-clg md:text-cxl text-white font-medium leading-tight lg:leading-[50.4px] ">
           {numberTranslator(book?.play_count??0,dict.numbers)}-এরও বেশি মানুষ এই বইটি শুনেছেন!
         </h1>
 
@@ -38,7 +38,7 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
             {[...Array(Math.ceil(Number(book?.rating)))].map((_, index) => (
               <div
                 key={index}
-                className="w-10 h-10 lg:w-8 lg:h-8 rounded-full bg-[#D9D9D9] flex items-center justify-center"
+                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full bg-[#D9D9D9] flex items-center justify-center"
               >
                 <CircularStar/>
               </div>
@@ -46,19 +46,19 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
           </div>
 
           {/* Rating Text */}
-          <h2 className="text-xl sm:text-cxl text-white font-medium leading-tight lg:leading-[50.4px]">
+          <h2 className="text-cs2 sm:text-lg md:text-lg2 text-white font-medium leading-tight lg:leading-[50.4px]">
             পাঠকের রিভিউ – ৫/{numberTranslator(Number((book?.rating)?.toFixed(1))??0,dict.numbers)} রেটিং!
           </h2>
         </div>
       </div>
 
       {/* Play Button */}
-      <div className="w-full max-w-[421px] mx-auto ">
-        <button className="w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-2 px-6 hover:opacity-90 transition-opacity">
+      <div className="w-full max-w-[80%] max-sm:text-right md:max-w-[421px] mx-auto max-sm:mr-0 ">
+        <button className=" w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-1.5 md:py-2 px:1 md:px-6 hover:opacity-90 transition-opacity">
           <span className="w-5">
             <Traingle/>
           </span>
-          <span className="text-white text-lg sm:text-clg font-medium">
+          <span className="text-white text-cs2 sm:text-cn2 md:text-lg2 font-medium">
             এখনই শুনুন
           </span>
         </button>

@@ -25,6 +25,8 @@ import { siteConfig } from '@/config/config'
 // import  from ''
 import dynamic from 'next/dynamic'
 import Spinner from '../ui/Spinner.view'
+import { usePathname } from 'next/navigation'
+import { decodeWord } from '@/helpers/commonFunction'
 // import  from 
 // import OTPVerification from '../Login/OtpComponent'
 
@@ -100,7 +102,11 @@ const ShobderaJibonta = dynamic(
 });
 
 const Navbar = (props:TNavbar) => {
-    const {showCategories,boxRef, setShowCategories, user: profile, categories, setMobileMenu, mobileMenu, showLoginModal, showOTPModal, showPasswordModal, showLoginPasswordModal, handleLoginClick, handleloginSubmit, handleVerifyOtp, closeLoginClick, closePasswordClick, closeOTPClick, handleSubmit, closeLoginPasswordClick,  handleShowPasswordModal, handlePhoneOfChangePassword, showPhoneOfChangePass, closeShowPhoneOfChangePass, handleClickForgetPassword, showPreferenceCatModal, showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal} = useNavbar();
+    const {showCategories,boxRef, setShowCategories, user: profile, categories, setMobileMenu, mobileMenu, showLoginModal, showOTPModal, showPasswordModal, showLoginPasswordModal, handleLoginClick, handleloginSubmit, handleVerifyOtp, closeLoginClick, closePasswordClick, closeOTPClick, handleSubmit, closeLoginPasswordClick,  handleShowPasswordModal, handlePhoneOfChangePassword, showPhoneOfChangePass, closeShowPhoneOfChangePass, handleClickForgetPassword, showPreferenceCatModal, showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal,isCategoryPage} = useNavbar();
+    const pathnameWithLang = usePathname();
+    const pathname = pathnameWithLang.replace(/^\/(en|bl)/, "");
+
+
 
     return (
     <nav className='w-full bg-[#D9D9D91A] relative z-[11]'>
@@ -108,16 +114,17 @@ const Navbar = (props:TNavbar) => {
             <div className='flex items-center gap-4'>
                 <Link href={'/'} >
                     <figure className='mr-3'>
-                        <img loading="lazy" className='max-w-[138px] max-h-[54px] max-sm:max-w-[100px] max-:max-h-[46px]' src={'/assets/logo.png'} alt="Logo" />
+                        <img loading="lazy" className='max-w-[138px] max-h-[54px] max-xxs2:hidden xxs2:block max-sm:max-w-[100px] max-:max-h-[46px]' src={'/assets/logo.png'} alt="Logo" />
+                        <img loading="lazy" className='max-w-[80px] mt-[-10px] max-h-[43px] max-xxs2:block xxs2:hidden ' src={siteConfig.smallLogo} alt="Logo" />
                     </figure>
                 </Link>
                 <ul  className={' text-white flex '+ style.navbarList}>
-                    <li>
+                    <li className={pathname===''?'active_nav_item':''}>
                         <Link href={'/'}>হোম</Link>
                     </li>
                     <li 
                         onClick={()=>setShowCategories(!showCategories)}
-                        className='relative cursor-pointer'
+                        className={(isCategoryPage(pathname)?'active_nav_item':'')+' relative cursor-pointer'}
                         ref={boxRef}
                     >
                         {/* <Link href={'/'} className='flex' onClick={()=>{setShowCategories(!showCategories)}}> */}
@@ -144,30 +151,33 @@ const Navbar = (props:TNavbar) => {
                             ))}
                         </ul>}
                     </li>
-                    <li>
+                    <li className={pathname===paths.upcoming?'active_nav_item':''}>
                         <Link href={paths.upcoming}>আপকামিং</Link>
                     </li>
-                    <li>
-                        <Link href={'/'}>রেফার এন্ড  আর্ন</Link>
+                    <li className={pathname===paths.profile?'active_nav_item':''}>
+                        <Link href={'/profile'}>রেফার এন্ড  আর্ন</Link>
                     </li>
-                    <li>
+                    <li className={decodeWord(pathname)==='/পডকাস্ট'?'active_nav_item':''}>
                         <Link href={'/পডকাস্ট'}>পডকাস্ট</Link>
                     </li>
                     {/* <li>
                         <Link href={'/'}>মোর</Link>
                     </li> */}
-                    <li>
+                    <li className={decodeWord(pathname)==='/store'?'active_nav_item':''}>
+                        <Link href={'/store'}>স্টোর</Link>
+                    </li>
+                    {/* <li>
                         <CommonButton
                             isLoading={false}
                             disabled={false}
                         >
                             স্টোর
                         </CommonButton>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
             <div className='flex items-center gap-4 max-sm:gap-2'>
-                <Link href={'/'} className='flex items-center gap-2'>
+                <Link href={paths.searchBooks} className='flex items-center gap-2'>
                     <span className='w-5 h-5 text-white inline-block'>
                         <SearchIcon/>
                     </span>
@@ -175,6 +185,7 @@ const Navbar = (props:TNavbar) => {
                 {(!profile?.is_subscribed && profile?.id && profile?.id!==2820) ?<CommonButton
                     isLoading={false}
                     // handleClick={handleLoginClick}
+                    addiTionalClass='max-xxs:hidden'
                     disabled={false}
                 >
                     <Link href={'/subscribe'}>সাবস্ক্রাইব</Link>

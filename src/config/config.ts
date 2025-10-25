@@ -4,6 +4,7 @@ export const siteConfig = {
     description: 'Your go-to platform for all things Kabbik',
     url: 'https://kabbik.com',
     logo: '/assets/logo.png',
+    smallLogo:'/assets/logoSmall_2.png',
     logoWithoutKabbik:'https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/logo.svg',
     defaultToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjgyMCIsInJvbGUiOjEsImlhdCI6MTY2NTc0NjIyNX0.dSY47sipaGTI_OtsysFWw_kaKZKWHWRtp4vklstVgVc",
     defaultUserId:"2820",

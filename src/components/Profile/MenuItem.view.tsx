@@ -16,13 +16,13 @@ export  const MenuItem: React.FC<MenuItemProps> = ({ title, icon, gradient, hasN
         <div className="flex items-center space-x-4">
           <div
             className={cn(
-              'w-[36px] h-[36px] rounded-lg flex text-white items-center justify-center',
+              'w-[36px] h-[27px] sm:h-[36px] rounded-lg flex text-white items-center justify-center',
               gradient
             )}
           >
             {icon}
           </div>
-          <h3 className="text-white text-cn font-semibold flex-1">{title}</h3>
+          <h3 className="text-white text-cs2 md:text-cn font-semibold flex-1">{title}</h3>
         </div>
       </div>
 

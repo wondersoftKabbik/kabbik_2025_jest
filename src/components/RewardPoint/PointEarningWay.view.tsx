@@ -27,7 +27,7 @@ export default function PointsPage() {
         {tasks.map((task, i) => (
           <div
             key={i}
-            className="flex items-center gap-3 px-5 py-4  transition"
+            className="flex items-center gap-3 md:px-5 py-1.5 md:py-4  transition"
           >
             {/* Icon */}
             <div className="w-6 h-6 min-w-6 flex items-center justify-center rounded-full bg-gradient-to-r from-pink-400 to-pink-500">

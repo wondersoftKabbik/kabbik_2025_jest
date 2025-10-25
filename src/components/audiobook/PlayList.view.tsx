@@ -14,8 +14,8 @@ const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDe
   return (
     <div>
         <div className="max-h-[514px] px-2 overflow-y-auto">
-          {book?.episodes.map((episode,i) => (
-            <div key={episode.id} className=" my-4 btn-gradient-2 cursor-pointer rounded-[6px] p-3 md:p-4 shadow-lg">
+          {book?.episodes?.map((episode,i) => (
+            <div key={episode.id} className=" my-2 btn-gradient-2 cursor-pointer rounded-[6px] px-3 md:px-4 py-2 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4">
                 <div className="flex relative items-center gap-2 md:gap-3 flex-1 min-w-0">
                   <img
@@ -28,10 +28,10 @@ const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDe
                       ) : <LockIcon />}
                     </div>
                   <div>
-                    <h3 className="text-lg md:text-[22px] text-white font-normal min-w-0 leading-tight">
+                    <h3 className="text-cs md:text-cn text-white font-normal min-w-0 leading-tight">
                         {episode?.name}
                     </h3>
-                    <p className='text-white'>
+                    <p className='text-cs md:text-cs2 text-white'>
                         লেখক: {book?.author_name}
                     </p>
                   </div>

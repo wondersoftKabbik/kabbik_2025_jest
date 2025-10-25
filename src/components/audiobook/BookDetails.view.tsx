@@ -43,6 +43,7 @@ import { container } from "../ui/static/tailwind.classes";
 // import AudioSpeed from "./AudioSpeed.view";
 import Spinner from "../ui/Spinner.view";
 import EpisodeList from "./EpisodeList.view";
+import { paths } from "@/utils/Paths";
 // import SleeperTimer from "./SleeperTime.view";
 // import PaymentOptions from "../Subscription/PaymentOptions.view";
 
@@ -168,7 +169,7 @@ const AudiobookComponent = ({
 
   const isNextAllowed =
     index < epList?.length - 1 &&
-    (epList[index + 1].isfree === 1 ||
+    (epList?.[index + 1].isfree === 1 ||
       (!audioBookDetailsData?.isSubRestricted && isSubscribed) || (audioBookDetailsData?.isSubRestricted && audioBookDetailsData?.for_rent===0 && isSubscribed) ||
       audioBookDetailsData?.isPurchased === 1);
   const isPrevAllowed = index > 0;
@@ -189,7 +190,7 @@ const AudiobookComponent = ({
 
     if (index == -1) {
       setIndex(0);
-      setCurrentPlay(audioBookDetailsData.episodes[0]);
+      setCurrentPlay(audioBookDetailsData.episodes?.[0]);
     }
   }, [index, audioBookDetailsData.episodes, audioBookDetailsData.is_favorite]);
 
@@ -252,12 +253,12 @@ const AudiobookComponent = ({
       if (isRunning) {
         setIndex(indexNum);
         setAudioPlayer(
-          epList[
+          epList?.[
             epList?.map((item: any) => item.id).indexOf(continueEpisodeId)
           ]?.file_path);
 
         setCurrentPlay(
-          epList[epList?.map((item: any) => item.id).indexOf(continueEpisodeId)]
+          epList?.[epList?.map((item: any) => item.id).indexOf(continueEpisodeId)]
         );
 
         // audioPlayer.current.currentTime = continueRunningTime;
@@ -280,7 +281,7 @@ const AudiobookComponent = ({
     (audioBookDetailsData?.isSubRestricted && audioBookDetailsData?.for_rent===0 && isSubscribed) || 
     audioBookDetailsData?.isPurchased === 1 ||
     audioBookDetailsData?.price === 0 ||
-    epList[0]?.isfree
+    epList?.[0]?.isfree
   }
 
   useEffect(() => {
@@ -303,7 +304,7 @@ const AudiobookComponent = ({
     isPlaying,
     currentPlay?.id,
     currentPlay?.audiobook_id,
-    currentPlay.episode_id,
+    currentPlay?.episode_id,
     // setGlobalState,
   ]);
 
@@ -324,31 +325,7 @@ const AudiobookComponent = ({
     }, 2000);
   };
 
-  const favSubmit = async () => {
-    if (isFavBook) {
-      const fav = await deleteFavoritesApi(id);
-      setIsfavBook(false);
-      toast.info("Removed from favourites !", {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        pauseOnHover: false,
-        draggable: true,
-        theme: "dark",
-      });
-    } else {
-      const fav = await postFavoritesApi(id);
-      setIsfavBook(true);
-      toast.success("Added to favourites !", {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        pauseOnHover: false,
-        draggable: true,
-        theme: "dark",
-      });
-    }
-  };
+
 
   // AudioPlayer Configuration
 
@@ -356,7 +333,7 @@ const AudiobookComponent = ({
     let isIconChanged = false;
 
     if (audioPlayer === "") {
-      togglePlayList(0, epList[0].id);
+      togglePlayList(0, epList?.[0].id);
       isIconChanged = true;
     }
 
@@ -371,13 +348,13 @@ const AudiobookComponent = ({
         await postAudiobookPlayCountApi(id);
       };
       !audioBookCount ? await audioBookPlayCount(id) : "";
-      await postEpisodePlayCountApi(currentPlay.id);
+      await postEpisodePlayCountApi(currentPlay?.id);
     } else {
       // audioPlayer.current.pause();
       setPlaying(false)
     }
 
-    setCurrentPlay(epList[index]);
+    setCurrentPlay(epList?.[index]);
 
     // if (!isIconChanged) {
     //   setisPlaying((prev) => !prev);
@@ -391,7 +368,7 @@ const AudiobookComponent = ({
     )?.data;
     // audioPlayer.current.src = current;
     setAudioPlayer(current);
-    setCurrentPlay(epList[ind]);
+    setCurrentPlay(epList?.[ind]);
     // audioPlayer.current.play();
     setPlaying(true);
     // setisPlaying(true);
@@ -407,38 +384,38 @@ const AudiobookComponent = ({
     };
 
     !audioBookCount ? await audioBookPlayCount(id) : "";
-    await postEpisodePlayCountApi(currentPlay.id);
+    await postEpisodePlayCountApi(currentPlay?.id);
     showBigPlayer?"":setShowMiniPlayer(true);
   };
 
   const toggleSkipForward = async () => {
     setIndex((prev) => prev + 1);
     const current = (
-      await getCurrentEpisodePath(audioBookDetailsData.id, epList[index + 1].id)
+      await getCurrentEpisodePath(audioBookDetailsData.id, epList?.[index + 1].id)
     ).data;
     // audioPlayer.current.src = current;
     setAudioPlayer(current);
-    setCurrentPlay(epList[index + 1]);
+    setCurrentPlay(epList?.[index + 1]);
     // audioPlayer.current.play();
     setPlaying(true);
     // setisPlaying(true);
     // audioRef.current?.play()
-    await postEpisodePlayCountApi(currentPlay.id);
+    await postEpisodePlayCountApi(currentPlay?.id);
   };
 
   const toggleSkipBackward = async () => {
     setIndex((prev) => prev - 1);
     const current = (
-      await getCurrentEpisodePath(audioBookDetailsData.id, epList[index - 1].id)
+      await getCurrentEpisodePath(audioBookDetailsData.id, epList?.[index - 1].id)
     ).data;
     // audioPlayer.current.src = current;
     setAudioPlayer(current);
-    setCurrentPlay(epList[index - 1]);
+    setCurrentPlay(epList?.[index - 1]);
     // audioPlayer.current.play();
     setPlaying(true);
     // setisPlaying(true);
     // audioRef.current?.play()
-    await postEpisodePlayCountApi(currentPlay.id);
+    await postEpisodePlayCountApi(currentPlay?.id);
   };
 
   const toggleForward = () => {
@@ -697,13 +674,12 @@ const AudiobookComponent = ({
 
                   {/* Book Title Overlay */}
                   <div className="absolute bg_opacity_gradient bottom-0 left-0 right-0 p-4  rounded-b-xl z-[200]">
-                    {/* Bottom Stats positioned above title */}
                     <div className="text-center">
                       <h1 className=" text-[#f9f9f9] text-clg font-bold leading-[34px] mb-1">
                         {audioBookDetailsData?.name}
                       </h1>
-                      <p className="text-white text-cn leading-normal">
-                        {audioBookDetailsData?.author_name}
+                      <p className="text-white text-cn cursor-pointer leading-normal">
+                        <Link href={paths?.authors+audioBookDetailsData?.author_name}>{audioBookDetailsData?.author_name}</Link>
                       </p>
                     </div>
                   </div>
@@ -824,7 +800,11 @@ const AudiobookComponent = ({
                   />
                 </div>
                 <div className="flex-1 space-y-2">
-                  <h1 className="text-cs2 md:text-xl font-medium">{authorData?.name}</h1>
+                  <h1 className="text-cs2 md:text-xl font-medium">
+                    {/* <p className="text-white text-cn cursor-pointer leading-normal"> */}
+                        <Link href={paths?.authors+authorData?.name}>{authorData?.name}</Link>
+                      {/* </p> */}
+                    </h1>
                   <div className="flex max-xxs:flex-col flex-row md:items-center md:justify-between gap-2 md:gap-4">
                     <div className="flex items-center gap-1">
                       <BookIcon className="w-4 md:w-5"/>
@@ -893,9 +873,11 @@ const AudiobookComponent = ({
             playbackRate={playbackRate}
             setTimerMin={setTimerMin}
             timerMin={timerMin}
+            favSubmit={handleFavourite}
             setShowBigPlayer={handleCloseBigPlayer}
             setShowSpeedModal={setShowSpeedModal}
             setShowSleeperModal={setShowSleeperModal}
+            isFavorite={isFavorite}
           />
         </div>
       
@@ -922,7 +904,7 @@ const AudiobookComponent = ({
               <div className="p-3 space-y-1">
                 {/* Book name (small) */}
                 <h2 className="text-base font-semibold text-white">
-                  {epList[index]?.name}
+                  {epList?.[index]?.name}
                 </h2>
                 <p className="text-xs text-gray-500">{audiobookData?.name}</p>
 
@@ -930,16 +912,18 @@ const AudiobookComponent = ({
                 
 
                 {/* Author name */}
-                <p className="text-sm text-gray-600 dark:text-gray-400">{audiobookData?.author_name}</p>
+                <p className="text-white text-cn cursor-pointer leading-normal">
+                        <Link href={paths?.authors+audioBookDetailsData?.author_name}>{audioBookDetailsData?.author_name}</Link>
+                      </p>
               </div>
             </div>
             <div>
               <GradientAudioPlayer 
-                toogleForWard={()=>togglePlayList(index+1,epList[index+1]?.id)} 
-                toogleBackWard={()=>togglePlayList(index-1,epList[index-1]?.id)}
+                toogleForWard={()=>togglePlayList(index+1,epList?.[index+1]?.id)} 
+                toogleBackWard={()=>togglePlayList(index-1,epList?.[index-1]?.id)}
                 isPlaying={isPlaying} 
                 isFirst={index===0}
-                isLast={index===epList.length-1}
+                isLast={index===epList?.length-1}
                 setIsPlaying={(boolean)=>setisPlaying(boolean)} 
                 src={audioPlayer} 
                 audioRef={audioRef}

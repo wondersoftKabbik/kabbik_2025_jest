@@ -53,7 +53,7 @@ const Page = () => {
         <div  className='w-[90%] relative mx-auto'>
             <div className="circular_gradient right-[30%] bottom-[-10%] w-[30vw] h-[30vw] absolute  "></div>
             <div className="circular_gradient left-[25%] top-[10%] w-[30vw] h-[30vw] absolute  "></div>
-            <div className="z-[4] relative  flex items-center justify-center  px-4 py-8 text-white">
+            <div className="z-[4] relative  flex items-center justify-center  md:px-4 py-8 text-white">
                 <div className="w-full max-w-lg space-y-5">
 
                     {/* --- Top Card --- */}
@@ -86,7 +86,7 @@ const Page = () => {
             </div>
 
             <div
-                className="z-[3] relative flex w-[90%] mx-auto items-center justify-center px-4  text-white"
+                className="z-[3] relative flex w-[90%] mx-auto items-center justify-center md:px-4  text-white"
             >
                 <div className="w-full max-w-lg  rounded-2xl overflow-hidden">
                     {/* Section 1 */}
@@ -127,7 +127,7 @@ const Page = () => {
 
                     {/* Task list */}
                     {userRewardData?.featureList?.map((item,index)=>item?.type_reward==='reward'?'':(
-                        <div key={index} onClick={()=>router.push(`/profile/reward-point/${item?.goto_page}`)}  className="px-5 cursor-pointer py-4 border-b border-white/20  space-y-4">
+                        <div key={index} onClick={()=>router.push(`/profile/reward-point/${item?.goto_page}`)}  className="md:px-5 cursor-pointer py-4 border-b border-white/20  space-y-4">
                             <div className="flex items-start space-x-2">
                                 <img className='max-w-5' src={item?.leading_icon}/>
                                 <p className="text-cs sm:text-cs2 md:text-cn leading-snug">

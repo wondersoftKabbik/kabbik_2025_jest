@@ -11,5 +11,15 @@ export const paths={
     favorites:'/profile/favorites',
     my_rents:'/profile/my-rents',
     my_courses:'/profile/my-courses',
-    reward_point:'/profile/reward-point'
+    reward_point:'/profile/reward-point',
+    store:'/store',
+    podcast:'/পডকাস্ট',
+    terms_condition:'/terms&condition',
+    privacy_policy:'/privacy-policy',
+    returnpolicy:'/returnpolicy',
+    searchBooks:'/search',
+    authors:'/author/',
+    cast:'/cast/'
+    // home:'',
+
 }

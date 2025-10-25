@@ -62,7 +62,7 @@ export default function SearchBooks() {
 
   return (
     <div>
-      <div className="z-30 relative  flex items-center justify-center px-2 py-4">
+      <div className="z-[3] relative  flex items-center justify-center px-2 py-4">
       <div className="w-full max-w-[279px] flex flex-col items-center">
         {/* Music Note Icon */}
         <div className="flex h-[77px] pb-[15px] items-start justify-center mb-2 sm:mb-0">
@@ -75,7 +75,7 @@ export default function SearchBooks() {
           <div className="flex flex-col items-center gap-1 sm:gap-[7px] w-full">
             <div className="text-center px-2">
               <span className="text-white text-base sm:text-lg md:text-[15px] font-normal leading-relaxed">
-                চলো তোমার প্লেলিস্টের জন্য কিছু খুঁজে বের করি
+                {folders?"চলো তোমার প্লেলিস্টের জন্য কিছু খুঁজে বের করি":"সার্চ অডিওবুকস"}
               </span>
             </div>
             <div className="text-center px-2">
@@ -97,7 +97,7 @@ export default function SearchBooks() {
                     value={searchText}
                     onChange={(e)=>{setSearchText(e.target.value)}}
                     onKeyDown={submitSearch}
-                    placeholder="সার্চ ফর ক্যাটাগরিস"
+                    placeholder="সার্চ অডিওবুকস"
                     className="w-full  z-30 bg-transparent text-[#A0A0A0] text-xs sm:text-[12px] font-normal placeholder-[#A0A0A0] border-none outline-none"
                   />
                 </div>

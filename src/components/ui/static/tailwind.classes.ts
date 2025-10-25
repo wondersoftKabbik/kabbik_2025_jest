@@ -7,7 +7,7 @@ export const spinnerClassNames =()=>  clsx(
 );
 
 export const container=(width:string)=> clsx(
-     ` max-w-[${width}] w-[96%] md2:w-[90%] mx-auto `
+     ` max-w-[${width}] w-[94%] md2:w-[90%] mx-auto `
 )
 
 export const flexCenter=clsx(` flex items-center justify-center `)

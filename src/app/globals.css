@@ -370,8 +370,8 @@ article {
   }
 
   article {
-    width: 230px;
-    height: 380px;
+    width: 155px;
+    height: 275px;
   }
   
   .spine {
@@ -404,4 +404,10 @@ article {
 /* hover effect */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(90deg, #D24874 0%, #881D69 100%);
+}
+
+.active_nav_item{
+  background: linear-gradient(90deg, #D94C75 0%, #7F1867 100%);
+  padding: 0px 4px;
+  border-radius: 4px;
 }

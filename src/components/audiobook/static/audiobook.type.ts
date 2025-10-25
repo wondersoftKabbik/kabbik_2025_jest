@@ -68,6 +68,8 @@ export type TBigPlayerProps={
   setShowBigPlayer: (val: boolean) => void;
   setShowSpeedModal:(val:boolean)=>void;
   setShowSleeperModal:(val:boolean)=>void;
+  favSubmit:()=>void;
+  isFavorite:boolean
 }
 
 export interface PageProps {

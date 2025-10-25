@@ -17,10 +17,10 @@ const page = async() => {
            <div className={`bg-[url('https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/kabbikGalaryBg-min2-min.jpg')] bg-cover opacity-20 w-full h-[126px] absolute left-0 `}></div>
           <div className="container mx-auto px-4 pt-6 pb-3 ">
            <div className="text-center max-w-4xl mx-auto">
-             <h1 className="font-bengali text-cxl2 font-bold text-white mb-1 leading-tight">
+             <h1 className="font-bengali text-clg2 md:text-cxl2 font-bold text-white mb-1 leading-tight">
                শ্রোতার প্রোফাইল
              </h1>
-             <p className="font-bengali text-cxl text-white/90 font-normal leading-relaxed">
+             <p className="font-bengali text-clg md:text-cxl text-white/90 font-normal leading-relaxed">
                শুনুন, শিখুন, বেড়ে উঠুন — প্রতিদিন!
              </p>
            </div>

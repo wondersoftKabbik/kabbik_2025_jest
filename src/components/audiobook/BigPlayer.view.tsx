@@ -2,7 +2,7 @@
 
 import MyPlayList from '@/svgs/MyPlayList.svg'
 import SpeedMeter from '@/svgs/SpeedMeter.svg'
-import { Speaker, Timer, Volume, Volume2 } from 'lucide-react'
+import { BookHeartIcon, HeartIcon, Speaker, Timer, Volume, Volume2 } from 'lucide-react'
 import styles from "./static/audioBook.module.css";
 import dynamic from "next/dynamic";
 import { ToastContainer, toast } from "react-toastify";
@@ -58,11 +58,15 @@ const AudiobookComponent = ({
     timerMin,
     setShowBigPlayer,
     setShowSpeedModal,
-    setShowSleeperModal
+    setShowSleeperModal,
+    favSubmit,
+    isFavorite
 }: TBigPlayerProps) => {
   
 
     useEffect(()=>{console.log(audioBookData,"audioBookData")},[])
+
+    
   
   return (
     <>
@@ -71,9 +75,10 @@ const AudiobookComponent = ({
           className={"absolute top-3 z-40 right-3 cursor-pointer h-8 bg-[#535252] w-8 rounded-[50%]"+flexCenter}
           onClick={() => setShowBigPlayer(false)}
         >
+          
           <X color="white" className="text-6xl"/>
         </div>
-        <div 
+        {/* <div 
           className={`absolute bottom-0 left-0 w-full h-[180vh] ${styles.audioBookBg}`}
           style={{
             backgroundImage: `url('${bookId ? audioBookData?.thumb_path : ""}')`,
@@ -81,10 +86,10 @@ const AudiobookComponent = ({
             backgroundPosition: 'center',
             opacity: 0.5,
           }}
-        ></div>
+        ></div> */}
         <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient opacity-70"></div>
 
-       <div className={"flex my-20 rounded-[32px] items-start"+ " " + styles.bigPlayer}>
+       <div className={"flex max-sm:flex-col max-w-[94%] my-7 sm:my-10 md:my-20 rounded-[32px] items-start"+ " " + styles.bigPlayer}>
             <div className=" flex items-center z-[5] justify-center p-1">
             <div className="w-full min-w-[45vw]   mx-auto">
                 {/* Main Card Container */}
@@ -92,16 +97,16 @@ const AudiobookComponent = ({
                 {/* Book Cover Section */}
                 <div>
                     <figure className="m-4">
-                        <img className="w-[45vw] h-[25vw] rounded-[10px]" src={audioBookData?.rect_banner ?? audioBookData?.thumb_path}/>
+                        <img className="w-full sm:w-[45vw] sm:h-[25vw] rounded-[10px]" src={audioBookData?.rect_banner ?? audioBookData?.thumb_path}/>
                     </figure>
                 </div>
                     <div>
                         <GradientAudioPlayer 
-                            toogleForWard={()=>togglePlayList(index+1,epList[index+1]?.id)} 
-                            toogleBackWard={()=>togglePlayList(index-1,epList[index-1]?.id)}
+                            toogleForWard={()=>togglePlayList(index+1,epList?.[index+1]?.id)} 
+                            toogleBackWard={()=>togglePlayList(index-1,epList?.[index-1]?.id)}
                             isPlaying={isPlaying} 
                             isFirst={index===0}
-                            isLast={index===epList.length-1}
+                            isLast={index===epList?.length-1}
                             setIsPlaying={(boolean)=>setIsPlaying(boolean)} 
                             src={audioPlayer} 
                             audioRef={audioRef}
@@ -113,69 +118,70 @@ const AudiobookComponent = ({
                             timerMin={timerMin }
                         />
                     </div>
-                    <div className="flex  justify-between  items-center gap-6 lg:gap-8 px-4 max-w-5xl mx-auto">
+                    <div className="flex cursor-pointer  justify-between  items-center gap-2 px-4 max-w-4xl mx-auto">
 
                       {/* Left Controls */}
-                      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                      <div className="flex flex-wrap items-start justify-center gap-3">
                         {/* Speed Control */}
                         <div className="flex flex-col items-center gap-2 cursor-pointer" onClick={() => setShowSpeedModal(true)}>
-                          <div className="flex items-center justify-center min-w-[72px] h-8 bg-player-surface rounded-full px-3">
+                          <div className="flex items-center justify-center   bg-player-surface rounded-full ">
                             <span 
-                              className="w-4 h-4 mr-2 fill-player-text" 
+                              className="w-4 h-4  fill-player-text" 
                               
                             >
                                 <SpeedMeter/>
                             </span>
                             <span className="text-white text-sm font-medium">{playbackRate}</span>
                           </div>
-                          <span className="text-white text-xs">Speed</span>
+                          <span className="text-white max-xxs:hidden text-cxs">Speed</span>
                         </div>
 
                         {/* Timer */}
-                        <div className="flex flex-col items-center gap-2 cursor-pointer" onClick={() => setShowSleeperModal(true)}>
+                        <div className="flex flex-col items-start  cursor-pointer" onClick={() => setShowSleeperModal(true)}>
                           <div 
-                            className="w-6 h-6  rounded-full flex items-center text-white justify-center"
+                            className="w-4   rounded-full flex  text-white justify-center"
                             
                           >
                             <Timer/>
                           </div>
-                          <span className="text-white text-sm">Timer</span>
+                          <span className="text-white max-xxs:hidden text-cxs">Timer</span>
                         </div>
 
                         {/* Background Music */}
-                        <div className="flex flex-col items-center gap-2">
-                          <div className="text-xl" role="img" aria-label="speaker">
-                            <Volume2 className='text-white'/>
-                          </div>
-                          <span className="text-white text-xs text-center">Background music</span>
+                        <div className="flex flex-col items-center ">
+                          <div className="w-4 text-xl" role="img" aria-label="speaker">
+                            <Volume2 className='text-white w-full'/>
+                          </div> 
+                          <span className="text-white max-xxs:hidden text-cxs text-center">Background <br/> music</span>
                         </div>
                       </div>
 
                       {/* Right Controls */}
-                      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                      <div onClick={favSubmit} className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
                         {/* Like */}
-                        <div className="flex flex-col items-center gap-2">
-                          <div className="w-5 h-5">
-                            <LoveIcon/>
+                        <div className="flex flex-col items-center ">
+                          <div className="w-4 h-4 inline-block">
+                            {/* {console.log(isFavorite,"isFavorite")} */}
+                            <LoveIcon fill={isFavorite?'#D14874':'white'}/>
                           </div>
-                          <span className="text-white text-xs">Like</span>
+                          <span className="text-white text-cxs">Like</span>
                         </div>
 
                         {/* Share */}
-                        <div className="flex flex-col items-center gap-2">
-                          <div className="w-4 h-4">
+                        <div onClick={handleShare} className="flex flex-col items-center ">
+                          <div className="w-4 h-4 inline-block">
                             <ShareIcon/>
                           </div>
-                          <span className="text-white text-xs">Share</span>
+                          <span className="text-white text-cxs">Share</span>
                         </div>
 
                         {/* Add My Playlist */}
-                        <div className="flex flex-col items-center gap-2">
+                        {/* <div className="flex flex-col items-center gap-2">
                           <div className="w-4 h-4">
                             <MyPlayList/>
                           </div>
-                          <span className="text-white text-xs text-center">Add My Playlist</span>
-                        </div>
+                          <span className="text-white text-cxs text-center">Add My Playlist</span>
+                        </div> */}
                       </div>
                     </div>
                 
@@ -183,12 +189,12 @@ const AudiobookComponent = ({
             </div>
             </div>
             <div className=" z-[5]   py-4 md:py-8">
-            <div className="max-w-2xl mx-auto px-4 space-y-8 md:space-y-16">
+            <div className="max-w-full sm:max-w-2xl mx-auto px-4 max-sm:pr-0 space-y-8 md:space-y-16">
                 {/* Header Section */}
             
 
                 {/* Navigation Tabs */}
-                <div className="flex gap-2 md:gap-4">
+                <div className="flex sm:gap-2 md:gap-4">
                     <PlayList 
                         hasAccess={hasAccess} 
                         book={audioBookData}

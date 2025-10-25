@@ -17,6 +17,8 @@ import { NewsLetterNotificationSubs } from "@/utils/apiServices";
 import { useAppSelector } from "@/store/store";
 import { toast } from "react-toastify";
 import Spinner from "../ui/Spinner.view";
+import Link from "next/link";
+import { paths } from "@/utils/Paths";
 
 export default function Footer() {
   const [email,setEmail]=useState("");
@@ -134,9 +136,9 @@ export default function Footer() {
                 </h3>
               </div>
               <div className="space-y-2">
-                <p className="text-white/90 font-hind">Terms and Conditions</p>
-                <p className="text-white/90 font-hind">Privacy Policy</p>
-                <p className="text-white/90 font-hind">Refund and Return Policy</p>
+                <p><Link href={paths.terms_condition} className="text-white/90 font-hind">Terms and Conditions</Link></p>
+                <p><Link href={paths.privacy_policy} className="text-white/90 font-hind">Privacy Policy</Link></p>
+                <p><Link href={paths.returnpolicy} className="text-white/90 font-hind">Refund and Return Policy</Link></p>
               </div>
             </div>
 
