@@ -6,7 +6,7 @@ export type TCommonBtnProps={
     children:string | React.ReactNode;
     handleClick?:(val:any) => void;
     className?:string;
-    addiTionalClass:string;
+    addiTionalClass?:string;
 }
 
 export type staticTextSlice= {
