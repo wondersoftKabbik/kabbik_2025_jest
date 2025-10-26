@@ -28,8 +28,8 @@ const Hero = ({
   const router = useRouter();
 
   return (
-    <div className="relative">
-      <div className=" relative bg-[black]">
+    <div className="relative w-full">
+      <div className=" relative w-full bg-[black]">
         
         <Swiper
           // slidesPerView={1}
@@ -43,6 +43,11 @@ const Hero = ({
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
+          }}
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            // 640: { slidesPerView: 1.2 },
+            // 1024: { slidesPerView: 2 },
           }}
           onBeforeInit={(swiper: any) => {
             if (
@@ -62,7 +67,7 @@ const Hero = ({
                   router.push(`/audiobook/${topbannerinfo?.id}`);
                 }}
               >
-                <div className="relative h-[70vh] xxs:h-[70vh] xs:h-[80vh] sm:h-[85vh] md:h-[95vh] md2:h-[105vh] lg:h-[115vh] lg2:h-[125vh] w-[100vw] max-w-[1440px] mx-auto  overflow-hidden">
+                <div className="relative h-[70vh] xxs:h-[70vh] xs:h-[80vh] sm:h-[85vh] md:h-[95vh] md2:h-[105vh] lg:h-[115vh] lg2:h-[125vh] w-[100vw] max-w-[1440px] mx-auto overflow-hidden">
                   <div className={styles.backdrop_filter}>
                     <div className="">
                       <picture className={styles.thumb_path}>

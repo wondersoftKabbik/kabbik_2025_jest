@@ -49,30 +49,19 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
   const [reelsModal,setReelsModal]=useState<number|null>(null);
   const reels=useAppSelector(store=>store.staticTexts.data?.reels)
 
-  useEffect(() => {
-    if (categoryName === "কাব্যিক গ্যালারী" || categoryName === "পডকাস্ট") {
-      setPodcast(true);
-    } else {
-      setPodcast(false);
-    }
-  }, []);
-
+  
  
 
-  const CommonTogglePlay = () => {
-    if (!videoRef3) {
-      return;
-    }
-    const video = videoRef3.current;
-    if (!video) return;
+ useEffect(() => {
+    const iframes = document.querySelectorAll(".swiper-slide iframe");
+    iframes.forEach((iframe:any) => ((iframe).style.pointerEvents = "none"));
+  }, []);
 
-    if (video.paused) {
-      video.play();
-      setPlayer3(true);
-    } else {
-      video.pause();
-      setPlayer3(false);
-    }
+  const handleSlideChange = (swiper: any) => {
+    const iframes = document.querySelectorAll(".swiper-slide iframe");
+    iframes.forEach((iframe:any) => (iframe.style.pointerEvents = "none"));
+    const activeIframe = swiper.slides[swiper.activeIndex].querySelector("iframe");
+    if (activeIframe) activeIframe.style.pointerEvents = "auto";
   };
   return (
     <div className={styles.container}>
@@ -104,7 +93,7 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
         <Swiper
           // slidesPerView={1}
           // spaceBetween={1}
-          loop={true}
+          // loop={true}
           pagination={{ clickable: true }}
           style={{ paddingBottom: "40px" }}
           // modules={[Navigation, Pagination]}
@@ -170,7 +159,7 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
                     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                     allowFullScreen={true}>
                   </iframe> */}
-                  <iframe className="h-[80vh]" src={`https://www.youtube.com/embed/${item.reelInfo?.reel_youtube_id}`} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                  <iframe className="h-[80vh]" src={`https://www.youtube.com/embed/${item.reelInfo?.reel_youtube_id}`} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" ></iframe>
                   </div>
                 </SwiperSlide>
               ))}

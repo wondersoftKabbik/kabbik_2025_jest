@@ -90,7 +90,7 @@ const SubscribePackage = ({
               </span>
               <span className="text-red-400 text-2xl font-bold">TK</span>
             </div>
-            <p className="text-gray-300 text-lg ">
+            <p className="text-gray-300 h-[20px] text-lg ">
               {data?.isOnetime === 0 && (
                 <small>(অটো রিনিউয়াল)</small>
               )}

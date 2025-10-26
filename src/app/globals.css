@@ -411,3 +411,10 @@ article {
   padding: 0px 4px;
   border-radius: 4px;
 }
+
+.swiper-slide iframe {
+  pointer-events: none;
+}
+.swiper-slide-active iframe {
+  pointer-events: auto;
+}

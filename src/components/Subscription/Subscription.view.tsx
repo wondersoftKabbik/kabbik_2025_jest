@@ -342,10 +342,10 @@ const SubscribeComponent = ({
        <div className="w-full h-[100px] bg-[#0E1D3F] mt-[-100px]"></div>
       <div className="  relative ">
         {/* Back Arrow */}
-        <div className="absolute left-4 md:left-4 top-2  ">
+        <div className="absolute left-4 md:left-4 md:top-1  ">
           <span 
             onClick={()=>{router.back()}}
-            className="w-20 h-20 inline-block text-white "
+            className="w-9 h-9 sm:w-12 sm:h-12 md:w-20 md:h-20 inline-block text-white "
           >
             <LeftAngle />
           </span>
@@ -399,7 +399,7 @@ const SubscribeComponent = ({
       <ToastContainer />
       <div className={`${styles.divBody}`}>
         <div className={"container relative "+container('1206px')}>
-          <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-4"}>
+          <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4"}>
             <div className="circular_gradient left-[-20%] top-[10%] w-[30vw] h-[30vw] absolute  "></div>
             <div className="circular_gradient right-[-20%] bottom-[0%] w-[30vw] h-[30vw] absolute  "></div>
             {subscriptionPackList?.map(

@@ -20,7 +20,7 @@ export default function TawkScript() {
       chatBtn.style.borderRadius = '50px';
       chatBtn.style.fontSize = '14px';
       chatBtn.innerText = 'Chat Now 💬';
-      document.body.appendChild(chatBtn);
+      setTimeout(()=>{document.body.appendChild(chatBtn)},1500)
     } else {
       // Normal Tawk embed for desktop
       const s1 = document.createElement('script');
@@ -28,7 +28,8 @@ export default function TawkScript() {
       s1.src = 'https://embed.tawk.to/68cb9938b695741925a90747/1j5dkt1it';
       s1.charset = 'UTF-8';
       s1.setAttribute('crossorigin', '*');
-      document.body.appendChild(s1);
+      
+      setTimeout(()=>{document.body.appendChild(s1)},1500)
     }
   }, []);
 

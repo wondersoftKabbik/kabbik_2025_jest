@@ -293,6 +293,9 @@
     .arrow{
         padding: 5px 5px;
     }
+    .item_cont{
+        margin:0.04vw 1.5vw 0.07vw;
+    }
     .root_banner_cont{
         display: none;
     }
@@ -307,6 +310,9 @@
         /* Hide scrollbar (cross-browser) */
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none;
+    }
+    .slider_icons{
+        display: none;
     }
     /* .img{
         display: none;
@@ -371,9 +377,7 @@
         cursor: pointer;
         border-radius: 4px;
     }
-    .slider_icons{
-        display: none;
-    }
+    
     .container{
         max-width: 94%;
     }

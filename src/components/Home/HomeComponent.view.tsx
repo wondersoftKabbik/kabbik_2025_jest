@@ -112,7 +112,7 @@ const HomeComponent = (props:THomeProps) => {
   return (
     <div className=' '>
       
-        <div  className="mt-[-100px] z-10">
+        <div className="mt-[-100px] w-full z-10">
             <Hero slidingData={topBannerData}/>
         </div>
         {/* <button

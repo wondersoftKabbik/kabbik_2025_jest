@@ -112,7 +112,7 @@
 
 @media  (max-width: 768px) {
   .cardBg{
-    max-width: 49vw;
+    /* max-width: 49vw; */
     max-height: 75vh;
     border-radius: 22px;
   }
@@ -126,13 +126,16 @@
   }
 }
 
-@media  (max-width: 520px) {
+@media  (max-width: 720px) {
+  .cardBg{
+    max-height: none;
+  }
   .corner_highlight{
     padding: 3px;
-    right: -40px;
+    right: -90px;
     padding-left: 15px;
     font-size: 14px;
-    top: 25px;
+    top: 15px;
     padding-left: 30px;
     width:80%;
   }

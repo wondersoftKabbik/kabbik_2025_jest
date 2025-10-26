@@ -25,10 +25,12 @@ const Subscribe = async () => {
   const categoryListData = await catagoryList();
       
   return (
-    <SubscribeComponent
-      subscriptionPackList={subscriptionPackList}
-      categoryListData={categoryListData}
-    />
+    <div className="max-w-full overflow-x-hidden">
+      <SubscribeComponent
+        subscriptionPackList={subscriptionPackList}
+        categoryListData={categoryListData}
+      />
+    </div>
   );
 };
 
