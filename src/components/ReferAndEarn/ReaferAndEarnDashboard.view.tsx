@@ -1,17 +1,33 @@
 'use client'
 import { siteConfig } from '@/config/config';
-import { formatDateToBengali } from '@/helpers/commonFunction';
+import { formatDateDDMMYY, formatDateToBengali } from '@/helpers/commonFunction';
 import { useAppSelector } from '@/store/store'
 import Claims from '@/svgs/claims.svg';
 import ClockIcon2 from '@/svgs/Clock.svg';
 import GitIcon from '@/svgs/git.svg';
 import Pending from '@/svgs/Pending.svg';
 import SuccessTransaction from '@/svgs/SuccessTransaction.view';
+import { get_refer_history, user_claim_history } from '@/utils/apiServices';
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { TClaimHistory } from './static/refeAndEarn.type';
+import Link from 'next/link';
+import { paths } from '@/utils/Paths';
 
 const ReaferAndEarnDashboard = () => {
     const user = useAppSelector(store=>store?.user?.userData);
+    const [claimHistory,setClaimHistory]=useState<TClaimHistory|null>(null)
+
+    const getReferHistory=async()=>{
+      let fromDate='2025-07-03';
+      let toDate=formatDateDDMMYY(new Date().toISOString());
+      let result = await  user_claim_history(user?.id||0,fromDate,toDate);
+      setClaimHistory(result);
+    }
+
+    useEffect(()=>{
+      console.log(getReferHistory());
+    },[])
 
   return (
     <div className=" text-gray-800 px-4 py-8 sm:px-8 sm:py-12">
@@ -36,9 +52,9 @@ const ReaferAndEarnDashboard = () => {
               <div className="w-9 h-9 text-white/90 flex items-center justify-center">
                 <GitIcon/>
               </div>
-              <div>
-                <p className="font-semibold">XXXXXX</p>
-              </div>
+              <Link href={paths.refer_earn}>
+                <p className="font-semibold">{user?.refer_code}</p>
+              </Link>
             </div>
 
             <div className="bg-white/90 rounded-[6px] px-2 py-2 shadow-sm flex items-center gap-1 min-w-[170px]">
@@ -77,7 +93,7 @@ const ReaferAndEarnDashboard = () => {
               <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-2xl"><Claims/></div>
               <div>
                 <h4 className="text-sm text-gray-500">টোটাল ক্লেইমস</h4>
-                <p className="text-clg font-bold ">২৪টি ক্লেইমস</p>
+                <p className="text-clg font-bold ">{claimHistory?.summary.totalClaim??0} টি ক্লেইমস</p>
               </div>
             </div>
 
@@ -85,15 +101,15 @@ const ReaferAndEarnDashboard = () => {
               <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-2xl"><SuccessTransaction/></div>
               <div>
                 <h4 className="text-sm text-gray-500">সফল ক্লেইমস</h4>
-                <p className="text-clg font-bold ">১৮টি ডেলিভার্ড</p>
+                <p className="text-clg font-bold ">{claimHistory?.summary?.totalDelivered??0} টি ডেলিভার্ড</p>
               </div>
             </div>
 
             <div className="bg-white/90 px-3 py-3 rounded-xl border border-white/5 flex items-center gap-3">
               <div className="w-12 h-12  rounded-lg flex items-center justify-center text-2xl"><Pending/></div>
               <div>
-                <h4 className="text-sm text-gray-500">টোটাল ক্লেইমস</h4>
-                <p className="text-clg font-bold ">২৪টি ক্লেইমস</p>
+                <h4 className="text-sm text-gray-500">পেনডিং ক্লেইমস</h4>
+                <p className="text-clg font-bold ">{claimHistory?.summary?.totalPending??0} টি ক্লেইমস</p>
               </div>
             </div>
           </div>

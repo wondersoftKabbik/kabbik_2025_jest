@@ -1366,7 +1366,7 @@ export const subscriptionList = async () => {
       name: "subscriptionList",
       url:url,
       method: TMethods.POST,
-      body:JSON.stringify({ "countryAccess":  "BD"  })
+      body:JSON.stringify({ "countryAccess": "BD"  })
     }
   )
 };

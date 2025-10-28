@@ -19,7 +19,9 @@ export const paths={
     returnpolicy:'/returnpolicy',
     searchBooks:'/search',
     authors:'/author/',
-    cast:'/cast/'
+    cast:'/cast/',
+    refer_earn:'/profile/refer-earn',
+    refer_dashboard:`/profile/refer-earn/dashboard`
     // home:'',
 
 }

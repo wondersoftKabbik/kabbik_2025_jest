@@ -1,6 +1,6 @@
 'use client'
 import { siteConfig } from '@/config/config'
-import { formatDateToBengali } from '@/helpers/commonFunction'
+import { formatDateToBengali, replacePlaceholder, shareContent } from '@/helpers/commonFunction'
 import { useAppSelector } from '@/store/store'
 import ClockIcon2 from '@/svgs/Clock.svg'
 import GitIcon from '@/svgs/git.svg'
@@ -8,6 +8,8 @@ import Image from 'next/image'
 import React from 'react'
 import { ReferralData } from './static/refeAndEarn.type'
 import { container } from '../ui/static/tailwind.classes'
+import Link from 'next/link'
+import { paths } from '@/utils/Paths'
 
 const SubscribedHomePage = ({data}:{data:ReferralData}) => {
     const user=useAppSelector(store=>store.user?.userData)
@@ -35,7 +37,7 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
                 <GitIcon/>
               </div>
               <div>
-                <p className="font-semibold">XXXXXX</p>
+                <p className="font-semibold">{user?.refer_code}</p>
               </div>
             </div>
 
@@ -43,9 +45,9 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
               <div className="w-9 h-9  text-white flex items-center justify-center">
                 <ClockIcon2/>
               </div>
-              <div>
+              <Link href={paths?.refer_dashboard}>
                 <p className="font-semibold">পেমেন্ট হিস্ট্রি</p>
-              </div>
+              </Link>
             </div>
           </div>
 
@@ -66,12 +68,18 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
           <div className="lg:col-span-2 space-y-4">
             {data?.benefit?.map((item,index:number)=>(
                 <p key={index} className="text-cs2 md:text-cn2 leading-relaxed text-gray-100">
-                {item}
+                {replacePlaceholder(item,user?.refer_code??'')}
                 </p>
             ))}
 
             <div className="flex justify-end mt-2">
-              <button className="flex items-center gap-3 profile_earn_gradients text-white font-semibold px-6 py-3 rounded-full hover:opacity-95 transition">
+              <button onClick={()=>{
+                shareContent({
+                  text: data?.sharable_content,
+                  title: "কাব্যিক অডিওবুক — Referral Offer",
+                  imageUrl:data?.sharable_image_url
+                })
+              }} className="flex items-center gap-3 profile_earn_gradients text-white font-semibold px-6 py-3 rounded-full hover:opacity-95 transition">
                 <span className="text-sm">Share Now</span>
                 <span className="text-xl mt-[-10px]">↗</span>
               </button>

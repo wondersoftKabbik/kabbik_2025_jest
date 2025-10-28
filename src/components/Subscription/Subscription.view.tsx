@@ -75,7 +75,6 @@ const SubscribeComponent = ({
 
   const handleBlPayment=async()=>{
     if(isValidBLNumber(blNumberModal.value)){
-      console.log(blNumberModal.value,subscriptionPackData,userData)
       createBlPayment(
         normalizeBLNumber(blNumberModal.value ) ?? '', 
         subscriptionPackData, 
@@ -90,6 +89,7 @@ const SubscribeComponent = ({
       setBlNumberModal({show:true,value:''})
     }
   }
+
   useEffect(() => {
     let is_subscribed=Cookies.get('is_subscribed');
     if(is_subscribed==='1'){
@@ -114,6 +114,8 @@ const SubscribeComponent = ({
   
 
   useEffect(() => {
+    console.log(subscriptionPackList,"subscriptionPackList");
+    
     // if (isMsisdnTakerModalOpened) {
     //   const Modal = require("bootstrap/js/dist/modal");
     //   const msisdnTakerModal = new Modal(

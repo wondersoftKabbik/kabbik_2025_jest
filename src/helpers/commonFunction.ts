@@ -1,7 +1,7 @@
 import React, { ReactHTMLElement } from 'react'
 // import { createTranslation } from 'next-international';
 import { toast, ToastPosition } from 'react-toastify';
-import { Edigit, TtoastType, TtranslatorNums } from './commonTypes';
+import { Edigit, TShareContent, TtoastType, TtranslatorNums } from './commonTypes';
 import { apiEndPoints } from '../utils/apiEndpoints';
 import { TBooks } from '@/pageTypes/home.types';
 
@@ -267,6 +267,27 @@ export const numberTranslator=(num:number, map:any)=> {
 }
 
 
+
+export const shareContent = async ({ title, text, imageUrl, url }: TShareContent) => {
+  try {
+    console.log(text,"text");
+    
+    if (navigator.share) {
+      await navigator.share({
+        title: title || document.title,
+        text,
+        // url: imageUrl || url || window.location.href,
+      });
+      // console.log("✅ Shared successfully!");
+    } else {
+      // alert("❌ Sharing is not supported on this device.");
+    }
+  } catch (err) {
+    console.error("Share failed:", err);
+  }
+};
+
+
 export const handleShare = async () => {
 	if (navigator.share) {
 		try {
@@ -334,6 +355,10 @@ export const formatNumber = (num: number): any => {
     return (num / 1e3).toFixed(1) + "K";
   }
   return num;
+};
+
+export const replacePlaceholder = (text: string, word: string): string => {
+  return text.replace(/XXXXXX/g, word);
 };
 
 export const  GetFloatNum=(num:number|string,toPosition:number)=>{

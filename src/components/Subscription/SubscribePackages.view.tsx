@@ -9,6 +9,7 @@ import DynamicSubscriptionPack from "./static/subscription.type";
 import { BadgeCheck } from "lucide-react";
 import { convertToBanglaDigits, normalizeBillingPeriod } from "@/helpers/commonFunction";
 import Tik from "@/svgs/Tik.svg";
+import { useEffect } from "react";
 // import { LuBadgeCheck } from "react-icons/lu";
 
 interface SubscribePackageProps {
@@ -59,6 +60,11 @@ const SubscribePackage = ({
       }
     }
   };
+
+  // useEffect(()=>{
+  //   console.log(data,"datasss");
+    
+  // },[])
 
   return (
     <div

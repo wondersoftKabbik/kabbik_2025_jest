@@ -3,10 +3,13 @@ import Image from 'next/image'
 import React from 'react'
 import { ReferralData } from './static/refeAndEarn.type'
 import { useAppSelector } from '@/store/store'
+import { useRouter } from 'next/navigation'
+import { paths } from '@/utils/Paths'
 
 
 const UnSubscribedHomePage = ({data}:{data:ReferralData}) => {
     const user=useAppSelector(store=>store?.user?.userData);
+    const router=useRouter();
   return (
     <div className={`${user?.is_subscribed?'hidden':''} text-white flex items-center justify-center px-3 sm:px-4 lg:px-6 py-6 sm:py-9 lg:py-12`}>
       <div className="max-w-6xl w-full">
@@ -32,7 +35,7 @@ const UnSubscribedHomePage = ({data}:{data:ReferralData}) => {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full bg-[#D32F2F] hover:bg-[#B71C1C] active:bg-[#9A0007] transition-all duration-200 text-white text-lg sm:text-clg py-2 px-4 sm:px-6 rounded-[4px] border border-[#AAA]/30 shadow-lg font-normal">
+            <button onClick={()=>router.push(paths.subscribe)} className="w-full bg-[#D32F2F] hover:bg-[#B71C1C] active:bg-[#9A0007] transition-all duration-200 text-white text-lg sm:text-clg py-2 px-4 sm:px-6 rounded-[4px] border border-[#AAA]/30 shadow-lg font-normal">
               এখনই সাবস্ক্রাইব করুন
             </button>
           </div>
