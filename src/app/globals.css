@@ -143,6 +143,9 @@ body{
   /* background: linear-gradient(180deg, #C94273 0%, #881D69 100%); */
   background: linear-gradient(90deg, #3A2768 0%, #881D69 164.87%);
 }
+.profile_earn_gradients{
+  background: linear-gradient(90deg, #38469C -23.74%, #A265E5 123.08%);
+}
 
 .rect-gradient{
   background: linear-gradient(253.44deg, transparent 11.19%, rgba(105, 36, 77, 0.95) 156.19%);
@@ -369,6 +372,13 @@ article {
     --titlesize: 3rem; 
   }
 
+  .swiper-slide iframe {
+    pointer-events: none;
+  }
+  .swiper-slide-active iframe {
+    pointer-events: auto;
+  }
+
   article {
     width: 155px;
     height: 275px;
@@ -412,9 +422,3 @@ article {
   border-radius: 4px;
 }
 
-.swiper-slide iframe {
-  pointer-events: none;
-}
-.swiper-slide-active iframe {
-  pointer-events: auto;
-}

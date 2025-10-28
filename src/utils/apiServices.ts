@@ -1111,12 +1111,34 @@ export const fetchDataFromJson = async () => {
   )
 };
 
+export const fetchReferAndEarn = async () => {
+  const url = "https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-jsons/refer_style.json?v="+Date.now();
+   return await CommonApiHandler(
+    {
+      name: "fetchDataFromDigitalSpaceJson",
+      url:url,
+      method: TMethods.GET,
+      notNeedHeaders:true
+    }
+  )
+};
+
 export const userProfile = async () => {
   const userId = Cookies.get("id") ;
    return await CommonApiHandler(
     {
       name: "userProfile",
       url:`${apiEndPoints.getuserProfileApi}${userId}`,
+      method: TMethods.GET,
+    }
+  )
+};
+
+export const insert_earn_log = async () => {
+   return await CommonApiHandler(
+    {
+      name: "insert_earn_log",
+      url:`${apiEndPoints.insert_earn_log}`,
       method: TMethods.GET,
     }
   )
@@ -1301,6 +1323,42 @@ export const getPlayListBooks = async () => {
   )
 };
 
+export const user_earning = async (userId:number) => {
+  const url = apiEndPoints.user_earning+`?userId=${userId}`;
+  return await CommonApiHandler(
+    {
+      name: "user_earning",
+      url:url,
+      method: TMethods.GET,
+      defaultTokenAllowed:false
+    }
+  )
+};
+
+export const user_claim_history = async (userId:number,fromDate:string,toDate:string,status='ALL') => {
+  const url = apiEndPoints.user_claim_history+`?userId=${userId}&fromDate=${fromDate}&toDate=${toDate}&status=${status}`;
+  return await CommonApiHandler(
+    {
+      name: "user_claim_history",
+      url:url,
+      method: TMethods.GET,
+      defaultTokenAllowed:false
+    }
+  )
+};
+
+export const get_refer_history = async (userId:number,fromDate:string,toDate:string,status='ALL') => {
+  const url = apiEndPoints.get_refer_history+`?userId=${userId}&fromDate=${fromDate}&toDate=${toDate}`;
+  return await CommonApiHandler(
+    {
+      name: "get_refer_history",
+      url:url,
+      method: TMethods.GET,
+      defaultTokenAllowed:false
+    }
+  )
+};
+
 export const subscriptionList = async () => {
   const url = apiEndPoints.new_packageList ;
   return await CommonApiHandler(
@@ -1312,6 +1370,23 @@ export const subscriptionList = async () => {
     }
   )
 };
+
+export const claim_request = async (userId:number,amount:number) => {
+  const url = apiEndPoints.claim_request ;
+  return await CommonApiHandler(
+    {
+      name: "claim_request",
+      url:url,
+      method: TMethods.POST,
+      body:JSON.stringify({
+        "userId": userId,
+        "amount": amount   
+      }),
+      defaultTokenAllowed:false
+    }
+  )
+};
+
 
 export const create_preference = async (payload:any):Promise<any> => {
   const url = apiEndPoints.create_preference ;

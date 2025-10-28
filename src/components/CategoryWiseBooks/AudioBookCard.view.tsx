@@ -9,6 +9,8 @@ import { addBooksToPlaylistFolders } from '@/utils/apiServices';
 import { toast } from 'react-toastify';
 import Tik from '@/svgs/Tik.svg';
 import GreenTik from '@/svgs/GreenTik.svg';
+import Image from 'next/image';
+import { siteConfig } from '@/config/config';
 
 export function AudiobookCard({ audiobook, className = '',category,isInPlayList,handleAddToBookList }: TAudiobookCardProps) {
   const searchParams = useSearchParams();
@@ -39,11 +41,26 @@ export function AudiobookCard({ audiobook, className = '',category,isInPlayList,
           </span>
         ):''}
         <Link href={paths.book_details(audiobook.id)}>
-            <img
+            {/* <img
               src={audiobook.thumb_path}
               alt={audiobook.name}
               loading='lazy'
               className="aspect-[3/4] max-w-full z-10 object-cover transition-transform duration-300 group-hover:scale-110"
+            /> */}
+            <Image
+              src={audiobook.thumb_path || siteConfig.placeholderBook}
+              alt={audiobook.name || "Audiobook cover"}
+              width={300} // adjust based on your design
+              height={400}
+              placeholder="blur"
+              blurDataURL={siteConfig.placeholderBook}
+              loading="lazy"
+              priority={false}
+              className="aspect-[3/4] max-w-full z-10 object-cover transition-transform duration-300 group-hover:scale-110"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = siteConfig.placeholderBook; // fallback if image fails
+              }}
             />
         
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
