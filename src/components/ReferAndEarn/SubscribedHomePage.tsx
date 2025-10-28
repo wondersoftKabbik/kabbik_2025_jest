@@ -64,8 +64,8 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
         {/* Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           <div className="lg:col-span-2 space-y-4">
-            {data?.benefit?.map(item=>(
-                <p className="text-cs2 md:text-cn2 leading-relaxed text-gray-100">
+            {data?.benefit?.map((item,index:number)=>(
+                <p key={index} className="text-cs2 md:text-cn2 leading-relaxed text-gray-100">
                 {item}
                 </p>
             ))}
