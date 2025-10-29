@@ -1,6 +1,6 @@
 'use client'
 import { siteConfig } from '@/config/config'
-import { formatDateToBengali, replacePlaceholder, shareContent } from '@/helpers/commonFunction'
+import { formatDateToBengali, handleCopy, replacePlaceholder, shareContent } from '@/helpers/commonFunction'
 import { useAppSelector } from '@/store/store'
 import ClockIcon2 from '@/svgs/Clock.svg'
 import GitIcon from '@/svgs/git.svg'
@@ -10,11 +10,13 @@ import { ReferralData } from './static/refeAndEarn.type'
 import { container } from '../ui/static/tailwind.classes'
 import Link from 'next/link'
 import { paths } from '@/utils/Paths'
+import { LinkIcon } from 'lucide-react'
 
 const SubscribedHomePage = ({data}:{data:ReferralData}) => {
     const user=useAppSelector(store=>store.user?.userData)
   return (
-    <div className={`${user?.is_subscribed?'':'hidden'} w-[95%] lg:w-[90%] mx-auto  text-gray-900 px-4 py-8 `}>
+    <div>
+      <div className={`${user?.is_subscribed?'':'hidden'} w-[95%] lg:w-[90%] mx-auto  text-gray-900 px-4 py-8 `}>
       <div className="max-w-7xl mx-auto w-full bg-transparent space-y-8">
 
         {/* Header */}
@@ -75,7 +77,7 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
             <div className="flex justify-end mt-2">
               <button onClick={()=>{
                 shareContent({
-                  text: data?.sharable_content,
+                  text: replacePlaceholder(data?.sharable_content,user?.refer_code??''),
                   title: "কাব্যিক অডিওবুক — Referral Offer",
                   imageUrl:data?.sharable_image_url
                 })
@@ -98,6 +100,34 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
         </div>
 
       </div>
+    </div>
+    <div className="  flex items-center justify-center px-4">
+      <div className="max-w-2xl w-full bg-[#1C1C2C] rounded-2xl p-6 sm:p-8 text-white shadow-xl">
+        <p className="text-[15px] sm:text-[16px] leading-relaxed mb-6">
+          কবিবিক অফিসিয়াল অ্যাপ ডাউনলোড করুন, প্রিয়জনের রেফারেল কোডে সাইনআপ করে পান আকর্ষণীয় ছাড়! নিজের রেফারেল কোড নিন, বন্ধুদের শেয়ার করুন, আর নগদ টাকা উপার্জন শুরু করুন!
+        </p>
+
+        <div onClick={()=>handleCopy(replacePlaceholder(data?.sharable_content,user?.refer_code??''))} className="flex cursor-pointer items-start gap-3">
+          <div className="flex-shrink-0">
+            <LinkIcon className="w-7 h-7 text-white" />
+          </div>
+          <div className="flex flex-col">
+            <p className="text-[15px] mb-1">
+              <span className="font-medium text-gray-200">Refer code:</span>{" "}
+              <span className="font-semibold text-white">{user?.refer_code}</span>
+            </p>
+            <a
+              href="https://kabbik.com/download-app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[15px] text-[#A3A3FF] hover:underline break-all"
+            >
+              https://kabbik.com/download-app
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 
   )

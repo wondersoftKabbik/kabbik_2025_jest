@@ -1,33 +1,85 @@
 'use client'
 import { siteConfig } from '@/config/config';
-import { formatDateDDMMYY, formatDateToBengali } from '@/helpers/commonFunction';
+import { convertToBanglaDigits, formatDateDDMMYY, formatDateToBengali } from '@/helpers/commonFunction';
 import { useAppSelector } from '@/store/store'
 import Claims from '@/svgs/claims.svg';
 import ClockIcon2 from '@/svgs/Clock.svg';
 import GitIcon from '@/svgs/git.svg';
 import Pending from '@/svgs/Pending.svg';
 import SuccessTransaction from '@/svgs/SuccessTransaction.view';
-import { get_refer_history, user_claim_history } from '@/utils/apiServices';
+import { claim_request, fetchReferAndEarn, get_refer_history, get_total_earn, user_claim_history } from '@/utils/apiServices';
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import { TClaimHistory } from './static/refeAndEarn.type';
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import { ReferralData, TClaimHistory, tEarnSummay } from './static/refeAndEarn.type';
 import Link from 'next/link';
 import { paths } from '@/utils/Paths';
+import Spinner from '../ui/Spinner.view';
+import CommonModal from '../ui/CommonModal/CommonModal.view';
+import RewardTypeSelector from './moneyWithdraw.view';
+import { toast } from 'react-toastify';
 
 const ReaferAndEarnDashboard = () => {
     const user = useAppSelector(store=>store?.user?.userData);
     const [claimHistory,setClaimHistory]=useState<TClaimHistory|null>(null)
+    const [formData,setFormData]=useState<{ [key: string]: string }>({status:'ALL',fromDate:'2025-07-03',toDate:new Date().toISOString().split("T")[0]});
+    const [summary,setSummary]=useState<tEarnSummay|null>(null)
+    const [loader,setLoader]=useState(false);
+    const [showWithdrawalModal,setShowWithdrawalModal]=useState(false);
+    const [selectedAmount,setSelectedAmount]=useState(0);
+    const [referJSON,setReferJSON]=useState<ReferralData|null>(null);
+    // const []
 
     const getReferHistory=async()=>{
-      let fromDate='2025-07-03';
-      let toDate=formatDateDDMMYY(new Date().toISOString());
-      let result = await  user_claim_history(user?.id||0,fromDate,toDate);
+      setLoader(true);
+      let fromDate=formData.fromDate;
+      let toDate=formData.toDate || formatDateDDMMYY(new Date().toISOString());
+      let result = await  user_claim_history(user?.id||0,fromDate,toDate,formData.status);
       setClaimHistory(result);
+      setLoader(false);
+    }
+
+    const getTotalEarn=async()=>{
+      let result =await get_total_earn(user?.id??0)
+      setSummary(result?.data)
+    }
+
+    const getJSON=async()=>{
+      let result = await fetchReferAndEarn();
+      setReferJSON(result);
     }
 
     useEffect(()=>{
-      console.log(getReferHistory());
+      getReferHistory()
+      getTotalEarn()
+      getJSON()
     },[])
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement|HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));      
+    };
+
+    const handleWithDraw=async(value:number)=>{
+      if(value>(summary?.balance_amount??0)){
+        console.log(summary?.balance_amount,value);
+        
+        toast.error("Selected amount is higher than your balance")
+      }else{
+        let result = await claim_request(user?.id ??0,value);
+        if(result?.data?.success){
+          toast.success(result?.data?.message)
+          await getTotalEarn();
+          setShowWithdrawalModal(false)
+        }else{
+          toast.error("Something went wrong");
+        }
+      }
+    }
+
+
 
   return (
     <div className=" text-gray-800 px-4 py-8 sm:px-8 sm:py-12">
@@ -71,10 +123,10 @@ const ReaferAndEarnDashboard = () => {
           <div className="flex-0">
             <div className="bg-white/90 rounded-xl p-3 w-52 text-center shadow-md">
               <p className="text-xs text-gray-500">আপনার মোট আয়</p>
-              <p className="text-xl font-bold mt-1">৳১১০০</p>
-              <small> ৳১০০০-এর কম পরিমাণ আয় 
+              <p className="text-xl font-bold mt-1">৳{convertToBanglaDigits(summary?.balance_amount??0)}</p>
+              <small> ৳{convertToBanglaDigits(summary?.minimum_withdrawal_amount??0)}-এর কম পরিমাণ আয় 
                 আপনি ক্লেইম করতে পারবেন না</small>
-              <button className="mt-3 w-full bg-red-600 text-white/90 text-sm py-1 rounded">উইথড্র</button>
+              <button onClick={()=>setShowWithdrawalModal(true)} className="mt-3 w-full bg-red-600 text-white/90 text-sm py-1 rounded">উইথড্র</button>
             </div>
           </div>
         </div>
@@ -106,7 +158,7 @@ const ReaferAndEarnDashboard = () => {
             </div>
 
             <div className="bg-white/90 px-3 py-3 rounded-xl border border-white/5 flex items-center gap-3">
-              <div className="w-12 h-12  rounded-lg flex items-center justify-center text-2xl"><Pending/></div>
+              <div className="w-12 h-12  rounded-[4px] flex items-center justify-center text-2xl"><Pending/></div>
               <div>
                 <h4 className="text-sm text-gray-500">পেনডিং ক্লেইমস</h4>
                 <p className="text-clg font-bold ">{claimHistory?.summary?.totalPending??0} টি ক্লেইমস</p>
@@ -117,26 +169,56 @@ const ReaferAndEarnDashboard = () => {
 
         {/* Filter Section */}
         <div className="flex flex-wrap items-center gap-3 mt-6">
-          <select className="bg-[#0e142a] text-white/90 border border-white/10 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-            <option>সব স্ট্যাটাস</option>
-            <option>ডেলিভার্ড</option>
-            <option>পেন্ডিং</option>
-            <option>ক্যানসেল</option>
-          </select>
-          <input
-            type="text"
+          <div>
+            <label className='block text-gray-200'>সিলেক্ট স্ট্যাটাস</label>
+            <select name='status' onChange={handleChange} className="bg-[#0e142a] text-white/90 border border-white/10 rounded-[4px] px-4 py-2 focus:ring-2 focus:ring-blue-500">
+              <option>সব স্ট্যাটাস</option>
+              <option value="DELIVERED">ডেলিভার্ড</option>
+              <option value="PENDING">পেন্ডিং</option>
+              <option value="CANCELLED">ক্যানসেল</option>
+            </select>
+          </div>
+          {/* <input
+            type="date"
             placeholder="তারিখ অনুসন্ধান"
-            className="bg-[#0e142a] border border-white/10 text-white/90 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500"
-          />
-          <button className="bg-[#6A49FF] px-4 py-2 rounded-lg hover:bg-[#5A3FFF] transition">🔍 খুঁজুন</button>
+            className="bg-[#0e142a] border border-white/10 text-white/90 px-4 py-2 rounded-[4px] focus:ring-2 focus:ring-blue-500 appearance-none"
+          /> */}
+          <div className=''>
+            <label className='block text-gray-200'>ফ্রম ডেট</label>
+            <input
+              type="date"
+              name='fromDate' 
+              value={formData?.fromDate}
+              onChange={handleChange}
+              className="bg-[#0e142a]  border border-white/10 text-white/90 px-4 py-2 rounded-[4px] focus:ring-2 focus:ring-blue-500 appearance-none"
+            />
+          </div>
+          <div className=''>
+            <label className='block text-gray-200'>টু ডেট</label>
+            <input
+              type="date"
+              name='toDate' 
+              value={formData?.toDate}
+              onChange={handleChange}
+
+              className="bg-[#0e142a] border border-white/10 text-white/90 px-4 py-2 rounded-[4px] focus:ring-2 focus:ring-blue-500 appearance-none"
+            />
+          </div>
+          <div>
+            {/* <label className='block text-gray-200'>{''}</label> */}
+            <br/>
+            <button onClick={getReferHistory} className="bg-[#6A49FF] px-4 py-2 rounded-[4px] hover:bg-[#5A3FFF] transition">
+              {loader?<Spinner size='w-3 h-3' />:''}
+              🔍 খুঁজুন</button>
+          </div>
         </div>
 
         {/* Table Section */}
-        <div className="overflow-x-auto mt-6 rounded-lg">
+        <div className="overflow-x-auto mt-6 rounded-[4px]">
           <table className="min-w-full text-sm sm:text-base border-collapse">
             <thead>
               <tr className="bg-white/90 text-black">
-                <th className="text-left px-4 py-3 font-medium rounded-tl-md">ক্রেইম আইডি</th>
+                <th className="text-left px-4 py-3 font-medium rounded-tl-md">ক্র নংঃ </th>
                 <th className="text-left px-4 py-3 font-medium">তারিখ</th>
                 <th className="text-left px-4 py-3 font-medium">অ্যাওয়ার্ড টাইপ</th>
                 <th className="text-left px-4 py-3 font-medium">পরিমাণ</th>
@@ -144,20 +226,14 @@ const ReaferAndEarnDashboard = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/10 bg-[#071022]">
-              {[
-                { id: "REF-2020-005", date: "১৫ ডিসেম্বর, ২০২০", type: "রেফার রিওয়ার্ড", amount: "৳৫০.০০", status: "ডেলিভার্ড", color: "bg-green-700" },
-                { id: "REF-2020-006", date: "১৬ ডিসেম্বর, ২০২০", type: "রেফার রিওয়ার্ড", amount: "৳৫০.০০", status: "পেন্ডিং", color: "bg-yellow-600" },
-                { id: "REF-2020-007", date: "১৭ ডিসেম্বর, ২০২০", type: "রেফার রিওয়ার্ড", amount: "৳৫০.০০", status: "ক্যানসেল", color: "bg-red-700" },
-                { id: "REF-2020-008", date: "১৮ ডিসেম্বর, ২০২০", type: "রেফার রিওয়ার্ড", amount: "৳৫০.০০", status: "ডেলিভার্ড", color: "bg-green-700" },
-                { id: "REF-2020-009", date: "১৯ ডিসেম্বর, ২০২০", type: "রেফার রিওয়ার্ড", amount: "৳৫০.০০", status: "Pending", color: "bg-yellow-500" },
-              ].map((item, i) => (
+              {claimHistory?.data.map((item, i) => (
                 <tr key={i} className="hover:bg-[#0c1224] text-white/90 transition">
-                  <td className="px-4 py-3">{item.id}</td>
-                  <td className="px-4 py-3">{item.date}</td>
-                  <td className="px-4 py-3">{item.type}</td>
+                  <td className="px-4 py-3">{i}</td>
+                  <td className="px-4 py-3">{formatDateDDMMYY(item.created_at)}</td>
+                  <td className="px-4 py-3">{item.award_type}</td>
                   <td className="px-4 py-3">{item.amount}</td>
                   <td className="px-4 py-3">
-                    <span className={`px-3 py-1 rounded-full text-xs sm:text-sm ${item.color}`}>
+                    <span className={`px-3 py-1 rounded-full text-xs sm:text-sm`}>
                       {item.status}
                     </span>
                   </td>
@@ -165,21 +241,27 @@ const ReaferAndEarnDashboard = () => {
               ))}
             </tbody>
           </table>
+          <CommonModal
+            isOpen={showWithdrawalModal}
+            onClose={()=>{setShowWithdrawalModal(false)}}
+          >
+            <RewardTypeSelector handleSubmit={handleWithDraw} referJSON={referJSON}/>
+          </CommonModal>
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-end items-center gap-3 mt-6">
+        {/* <div className="flex justify-end items-center gap-3 mt-6">
           <button className="p-2 rounded-full bg-[#0e142a] hover:bg-[#1a2040]">←</button>
           <button className="w-9 h-9 rounded-full bg-blue-600 text-white/90 flex items-center justify-center">১</button>
           <button className="w-9 h-9 rounded-full bg-[#0e142a] text-white/90 flex items-center justify-center">২</button>
           <button className="w-9 h-9 rounded-full bg-[#0e142a] text-white/90 flex items-center justify-center">৩</button>
           <button className="p-2 rounded-full bg-[#0e142a] hover:bg-[#1a2040]">→</button>
-        </div>
+        </div> */}
 
         {/* Footer Note */}
-        <p className="text-gray-400 text-center text-sm mt-4">
+        {/* <p className="text-gray-400 text-center text-sm mt-4">
           ২৪টি ক্রেইমস এর ৫-টি প্রদর্শন করা হয়েছে মাত্র
-        </p>
+        </p> */}
       </div>
     </div>
   )

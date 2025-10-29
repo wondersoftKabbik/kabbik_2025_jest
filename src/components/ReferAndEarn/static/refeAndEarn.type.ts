@@ -16,7 +16,7 @@ export interface WithdrawalAmount {
 
 export type TClaimHistory = {
   data: {
-    status: "PENDING" | "DELIVERED" | "CLAIMED" | string; // extend if more statuses possible
+    status: "PENDING" | "DELIVERED" | "CANCELLED" | string; // extend if more statuses possible
     feedback: string | null;
     award_type: string;
     amount: number;
@@ -28,3 +28,19 @@ export type TClaimHistory = {
     totalPending: number;
   };
 };
+
+export type tEarnSummay={
+  balance_amount:number,
+  minimum_withdrawal_amount:number,
+  maximum_withdrawal_amount:number,
+}
+
+export type TAward = {
+  amount: number;
+  award_type: string;
+  created_at: string; // ISO date string (e.g., "2025-10-28T01:55:28.000Z")
+  feedback: string | null;
+  status: "PENDING" | "CANCELLED" | "DELIVERED" ; // extend as needed
+};
+
+export type TAwards = TAward[];

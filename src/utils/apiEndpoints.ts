@@ -114,6 +114,8 @@ export const apiEndPoints = {
   // ?userId=33677
   user_claim_history:`${BASE_URL}/v4/refer/get-claim-history`,
   // ?userId=1323204&fromDate=2025-08-03&toDate=2025-09-09&status=ALL
-  get_refer_history:`${BASE_URL}/v4/refer/get-refer-history`
+  get_refer_history:`${BASE_URL}/v4/refer/get-refer-history`,
   // ?userId=1323204&fromDate=2025-09-04&toDate=2025-09-11
+  get_total_earn:`${BASE_URL}/v4/refer/get-user-earning`
+  // ?userId=$userId'
 };

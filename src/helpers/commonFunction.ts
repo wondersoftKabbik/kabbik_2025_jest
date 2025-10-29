@@ -381,6 +381,14 @@ export function textSlice(
   return addEllipsis ? text.slice(0, length) + "…" : text.slice(0, length)
 }
 
+export const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        setTimeout(() => toast.success("Copied Successfully !"), 200);
+      })
+      .catch((err) => toast.error("Failed to copy:"));
+  };
+
 
 export function normalizeBillingPeriod(text: string) {
   const normalizedText = text.toLowerCase();

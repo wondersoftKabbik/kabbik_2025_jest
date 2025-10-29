@@ -1347,6 +1347,18 @@ export const user_claim_history = async (userId:number,fromDate:string,toDate:st
   )
 };
 
+export const get_total_earn = async (userId:number) => {
+  const url = apiEndPoints.get_total_earn+`?userId=${userId}`;
+  return await CommonApiHandler(
+    {
+      name: "get_total_earn",
+      url:url,
+      method: TMethods.GET,
+      defaultTokenAllowed:false
+    }
+  )
+};
+
 export const get_refer_history = async (userId:number,fromDate:string,toDate:string,status='ALL') => {
   const url = apiEndPoints.get_refer_history+`?userId=${userId}&fromDate=${fromDate}&toDate=${toDate}`;
   return await CommonApiHandler(
