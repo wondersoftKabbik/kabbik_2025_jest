@@ -101,7 +101,7 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
 
       </div>
     </div>
-    <div className="  flex items-center justify-center px-4">
+    <div className={`${user?.is_subscribed?'':'hidden'}  flex items-center justify-center px-4`}>
       <div className="max-w-2xl w-full bg-[#1C1C2C] rounded-2xl p-6 sm:p-8 text-white shadow-xl">
         <p className="text-[15px] sm:text-[16px] leading-relaxed mb-6">
           কবিবিক অফিসিয়াল অ্যাপ ডাউনলোড করুন, প্রিয়জনের রেফারেল কোডে সাইনআপ করে পান আকর্ষণীয় ছাড়! নিজের রেফারেল কোড নিন, বন্ধুদের শেয়ার করুন, আর নগদ টাকা উপার্জন শুরু করুন!
