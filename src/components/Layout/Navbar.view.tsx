@@ -154,8 +154,8 @@ const Navbar = (props:TNavbar) => {
                     <li className={pathname===paths.upcoming?'active_nav_item':''}>
                         <Link href={paths.upcoming}>আপকামিং</Link>
                     </li>
-                    <li className={pathname===paths.profile?'active_nav_item':''}>
-                        <Link href={'/profile'}>রেফার এন্ড  আর্ন</Link>
+                    <li className={pathname===paths.refer_earn?'active_nav_item':''}>
+                        <Link href={paths.refer_earn}>রেফার এন্ড  আর্ন</Link>
                     </li>
                     <li className={decodeWord(pathname)==='/পডকাস্ট'?'active_nav_item':''}>
                         <Link href={'/পডকাস্ট'}>পডকাস্ট</Link>
@@ -195,7 +195,7 @@ const Navbar = (props:TNavbar) => {
                         <Link href={paths.notification} className='w-5 h-5 inline-block cursor-pointer'>
                             <Bell/>
                         </Link>
-                        <Link href={paths.profile} className='w-5 h-5 inline-block cursor-pointer'>
+                        <Link href={paths.reward_point} className='w-5 h-5 inline-block cursor-pointer'>
                             <Trophy/>
                         </Link>
                         {profile?.is_subscribed?'':<figure>

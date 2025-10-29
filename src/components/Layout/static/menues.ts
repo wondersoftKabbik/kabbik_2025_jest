@@ -1,3 +1,5 @@
+import { paths } from "@/utils/Paths";
+
 export const menuItems = [
   {
     label: 'হোম',
@@ -8,18 +10,15 @@ export const menuItems = [
   },
   {
     label: 'আপকামিং',
-    href: '/',
+    href: paths.upcoming,
   },
   {
     label: 'রেফার এন্ড  আর্ন',
-    href: '/',
+    href: paths.refer_earn,
   },
   {
     label: 'পডকাস্ট',
-    href: '/',
+    href: '/পডকাস্ট',
   },
-  {
-    label: 'মোর',
-    href: '/',
-  }
+  
 ];

@@ -131,15 +131,15 @@ export default function Profiles(profileData: any) {
 
   const menuItems = [
     // Row 1
-    { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', hasNewBadge: true, handleClick:()=>{setShowBookRequestModal(true)} },
+    { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', handleClick:()=>{setShowBookRequestModal(true)} },
     { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{setShowRedeemModal(true)} },
     { title: 'রিওয়ার্ড পয়েন্ট', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{router.push(paths.reward_point)},hasNewBadge: true },
     { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' , handleClick:()=>{router.push(paths.favorites)} },
 
     // Row 2
-    { title: 'রেন্ট বুক', icon: <UserIcon />, gradient: 'bg-purple-gradient', hasNewBadge: true, handleClick:()=>{router.push(paths.my_rents)} },
-    { title: 'রেফার অ্যান্ড আর্ন', icon: <TakaIcon />, gradient: 'bg-orange-gradient' },
-    { title: 'আমার কোর্স', icon: <GraduationCap />, gradient: 'bg-green-gradient', hasNewBadge: true,handleClick:()=>{router.push(paths.my_courses)} },
+    { title: 'রেন্ট বুক', icon: <UserIcon />, gradient: 'bg-purple-gradient', handleClick:()=>{router.push(paths.my_rents)} },
+    { title: 'রেফার অ্যান্ড আর্ন', icon: <TakaIcon />, gradient: 'bg-orange-gradient',hasNewBadge:true,handleClick:()=>router.push(paths.refer_earn) },
+    { title: 'আমার কোর্স', icon: <GraduationCap />, gradient: 'bg-green-gradient',handleClick:()=>{router.push(paths.my_courses)} },
 
     // Row 3
     // { title: 'ডাউনলোড', icon: <DownloadIconWithBg />, gradient: 'bg-red-gradient' },
@@ -147,7 +147,7 @@ export default function Profiles(profileData: any) {
     { title: 'অ্যাকাউন্ট ডিঅ্যাকটিভেট', icon: <Delete />, gradient: 'bg-purple-gradient',handleClick:clearSessionAndRedirect },
 
     // Remaining items (to be shown in a single horizontal row)
-    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient' ,handleClick:()=>router.push(paths.myPlayList) },
+    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient',hasNewBadge: true ,handleClick:()=>router.push(paths.myPlayList) },
     { title: 'অ্যাবাউট আস', icon: <InfoIcon />, gradient: 'bg-blue-gradient' ,handleClick:()=>router.push('/about')},
     { title: 'কন্ট্যাক্ট আস', icon: <PersonStandingIcon />, gradient: 'bg-purple-gradient',handleClick:()=>{setShowContactModal(true)} },
     { title: 'রেইট আস', icon: <StarIcon />, gradient: 'bg-red-gradient',handleClick:()=>router.push('/download-app') },
