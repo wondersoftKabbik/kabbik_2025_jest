@@ -2,7 +2,7 @@
 
 import MyPlayList from '@/svgs/MyPlayList.svg'
 import SpeedMeter from '@/svgs/SpeedMeter.svg'
-import { BookHeartIcon, HeartIcon, Speaker, Timer, Volume, Volume2 } from 'lucide-react'
+import { BookHeartIcon, HeartIcon, Speaker, Timer, Volume, Volume2, VolumeOff } from 'lucide-react'
 import styles from "./static/audioBook.module.css";
 import dynamic from "next/dynamic";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +16,7 @@ import { ArrowUpIcon, BadgeCheck, BadgeCheckIcon, BookIcon, ChevronRight, Cross,
 import GoPrevious from "@/svgs/GoPrevious.svg";
 import PauseIcon from "@/svgs/PauseIcon";
 import PlayIcon from "@/svgs/PlayIcon";
-import { formatNumber, formatTime, GetFloatNum, handleShare, numberTranslator, textSlice } from "@/helpers/commonFunction";
+import { formatNumber, formatTime, GetFloatNum, handleShare, numberTranslator, scrollToTop, textSlice } from "@/helpers/commonFunction";
 import Skeleton from "../ui/Skeleton.view";
 import LoveIcon from "@/svgs/LoveIcon";
 import LinkIcon from "@/svgs/LinkIcon.svg";
@@ -47,6 +47,7 @@ const AudiobookComponent = ({
     isPlaying,
     setIsPlaying,
     hasAccess,
+    setWithoutBGM,
     audioRef,
     epList,
     audioPlayer,
@@ -60,11 +61,11 @@ const AudiobookComponent = ({
     setShowSpeedModal,
     setShowSleeperModal,
     favSubmit,
+    withoutBGM,
     isFavorite
 }: TBigPlayerProps) => {
   
 
-    useEffect(()=>{console.log(audioBookData,"audioBookData")},[])
 
     
   
@@ -148,9 +149,9 @@ const AudiobookComponent = ({
                         </div>
 
                         {/* Background Music */}
-                        <div className="flex flex-col items-center ">
+                        <div onClick={setWithoutBGM} className="flex flex-col items-center ">
                           <div className="w-4 text-xl" role="img" aria-label="speaker">
-                            <Volume2 className='text-white w-full'/>
+                            {withoutBGM?<VolumeOff className='text-white w-full'/>:<Volume2 className='text-white w-full'/>}
                           </div> 
                           <span className="text-white max-xxs:hidden text-cxs text-center">Background <br/> music</span>
                         </div>

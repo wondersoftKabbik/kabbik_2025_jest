@@ -58,7 +58,7 @@ const BigBanners = () => {
                         key={index}
                         onClick={() => {
                             router.push(
-                            `/${item.id}`
+                            `/audiobook/${item.id}`
                             );
                         }}
                         // className={styles.swiper_slider_custom}

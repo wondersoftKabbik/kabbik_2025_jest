@@ -8,6 +8,7 @@ import { DictionaryType } from "@/locales/locales.types";
 import { numberTranslator } from "@/helpers/commonFunction";
 import CircularStar from "@/svgs/CircularStar.svg";
 import Traingle from "@/svgs/Traingle.svg";
+import Link from "next/link";
 
 
 export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:DictionaryType}) {
@@ -54,14 +55,14 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
 
       {/* Play Button */}
       <div className="w-full max-w-[80%] max-sm:text-right md:max-w-[421px] mx-auto max-sm:mr-0 ">
-        <button className=" w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-1.5 md:py-2 px:1 md:px-6 hover:opacity-90 transition-opacity">
+        <Link href={paths.book_details(book?.id??0)} className=" w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-1.5 md:py-2 px:1 md:px-6 hover:opacity-90 transition-opacity">
           <span className="w-5">
             <Traingle/>
           </span>
           <span className="text-white text-cs2 sm:text-cn2 md:text-lg2 font-medium">
             এখনই শুনুন
           </span>
-        </button>
+        </Link>
       </div>
     </div>
   </div>

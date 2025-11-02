@@ -14,6 +14,7 @@ import { useEffect } from "react";
 
 interface SubscribePackageProps {
   data: DynamicSubscriptionPack;
+  setTrialModal:()=>void;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setSubscriptionPackData: React.Dispatch<
     React.SetStateAction<
@@ -28,6 +29,7 @@ interface SubscribePackageProps {
 
 const SubscribePackage = ({
   data,
+  setTrialModal,
   setSubscriptionPackData,
   paymentMethod,
   setShowModal
@@ -37,6 +39,9 @@ const SubscribePackage = ({
   const handleClick = async () => {
     setShowModal(true);
     setSubscriptionPackData(data);
+    if(data?.is_free_trail){
+      setTrialModal();
+    }
     // const Modal = require("bootstrap/js/dist/modal");
     if (document) {
       if (!isLoggedIn) {
@@ -102,71 +107,25 @@ const SubscribePackage = ({
               )}
             </p>
           </div>
-          
+          <p style={{color:'white',height:'18px' , fontSize:'14px',marginBottom:'4px'}}>{data.is_free_trail?data?.subtitle:' '}</p>
           {/* Features List */}
           <div className="space-y-3 mb-2">
             {/* Feature 1 */}
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 mt-0">
-                <span className="w-4 h-4 inline-block"> 
-                  <Tik/>
-                </span>
-              </div>
-              <div>
-                <h3 className="text-white font-medium text-cs leading-tight">ননস্টপ এন্টারটেইনমেন্ট</h3>
-                <p className="text-gray-400 text-cs mt-1">বিজ্ঞাপন বিরতি ছাড়াই অডিওবুক শুনুন</p>
-              </div>
+            {data?.benefit?.map((item,i)=>(
+              <div key={i} className="flex items-center gap-3">
+                <div className="flex-shrink-0 mt-0">
+                  <span className="w-4 h-4 inline-block"> 
+                    <Tik/>
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-white font-medium text-cs leading-tight line-clamp-1">{item?.title}</h3>
+                  <p className="text-gray-400 text-cs mt-1 line-clamp-1">{item?.sub_title}</p>
+                </div>
             </div>
+            ))}
             
-            {/* Feature 2 */}
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 mt-0">
-                <span className="w-4 h-4 inline-block"> 
-                  <Tik/>
-                </span>
-              </div>
-              <div>
-                <h3 className="text-white font-medium text-cs leading-tight">ডাউনলোড অপশন</h3>
-                <p className="text-gray-400 text-cs mt-1">ডাউনলোড করে নেট ছাড়াই অডিওবুক<br />উপভোগ করুন</p>
-              </div>
-            </div>
             
-            {/* Feature 3 */}
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 mt-0">
-                <span className="w-4 h-4 inline-block"> 
-                  <Tik/>
-                </span>
-              </div>
-              <div>
-                <h3 className="text-white font-medium text-cs leading-tight">এক্সক্লুসিভ অডিওবুক এক্সেস</h3>
-                <p className="text-gray-400 text-sm mt-1">এক্সক্লুসিভ অডিওবুক শুনুন সবার আগে</p>
-              </div>
-            </div>
-            
-            {/* Feature 4 */}
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 mt-0">
-                <span className="w-4 h-4 inline-block"> 
-                  <Tik/>
-                </span>
-              </div>
-              <div>
-                <h3 className="text-white font-medium text-cs leading-tight">বিলিং সাইকেল ১ দিন</h3>
-              </div>
-            </div>
-            
-            {/* Feature 5 */}
-            <div className="flex items-center gap-x-3">
-              <div className="flex-shrink-0 mt-">
-                <span className="w-4 h-4 inline-block"> 
-                  <Tik/>
-                </span>
-              </div>
-              <div>
-                <h3 className="text-white font-medium text-cs leading-tight">ইমিডিয়েট সাপোর্ট</h3>
-              </div>
-            </div>
           </div>
           
           {/* Subscribe Button */}

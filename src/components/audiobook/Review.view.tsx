@@ -7,18 +7,15 @@ import { decodeWord } from "@/helpers/commonFunction";
 import styles from './static/audioBook.module.css'
 
 
-export default function Review({reviews}:{reviews:RatingReviewInfo[]}) {
-  const handleAddReview = () => {
-    // Placeholder for add review functionality
-    console.log("Add review clicked");
-  };
+export default function Review({reviews,handleReveiw}:{reviews:RatingReviewInfo[],handleReveiw:()=>void}) {
+ 
 
   return (
     <div className="  py-4 sm:py-6 ">
       <div className="max-w-2xl mx-auto">
         {/* Add Review Button */}
         <div className="mb-6 sm:mb-8">
-          <CommonButton className={styles.add_review_btn} handleClick={handleAddReview}>
+          <CommonButton   className={styles.add_review_btn} handleClick={handleReveiw}>
             অ্যাড রিভিউ
           </CommonButton>
         </div>

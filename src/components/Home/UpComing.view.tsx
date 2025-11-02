@@ -1,5 +1,6 @@
+'use client'
 import RightArrowIcon from '@/svgs/RightArrowIcon'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import common_cat_styles from "./static/category.module.css"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
@@ -17,21 +18,39 @@ import RightAngle from '@/svgs/rightAngle'
 import ThreeDBook from '../ui/ThreeDBook.view'
 import { container } from '../ui/static/tailwind.classes'
 import { useAppSelector } from '@/store/store'
+import { upcomingList } from '@/utils/apiServices'
+import { TUpcomingAudiobook } from './static/home.types'
+import { formatToBengali } from '@/helpers/commonFunction'
+import { paths } from '@/utils/Paths'
+import Link from 'next/link'
 
 const UpComing = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const router=useRouter()
-  const upcomingBooks=useAppSelector(store=>store.staticTexts.data?.upcoming)
+  const [upComingBooks,setUpcomingBooks]=useState<TUpcomingAudiobook[]>([]);
+  // const upcomingBooks=useAppSelector(store=>store.staticTexts.data?.upcoming)
+  
+  const getUpComingBookList=async()=>{
+    let result = await upcomingList()
+    console.log(result,"upcomingg");
+    setUpcomingBooks(result?.data)
+  }
+
+  useEffect(()=>{
+    getUpComingBookList();
+  },[])
   return (
     <div className={`${container('1300px')} text-white mt-10 mx-auto max-h-[530px]`}>
         <div>
             <div className={common_cat_styles.heading_container + " mx-auto !mb-[0] "}>
                 <h3 className={common_cat_styles.heading}>আপকামিং বুক</h3>
-                <div className={common_cat_styles.see_all}>
-                    সব দেখুন
-                    <span className={common_cat_styles.arrow}><RightArrowIcon/></span>
-                </div>
+                <Link href={paths.upcoming} className={common_cat_styles.see_all}>
+                    {/* <Link href={paths.upcoming}> */}
+                      সব দেখুন
+                      <span className={common_cat_styles.arrow}><RightArrowIcon/></span>
+                    {/* </Link> */}
+                </Link>
             </div>
             <div className='relative  h-[420px] overflow-y-hidden overflow-y-scroll-none'>
                 
@@ -98,7 +117,7 @@ const UpComing = () => {
                       }
                     }}
                   >
-                    {upcomingBooks?.map((topbannerinfo,i:number) => (
+                    {upComingBooks?.map((topbannerinfo,i:number) => (
                       <SwiperSlide
                         key={i}
                         onClick={() => {
@@ -108,9 +127,9 @@ const UpComing = () => {
                         }}
                       >
                         <div className='relative w-[210px] h-[370px]'>
-                          <ThreeDBook bg={topbannerinfo?.thumb_path} path=''/>
+                          <ThreeDBook bg={topbannerinfo?.file_path ?? topbannerinfo?.thumbPath} path={paths.upcoming}/>
                           <div className='absolute w-[195px] text-center right-[-3px] skew-y-[-8deg] bottom-[-8px] bg-[#E53F79] z-40'>
-                              ১১ জুলাই ২০২৫
+                              {formatToBengali(topbannerinfo?.release_date)}
                           </div>
                         </div>
                         

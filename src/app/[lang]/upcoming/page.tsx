@@ -42,7 +42,7 @@ const CategoryPage = async({ params }: { params: { category: string,lang:'en'|'b
                     <div className="px-4 pb-16">
                         <div className="max-w-7xl mx-auto">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 justify-items-center">
-                                {upcomingData.data?upcomingData.data.map((book, index) => (
+                                {upcomingData?.data?upcomingData.data.map((book, index) => (
                                     <BookCard
                                         key={index}
                                         title={book.name}

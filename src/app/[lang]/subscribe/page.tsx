@@ -23,7 +23,7 @@ const Subscribe = async () => {
     )
     // .filter((x: DynamicSubscriptionPack) => x.id !== 6);
   const categoryListData = await catagoryList();
-      console.log(subscriptionPackList)
+      // console.log(subscriptionPackList)
   return (
     <div className="max-w-full overflow-x-hidden">
       <SubscribeComponent

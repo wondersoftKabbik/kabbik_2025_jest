@@ -9,6 +9,12 @@
   /* background: url('/gradientSliderBanner.png'); */
   /* z-index:; */
 }
+
+.see_all{
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+}
 .slider_left_icons{
   left: 3.5vw;
   width:70px;

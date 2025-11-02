@@ -54,6 +54,8 @@ export type TBigPlayerProps={
   togglePlayList:(val:number,val2:number)=>void;
   index:number;
   isPlaying:boolean;
+  setWithoutBGM:()=>void;
+  withoutBGM:boolean;
   setIsPlaying:(val:boolean)=>void;
   hasAccess:(val:number)=>boolean;
   audioRef: React.RefObject<HTMLAudioElement>;

@@ -1,10 +1,14 @@
 import LinkIcon from "@/svgs/LinkIcon.svg";
 import { container } from "../ui/static/tailwind.classes";
+import { useRouter } from "next/navigation";
+import { paths } from "@/utils/Paths";
+import Link from "next/link";
 
 export default function ReferAndEarn() {
+  // const router=useRouter();
   return (
     <div className="border border-[#8D8D8D]">
-      <div className={container('1402px')}>
+      <div  className={container('1402px')}>
         {/* Main referral section */}
         <div className="flex flex-col lg:flex-row items-center  justify-center py-3">
           {/* Left side - Illustration */}
@@ -19,12 +23,12 @@ export default function ReferAndEarn() {
           {/* Right side - Content */}
           <div className="md:w-[55%]">
             {/* Main header with gradient background */}
-            <div className="flex items-center justify-center btn-gradient-2 px-2 md:px-5 py-2 rounded-[8px]">
+            <Link href={paths.refer_earn} className="flex items-center justify-center btn-gradient-2 px-2 md:px-5 py-2 rounded-[8px]">
                 <img src="https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/image.svg" className="w-7 mr-1 md:mr-3"/>
                 <h1 className="text-white text-center font-inter font-semibold text-cs2 sm:text-clg md:text-cxl">
                     রেফার করুন এবং উপার্জন করুন!
                 </h1>
-            </div>
+            </Link>
 
             {/* Content section */}
             <div className="flex flex-col items-center gap-3 w-full">
@@ -39,9 +43,9 @@ export default function ReferAndEarn() {
 
               {/* Call to action */}
               <div className="flex flex-row items-center gap-3 sm:gap-2 cursor-pointer group">
-                <span className="text-center font-inter text-cs sm:text-cs2 md:text-cn2 gradient-text2">
+                <Link href={paths.refer_earn} className="text-center font-inter text-cs sm:text-cs2 md:text-cn2 gradient-text2">
                   এখনই আপনার রেফারেল লিংক সংগ্রহ করুন
-                </span>
+                </Link>
                 <div className="p-2 rounded-full bg-white flex items-center justify-center group-hover:scale-105 transition-transform flex-shrink-0">
                   <span className="w-2 h-2 md:w-3 md:h-3 inline-block">
                     <LinkIcon/>

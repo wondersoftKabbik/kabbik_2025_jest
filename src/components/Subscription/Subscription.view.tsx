@@ -35,6 +35,7 @@ import CommonModal from "../ui/CommonModal/CommonModal.view";
 import PaymentOptions from "./PaymentOptions.view";
 import { container } from "../ui/static/tailwind.classes";
 import LeftAngle from "@/svgs/LeftAngle.svg";
+import FreeTrialMessage from "./FreeTrailMessage.view";
 
 const SubscribeComponent = ({
   subscriptionPackList,
@@ -71,6 +72,7 @@ const SubscribeComponent = ({
   const [blLoader,setBlLoader]=useState(false)
   const navigate=useRouter();
   const [openPaymentModal,setOpenPaymentModal]=useState(false);
+  const [showTrailModal,setTrialModal]=useState(false);
 
 
   const handleBlPayment=async()=>{
@@ -111,10 +113,10 @@ const SubscribeComponent = ({
 
   }, []);
 
+
   
 
   useEffect(() => {
-    console.log(subscriptionPackList,"subscriptionPackList");
     
     // if (isMsisdnTakerModalOpened) {
     //   const Modal = require("bootstrap/js/dist/modal");
@@ -142,7 +144,6 @@ const SubscribeComponent = ({
     fetchUserData();
   }, []);
 
-  useEffect(()=>{console.log(subscriptionPackList,"subscriptionPackList")},[subscriptionPackList])
 
   useEffect(() => {
     const divs = document.getElementsByClassName("modal-backdrop fade show");
@@ -209,7 +210,6 @@ const SubscribeComponent = ({
   };
 
   const checkPromocodeCompatibility = (paymentType: string) => {
-    console.log(paymentType,promoCode.allowedPaymentMethods)
     let allowed = true;
     if (
       promoCode.promo_type === "restricted" &&
@@ -386,11 +386,11 @@ const SubscribeComponent = ({
           </div>
 
           {/* Premium Package Text */}
-          <div className="text-center">
+          {/* <div className="text-center">
             <p className="font-bengali text-white text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[26px] leading-tight md:leading-[2.005] font-semibold">
               প্রিমিয়াম প্যাকেজে পাচ্ছেন
             </p>
-          </div>
+          </div> */}
 
         </div>
       </div>
@@ -418,6 +418,7 @@ const SubscribeComponent = ({
                           className={`col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`}
                         >
                           <SubscribePackage
+                            setTrialModal={()=>setTrialModal(true)}
                             key={`${data.id}-${index}-1`}
                             data={{ ...data, isOnetime: 0 }}
                             setSubscriptionPackData={setSubscriptionPackData}
@@ -433,6 +434,7 @@ const SubscribeComponent = ({
                           className={`col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`}
                         >
                           <SubscribePackage
+                            setTrialModal={()=>setTrialModal(true)}
                             key={`${data.id}-${index}-2`}
                             data={{ ...data, isOnetime: 1 }}
                             setSubscriptionPackData={setSubscriptionPackData}
@@ -451,6 +453,7 @@ const SubscribeComponent = ({
                           }}
                           >
                         <SubscribePackage
+                          setTrialModal={()=>setTrialModal(true)}
                           key={data.id}
                           data={data}
                           setSubscriptionPackData={setSubscriptionPackData}
@@ -569,7 +572,7 @@ const SubscribeComponent = ({
                     methodName: option.name,
                     logoUrl: option.thumbnail,
                     apiUrl: option.url,
-                    vat: Number(extractNumber(subscriptionPackData.amount) ?? 0) *  Number(option.vat_percentage),
+                    vat: Number(subscriptionPackData.rawPrice) *  Number(option.vat_percentage),
                     extraChargeFor: option.extra_charge_for,
                   }))}
                   callbacks={[
@@ -594,6 +597,7 @@ const SubscribeComponent = ({
                         subscriptionPackData.reduce_price!
                       : subscriptionPackData?.rawPrice
                   }
+                  isFreeTrial={subscriptionPackData?.is_free_trail}
                   reducePrice={subscriptionPackData?.reduce_price}
                   isMsisdnSubmitted={isMsisdnSubmitted}
                   setIsMsisdnTakerModalOpened={setIsMsisdnTakerModalOpened}
@@ -602,6 +606,16 @@ const SubscribeComponent = ({
               )}
             </div>
            
+          </CommonModal>
+          <CommonModal
+            isOpen={showTrailModal}
+            onClose={()=>{setTrialModal(false);setOpenPaymentModal(false);}}
+          >
+            <FreeTrialMessage data={subscriptionPackData} 
+              // handleClose={()=>{setTrialModal(false)}} 
+              onSubmit={()=>setTrialModal(false)} 
+              handleClose={()=>{setTrialModal(false);setOpenPaymentModal(false);}}
+            />
           </CommonModal>
 
           {/* <div className="text-center mt-3">

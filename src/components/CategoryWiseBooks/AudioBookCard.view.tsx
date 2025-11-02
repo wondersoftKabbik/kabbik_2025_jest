@@ -14,6 +14,7 @@ import { siteConfig } from '@/config/config';
 
 export function AudiobookCard({ audiobook, className = '',category,isInPlayList,handleAddToBookList }: TAudiobookCardProps) {
   const searchParams = useSearchParams();
+  // const 
   let folders=searchParams.get('folders')
 
   const addToPlayList=async()=>{
@@ -29,7 +30,7 @@ export function AudiobookCard({ audiobook, className = '',category,isInPlayList,
   }
   
   return (
-    <div className={`group  cursor-pointer transition-all duration-300 hover:scale-105 ${className}`}>
+    <div  className={`group  cursor-pointer transition-all duration-300 hover:scale-105 ${className}`}>
       <div className="relative overflow-hidden rounded-[6px] border border-white/20 bg-black/20 backdrop-blur-sm">
         {folders?(
           !isInPlayList?
@@ -70,7 +71,9 @@ export function AudiobookCard({ audiobook, className = '',category,isInPlayList,
         <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
           <div className="space-y-1">
             <h3 className="font-bengali font-semibold text-lg leading-tight">
-              {audiobook.name}
+              <Link href={paths.book_details(audiobook.id)}>
+                {audiobook.name}
+              </Link>
             </h3>
            
             {/* <p className="text-xs text-accent font-medium">

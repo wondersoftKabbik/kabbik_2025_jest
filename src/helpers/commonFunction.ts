@@ -253,6 +253,26 @@ export function formatDate(dateString: string, lang: 'bn' | 'en' = 'en'): string
   }
 }
 
+export function scrollToTop() {
+  console.log("scroll");
+  
+  if (typeof window !== 'undefined') {
+    console.log("kdfjkdf");
+    
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+}
+
+export function addDaysToCurrentDate(days:number) {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return date.toString(); // Returns format like "Thu Nov 06 2025 15:24:43 GMT+0600 (Bangladesh Standard Time)"
+}
+
+
 
 export  function decodeWord(encodedStr:string) {
   return decodeURIComponent(encodedStr);
@@ -472,6 +492,34 @@ export function formatDateToBengali(dateString:string|number) {
 
   return `${month} ${bengaliYear}`;
 }
+
+
+export function formatToBengali(dateStr: string): string {
+  const bengaliMonths = [
+    "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল",
+    "মে", "জুন", "জুলাই", "আগস্ট",
+    "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
+  ];
+
+  const bengaliDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+
+  const toBengaliNumber = (num: number): string =>
+    num.toString().split("").map(d => bengaliDigits[parseInt(d)]).join("");
+
+  // Split input (supports "DD-MM-YYYY")
+  const [day, month, year] = dateStr.split("-").map(Number);
+
+  if (!day || !month || !year || month < 1 || month > 12) {
+    throw new Error(`Invalid date format: ${dateStr}. Expected "DD-MM-YYYY"`);
+  }
+
+  const bengaliDay = toBengaliNumber(day);
+  const bengaliMonth = bengaliMonths[month - 1];
+  const bengaliYear = toBengaliNumber(year);
+
+  return `${bengaliDay} ${bengaliMonth} ${bengaliYear}`;
+}
+
 
 
 

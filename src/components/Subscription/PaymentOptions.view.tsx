@@ -27,6 +27,7 @@ type PaymentOptionsProps = {
   callback?: (methodName: string, apiUrl: string) => Promise<void>;
   callbacks?: { methodName: string; payment: () => Promise<void> }[];
   promoData?: string;
+  isFreeTrial?:boolean;
   setPromoData?: React.Dispatch<React.SetStateAction<string>>;
   isPromocodeApplied?: boolean;
   addPromocodeHandler?: () => Promise<void>;
@@ -47,6 +48,7 @@ const PaymentOptions = ({
   addPromocodeHandler,
   removePromocodeHandler,
   price,
+  isFreeTrial,
   reducePrice,
   isMsisdnSubmitted,
   setIsMsisdnTakerModalOpened,
@@ -129,6 +131,8 @@ const PaymentOptions = ({
       if(findObj('aamarpay',options))return true
     }
   }
+
+  useEffect(()=>{console.log(options)},[])
 
   return (
     <>
@@ -215,7 +219,7 @@ const PaymentOptions = ({
                   }}
               paymentName={findObj('bkash',options)?.methodName}
               img={findObj('bkash',options)?.logoUrl}
-              amount={price + (findObj('bkash',options)?.vat ?? 0)}
+              amount={isFreeTrial?0:(price + (findObj('bkash',options)?.vat ?? 0))}
             />:''}
           {findObj('nagad',options)?<SinglePaymentCard
               selectedPayment={selectedOption?.methodName??''}

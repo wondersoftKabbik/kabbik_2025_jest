@@ -25,7 +25,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { PageProps, UserProfileInfo } from "./static/audiobook.type";
 import {  BookIcon, ChevronRight, ExpandIcon, X } from "lucide-react";
-import {  GetFloatNum, handleShare, textSlice } from "@/helpers/commonFunction";
+import {  GetFloatNum, handleShare, scrollToTop, textSlice } from "@/helpers/commonFunction";
 import LoveIcon from "@/svgs/LoveIcon";
 import LinkIcon from "@/svgs/LinkIcon.svg";
 // import CommonModal from "../ui/CommonModal/CommonModal.view";
@@ -96,6 +96,13 @@ const PaymentOptions = dynamic(
   loading: () => <Spinner/>, // optional fallback
 });
 
+const AddReviewForm = dynamic(
+        () => import(/* webpackChunkName: "PaymentOptions" */'./AddReviewForm.view'
+    ), {
+  ssr: false, // optional: disable server-side rendering
+  loading: () => <Spinner/>, // optional fallback
+});
+
 // AudioPlayer Configuration
 
 const AudiobookComponent = ({
@@ -133,6 +140,8 @@ const AudiobookComponent = ({
   const [showSleeperModal, setShowSleeperModal] = useState(false);
   const [showPayModal,setShowPayModal]=useState(false)
   const [showPaymentOptions,setShowPaymentOptions]=useState<boolean>(false);
+  const [withoutBGM,setWithoutBGM]=useState(false);
+  const [showAddReviewModal,setShowAddReviewModal]=useState(false);
 
   const toggleSize = () => {
     setIsBigger((prevSize) => !prevSize);
@@ -367,7 +376,7 @@ const AudiobookComponent = ({
       await getCurrentEpisodePath(audioBookDetailsData.id, episodeId)
     )?.data;
     // audioPlayer.current.src = current;
-    setAudioPlayer(current);
+    setAudioPlayer(!epList?.[ind]?.bgm_filepath? epList?.[ind]?.file_path : current);
     setCurrentPlay(epList?.[ind]);
     // audioPlayer.current.play();
     setPlaying(true);
@@ -394,7 +403,8 @@ const AudiobookComponent = ({
       await getCurrentEpisodePath(audioBookDetailsData.id, epList?.[index + 1].id)
     ).data;
     // audioPlayer.current.src = current;
-    setAudioPlayer(current);
+    // setAudioPlayer(current);
+    setAudioPlayer(!epList?.[index + 1]?.bgm_filepath ? epList?.[index + 1]?.file_path : current);
     setCurrentPlay(epList?.[index + 1]);
     // audioPlayer.current.play();
     setPlaying(true);
@@ -409,7 +419,7 @@ const AudiobookComponent = ({
       await getCurrentEpisodePath(audioBookDetailsData.id, epList?.[index - 1].id)
     ).data;
     // audioPlayer.current.src = current;
-    setAudioPlayer(current);
+    setAudioPlayer(!epList?.[index - 1]?.bgm_filepath ? epList?.[index - 1]?.file_path : current);
     setCurrentPlay(epList?.[index - 1]);
     // audioPlayer.current.play();
     setPlaying(true);
@@ -435,10 +445,10 @@ const AudiobookComponent = ({
   };
 
   const handleBigPlayer = ()=>{
-    console.log("big player clicked","dkfjdkfjdkdkfjdfj");
     setShowBigPlayer(!showBigPlayer);
     // audioRef.current?.pause()
     setShowMiniPlayer(false)
+    scrollToTop()
 }
 
 
@@ -496,6 +506,30 @@ const AudiobookComponent = ({
     setisPlaying(false);
     audioRef.current?.pause()
   }
+
+  useEffect(()=>{
+    if(!audioPlayer)return;
+    if(!currentPlay?.bgm_filepath){
+      toast.error("Not Available")
+      setWithoutBGM(false);
+      return;
+    }else{
+      if(withoutBGM){
+        setAudioPlayer(currentPlay?.bgm_filepath);
+      }else{
+        setAudioPlayer( currentPlay?.file_path );
+      }
+      setPlaying(true);
+      // setisPlaying(true);
+      // console.log("currentPlay", audioRef.current);
+      setisPlaying(false)
+      // if(index!==i || isPlaying===false){
+        setTimeout(()=>{setisPlaying(true)},200)
+      // }
+      audioRef.current?.play()
+    }
+    console.log(currentPlay,"current")
+  },[withoutBGM])
 
   useEffect(() => {
     if (isPlaying) {
@@ -626,12 +660,13 @@ const AudiobookComponent = ({
       <div className="w-full h-[100px]  bg-[#0E1D3F] mt-[-100px]"></div>
       <ToastContainer />
       <div 
-          className={`absolute  left-0 w-full h-[270vh] ${styles.audioBookBg}`}
+          className={`absolute  left-0 w-full  ${styles.audioBookBg}`}
           style={{
             backgroundImage: `url('${bookId ? audioBookDetailsData?.thumb_path : ""}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.4,
+            height:showBigPlayer?'180vh':'210vh'
           }}
         ></div>
       <div className={showBigPlayer?'hidden':"flex flex-col md:flex-row justify-around mt-7 items-start relative "+container('1206px') }
@@ -745,7 +780,7 @@ const AudiobookComponent = ({
                   </div>
 
                   {/* Rental Option */}
-                  <div className="bg-[#7E1663] rounded-[30px] py-3 flex justify-around shadow-lg">
+                  <div onClick={()=>{setShowPayModal(true)}} className="bg-[#7E1663] cursor-pointer rounded-[30px] py-3 flex justify-around shadow-lg">
                     <div className="flex items-center justify-around gap-1">
                       <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                         <div className="flex">
@@ -773,14 +808,15 @@ const AudiobookComponent = ({
                   {/* Synopsis */}
                   <div>
                     <h3 className="text-black text-cn2 font-bold mb-2">সংক্ষিপ্ত জীবনী:</h3>
-                    <p 
+                    <div 
+                      dangerouslySetInnerHTML={{ __html: audiobookData?.description??'' }}
                       onClick={()=>setExpand(!expand)}
-                      className="text-black text-cn cursor-pointer leading-relaxed max-h-56 overflow-y-auto"
+                      className="text-black text-cn cursor-pointer leading-relaxed max-h-56 overflow-x-hidden overflow-y-auto"
                     >
-                      { expand? audiobookData?.description :
+                      {/* { expand? audiobookData?.description :
                         textSlice( audiobookData?.description,160, true,"এই বইটির সংক্ষিপ্ত বিবরণ এখানে দেওয়া হবে।") 
-                      }
-                    </p>
+                      } */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -805,7 +841,7 @@ const AudiobookComponent = ({
                         <Link href={paths?.authors+authorData?.name}>{authorData?.name}</Link>
                       {/* </p> */}
                     </h1>
-                  <div className="flex max-xxs:flex-col flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                  <Link href={paths?.authors+authorData?.name} className="flex max-xxs:flex-col flex-row md:items-center md:justify-between gap-2 md:gap-4">
                     <div className="flex items-center gap-1">
                       <BookIcon className="w-4 md:w-5"/>
                       <span className="text-cs md:text-cn font-medium">{authorData?.total_audiobooks} অডিও বুক</span>
@@ -818,7 +854,7 @@ const AudiobookComponent = ({
                         <LinkIcon color="black"/>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -848,7 +884,7 @@ const AudiobookComponent = ({
                                 castCrewData={castCrewData}
                             /> 
                 },
-                { name: 'রিভিউ', component: <Review reviews={reviewDetailsData.data}/> },
+                { name: 'রিভিউ', component: <Review handleReveiw={()=>setShowAddReviewModal(true)} reviews={reviewDetailsData.data}/> },
               ]} />
             </div>
 
@@ -861,6 +897,8 @@ const AudiobookComponent = ({
             audioBookData={audioBookDetailsData}
             togglePlayList={togglePlayList}
             index={index}
+            setWithoutBGM={()=>setWithoutBGM(!withoutBGM)}
+            withoutBGM={withoutBGM}
             isPlaying={isPlaying}
             setIsPlaying={(val:boolean)=>setisPlaying(val)}
             hasAccess= {hasAccess}
@@ -1022,6 +1060,12 @@ const AudiobookComponent = ({
             price={audioBookDetailsData?.price}
           />
         </div>
+      </CommonModal>
+      <CommonModal
+        isOpen={showAddReviewModal}
+        onClose={()=>{setShowAddReviewModal(false)}}
+      >
+        <AddReviewForm onClose={()=>{setShowAddReviewModal(false)}}  book={audioBookDetailsData}/>
       </CommonModal>
     </>
   );

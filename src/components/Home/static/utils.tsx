@@ -63,26 +63,32 @@ export const StepsBySteps={
 export const footer=[
     {
       name: "Facebook",
+      link:'https://www.facebook.com/kabbikAudiobookOfficial',
       icon: <span className="w-5 h-5 inline-block"><FaceBook/></span>
     },
     {
       name: "Instagram", 
+      link:'https://www.bing.com/ck/a?!&&p=d91c54be54d78d17265928b41fe4f4133cb4e02e60c1216982572c441d96fd6eJmltdHM9MTc2MjA0MTYwMA&ptn=3&ver=2&hsh=4&fclid=09899d99-39ba-6d53-0355-884738e06ce3&psq=kabbik+instagram&u=a1aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9rYWJiaWthdWRpb2Jvb2tvZmZpY2lhbC8',
       icon: <span className="w-5 h-5 inline-block"><InstagramIcon/></span>
     },
     {
       name: "LinkedIn",
+      link:'https://www.linkedin.com/in/wonder-soft-solution-53397a346/',
       icon: <span className="w-5 h-5 inline-block"><LinkedInIcon/></span>
     },
     {
       name: "YouTube",
+      link:'https://www.youtube.com/@kabbikAudiobookOfficial',
       icon:<span className="w-5 h-5 inline-block"><Youtube/></span>
     },
     {
       name: "Twitter",
+      link:'https://x.com/kabbikOfficial',
       icon: <span className="w-5 h-5 inline-block"><Twiter/></span>
     },
     {
       name: "TikTok",
+      link:'https://www.tiktok.com/@kabbik_audiobook',
       icon:<span className="w-5 h-5 inline-block"><Tiktok/></span>
     }
 ]

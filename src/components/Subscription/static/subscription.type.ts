@@ -24,11 +24,17 @@ interface DynamicSubscriptionPack {
   redeem: number;
   banner_name: string | null;
   sku: string;
+  subtitle?:string;
+  bn_name?:string;
+  free_trial_in_day?:number;
+  benefit:TBenefits;
   status: string;
   subscriptionItemId: string;
   surjoPay: number;
   updated_at: null;
   vat: number;
+  is_free_trail?:boolean;
 }
+type TBenefits={title:string,sub_title:string}[]
 
 export default DynamicSubscriptionPack;

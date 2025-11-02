@@ -21,3 +21,22 @@ export type TBestCollection={
 export type TBigBanners={
     
 }
+
+export interface TUpcomingAudiobook {
+  audiobook_id: number | null;
+  author: string;
+  contributingArtists: string;
+  created_at: string; // ISO date string
+  deleted: string; // "0" or "1"
+  description: string;
+  file_name: string;
+  file_path: string;
+  id: number;
+  isFree: boolean | null;
+  name: string;
+  play_count: number | null;
+  price: string; // keeping as string since it's quoted ("59")
+  release_date: string; // "DD-MM-YYYY" format
+  thumbPath: string;
+  updated_at: string; // ISO date string
+}

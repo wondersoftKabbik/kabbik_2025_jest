@@ -102,12 +102,12 @@ export default function Footer() {
             {/* Social Media */}
             <div className="flex gap-2">
               {footer.map((social, index) => (
-                <div key={social.name} className={styles.social_icons}>
+                <Link href={social.link} key={social.name} className={styles.social_icons}>
                   <div className="p-1">
                     {social.icon}
                   </div>
                   <span className="text-[6px] text-white font-hind">{social.name}</span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function Footer() {
                   About
                 </h3>
               </div>
-              <p className="text-white/90 font-hind">About Kabbik</p>
+              <Link href={paths.about} className="text-white/90 font-hind"> About Kabbik</Link>
             </div>
 
             {/* Terms & Policies */}
