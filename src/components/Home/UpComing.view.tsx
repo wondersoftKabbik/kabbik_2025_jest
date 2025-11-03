@@ -126,9 +126,9 @@ const UpComing = () => {
                           );
                         }}
                       >
-                        <div className='relative w-[210px] h-[370px]'>
+                        <div className='relative w-[106px] h-[297px] md:w-[210px] md:h-[370px]'>
                           <ThreeDBook bg={topbannerinfo?.file_path ?? topbannerinfo?.thumbPath} path={paths.upcoming}/>
-                          <div className='absolute w-[195px] text-center right-[-3px] skew-y-[-8deg] bottom-[-8px] bg-[#E53F79] z-40'>
+                          <div className='absolute w-[195px] text-center max-md:hidden right-[-45px] md:right-[-3px] skew-y-[-8deg] bottom-[-8px] bg-[#E53F79] z-40'>
                               {formatToBengali(topbannerinfo?.release_date)}
                           </div>
                         </div>

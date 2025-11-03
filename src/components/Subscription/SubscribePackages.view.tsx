@@ -10,6 +10,8 @@ import { BadgeCheck } from "lucide-react";
 import { convertToBanglaDigits, normalizeBillingPeriod } from "@/helpers/commonFunction";
 import Tik from "@/svgs/Tik.svg";
 import { useEffect } from "react";
+import { useAppDispatch } from "@/store/store";
+import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
 // import { LuBadgeCheck } from "react-icons/lu";
 
 interface SubscribePackageProps {
@@ -35,22 +37,26 @@ const SubscribePackage = ({
   setShowModal
 }: SubscribePackageProps) => {
   const isLoggedIn = Cookies.get("isLogin") === "true";
+  const dispatch=useAppDispatch();
 
   const handleClick = async () => {
-    setShowModal(true);
-    setSubscriptionPackData(data);
-    if(data?.is_free_trail){
-      setTrialModal();
-    }
+    
     // const Modal = require("bootstrap/js/dist/modal");
     if (document) {
       if (!isLoggedIn) {
         toast.error("Please login first");
+        dispatch(ReduxShowLoginModal(true));
+        return;
         // const loginModal = new Modal(document?.getElementById("loginModal")!, {
         //   keyboard: true,
         // });
         // loginModal.show();
       } else {
+        setShowModal(true);
+        setSubscriptionPackData(data);
+        if(data?.is_free_trail){
+          setTrialModal();
+        }
         await paymentMethod(
           Number(data.subscriptionItemId),
           data.isOnetime ? 0 : 1

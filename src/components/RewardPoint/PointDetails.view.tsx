@@ -23,7 +23,7 @@ export default function PointsPage() {
   },[user?.id])
 
   return (
-    <div className=" text-white relative max-w-[600px] mx-auto px-5 py-10">
+    <div className=" text-white z-[4] relative max-w-[600px] mx-auto px-5 py-10">
         <div className="circular_gradient right-[0%] top-[0%] w-[40vh] h-[40vh] absolute  "></div>
 
       <div className="max-w-md relative z-[2] mx-auto text-center space-y-4">
@@ -31,7 +31,7 @@ export default function PointsPage() {
 
         <div>
           <p className="text-sm text-gray-300">ব্যবহারযোগ্য পয়েন্ট</p>
-          <h2 className="text-c3xl md:text-5xl font-extrabold tracking-wide py-2">{convertToBanglaDigits(userRewardData?.user_tier?.user_acquired_point??0)}</h2>
+          <h2 className="text-c3xl md:text-5xl font-extrabold tracking-wide py-2">{convertToBanglaDigits(userRewardData?.user_tier?.user_balance_point??0)}</h2>
           <p className="text-sm text-gray-400">শেষ আপডেটঃ {formatDateDDMMYY(new Date().toISOString())}</p>
         </div>
 
@@ -45,10 +45,10 @@ export default function PointsPage() {
                 title: "ব্যবহৃত",
                 component: <UsedPoints />,
                 },
-                {
-                title: "মেয়াদোত্তীর্ণ",
-                component: <ExpiredPoints />,
-                },
+                // {
+                // title: "মেয়াদোত্তীর্ণ",
+                // component: <ExpiredPoints />,
+                // },
             ]} />
         </div>
       </div>

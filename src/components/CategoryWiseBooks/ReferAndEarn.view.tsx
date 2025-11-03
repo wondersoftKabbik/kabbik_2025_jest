@@ -46,11 +46,11 @@ export default function ReferAndEarn() {
                 <Link href={paths.refer_earn} className="text-center font-inter text-cs sm:text-cs2 md:text-cn2 gradient-text2">
                   এখনই আপনার রেফারেল লিংক সংগ্রহ করুন
                 </Link>
-                <div className="p-2 rounded-full bg-white flex items-center justify-center group-hover:scale-105 transition-transform flex-shrink-0">
+                <Link href={paths.refer_earn} className="p-2 rounded-full bg-white flex items-center justify-center group-hover:scale-105 transition-transform flex-shrink-0">
                   <span className="w-2 h-2 md:w-3 md:h-3 inline-block">
                     <LinkIcon/>
                   </span>
-                </div>
+                </Link>
               </div>
             </div>
           </div>

@@ -44,6 +44,9 @@ import { container } from "../ui/static/tailwind.classes";
 import Spinner from "../ui/Spinner.view";
 import EpisodeList from "./EpisodeList.view";
 import { paths } from "@/utils/Paths";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
+import { siteConfig } from "@/config/config";
 // import SleeperTimer from "./SleeperTime.view";
 // import PaymentOptions from "../Subscription/PaymentOptions.view";
 
@@ -142,6 +145,7 @@ const AudiobookComponent = ({
   const [showPaymentOptions,setShowPaymentOptions]=useState<boolean>(false);
   const [withoutBGM,setWithoutBGM]=useState(false);
   const [showAddReviewModal,setShowAddReviewModal]=useState(false);
+  const user=useAppSelector((store)=>store?.user?.userData)
 
   const toggleSize = () => {
     setIsBigger((prevSize) => !prevSize);
@@ -175,6 +179,7 @@ const AudiobookComponent = ({
   const [audioBookCount, setAudioBookCount] = useState(false);
   const [isLogin, setIsLogin]: any = useState();
   const [isFree, setIsFree] = useState();
+  const dispatch=useAppDispatch();
 
   const isNextAllowed =
     index < epList?.length - 1 &&
@@ -286,11 +291,12 @@ const AudiobookComponent = ({
   }, [continueEpisodeId, isRunning, continueRunningTime, epList,audioBookDetailsData,isSubscribed]);
 
   const hasAccess=(episodeId:number)=>{
+    
     return (!audioBookDetailsData?.isSubRestricted && isSubscribed) || 
     (audioBookDetailsData?.isSubRestricted && audioBookDetailsData?.for_rent===0 && isSubscribed) || 
     audioBookDetailsData?.isPurchased === 1 ||
     audioBookDetailsData?.price === 0 ||
-    epList?.[0]?.isfree
+    epList?.[episodeId]?.isfree
   }
 
   useEffect(() => {
@@ -628,11 +634,24 @@ const AudiobookComponent = ({
 
   // const hand
 
+  const handleShowPayModal =()=>{
+    if(!user?.id || user?.id===Number(siteConfig?.defaultUserId)){
+       dispatch(ReduxShowLoginModal(true));
+       return;
+    }
+    setShowPayModal(true)
+
+  }
+
   useEffect(()=>{
     console.log(audioBookDetailsData,"audio book data")
   },[])
 
   const handleFavourite=async()=>{
+     if(!user?.id || user?.id===Number(siteConfig?.defaultUserId)){
+       dispatch(ReduxShowLoginModal(true));
+       return;
+    }
     if(isFavorite){
       const result = await deleteFavoritesApi(audioBookDetailsData.id)
       if(result?.success){
@@ -780,7 +799,7 @@ const AudiobookComponent = ({
                   </div>
 
                   {/* Rental Option */}
-                  <div onClick={()=>{setShowPayModal(true)}} className="bg-[#7E1663] cursor-pointer rounded-[30px] py-3 flex justify-around shadow-lg">
+                  <div onClick={handleShowPayModal} className="bg-[#7E1663] cursor-pointer rounded-[30px] py-3 flex justify-around shadow-lg">
                     <div className="flex items-center justify-around gap-1">
                       <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                         <div className="flex">
@@ -871,7 +890,7 @@ const AudiobookComponent = ({
                       isPlaying={isPlaying}
                       togglePlay={(i,episodeId)=>{
                         console.log("working")
-                        if(hasAccess(episodeId)){
+                        if(hasAccess(i)){
                           togglePlayList(i,episodeId)
                         }else{
                           setShowPayModal(true)

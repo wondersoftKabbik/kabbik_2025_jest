@@ -65,7 +65,7 @@ export function PasswordLoginForm(
   return (
     <div className="bg-background flex items-center justify-center px-0 py-4">
       <div className="w-full max-w-3xl">
-        <div className="bg-card border transparent_border w-[345px] rounded-2xl shadow-2xl p-4">
+        <div className="bg-card border transparent_border max:w-[345px] rounded-[8px] md:rounded-2xl shadow-2xl p-2 md:p-4">
           <form onSubmit={handleSubmit} className="">
             {/* Title */}
             {/* <h1 className="text-white text-xl font-bold">
@@ -87,7 +87,7 @@ export function PasswordLoginForm(
                     //   type="text"
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="আপনার পাসওয়ার্ড লিখুন"
-                      className="w-full py-2 px-6 md:px-8 bg-transparent border transparent_border rounded-[4px] shadow-lg placeholder:text-white/40 text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full py-2 text-cs2 md:text-cn px-4 md:px-8 bg-transparent border transparent_border rounded-[4px] shadow-lg placeholder:text-white/40 text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <button
                       type="button"
@@ -103,11 +103,11 @@ export function PasswordLoginForm(
                 </p> */}
               </div>
               <div className='flex justify-between items-center'>
-                <div>
+                <div className='flex items-start'>
                   <input type='checkbox'/>
-                  <label className='text-[#5C5C5C] text-xs'>পরবর্তীতে স্বয়ংক্রিয় লগইন করুন</label>
+                  <label className='text-[#5C5C5C] mt-0 text-cxs whitespace-nowrap mr-2 md:text-cs'>পরবর্তীতে স্বয়ংক্রিয় লগইন করুন</label>
                 </div>
-                <p onClick={handleClickForgetPassword} className='text-[#FF9500] text-xs'>
+                <p onClick={handleClickForgetPassword} className='text-[#FF9500] cursor-pointer text-cxs whitespace-nowrap md:text-cs'>
                   পাসওয়ার্ড ভুলে গেছেন
                 </p>
               </div>
@@ -116,7 +116,7 @@ export function PasswordLoginForm(
             {/* Continue Button */}
             <button
               type="submit"
-              className="w-full py-2 rounded-[4px] bg-[#DF1E1E] text-white text-lg font-medium shadow-lg hover:bg-[#c41a1a] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DF1E1E] focus:ring-offset-2 focus:ring-offset-background"
+              className="w-full py-1 md:py-1.5 rounded-[4px] bg-[#DF1E1E] text-white text-cs2 md:text-cn font-medium shadow-lg hover:bg-[#c41a1a] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DF1E1E] focus:ring-offset-2 focus:ring-offset-background"
             >
               লগিন
             </button>

@@ -43,7 +43,7 @@ const EpisodeList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBoo
                 </div>
                 <div className="flex-shrink-0">
                   <div className="w-4 h-4 md:w-8 md:h-8" >
-                    {hasAccess(episode.id) ? (
+                    {hasAccess(i) ? (
                       isPlaying && index === i ? <PauseIcon color='#98266B' /> : <PlayIcon  />
                      ) : <LockIcon />}
                   </div>

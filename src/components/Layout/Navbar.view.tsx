@@ -27,6 +27,7 @@ import dynamic from 'next/dynamic'
 import Spinner from '../ui/Spinner.view'
 import { usePathname } from 'next/navigation'
 import { decodeWord } from '@/helpers/commonFunction'
+import { useAppSelector } from '@/store/store'
 // import  from 
 // import OTPVerification from '../Login/OtpComponent'
 
@@ -104,6 +105,7 @@ const ShobderaJibonta = dynamic(
 const Navbar = (props:TNavbar) => {
     const {showCategories,boxRef, setShowCategories, user: profile, categories, setMobileMenu, mobileMenu, showLoginModal, showOTPModal, showPasswordModal, showLoginPasswordModal, handleLoginClick, handleloginSubmit, handleVerifyOtp, closeLoginClick, closePasswordClick, closeOTPClick, handleSubmit, closeLoginPasswordClick,  handleShowPasswordModal, handlePhoneOfChangePassword, showPhoneOfChangePass, closeShowPhoneOfChangePass, handleClickForgetPassword, showPreferenceCatModal, showPreferenceAuthorModal,closePreferenceCatModal,closePreferenceAuthorModal,showPrepAuthorModal,isCategoryPage} = useNavbar();
     const pathnameWithLang = usePathname();
+    const loginModal=useAppSelector((store)=>store?.loginSlice?.value)
     const pathname = pathnameWithLang.replace(/^\/(en|bl)/, "");
 
 
@@ -226,20 +228,20 @@ const Navbar = (props:TNavbar) => {
             <MobileNavbar categories={categories} setMobileMenu={setMobileMenu}/>
         </CustomDrawer>
         <CommonModal
-            isOpen={showLoginModal}
+            isOpen={loginModal || showLoginModal}
             onClose={closeLoginClick}
         >
-            <div className='bg-[#050F1E] p-4 px-8 relative  rounded-[8px] overflow-y-auto overflow-hidden'>
-                <div className="circular_gradient2 right-[-80%] z-10   top-[-90%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
+            <div className='bg-[#050F1E] p-2 md:p-4 px-2 md:px-8 relative  rounded-[8px] overflow-y-auto overflow-hidden'>
+                <div className="circular_gradient2  right-[-80%] z-10   top-[-90%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
                 <ShobderaJibonta/>
-                {showLoginModal?<LoginModal  handleSubmit={handleSubmit}/>:''}
+                <LoginModal  handleSubmit={handleSubmit}/>
             </div>
         </CommonModal>
         <CommonModal
             isOpen={showOTPModal}
             onClose={closeOTPClick}
         >
-            <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
+            <div className='bg-[#050F1E] p-2 md:p-4 px-4 md:px-8 rounded-[8px] overflow-y-auto '>
                 <ShobderaJibonta/>
                 {showOTPModal?<OTPVerification handleShowPasswordModal={handleShowPasswordModal} closeModal={closeOTPClick}/>:''}
             </div>
@@ -249,7 +251,7 @@ const Navbar = (props:TNavbar) => {
             // onClose={closePasswordClick}
             onClose={()=>{}}
         >
-            <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
+            <div className='bg-[#050F1E] p-2 md:p-4 px-3 md:px-8 rounded-[8px] overflow-y-auto '>
                 <ShobderaJibonta/>
                  {showPasswordModal?<PasswordCreationForm  closeModal={closePasswordClick} />:''}
             </div>
@@ -258,7 +260,7 @@ const Navbar = (props:TNavbar) => {
             isOpen={showLoginPasswordModal}
             onClose={closeLoginPasswordClick}
         >
-            <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
+            <div className='bg-[#050F1E] p-2 md:p-4 px-3 md:px-8 rounded-[8px] overflow-y-auto '>
                 <ShobderaJibonta/>
                  {showLoginPasswordModal?<PasswordLoginForm handleClickForgetPassword={handleClickForgetPassword} closeModal={closeLoginPasswordClick}/>:''}
             </div>
@@ -267,7 +269,7 @@ const Navbar = (props:TNavbar) => {
             isOpen={showPhoneOfChangePass}
             onClose={closeShowPhoneOfChangePass}
         >
-            <div className='bg-[#050F1E] p-4 px-8 rounded-[8px] overflow-y-auto '>
+            <div className='bg-[#050F1E] p-2 md:p-4 px-3 md:px-8 rounded-[8px] overflow-y-auto '>
                 <ShobderaJibonta/>
                  {showPhoneOfChangePass?
                     <PasswordChangePhoneModal 

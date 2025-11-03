@@ -135,7 +135,7 @@ export default function MyPlayList() {
               <span className="w-12 h-12 inline-block mr-3">
                 <BigVideoPlayerIcon/>
               </span>
-              <img className="max-w-12" src={books?.[0]?.banner_path}/>
+              <img className="max-w-12" src={books?.[0]?.thumb_path ?? books?.[0]?.banner_path }/>
             </div>
             <div>
               <button className="text-white text-cs2 md:text-cn2 flex items-center gap-1 btn-gradient-3 py-2 px-4 rounded-[8px]" onClick={()=>{setFolderModal(true)}}>
@@ -190,7 +190,7 @@ export default function MyPlayList() {
                 {/* Title + Cover */}
                 <td className="px-1.5 md:px-6 py-1 flex items-center gap-4 max-w-[300px]">
                   <img
-                    src={book.banner_path}
+                    src={book?.thumb_path ?? book?.banner_path}
                     alt={book.name}
                     className="w-[51px] h-[60px] object-cover rounded"
                   />

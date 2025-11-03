@@ -27,7 +27,6 @@ export default async function Home({
   const promoData: PromoBannerInfo = await promoBannerList();
   const blogs = await getApprovedBlogs();
 
-  console.log(topBannerData,"homeData");
   return (
     <main className="bg-bg max-md:overflow-x-hidden">
       <HomeComponent

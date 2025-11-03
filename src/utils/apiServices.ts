@@ -388,6 +388,7 @@ export const postSendOtp = async (msisdn: any,set_password?:boolean) => {
     const raw = JSON.stringify({
         msisdn: `${msisdn}`,
         currentTimeLong: currentTimeLong,
+        passKey:Cookies.get('passKey'),
         set_password
     });
     let data:any=await CommonApiHandler(
@@ -409,8 +410,10 @@ export const postSendOtp = async (msisdn: any,set_password?:boolean) => {
     return data;
     }else{
       console.log(data,"data")
-      if(data.message!=="password settled"){
+      if(data.message!=="password settled" && data?.created===true){
         showToast("OTP Sent!",TtoastType?.success,3000)
+      }else{
+        showToast("Something Went Wrong!",TtoastType?.error,3000)
       }
     }
     return data;
@@ -441,8 +444,11 @@ export const postSendOtpOlder = async (msisdn: any) => {
     showToast(`Please try after ${formatTime(data.remainingTime)}`,TtoastType.success,3000)
     return data;
     }else{
-      if(data.message!=="password settled")
-        showToast("OTP Sent!1",TtoastType?.success,3000)
+      if(data.message!=="password settled" && data?.created==true){
+        showToast("OTP Sent!",TtoastType?.success,3000)
+      }else{
+        showToast("Something went wrong!",TtoastType?.error,3000)
+      }
     }
     return data;
 };

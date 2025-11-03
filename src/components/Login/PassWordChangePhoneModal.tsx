@@ -28,11 +28,11 @@ const PasswordChangePhoneModal = ({handleSubmit}:TPhoneOfChangePassword) => {
 
   return (
       <div className="w-full max-w-2xl  border border-gray-300 rounded-2xl shadow-lg p-5 ">
-        <div className="flex flex-col gap-4">
-            <h2 className='text-white text-lg font-semibold'>আপনার ফোন নম্বর নিশ্চিত করুন</h2>
-            <p className='text-white text-sm'>পাসওয়ার্ড পুনরায় সেট করতে আপনার <br/> ফোন নম্বরটি আবার নিশ্চিত করুন।</p>
+        <div className="flex flex-col gap-2 md:gap-4">
+            <h2 className='text-white text-cs2 md:text-cn2 font-semibold'>আপনার ফোন নম্বর নিশ্চিত করুন</h2>
+            <p className='text-white text-cs md:text-sm'>পাসওয়ার্ড পুনরায় সেট করতে আপনার <br/> ফোন নম্বরটি আবার নিশ্চিত করুন।</p>
           <div className="flex flex-col gap-2">
-            <label className="text-white  font-medium">
+            <label className="text-white text-cs2 md:text-cn font-medium">
               ফোন নম্বর
             </label>
             
@@ -41,10 +41,10 @@ const PasswordChangePhoneModal = ({handleSubmit}:TPhoneOfChangePassword) => {
                 <div className="flex items-center">
                   {/* Country Code Section */}
                   <div className="flex items-center gap-2 px-1  py-2 border-r border-gray-300">
-                    <div className="w-7 h-7 flex-shrink-0">
+                    <div className="md:w-7 h-7 flex-shrink-0">
                       <BdFlag/>
                     </div>
-                    <span className="text-white text-lg">+৮৮০</span>
+                    <span className="text-white text-cs2 md:text-lg">+৮৮০</span>
                   </div>
                   
                   {/* Phone Input */}
@@ -53,7 +53,7 @@ const PasswordChangePhoneModal = ({handleSubmit}:TPhoneOfChangePassword) => {
                     // value={phoneNumber}
                     onChange={(e) => {setPhoneNumbers(e.target.value);setErrors('');}}
                     placeholder="আপনার ফোন নম্বর লিখুন"
-                    className="flex-1 bg-transparent text-white  placeholder-gray-400 px-1 focus:outline-none"
+                    className="flex-1 text-cs2 md:text-cn bg-transparent text-white  placeholder-gray-400 px-1 focus:outline-none"
                   />
                 </div>
               </div>
@@ -68,7 +68,7 @@ const PasswordChangePhoneModal = ({handleSubmit}:TPhoneOfChangePassword) => {
             disabled={submitLoader}
           >
             {submitLoader?<Spinner size='w-6 h-6'/>:''}
-            <span className="text-white text-lg font-medium">
+            <span className="text-white text-cs2 md:text-cn font-medium">
               কন্টিনিউ
             </span>
           </button>

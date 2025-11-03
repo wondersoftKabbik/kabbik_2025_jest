@@ -13,6 +13,7 @@ import { apiEndPoints } from "@/utils/apiEndpoints";
 import { setuserPreference } from "@/store/slicers/userPreferenceSlice";
 import { siteConfig } from "@/config/config";
 import { paths } from "@/utils/Paths";
+import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
 
 
 const useNavbar = () => {
@@ -123,6 +124,7 @@ const useNavbar = () => {
 
     const closeLoginClick=()=>{
       setShowLoginModal(false)
+      dispatch(ReduxShowLoginModal(false));
     }
 
     const closePasswordClick=()=>{
@@ -164,6 +166,7 @@ const useNavbar = () => {
       // setSubmitLoader(true);
       const data = await postSendOtp(normalizeMsisdn(phoneNumbers));
       setShowLoginModal(false)
+       dispatch(ReduxShowLoginModal(false));
 
       if(data.created){
         setShowOTPModal(true);

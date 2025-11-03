@@ -347,7 +347,7 @@ const SubscribeComponent = ({
         <div className="absolute left-4 md:left-4 md:top-1  ">
           <span 
             onClick={()=>{router.back()}}
-            className="w-9 h-9 sm:w-12 sm:h-12 md:w-20 md:h-20 inline-block text-white "
+            className="w-9 h-9 sm:w-12 sm:h-12 md:w-20 md:h-20 max-md:inline-block hidden text-white "
           >
             <LeftAngle />
           </span>

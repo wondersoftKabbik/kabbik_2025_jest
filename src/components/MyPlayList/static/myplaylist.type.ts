@@ -6,6 +6,7 @@ export interface PlaylistAudioBook {
   en_author_name: string | null;
   en_name: string;
   folder_id: number;
+  thumb_path:string;
   folder_name: string;
   playlist_book_id:number|string;
   name: string;

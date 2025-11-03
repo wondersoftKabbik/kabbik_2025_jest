@@ -1,17 +1,12 @@
 'use client'
 import BdFlag from '@/svgs/BdFlag.svg'
-import FaceBook from '@/svgs/FaceBook'
-import Facebook from '@/svgs/Facebook.svg'
 import Google from '@/svgs/Google.svg'
 import React, { MouseEvent, useState } from 'react'
 import { signIn } from "next-auth/react";
-import Cookies from 'js-cookie'
 import { usePathname } from 'next/navigation'
-import { postSendOtp } from '@/utils/apiServices'
 import { isValidMsisdn } from '@/helpers/commonFunction'
 import Spinner from '../ui/Spinner.view'
 import { TLoginModal } from './static/login.type'
-import { toast } from 'react-toastify'
 
 const LoginModal = ({handleSubmit}:TLoginModal) => {
     const [showSignUp,setShowSignUp]=useState(false);
@@ -37,25 +32,25 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
     
 
   return (
-      <div className="w-full max-w-2xl  border border-gray-300 rounded-2xl shadow-lg p-5 ">
-        <div className="flex flex-col gap-4">
+      <div className="w-[95%] max-w-2xl  border border-gray-300 rounded-2xl shadow-lg p-5 ">
+        <div className="flex flex-col gap-2 md:gap-4">
           {/* Header Section */}
           <div className="flex flex-col gap-2">
-            <h1 className="text-white text-lg font-semibold">
+            <h1 className="text-white text-cn md:text-lg font-semibold">
               লগইন / সাইনআপ করুন
             </h1>
           </div>
 
           {/* Social Login Section */}
-          <div className="flex flex-col justify-center gap-7">
+          <div className="flex flex-col justify-center gap-3 md:gap-7">
 
             {/* Google Button */}
-            <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md py-1.5 px-4 flex items-center gap-8 md:gap-12">
+            <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md  py-1.5 px-2 md:px-4 flex items-center gap-4 sm:gap-8 md:gap-12">
                 <div className='w-full flex justify-center'>
-                    <div className="w-6 h-6 mr-4 flex-shrink-0">
+                    <div className="w-5 md:w-6 h-6 mr-4 flex-shrink-0">
                         <Google/>
                     </div>
-                    <span className="text-black text-xl font-semibold">
+                    <span className="text-black text-cn md:text-xl font-semibold">
                         গুগল
                     </span>
                 </div>
@@ -80,10 +75,10 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
                 <div className="flex items-center">
                   {/* Country Code Section */}
                   <div className="flex items-center gap-2 px-1  py-2 border-r border-gray-300">
-                    <div className="w-7 h-7 flex-shrink-0">
+                    <div className=" md:w-7 h-7 flex-shrink-0">
                       <BdFlag/>
                     </div>
-                    <span className="text-white text-lg">+৮৮০</span>
+                    <span className="text-white text-cs2 md:text-cn">+৮৮০</span>
                   </div>
                   
                   {/* Phone Input */}
@@ -92,7 +87,7 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
                     // value={phoneNumber}
                     onChange={(e) => {setPhoneNumbers(e.target.value);setErrors('');}}
                     placeholder="আপনার ফোন নম্বর লিখুন"
-                    className="flex-1 bg-transparent text-white placeholder-gray-400 px-1 focus:outline-none"
+                    className="flex-1 text-cs2 md:text-cn bg-transparent text-white placeholder-gray-400 px-1 focus:outline-none"
                   />
                 </div>
               </div>

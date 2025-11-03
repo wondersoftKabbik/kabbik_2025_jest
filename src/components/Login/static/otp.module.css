@@ -44,3 +44,19 @@
   width: 100%;
   height: 42px;
 }
+
+
+@media only screen and (max-width: 640px){
+  .otpInputField {
+    background-color: transparent;
+    color: white;
+    border: white solid 1px;
+    height: 40px;
+    width: 35px !important;
+  }
+  .otp_btn{
+    font-size: 12px;
+    height: 36px;
+  }
+
+}
