@@ -64,7 +64,7 @@ const ElaborateBlog = ({ blog }: { blog: BlogInfoFromDB }) => {
                 </div>
             </div>
             <div>
-                <CommentSection/>
+                {/* <CommentSection/> */}
             </div>
         </div>
     </div>
