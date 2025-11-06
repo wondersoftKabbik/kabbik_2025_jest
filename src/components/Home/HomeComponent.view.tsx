@@ -52,7 +52,7 @@ const PopularCategories = dynamic(() => import("./PopularCategories.view"), {
 const CommonCategory = dynamic(() => import("./CommonCategory.view"), {
   ssr: false, // optional: disable server-side rendering
   loading: () => (
-    <div className={container('1206px')+' my-10'}>
+    <div className={container('1300px')+' my-10'}>
       <div className='flex justify-between'>
         <Skeleton height="h-[25px]" width='w-[80px]'  className="rounded-b-[4px]" />
         <Skeleton height="h-[25px]" width='w-[80px]'  className="rounded-b-[4px]" />
@@ -122,7 +122,7 @@ const HomeComponent = (props:THomeProps) => {
       Pay with City Bank
     </button> */}
         <div>
-          <div className={topTenStyles.heading_container+" my-8  text-white max-w-[1206px] w-[90%] mx-auto"}>
+          <div className={topTenStyles.heading_container+" my-8  text-white max-w-[1300px] w-[97%] md:w-[90%] mx-auto"}>
               <h3 className={topTenStyles.heading}>শীর্ষ ১০</h3>
               {/* <div className={topTenStyles.see_all}>
                   সব দেখুন
@@ -166,7 +166,7 @@ const HomeComponent = (props:THomeProps) => {
             
         </div>
         
-        <div className={`${topVideo?.video?.link?'':'hidden'} max-w-[1206px] rounded-[8px] w-[90%] mx-auto relative mt-12`}>
+        <div className={`${topVideo?.video?.link?'':'hidden'} max-w-[1300px] rounded-[8px] w-[97%] md:w-[90%] mx-auto relative mt-12`}>
           
           <div className='relative'>
             {/* <span
@@ -351,7 +351,7 @@ const HomeComponent = (props:THomeProps) => {
         
 
 
-        <div className='mt-10 max-w-[1206px] mx-auto w-[90%] relative'>
+        <div className='mt-10 max-w-[1300px] mx-auto w-[97%] md:w-[90%] relative'>
           <div className="circular_gradient left-[-20%]   top-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
             <h2 className='gradient-text text-clg leading-[1.2] sm:text-cxl md:text-[30px] font-semibold text-center'>আমাদের সাম্প্রতিক কার্যক্রম</h2>
             <p className='text-cs2 sm:text-[16px] text-white text-center pb-4 pt-0'>নতুন তথ্য, ইভেন্ট এবং বিশেষ অফার সম্পর্কে জানুন সবার আগে আপডেট পেতে আমাদের সাথে থাকুন।</p>
@@ -361,7 +361,7 @@ const HomeComponent = (props:THomeProps) => {
         </div>
 
 
-        <div className={`${middleVideo?.video?.link?"":'hidden'} max-w-[90%]  mx-auto relative mt-16 mb-16`}>
+        <div className={`${middleVideo?.video?.link?"":'hidden'} w-[97%] md:w-[90%]  mx-auto relative mt-16 mb-16`}>
           <div className='relative '>
             {/* <span
               onClick={()=>{goToNext('middle')}}
@@ -395,7 +395,7 @@ const HomeComponent = (props:THomeProps) => {
         </div>
 
 
-        <div className={`${lastVideo?.video?.thumbnail?"":'hidden'} w-[90%] max-w-[900px]   mx-auto relative mt-10 `}>
+        <div className={`${lastVideo?.video?.thumbnail?"":'hidden'} w-[97%] md:w-[90%] max-w-[900px]   mx-auto relative mt-10 `}>
           <div className='relative max-w-[345px] mx-auto  w-full z-[5]'>
             {/* <span
               onClick={()=>{goToNext('last')}}

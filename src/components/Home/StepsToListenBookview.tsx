@@ -19,7 +19,7 @@ const StepsToListenBookview = () => {
         getStaticData();
     },[])
   return (
-    <div className='flex mt-5 items-center justify-between gap-[2vw] w-[90%] mx-auto max-w-[1206px] '>
+    <div className='flex mt-5 items-center justify-between gap-[2vw] w-[97%] md:w-[90%] mx-auto max-w-[1300px] '>
         <div className='max-sm:hidden max-w-[40%] lg2:max-w-[44%] mr-8 relative mb-7'>
             <figure>
                 <img loading="lazy" alt='steps to listen audio books'

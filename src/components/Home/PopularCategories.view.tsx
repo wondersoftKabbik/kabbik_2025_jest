@@ -10,7 +10,7 @@ const PopularCategories = () => {
 
     
   return (
-    <div className='mt-12 z-[3] relative text-white max-w-[1206px] mx-auto cursor-pointer w-[90%]'>
+    <div className='mt-12 z-[3] relative text-white max-w-[1300px] mx-auto cursor-pointer w-[97%] md:w-[90%]'>
         <div className={common_cat_styles.heading_container}>
             <h3 className={common_cat_styles.heading}>মোস্ট পপুলার ক্যাটেগরিজ</h3>
             <Link href={'/categories'} className={common_cat_styles.see_all}>

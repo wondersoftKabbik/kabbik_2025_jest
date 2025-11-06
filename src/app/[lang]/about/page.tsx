@@ -35,7 +35,7 @@ const page = async() => {
             
 
             {/* Team Members */}
-            <div className={container("1200px")+" mx-auto px-4"}>
+            <div className={container("1300px")+" mx-auto px-4"}>
                 {teamMembers ?teamMembers.map((member, index) => (
                     <div key={index} className="flex my-8 justify-center">
                         <TeamMemberCard

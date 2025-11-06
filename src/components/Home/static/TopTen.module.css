@@ -1,5 +1,5 @@
 .container{
-    width: 1206px;
+    width: 1300px;
     max-width: 90vw;
     /* margin:88px auto 0;   */
     overflow-x:hidden ;
@@ -95,7 +95,10 @@
     z-index: 100;
     bottom: 120px;
     position: absolute;
-    background: #d9d9d98d;
+    /* background:  linear-gradient(270deg, #BC0974 -32.47%, #50226A 113.65%); */
+    background: linear-gradient(90deg, #CE4573 0%, #68233A 100%);
+
+    /* background: #d9d9d98d; */
 }
 
 .player_count{
@@ -132,6 +135,7 @@
 @media only screen and (max-width: 768px) {
     .container{
         margin: 20px auto;
+        max-width: 100%;
     }
     .heading{
         font-weight: 600;
@@ -147,19 +151,17 @@
     .arrow{
         padding: 5px 5px;
     }
-    
-   
-    
+    .slider_icons{
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 400px){
     .slider_right_icons,.slider_left_icons{
         bottom: 30%;
     }
-    .slider_icons{
-        display: none;
-    }
+    
     .container{
-        max-width: 94%;
+        /* max-width: 94%; */
     };
 }

@@ -43,7 +43,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
   const [expand,setIsExpand]=useState<boolean>(false);
   return (
 
-    <div className={styles.container+" pt-8 px-2"}>
+    <div className={styles.container+" pt-8 md:px-2"}>
         {/* <div className={styles.heading_container}>
             <h3 className={styles.heading}>{categoryName}</h3>
             <div className={styles.see_all}>
@@ -51,7 +51,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                 <span className={styles.arrow}><RightArrowIcon/></span>
             </div>
         </div> */}
-        <div className={styles.slider_box}>
+        <div className={styles.slider_box+` pb-10`}>
                   {/* Custom Arrows */}
                   <button
                     ref={prevRef}
@@ -71,7 +71,8 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                     // spaceBetween={1}
                     loop={true}
                       pagination={{ clickable: true }}
-                      style={{ paddingBottom: '40px' }}
+                      // className='pb-4 md:pb-10'
+                      // style={{ paddingBottom: '40px' }}
                       // modules={[Navigation, Pagination]}
                     // centeredSlides={true}
                     modules={[Navigation, Autoplay]}
@@ -81,10 +82,10 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                     }}
                      breakpoints={{
                         0: {
-                          slidesPerView: 1.4,
+                          slidesPerView: 2,
                         },
                         350: {
-                          slidesPerView: 1.7,
+                          slidesPerView: 2,
                         },
                         400: {
                           slidesPerView: 2,
@@ -96,7 +97,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                           slidesPerView: 2.6,
                         },
                         768: {
-                          slidesPerView: 2.8,
+                          slidesPerView: 2.9,
                         },
                         868: {
                           slidesPerView: 3,

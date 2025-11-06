@@ -63,6 +63,11 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
     const activeIframe = swiper.slides[swiper.activeIndex].querySelector("iframe");
     if (activeIframe) activeIframe.style.pointerEvents = "auto";
   };
+
+  useEffect(() => {
+  if (!prevRef.current || !nextRef.current) return;
+}, [prevRef, nextRef]);
+
   return (
     <div className={styles.container}>
       <div className={styles.heading_container}>
@@ -94,14 +99,29 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
           // slidesPerView={1}
           // spaceBetween={1}
           // loop={true}
+          
+          // pagination={{ clickable: true }}
+          // style={{ paddingBottom: "40px" }}
+          // // modules={[Navigation, Pagination]}
+          // // centeredSlides={true}
+          // modules={[Navigation, Autoplay]}
+          // navigation={{
+          //   prevEl: prevRef.current,
+          //   nextEl: nextRef.current,
+          // }}
+
+           modules={[Navigation, Autoplay]}
           pagination={{ clickable: true }}
           style={{ paddingBottom: "40px" }}
-          // modules={[Navigation, Pagination]}
-          // centeredSlides={true}
-          modules={[Navigation, Autoplay]}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
+          }}
+          onBeforeInit={(swiper: any) => {
+            if (swiper.params.navigation && typeof swiper.params.navigation !== "boolean") {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }
           }}
           breakpoints={{
             0: {
@@ -117,24 +137,24 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
               slidesPerView: 3.3,
             },
           }}
-          onBeforeInit={(swiper: any) => {
-            if (
-              swiper.params.navigation &&
-              typeof swiper.params.navigation !== "boolean"
-            ) {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-            }
-          }}
+          // onBeforeInit={(swiper: any) => {
+          //   if (
+          //     swiper.params.navigation &&
+          //     typeof swiper.params.navigation !== "boolean"
+          //   ) {
+          //     swiper.params.navigation.prevEl = prevRef.current;
+          //     swiper.params.navigation.nextEl = nextRef.current;
+          //   }
+          // }}
         >
           <>
             {reels &&
               reels.map((item:ReelType, index: number) => (
                 <SwiperSlide
                   key={index}
-                  className={styles.swiper_slider_custom}
+                  // className={styles.swiper_slider_custom}
                 >
-                  <div onClick={()=>setReelsModal(index)} className="w-[90%] relative h-[80vh] flex justify-center items-center bg-black">
+                  {/* <div onClick={()=>setReelsModal(index)} className="w-[90%] relative h-[80vh] flex justify-center items-center bg-black"> */}
                     {/* <div className="absolute cursor-pointer z-10 h-[100%] w-[100%] top-0 left-0 bg-transparent"></div> */}
                     {/* <CustomVideoPlayer
                       width=" max-w-[auto] "
@@ -159,7 +179,16 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
                     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                     allowFullScreen={true}>
                   </iframe> */}
-                  <iframe className="h-[80vh]" src={`https://www.youtube.com/embed/${item.reelInfo?.reel_youtube_id}`} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" ></iframe>
+
+                  {/* </div> */}
+                  <div className="w-[90%] z-[20] relative h-[80vh] flex justify-center items-center bg-black pointer-events-none">
+                    <iframe
+                      className="h-[80vh] z-[50] relative pointer-events-auto"
+                      src={`https://www.youtube.com/embed/${item.reelInfo?.reel_youtube_id}`}
+                      frameBorder={0}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
                   </div>
                 </SwiperSlide>
               ))}

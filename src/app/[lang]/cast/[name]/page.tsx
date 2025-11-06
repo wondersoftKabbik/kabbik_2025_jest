@@ -51,7 +51,7 @@ const Cast = async ({ params }: { params: { name: string } }) => {
                   </section>
                 <div >
                    <div>
-                        <div className={`${container('1209px')} relative`}>
+                        <div className={`${container('1300px')} relative`}>
                             <div className="circular_gradient left-[-10%] top-[0%] w-[30vw] h-[30vw] absolute  "></div>
                             <div className="circular_gradient right-[-20%] bottom-[-15vh] w-[40vw] h-[40vw] absolute  "></div>
                             <div className="mt-10  grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  lg:grid-cols-5  gap-3 md:gap-4 lg2:gap-6">

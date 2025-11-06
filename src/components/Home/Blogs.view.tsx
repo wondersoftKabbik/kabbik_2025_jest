@@ -21,8 +21,8 @@ const Blogs = ({blogs}:TBlogsProps) => {
                             <img
                                 loading="lazy"
                                 className='h-full'
-                                src={blogs.list[0].featured_image}
-                                alt={blogs.list[0].alter_text_for_featured_image}
+                                src={blogs?.list[0].featured_image}
+                                alt={blogs?.list[0].alter_text_for_featured_image}
                             />
                         </div>
                         <div className=''>
@@ -36,8 +36,8 @@ const Blogs = ({blogs}:TBlogsProps) => {
                                 
                             </div>
                             <div className={styles.content}>
-                                <h1 className={styles.title}>{blogs.list[0].title}</h1>
-                                <p className={styles.excerpt+" mt-3 lg2:mt-9"}>{blogs.list[0].excerpt}</p>
+                                <h1 className={styles.title}>{blogs?.list[0].title}</h1>
+                                <p className={styles.excerpt+" mt-3 lg2:mt-9"}>{blogs?.list[0].excerpt}</p>
                                 <div className='btn-gradient-2 mt-3 lg2:mt-9 w-[150px] py-2 rounded-[3px] text-center text-cs lg2:text-[13px]'>
                                     বিস্তারিত পড়ুন
                                     <span className='w-10 h-2 inline-block '>
@@ -54,7 +54,7 @@ const Blogs = ({blogs}:TBlogsProps) => {
             className={`${styles.blogsContainer} max-sm:hidden`}
             style={{ color: "white" }}
         >
-            {blogs.list.length ? (
+            {blogs?.list?.length ? (
             <div className={`${styles.blogsWrapper}`}>
                 {blogs.list?.slice(0,3).map((blog) => (
                     <div key={blog.id} className="blog">

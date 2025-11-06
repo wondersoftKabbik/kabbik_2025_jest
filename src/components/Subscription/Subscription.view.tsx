@@ -359,26 +359,26 @@ const SubscribeComponent = ({
           
           {/* Main Heading */}
           <div className="text-center mb-2">
-            <h1 className={"font-lexend font-bold text-[6vw] xl:leading-[10vw] "+styles.gradient_text}>
+            <h1 className={"font-lexend font-bold text-[12vw] sm:text-[10vw] md:text-[9vw] lg:text-[6.5vw] xl:leading-[10vw] "+styles.gradient_text}>
               সাবস্ক্রিপশন
             </h1>
           </div>
 
           {/* Hero Text */}
-          <div className="text-center mb-8 md:mb-2 max-w-5xl mx-auto">
-            <p className="font-bengali text-white text-lg sm:text-clg2  leading-[30px] font-normal">
+          <div className="text-center mb-2 md:mb-2 max-w-5xl mx-auto">
+            <p className="font-bengali text-white text-cs2 sm:text-clg2  leading-[1.3] font-normal">
               ৩০০০+ অডিওবুক ও এক্সক্লুসিভ কনটেন্ট আনলক করুন,<br className="hidden md:block" />
               যখন খুশি যেখানে খুশি!
             </p>
           </div>
 
           {/* Plan Selection Section */}
-          <div className="text-center mb-4 relative z-10">
+          <div className="text-center mb-0 md:mb-4 relative z-10">
             <div className="max-w-4xl mx-auto">
-              <h2 className={"font-bengali font-bold text-2xl sm:text-3xl md:text-cxl leading-tight  gradient-text mb-2 "+styles.gradient_para}>
+              <h2 className={"font-bengali font-bold text-lg sm:text-3xl md:text-cxl leading-tight  gradient-text mb-2 "+styles.gradient_para}>
                 আপনার সেরা প্ল্যানটি বেছে নিন
               </h2>
-              <p className="font-bengali text-white text-cn leading-tight md:leading-[2.005] font-normal max-w-2xl mx-auto">
+              <p className="font-bengali text-white text-cs2 leading-tight md:leading-[2.005] font-normal max-w-2xl mx-auto">
                 কাব্যিক-এর প্রিমিয়াম ফিচার উপভোগ করতে সাবস্ক্রাইব করুন
               </p>
             </div>
@@ -400,8 +400,8 @@ const SubscribeComponent = ({
       <>
       <ToastContainer />
       <div className={`${styles.divBody}`}>
-        <div className={"container relative "+container('1206px')}>
-          <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4"}>
+        <div className={"container relative "+container('1300px')}>
+          <div className={"grid grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-2  md:gap-4"}>
             <div className="circular_gradient left-[-20%] top-[10%] w-[30vw] h-[30vw] absolute  "></div>
             <div className="circular_gradient right-[-20%] bottom-[0%] w-[30vw] h-[30vw] absolute  "></div>
             {subscriptionPackList?.map(

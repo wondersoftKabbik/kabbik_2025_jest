@@ -30,6 +30,7 @@ import ReedemCodeActivate from './ReedemCode.view';
 import ProfileInfoForm from './UpdateProfile.view';
 import ContactUsModal from './ContactUsModal.view';
 import SponsorFormModal from './SponsorShipModal.view';
+import SocialMediaSection from './SocialMediaSection.view';
 
 export default function Profiles(profileData: any) {
   const router = useRouter();
@@ -133,12 +134,13 @@ export default function Profiles(profileData: any) {
     // Row 1
     { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', handleClick:()=>{setShowBookRequestModal(true)} },
     { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{setShowRedeemModal(true)} },
+    { title: 'রেফার অ্যান্ড আর্ন', icon: <TakaIcon />, gradient: 'bg-orange-gradient',hasNewBadge:true,handleClick:()=>router.push(paths.refer_earn) },
     { title: 'রিওয়ার্ড পয়েন্ট', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{router.push(paths.reward_point)},hasNewBadge: true },
+    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient',hasNewBadge: true ,handleClick:()=>router.push(paths.myPlayList) },
     { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' , handleClick:()=>{router.push(paths.favorites)} },
 
     // Row 2
     { title: 'রেন্ট বুক', icon: <UserIcon />, gradient: 'bg-purple-gradient', handleClick:()=>{router.push(paths.my_rents)} },
-    { title: 'রেফার অ্যান্ড আর্ন', icon: <TakaIcon />, gradient: 'bg-orange-gradient',hasNewBadge:true,handleClick:()=>router.push(paths.refer_earn) },
     { title: 'আমার কোর্স', icon: <GraduationCap />, gradient: 'bg-green-gradient',handleClick:()=>{router.push(paths.my_courses)} },
 
     // Row 3
@@ -147,7 +149,6 @@ export default function Profiles(profileData: any) {
     { title: 'অ্যাকাউন্ট ডিঅ্যাকটিভেট', icon: <Delete />, gradient: 'bg-purple-gradient',handleClick:clearSessionAndRedirect },
 
     // Remaining items (to be shown in a single horizontal row)
-    { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient',hasNewBadge: true ,handleClick:()=>router.push(paths.myPlayList) },
     { title: 'অ্যাবাউট আস', icon: <InfoIcon />, gradient: 'bg-blue-gradient' ,handleClick:()=>router.push('/about')},
     { title: 'কন্ট্যাক্ট আস', icon: <PersonStandingIcon />, gradient: 'bg-purple-gradient',handleClick:()=>{setShowContactModal(true)} },
     { title: 'রেইট আস', icon: <StarIcon />, gradient: 'bg-red-gradient',handleClick:()=>router.push('/download-app') },
@@ -158,9 +159,11 @@ export default function Profiles(profileData: any) {
   const remainder = menuItems.slice(9);
 
   return (
-    <div>
+    <div className='relative'>
+      <div className="circular_gradient left-0 bottom-[20%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
+      <div className="circular_gradient right-0 bottom-[0] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
       <TopSection editProfile={()=>{setProfileInfoModal(true)}} unSubscribeHandler={()=>{setShowConfirmationModal(true)}}/>
-    <div className=" p-4">
+    <div className="z-[2] relative p-4">
       <div className="max-w-6xl mx-auto">
         {/* 3 columns x 3 rows */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-4">
@@ -180,8 +183,8 @@ export default function Profiles(profileData: any) {
 
         {/* Remaining items in a single horizontal row */}
         {remainder.length > 0 && (
-          <div className="mt-6">
-            <div className="my grid gap-4">
+          <div className="mt-2.5 md:mt-6">
+            <div className="my grid gap-2 md:gap-4">
               {remainder.map((item, idx) => (
                 // <Link href={item.url??''} key={idx} className="w-full block my-3 flex-shrink-0">
                   <MenuItem
@@ -198,6 +201,10 @@ export default function Profiles(profileData: any) {
           </div>
         )}
       </div>
+    </div>
+    <div>
+        <SocialMediaSection/>
+
     </div>
     <CommonModal
       isOpen={showRobiNumberModal}

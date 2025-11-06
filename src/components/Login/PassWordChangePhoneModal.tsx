@@ -44,7 +44,7 @@ const PasswordChangePhoneModal = ({handleSubmit}:TPhoneOfChangePassword) => {
                     <div className="md:w-7 h-7 flex-shrink-0">
                       <BdFlag/>
                     </div>
-                    <span className="text-white text-cs2 md:text-lg">+৮৮০</span>
+                    <span className="text-white text-cs2 md:text-lg">+৮৮</span>
                   </div>
                   
                   {/* Phone Input */}

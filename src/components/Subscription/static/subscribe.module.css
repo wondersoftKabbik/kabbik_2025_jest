@@ -39,6 +39,8 @@
 }
 
 .corner_highlight{
+  z-index: 4;
+  /* position: relative; */
   box-shadow: 0px 8.62px 8.62px 0px #00000040;
   background: linear-gradient(317.09deg, rgba(224, 128, 151, 0.87) 0.51%, rgba(213, 48, 78, 0.87) 99.49%);
 
@@ -124,6 +126,23 @@
   .pack_name small{
     font-size: 12px;
   }
+  .cardBg{
+    border: 1px solid #BFBFBF;
+    border-width: 1px;
+    padding: 4px 3px !important;
+    border-radius: 12px;
+  }
+  .corner_highlight{
+    /* rotate: -53deg; */
+    padding: 10px;
+    width: 70%;
+    transform: rotate(40deg);
+    right: -65px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    top: 20px;
+  }
 }
 
 @media  (max-width: 720px) {
@@ -133,14 +152,52 @@
   .corner_highlight{
     padding: 3px;
     right: -90px;
-    padding-left: 15px;
-    font-size: 14px;
+    font-size: 12px;
     top: 15px;
-    padding-left: 30px;
+    padding-left: 0px;
+    width:80%;
+  }
+  .pack_name{
+    height: 25px;
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+@media  (max-width: 600px) {
+  .corner_highlight{
+    padding: 3px;
+    right: -70px;
+    font-size: 12px;
+    top: 20px;
+    padding-left: 0px;
     width:80%;
   }
 }
 
+@media  (max-width: 520px) {
+  .corner_highlight{
+    padding: 3px;
+    right: -60px;
+    font-size: 12px;
+    top: 20px;
+    padding-left: 0px;
+    width:80%;
+  }
+}
+@media  (max-width: 460px) {
+  .corner_highlight{
+    padding: 3px;
+    right: -60px;
+    transform: rotate(50deg);
+    font-size: 10px;
+    top: 20px;
+    padding-left: 0px;
+    width:80%;
+  }
+}
 @media  (max-width: 420px) {
   .corner_highlight{
    
@@ -151,13 +208,13 @@
 @media  (max-width: 380px) {
   .corner_highlight{
     padding-left: 17px;
-     top: 20px;
-    width: 95%;
+     top: 10px;
+     transform: rotate(55deg);
+     right: -50px;
+    width: 100%;
   }
 }
 
 @media  (max-width: 350px) {
-  .cardBg{
-    padding: 20px 10px !important;
-  }
+  
 }

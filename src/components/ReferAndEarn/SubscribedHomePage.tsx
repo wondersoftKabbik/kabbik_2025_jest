@@ -16,7 +16,7 @@ const SubscribedHomePage = ({data}:{data:ReferralData}) => {
     const user=useAppSelector(store=>store.user?.userData)
   return (
     <div>
-      <div className={`${user?.is_subscribed?'':'hidden'} w-[95%] lg:w-[90%] mx-auto  text-gray-900 px-4 py-8 `}>
+      <div className={`${user?.is_subscribed?'':'hidden'} w-[97%] lg:w-[90%] mx-auto  text-gray-900 px-4 py-8 `}>
       <div className="max-w-7xl mx-auto w-full bg-transparent space-y-8">
 
         {/* Header */}

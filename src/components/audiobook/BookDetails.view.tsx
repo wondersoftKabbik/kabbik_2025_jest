@@ -25,7 +25,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { PageProps, UserProfileInfo } from "./static/audiobook.type";
 import {  BookIcon, ChevronRight, ExpandIcon, X } from "lucide-react";
-import {  GetFloatNum, handleShare, scrollToTop, textSlice } from "@/helpers/commonFunction";
+import {  convertToBanglaDigits, GetFloatNum, handleShare, scrollToTop, textSlice } from "@/helpers/commonFunction";
 import LoveIcon from "@/svgs/LoveIcon";
 import LinkIcon from "@/svgs/LinkIcon.svg";
 // import CommonModal from "../ui/CommonModal/CommonModal.view";
@@ -604,6 +604,11 @@ const AudiobookComponent = ({
   };
 
   const purchaseAudiobook = async () => {
+    if(!user?.id || user?.id===Number(siteConfig?.defaultUserId)){
+       dispatch(ReduxShowLoginModal(true));
+       setShowPayModal(false)
+       return;
+    }
     setShowPaymentOptions(true)
     const result = await getDynamicPaymentMethods("audiobook");
     const excludedPaymentMethods = 
@@ -636,8 +641,8 @@ const AudiobookComponent = ({
 
   const handleShowPayModal =()=>{
     if(!user?.id || user?.id===Number(siteConfig?.defaultUserId)){
-       dispatch(ReduxShowLoginModal(true));
-       return;
+      //  dispatch(ReduxShowLoginModal(true));
+      //  return;
     }
     setShowPayModal(true)
 
@@ -688,7 +693,7 @@ const AudiobookComponent = ({
             height:showBigPlayer?'180vh':'210vh'
           }}
         ></div>
-      <div className={showBigPlayer?'hidden':"flex flex-col md:flex-row justify-around mt-7 items-start relative "+container('1206px') }
+      <div className={showBigPlayer?'hidden':"flex flex-col md:flex-row justify-around mt-7 items-start relative "+container('1300px') }
         
       >
         
@@ -744,19 +749,19 @@ const AudiobookComponent = ({
               <div className="bg_gradient_bg rounded-t-[32px] p-3  md2:p-9">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-1 ">
-                    <span className="text-clg font-medium">{audiobookData?.play_count}</span>
-                    <span className="text-clg">🎧</span>
+                    <span className="text-cs2 md:text-clg font-medium">{audiobookData?.play_count}</span>
+                    <span className="text-cs2 md:text-clg">🎧</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className=" text-clg font-medium">{GetFloatNum(audiobookData?.rating,1)}</span>
-                    <span className="w-6 h-6 fill-audio-gold text-audio-gold">
+                    <span className=" text-cs2 md:text-clg font-medium">{GetFloatNum(audiobookData?.rating,1)}</span>
+                    <span className="w-4 md:w-6 h-6 fill-audio-gold text-audio-gold">
                       <Star  />
                     </span>
                   </div>
                 </div>
                 {/* Premium Header */}
-                <div className="text-center mb-8">
-                  <h2 className="text-cn md2:text-clg font-bold text-black mb-2">
+                <div className="text-center mb-3 md:mb-8">
+                  <h2 className="text-cs2 md2:text-clg font-bold text-black mb-2">
                     {isSubscribed ? (
                             <>প্রিমিয়াম ব্যবহারকারী</>
                         ) : audioBookDetailsData?.isPurchased === 1 ? (
@@ -769,7 +774,7 @@ const AudiobookComponent = ({
                   </h2>
                   <div className="flex justify-center gap-3">
                     {[...Array(5)].map((_, i) => (
-                      <span key={i} className="w-6 h-6 fill-audio-star text-audio-star">
+                      <span key={i} className="w-4 md:w-6 h-6 fill-audio-star text-audio-star">
                         <Star key={i}  />
                       </span>
                     ))}
@@ -777,7 +782,7 @@ const AudiobookComponent = ({
                 </div>
 
                 {/* Subscription Options */}
-                <div className="space-y-2 mb-8">
+                <div className="space-y-2 mb-3 md:mb-8">
                   {/* Premium Subscription */}
                   <div className="red_gradient_bg rounded-[30px] py-3 flex justify-around shadow-lg">
                     <div className="flex items-center gap-1 md2:gap-4">
@@ -795,7 +800,7 @@ const AudiobookComponent = ({
 
                   {/* Or Divider */}
                   <div className="text-center ">
-                    <span className="text-black text-clg font-normal">অথবা</span>
+                    <span className="text-black text-cs2 md:text-clg font-normal">অথবা</span>
                   </div>
 
                   {/* Rental Option */}
@@ -808,7 +813,7 @@ const AudiobookComponent = ({
                         </div>
                       </div>
                       <p className="text-white text-cs2 md2:text-cn2 font-semibold leading-tight flex-1">
-                        রেন্ট নিন ৬০ দিনের জন্য, মাত্র ৫০ টাকা
+                        রেন্ট নিন ৬০ দিনের জন্য, মাত্র {convertToBanglaDigits(audioBookDetailsData?.price)} টাকা
                       </p>
                     </div>
                   </div>
@@ -940,7 +945,7 @@ const AudiobookComponent = ({
       
       <div className={showMiniPlayer?"fixed bottom-0 left-0 min-w-[100vw] right-0 h-[210px] z-[100] bg-bg shadow-lg  ":'hidden'}>
         <div className={'w-full'}>
-          <div className={container('1206px')}>
+          <div className={container('1300px')}>
             <div className="absolute top-0 right-5 p-2 cursor-pointer" >
               <span className="w-5 h-5 inline-block mr-6" onClick={handleBigPlayer}>
                 <ExpandIcon className="text-white w-[18px] " />
@@ -949,7 +954,7 @@ const AudiobookComponent = ({
                   <X color="white" className="text-4xl"/>
               </span>
             </div>
-            <div className="rounded-2xl flex  justify-center items-center  overflow-hidden ">
+            <div className="rounded-2xl flex justify-start  xs:justify-center items-center  overflow-hidden ">
               {/* Banner */}
               {/* <img
                 src={audiobookData?.thumb_path}

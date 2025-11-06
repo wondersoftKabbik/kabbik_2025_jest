@@ -83,7 +83,7 @@ const SubscribePackage = ({
       className="my-2"
       onClick={handleClick}
     >
-       <div className={` p-3  ${styles.cardBg}`}>
+       <div className={`p-1 md:p-3  ${styles.cardBg}`}>
       {data?.banner_name ?(
         <p className={styles.corner_highlight}>
         {/* <picture><img src={dealIcon?.[data?.banner_name]}/></picture> */}
@@ -98,35 +98,35 @@ const SubscribePackage = ({
       </div>
       <div className={"relative w-full max-w-sm "}>
         {/* Main Card */}
-        <div className={"rounded-3xl border border-gray-600 shadow-2xl overflow-hidden p-3 "+styles.mid_box_gradient}>
+        <div className={"rounded-[8px] md:rounded-3xl border border-gray-600 shadow-2xl overflow-hidden p-1 md:p-3 "+styles.mid_box_gradient}>
           {/* Price Section */}
           <div className="text-center  mb-3">
             <div className="flex items-baseline justify-center gap-3">
-              <span className="text-c3xl2 font-bold text-white">
+              <span className="text-cn md:text-c3xl2 font-bold text-white">
                 {convertToBanglaDigits(data?.amount)}
               </span>
-              <span className="text-red-400 text-2xl font-bold">TK</span>
+              <span className="text-red-400 text-cn md:text-2xl font-bold">TK</span>
             </div>
-            <p className="text-gray-300 h-[20px] text-lg ">
+            <p className="text-gray-300 h-[20px] text-cs md:text-lg ">
               {data?.isOnetime === 0 && (
                 <small>(অটো রিনিউয়াল)</small>
               )}
             </p>
           </div>
-          <p style={{color:'white',height:'18px' , fontSize:'14px',marginBottom:'4px'}}>{data.is_free_trail?data?.subtitle:' '}</p>
+          <p className="text-cs line-clamp-1 md:text-cs2" style={{color:'white',height:'18px' , marginBottom:'4px'}}>{data.is_free_trail?data?.subtitle:' '}</p>
           {/* Features List */}
-          <div className="space-y-3 mb-2">
+          <div className="space-y-1 md:space-y-3 mb-2">
             {/* Feature 1 */}
             {data?.benefit?.map((item,i)=>(
-              <div key={i} className="flex items-center gap-3">
+              <div key={i} className="flex items-center gap-1 md:gap-3">
                 <div className="flex-shrink-0 mt-0">
                   <span className="w-4 h-4 inline-block"> 
                     <Tik/>
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-white font-medium text-cs leading-tight line-clamp-1">{item?.title}</h3>
-                  <p className="text-gray-400 text-cs mt-1 line-clamp-1">{item?.sub_title}</p>
+                  <h3 className="text-white font-medium text-cxs md:text-cs leading-tight line-clamp-1">{item?.title}</h3>
+                  <p className="text-gray-400 text-cxs md:text-cs mt-1 line-clamp-1">{item?.sub_title}</p>
                 </div>
             </div>
             ))}
@@ -135,7 +135,7 @@ const SubscribePackage = ({
           </div>
           
           {/* Subscribe Button */}
-          <button className="w-full bg-[#FF8798] hover:bg-[#FF0500] text-white font-semibold text-cn py-2.5 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200">
+          <button className="w-full bg-[#FF8798] hover:bg-[#FF0500] text-white font-semibold text-cs md:text-cn  py-1 md:py-2.5 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200">
             সাবস্ক্রাইব
           </button>
         </div>

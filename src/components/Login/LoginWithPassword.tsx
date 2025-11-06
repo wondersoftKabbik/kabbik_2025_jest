@@ -50,7 +50,7 @@ export default function LoginWithPassword() {
                     {/* <B /> */}
                   </div>
                   <span className="text-white font-inter  ml-2">
-                    +৮৮০
+                    +৮৮
                   </span>
                 </div>
                 {/* Phone Input */}

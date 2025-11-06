@@ -132,11 +132,11 @@ const Hero = ({
         <div className="bg-bg z-10 relative">
         <div className={styles.play_icons+' z-[5] relative '}>
           <div className="mr-[1vw] sm:mr-[3vw]">
-            <h6 className={styles.download_txt}>এখনই আমাদের অডিওবুক অ্যাপটি 
+            <h6 className={styles.download_txt+` max-md:text-center`}>এখনই আমাদের অডিওবুক অ্যাপটি 
               মোবাইলে ডাউনলোড করে নিন!</h6>
-            <p className="text-cn lg:text-cn2 mb-[12px] lg:mb-[22px]">বইপড়ার নতুন উপায় — অডিওবুক অ্যাপ এখনই 
+            <p className="text-cn lg:text-cn2 mb-[12px] max-md:text-center lg:mb-[22px]">বইপড়ার নতুন উপায় — অডিওবুক অ্যাপ এখনই 
               ডাউনলোড করুন!</p>
-              <div className="flex items-center">
+              <div className="flex items-center max-md:justify-center">
                 <picture className="mr-3">
                   <img
                     src="/assets/users.png"
@@ -150,7 +150,7 @@ const Hero = ({
                 </h6>
               </div>
           </div>
-          <div className="flex max-md:mt-7 md:justify-end min-w-[55%]">
+          <div className="flex max-md:mt-7 md:justify-end min-w-[55%] max-md:mx-auto">
             <span className="max-w-[220px] max-h-[220px] mr-[3vw] inline-block">
               <a href={"https://apps.apple.com/us/app/kabbik/id6459885875"}><AppStoreIcon/></a>
             </span>

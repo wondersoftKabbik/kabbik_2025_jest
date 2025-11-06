@@ -5,7 +5,7 @@ export default function TawkScript() {
   useEffect(() => {
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-    if (isMobile) {
+    if (false) {
       // Open chat in new tab instead of embedding
       const chatBtn = document.createElement('a');
       chatBtn.href = 'https://tawk.to/chat/68cb9938b695741925a90747/1j5dkt1it';

@@ -73,7 +73,7 @@ export const footer=[
     },
     {
       name: "LinkedIn",
-      link:'https://www.linkedin.com/in/wonder-soft-solution-53397a346/',
+      link:'https://www.linkedin.com/company/kabbikaudiobookofficial/',
       icon: <span className="w-5 h-5 inline-block"><LinkedInIcon/></span>
     },
     {

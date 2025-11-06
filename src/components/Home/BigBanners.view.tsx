@@ -17,7 +17,7 @@ const BigBanners = () => {
 
     
   return (
-    <div className={`best_collection pb-10  max-w-[1210px] h-[auto] mx-auto overflow-hidden text-white  lg:w-[90%] `}>
+    <div className={`best_collection pb-4 md:pb-7  max-w-[1210px] h-[auto] mx-auto overflow-hidden text-white  lg:w-[90%] `}>
         <Swiper
             // slidesPerView={1}
             // spaceBetween={1}

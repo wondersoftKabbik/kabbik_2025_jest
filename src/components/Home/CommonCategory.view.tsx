@@ -63,7 +63,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
               </Link>
             </div>
         </div>
-        <div className={styles.slider_box}>
+        <div className={styles.slider_box+` md:pb-4`}>
                   {/* Custom Arrows */}
                   <button
                     ref={prevRef}
@@ -83,7 +83,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                     // spaceBetween={1}
                     loop={true}
                       pagination={{ clickable: true }}
-                      style={{ paddingBottom: '40px' }}
+                      style={{ paddingBottom: '20px' }}
                       // modules={[Navigation, Pagination]}
                     // centeredSlides={true}
                     modules={[Navigation, Autoplay]}
@@ -101,12 +101,12 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                           slidesPerView: 2.9,
                           slidesPerGroup:2
                         },
-                        // 650: {
-                        //   slidesPerView: 2.9,
-                        //   slidesPerGroup:2
-                        // },
+                        537: {
+                          slidesPerView: 3.4,
+                          slidesPerGroup:2
+                        },
                         768: {
-                          slidesPerView: 3.3,
+                          slidesPerView: 3.7,
                           slidesPerGroup:3
                         },
                         900: {
@@ -145,7 +145,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             <p className={styles.popular}>Most Popular</p>
                                         :''}
                                         <div className={styles.crown}>
-                                            <span><PremiumCrownIcon/></span>
+                                            {item?.premium ?<span><PremiumCrownIcon/></span>:''}
                                         </div>
                                         {item.for_rent?(
                                             <div className={styles.rent}>রেন্ট tk. {item?.price}</div>
@@ -168,7 +168,6 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             blurDataURL ={siteConfig.placeholderBook}
                                           />
                                         </div>
-                                      </picture>
                                         {categoryName==='নতুন'?(
                                             <div className={styles.new_audio_book}>নতুন অডিও বুক </div>
                                         ):(
@@ -176,9 +175,11 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             <span className='w-4 h-4'>
                                                 <RedPlayerIcon/>
                                             </span>
-                                            <span >{(item?.play_count/1000).toFixed(2)}k listen</span>
+                                            <span >{(item?.play_count/1000).toFixed(2)}k</span>
                                         </p>
                                         )}
+                                      </picture>
+                                        
                                         <div className={podcast?'hidden ':styles.hovered_item}>
                                             <div className={'w-full h-6 opacity-80 '+styles.shadow_blur}></div>
                                             <div className='flex items-start justify-around bg-bg'>

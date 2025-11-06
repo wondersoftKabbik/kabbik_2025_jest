@@ -78,7 +78,7 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
                     <div className=" md:w-7 h-7 flex-shrink-0">
                       <BdFlag/>
                     </div>
-                    <span className="text-white text-cs2 md:text-cn">+৮৮০</span>
+                    <span className="text-white text-cs2 md:text-cn">+৮৮</span>
                   </div>
                   
                   {/* Phone Input */}

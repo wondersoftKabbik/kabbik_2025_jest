@@ -85,10 +85,17 @@ export default function Footer() {
 
       {/* Separator */}
       <div className="h-[1px] bg-white/20"></div>
-
+      <div className=" flex xxs2:hidden justify-center mx-auto pt-4 w-[70%]">
+          <img
+            src="https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/final2.gif"
+            alt="Kabbik Logo"
+            className="w-[100%] max-h-[193px]"
+            loading="lazy"
+          />
+        </div>
       {/* Main Footer Content */}
       <div className="flex justify-between max-w-[1400px] w-[97%] mx-auto py-12">
-        <div className="flex flex-wrap justify-between w-[80%]">
+        <div className="flex flex-wrap justify-between w-[65%] sm:w-[80%]">
           {/* Logo and Social Media */}
           <div className="flex-shrink-0 mb-5 min-w-[175px]">
             <div className="mb-8">
@@ -131,14 +138,14 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <span className="w-6 h-6"><TermsIcon/></span>
                 
-                <h3 className="text-lg font-bold bg-gradient-to-r from-[#CC4473] to-[#871C68] bg-clip-text text-transparent font-hind">
+                <h3 className="text-cs2 md:text-lg font-bold bg-gradient-to-r from-[#CC4473] to-[#871C68] bg-clip-text text-transparent font-hind">
                   Terms & Policies
                 </h3>
               </div>
               <div className="space-y-2">
-                <p><Link href={paths.terms_condition} className="text-white/90 font-hind">Terms and Conditions</Link></p>
-                <p><Link href={paths.privacy_policy} className="text-white/90 font-hind">Privacy Policy</Link></p>
-                <p><Link href={paths.returnpolicy} className="text-white/90 font-hind">Refund and Return Policy</Link></p>
+                <p><Link href={paths.terms_condition} className="text-white/90 text-cs md:text-cs2 font-hind">Terms and Conditions</Link></p>
+                <p><Link href={paths.privacy_policy} className="text-white/90 text-cs md:text-cs2 font-hind">Privacy Policy</Link></p>
+                <p><Link href={paths.returnpolicy} className="text-white/90 text-cs md:text-cs2 font-hind">Refund and Return Policy</Link></p>
               </div>
             </div>
 
@@ -148,31 +155,31 @@ export default function Footer() {
                 <span className="w-5 h-5">
                     <PhoneIcon/>
                 </span>
-                <h3 className="text-lg font-bold bg-gradient-to-r from-[#B83970] to-[#96246A] bg-clip-text text-transparent font-hind">
+                <h3 className="text-cs2 md:text-lg font-bold bg-gradient-to-r from-[#B83970] to-[#96246A] bg-clip-text text-transparent font-hind">
                   Contact Us
                 </h3>
               </div>
               <div className="space-y-1">
-                <p className="text-sm text-white/90 font-hind">Call or WhatsApp: +8801915225026</p>
-                <p className="text-sm text-white/90 font-hind">Email: support@wondersoftsolution.com</p>
+                <p className=" text-white/90 text-cs md:text-cs2 font-hind">Call or WhatsApp: +8801915225026</p>
+                <p className=" text-white/90 text-cs md:text-cs2 font-hind">Email: support@wondersoftsolution.com</p>
 
               </div>
 
               <div className="mb-5 1350:hidden min-w-[110px]">
-              <div className="flex items-center">
-                <span className="w-5 h-5 inline-block">
-                    <AboutIcon/>
-                </span>
-                <h3 className="text-lg font-bold bg-gradient-to-r from-[#CC4473] to-[#871C68] bg-clip-text text-transparent font-hind">
-                  About
-                </h3>
+                <div className="flex items-center">
+                  <span className="w-5 h-5 inline-block">
+                      <AboutIcon/>
+                  </span>
+                  <h3 className="text-cs2 md:text-lg font-bold bg-gradient-to-r from-[#CC4473] to-[#871C68] bg-clip-text text-transparent font-hind">
+                    About
+                  </h3>
+                </div>
+                <p className="text-white/90 text-cs md:text-cs2 font-hind">About Kabbik</p>
               </div>
-              <p className="text-white/90 font-hind">About Kabbik</p>
-            </div>
             </div>
 
           {/* Office Locations */}
-          <div className="space-y-6 mb-5 max-w-[204px]">
+          <div className="space-y-6 mb-5  max-w-[204px]">
             {/* UK Office */}
             <div className="space-y-3">
               <div className="flex items-center gap-1">
@@ -181,11 +188,11 @@ export default function Footer() {
                     <UkFlagIcon/>
                   </span>
                 </div>
-                <h4 className="text-lg font-bold bg-gradient-to-r from-[#CA4373] to-[#95246A] bg-clip-text text-transparent font-hind">
+                <h4 className="text-cs2 md:text-lg font-bold bg-gradient-to-r from-[#CA4373] to-[#95246A] bg-clip-text text-transparent font-hind">
                   UK Office:
                 </h4>
               </div>
-              <p className="text-sm text-white/90 font-hind">
+              <p className="text-cs md:text-cs2 text-white/90 font-hind">
                 167-169 Great Portland street, 5th Floor,London,United Kingdom W1W PF
               </p>
             </div>
@@ -210,7 +217,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Logo */}
-        <div className=" max-md:hidden flex justify-center  w-[18%]">
+        <div className=" flex max-xxs2:hidden justify-center w-[40%] sm:w-[22%]  md:w-[18%]">
           <img
             src="https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/final2.gif"
             alt="Kabbik Logo"

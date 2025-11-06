@@ -59,7 +59,7 @@ export default function Notifications() {
 
   return (
     <div className=" bg-slate-900">
-        <div className={`${container('1206px')} `} >
+        <div className={`${container('1300px')} `} >
         {/* Header Section */}
         <div className="flex w-full px-8 py-3 justify-center items-center border-b border-slate-700">
             <div className="flex w-full max-w-screen-xl justify-between items-center">

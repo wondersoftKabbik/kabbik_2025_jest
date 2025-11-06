@@ -7,6 +7,7 @@ import Tik from "@/svgs/Tik.svg";
 import { paths } from "@/utils/Paths";
 import { Edit, Clock, BookOpen, CreditCard, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
+import SocialMediaSection from "./SocialMediaSection.view";
 
 export default function TopSection({unSubscribeHandler,editProfile}:{
   unSubscribeHandler:()=>void,
@@ -30,7 +31,7 @@ export default function TopSection({unSubscribeHandler,editProfile}:{
     }
   }
   return (
-    <div className="bg-[#121B46] py-6 px-4 md:px-6 lg:px-8">
+    <div className="bg-[#121B46] z-[2] relative py-6 px-4 md:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Main Profile Container */}
         <div className="bg-[#121B46] rounded-xl border border-[#2f3556] p-4 md:p-6">
@@ -182,6 +183,7 @@ export default function TopSection({unSubscribeHandler,editProfile}:{
           </div>
         </div>
       </div>  
+      
     </div>
   );
 }

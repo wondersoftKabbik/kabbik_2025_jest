@@ -25,9 +25,10 @@ import { siteConfig } from '@/config/config'
 // import  from ''
 import dynamic from 'next/dynamic'
 import Spinner from '../ui/Spinner.view'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { decodeWord } from '@/helpers/commonFunction'
 import { useAppSelector } from '@/store/store'
+import LeftAngle from '@/svgs/LeftAngle.svg'
 // import  from 
 // import OTPVerification from '../Login/OtpComponent'
 
@@ -107,6 +108,7 @@ const Navbar = (props:TNavbar) => {
     const pathnameWithLang = usePathname();
     const loginModal=useAppSelector((store)=>store?.loginSlice?.value)
     const pathname = pathnameWithLang.replace(/^\/(en|bl)/, "");
+    const router=useRouter();
 
 
 
@@ -116,8 +118,9 @@ const Navbar = (props:TNavbar) => {
             <div className='flex items-center gap-4'>
                 <Link href={'/'} >
                     <figure className='mr-3'>
-                        <img loading="lazy" className='max-w-[138px] max-h-[54px] max-xxs2:hidden xxs2:block max-sm:max-w-[100px] max-:max-h-[46px]' src={'/assets/logo.png'} alt="Logo" />
-                        <img loading="lazy" className='max-w-[80px] mt-[-10px] max-h-[43px] max-xxs2:block xxs2:hidden ' src={siteConfig.smallLogo} alt="Logo" />
+                        <span onClick={()=>router.back()} className={`max-w-[40px] ${pathname===''?'max-md:hidden':''} md:hidden inline-block`}><LeftAngle/></span>
+                        <img loading="lazy" className={`max-w-[138px] max-sm:max-w-[100px]  max-h-[54px] block ${pathname===''?'':'max-md:hidden'} max-:max-h-[46px]`} src={'/assets/logo.png'} alt="Logo" />
+                        {/* <img loading="lazy" className='max-w-[80px] mt-[-10px] max-h-[43px] max-xxs2:block xxs2:hidden ' src={siteConfig.smallLogo} alt="Logo" /> */}
                     </figure>
                 </Link>
                 <ul  className={' text-white flex '+ style.navbarList}>
@@ -187,7 +190,7 @@ const Navbar = (props:TNavbar) => {
                 {(!profile?.is_subscribed && profile?.id && profile?.id!==2820) ?<CommonButton
                     isLoading={false}
                     // handleClick={handleLoginClick}
-                    addiTionalClass='max-xxs:hidden'
+                    addiTionalClass='max-xxs2:hidden'
                     disabled={false}
                 >
                     <Link href={'/subscribe'}>সাবস্ক্রাইব</Link>

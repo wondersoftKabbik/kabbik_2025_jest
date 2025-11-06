@@ -130,7 +130,7 @@ export default function MyPlayList() {
         </div>
       </div>
       <div className="btn-gradient-2 py-0">
-          <div className={container('1206px')+" flex justify-between items-center"}>
+          <div className={container('1300px')+" flex justify-between items-center"}>
             <div className="flex items-center">
               <span className="w-12 h-12 inline-block mr-3">
                 <BigVideoPlayerIcon/>

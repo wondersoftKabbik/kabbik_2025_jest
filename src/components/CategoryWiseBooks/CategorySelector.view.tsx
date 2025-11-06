@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import style from './static/CategorySelector.module.css'
 import { useState } from "react";
+import CommonModal from "../ui/CommonModal/CommonModal.view";
 
 
 
@@ -22,7 +23,7 @@ export default function CategorySelector({folders}:{folders?:string}) {
                     <div className="flex-shrink-0 w-10 h-10 ">
                     <CategoryIcon />
                     </div>
-                    <h1 className="text-white text-lg sm:text-clg2 font-medium leading-tight flex-1 min-w-0">
+                    <h1 className="text-white text-cn md:text-clg2 font-medium leading-tight flex-1 min-w-0">
                     ক্যাটেগরি নির্বাচন করুন
                     </h1>
                 </div>
@@ -36,26 +37,32 @@ export default function CategorySelector({folders}:{folders?:string}) {
             </div>
         </div>
         <div>
-           {showCategories && 
-            <ul className={style.subCategories}>
-                    { categories?.map((name: any, index: any) => (
-                        <li key={name?.name} className="w-100">
-                            <Link
-                            // className="d-block"
-                            href={`/${name?.name}${folders?`?folders=${folders}`:''}`}
-                            >
-                            <div className=" w-100">
-                                <span className='w-7 h-7 inline-block mr-2'>
-                                    <AudioBookIcon/>
-                                </span>
-                                {name.name}
-                            </div>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            }
+           
         </div>
+        <CommonModal
+            isOpen={showCategories}
+            onClose={()=>setShowCategories(false)}
+           >
+                {showCategories && 
+                <ul className={style.subCategories}>
+                        { categories?.map((name: any, index: any) => (
+                            <li key={name?.name} className="w-100">
+                                <Link
+                                // className="d-block"
+                                href={`/${name?.name}${folders?`?folders=${folders}`:''}`}
+                                >
+                                <div className=" w-100">
+                                    <span className='w-7 h-7 inline-block mr-2'>
+                                        <AudioBookIcon/>
+                                    </span>
+                                    {name.name}
+                                </div>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                }
+           </CommonModal>
     </div>
   );
 }

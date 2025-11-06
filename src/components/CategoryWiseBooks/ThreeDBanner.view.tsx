@@ -14,28 +14,28 @@ import Link from "next/link";
 export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:DictionaryType}) {
   return (
    <div className={`mt-28  ${styles.ThreeDBannerGradient} `}>
-  <div className={`flex relative max-xs2:flex-col  justify-between  max-w-[1209px] w-[94%] md:w-[90%] mx-auto`}>
+  <div className={`flex relative   justify-between  max-w-[1300px] w-[97%] md:w-[90%] mx-auto`}>
     {/* Book Cover Image */}
-    <div className="min-w-[40%] mt-[-120px]">
+    <div className="min-w-[55%] xs:min-w-[40%] mt-[-120px]">
       {book ? (
         <ThreeDBook path={paths.book_details(book.id)} bg={book?.thumb_path} />
       ) : null}
     </div>
 
     {/* Content Section */}
-    <div className="max-sm:text-right z-[3]  max-xs2:hidden">
+    <div className="max-sm:text-right z-[3]  ">
       
       {/* Main Heading */}
       <div className="">
-        <h1 className="text-cn sm:text-clg md:text-cxl text-white font-medium leading-tight lg:leading-[50.4px] ">
-          {numberTranslator(book?.play_count??0,dict.numbers)}-এরও বেশি মানুষ এই বইটি শুনেছেন!
+        <h1 className=" text-cs xs:text-cn sm:text-clg md:text-cxl text-white font-medium leading-tight lg:leading-[50.4px] ">
+          {numberTranslator(book?.play_count??0,dict.numbers)} <span className="max-xs:hidden">এরও বেশি</span>- মানুষ এই বইটি শুনেছেন!
         </h1>
 
         {/* Rating Section */}
-        <div className="flex flex-col my-7 items-center gap-6 lg:gap-8">
+        <div className="flex flex-col my-7 md:items-center gap-6 lg:gap-8">
           
           {/* Star Rating */}
-          <div className="flex items-center gap-3 lg:gap-[14px]">
+          <div className="flex items-center gap-1 max-sm:justify-end xs:gap-3 lg:gap-[14px]">
             {[...Array(Math.ceil(Number(book?.rating)))].map((_, index) => (
               <div
                 key={index}
@@ -47,7 +47,7 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
           </div>
 
           {/* Rating Text */}
-          <h2 className="text-cs2 sm:text-lg md:text-lg2 text-white font-medium leading-tight lg:leading-[50.4px]">
+          <h2 className="text-cs xs:text-cs2 sm:text-lg md:text-lg2 text-white font-medium leading-tight lg:leading-[50.4px]">
             পাঠকের রিভিউ – ৫/{numberTranslator(Number((book?.rating)?.toFixed(1))??0,dict.numbers)} রেটিং!
           </h2>
         </div>
@@ -56,10 +56,10 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
       {/* Play Button */}
       <div className="w-full max-w-[80%] max-sm:text-right md:max-w-[421px] mx-auto max-sm:mr-0 ">
         <Link href={paths.book_details(book?.id??0)} className=" w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-1.5 md:py-2 px:1 md:px-6 hover:opacity-90 transition-opacity">
-          <span className="w-5">
+          <span className="w-3 md:w-5">
             <Traingle/>
           </span>
-          <span className="text-white text-cs2 sm:text-cn2 md:text-lg2 font-medium">
+          <span className="text-white text-cs sm:text-cn2 md:text-lg2 font-medium">
             এখনই শুনুন
           </span>
         </Link>
