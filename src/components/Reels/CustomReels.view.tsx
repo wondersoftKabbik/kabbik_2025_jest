@@ -119,17 +119,17 @@ export default function CustomReels({ targetId }: { targetId: string }) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-screen overflow-y-scroll snap-y snap-mandatory bg-black text-white"
+      className="w-full h-screen  overflow-y-scroll snap-y snap-mandatory bg-black text-white"
     >
       {reelsData?.map((reel, index) => (
         <div
           key={index}
           data-index={index}
-          className="reel-video w-[95%] h-[97vh] my-[5vh] flex justify-center items-center snap-start"
+          className="reel-video mx-auto  w-[95%] h-[97vh] my-[5vh] flex justify-center items-center snap-start"
         >
           <div
             id={`yt-player-${index}`}
-            className="w-full h-[90%] md:h-full max-w-[500px]"
+            className=" o h-[90%] md:h-full max-w-[98%] mx-auto w-[500px]"
           ></div>
         </div>
       ))}

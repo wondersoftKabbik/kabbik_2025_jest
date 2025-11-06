@@ -41,7 +41,7 @@ export default function ReelsVideoGrid() {
         isOpen={target?true:false}
         onClose={()=>{setTarget('')}}
       >
-        <div className="w-[99vw]">
+        <div className="max-w-[99vw]">
             <CustomReels targetId={target}/>
         </div>
       </CommonModal>
