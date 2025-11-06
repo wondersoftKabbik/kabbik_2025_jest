@@ -1,5 +1,5 @@
 'use client'
-import { getCategoryData, getPreferenceData, getUserProfile, postSendOtp } from "@/utils/apiServices"
+import { fetchDataFromJson, getCategoryData, getPreferenceData, getUserProfile, postSendOtp } from "@/utils/apiServices"
 import { MouseEvent, RefObject, useCallback, useEffect, useRef, useState } from "react"
 import Cookies from "js-cookie";
 import { TCategoryItem, TUserProfile } from "../ui/static/types";
@@ -14,6 +14,7 @@ import { setuserPreference } from "@/store/slicers/userPreferenceSlice";
 import { siteConfig } from "@/config/config";
 import { paths } from "@/utils/Paths";
 import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
+import { setStaticTexts } from "@/store/slicers/staticTextSlice";
 
 
 const useNavbar = () => {
@@ -39,6 +40,19 @@ const useNavbar = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const boxRef=useRef<HTMLLIElement>(null);
+
+  const staticText=useAppSelector((store)=>store?.staticTexts?.data?.home_page_steps_by_steps)
+  
+  const getStaticData=async()=>{
+      let result = await fetchDataFromJson();
+      console.log(result);
+      dispatch(setStaticTexts(result));
+  }
+  
+  useEffect(()=>{
+      if(staticText)return;
+      getStaticData();
+  },[])
 
 
   useEffect(() => {

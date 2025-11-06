@@ -703,7 +703,7 @@ const AudiobookComponent = ({
         <div className=" flex max-md:mx-auto mr-4 items-center z-[5] justify-center p-1">
           <div className="w-full max-w-[500px] mx-auto">
             {/* Main Card Container */}
-            <div className="bg-white rounded-[20px] md2:rounded-[40px]  overflow-hidden">
+            <div className="bg-white/95 rounded-[20px] md2:rounded-[40px]  overflow-hidden">
               {/* Book Cover Section */}
               <div className="relative m-3 md1:m-7 mb-0">
                 <div 
@@ -718,7 +718,7 @@ const AudiobookComponent = ({
                   <div className="absolute top-0 left-0 w-full h-full bg-[#00000002] z-10 ">
 
                   </div>
-                  <div className="absolute top-4 right-4 flex items-center gap-2 cursor-pointer z-[100]">
+                  <div className=" absolute top-4 right-4 flex items-center gap-2 cursor-pointer z-[100]">
                     <div className={`w-8 h-8 ${isFavorite?"bg-white/70":"bg-red-500/50"} rounded-full flex items-center justify-center`}>
                       <span onClick={handleFavourite} className={`w-4 h-4 text-white fill-white`} >
                         <LoveIcon fill={isFavorite?'#D14874':'white'}/>

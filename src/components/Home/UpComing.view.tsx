@@ -52,7 +52,7 @@ const UpComing = () => {
                     {/* </Link> */}
                 </Link>
             </div>
-            <div className='relative  h-[420px] overflow-y-hidden overflow-y-scroll-none'>
+            <div className='relative  md:h-[420px] overflow-y-hidden overflow-y-scroll-none'>
                 
                 <figure className='absolute overflow-hidden   left-1/2 -translate-x-1/2 top-0 w-full max-h-[650px]'>
                         {/* <div className='-rotate-45 w-[300px]  top-9  py-1 text-[20px] text-center absolute left-[-90px] bg-[#E53F79] z-10'>
@@ -95,10 +95,13 @@ const UpComing = () => {
                           slidesPerView: 1.1,
                         },
                         350: {
-                          slidesPerView: 1.4,
+                          slidesPerView: 1.6,
                         },
                         450: {
-                        slidesPerView: 2,
+                        slidesPerView: 2.1,
+                        },
+                         640: {
+                        slidesPerView: 3,
                         },
                         768: {
                         slidesPerView: 3,
@@ -126,10 +129,21 @@ const UpComing = () => {
                           );
                         }}
                       >
-                        <div className='relative w-[106px] h-[297px] md:w-[210px] md:h-[370px]'>
-                          <ThreeDBook bg={topbannerinfo?.file_path ?? topbannerinfo?.thumbPath} path={paths.upcoming}/>
-                          <div className='absolute w-[195px] text-center max-md:hidden right-[-45px] md:right-[-3px] skew-y-[-8deg] bottom-[-8px] bg-[#E53F79] z-40'>
+                        {/* <div className='relative  h-[297px] md:w-[210px] md:h-[370px]'>
+                          <ThreeDBook bg={topbannerinfo?.book_banner ?? topbannerinfo?.thumbPath} path={paths.upcoming}/>
+                          <div className='absolute sm:w-[168px] md:w-[195px] text-center max-sm:left-1/2 max-sm:-translate-x-1/2 sm:right-[3.5vw] md:right-[-3px] skew-y-[-8deg] bottom-[0px] sm:bottom-[-8px] bg-[#E53F79] font-bold text-cn z-40'>
                               {formatToBengali(topbannerinfo?.release_date)}
+                          </div>
+                        </div> */}
+                        <div className='relative h-[297px] md:w-[210px] md:h-[370px]'>
+                          <ThreeDBook
+                            bg={topbannerinfo?.book_banner ?? topbannerinfo?.thumbPath}
+                            path={paths.upcoming}
+                          />
+                          
+                          {/* Bottom fixed banner */}
+                          <div className='absolute  bottom-[-8px] w-[58%] sm:w-[70%] md:w-[94%] left-[24%] sm:left-[20%] md:left-[18px] text-center skew-y-[-8deg] bg-[#E53F79] font-bold text-cn z-40'>
+                            {formatToBengali(topbannerinfo?.release_date)}
                           </div>
                         </div>
                         

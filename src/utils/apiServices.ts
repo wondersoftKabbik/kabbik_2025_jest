@@ -1174,7 +1174,7 @@ export const academicList = async () => {
 };
 
 export const upcomingList = async () => {
-  const url = apiEndPoints.upComingApi;
+  const url = apiEndPoints.upComingApi+"?version=2";
   
    return await CommonApiHandler(
     {

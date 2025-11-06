@@ -132,12 +132,13 @@ export type ReelsType = {
 export interface ReelInfo {
   url: string;
   description: string;
+    thumb:string;
   reel_youtube_id:string;
 }
 
 // Type for the whole reel object
 export interface ReelType {
-  id: number;
+  id: string;
   reelInfo: ReelInfo;
   facebook_url?:string;
 }

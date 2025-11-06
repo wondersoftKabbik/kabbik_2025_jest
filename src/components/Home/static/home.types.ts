@@ -25,6 +25,7 @@ export type TBigBanners={
 export interface TUpcomingAudiobook {
   audiobook_id: number | null;
   author: string;
+  book_banner?:string;
   contributingArtists: string;
   created_at: string; // ISO date string
   deleted: string; // "0" or "1"

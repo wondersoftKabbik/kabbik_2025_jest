@@ -26,10 +26,12 @@ import CustomVideoPlayer from "../VideoPlayer/VideoPlayer";
 import CommonModal from "../ui/CommonModal/CommonModal.view";
 // import ReelsPlayer from '../VideoPlayer/ReelsVideoplayer/ReelsPlayer.view';
 import { ReelsType, ReelType } from "./static/utils";
-import CustomReels from "../VideoPlayer/ReelsVideoplayer/ReelsPlayer.view";
+// import CustomReels from "../VideoPlayer/ReelsVideoplayer/ReelsPlayer.view";
 import { useAppSelector } from "@/store/store";
 import ReelsFacebook from "../VideoPlayer/ReelsVideoplayer/ReelsFaceBook.view";
 import ReelsPlayer from "../VideoPlayer/ReelsVideoplayer/ReelsPlayer.view";
+import CustomReels from "../Reels/CustomReels.view";
+import BigVideoPlayerIcon from "@/svgs/BigVideoPlayer";
 // import DesktopCrown from '../../svgs/DesktopCrown';
 
 type tProps = {
@@ -42,6 +44,7 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const router = useRouter();
+  const [target,setTarget]=useState('');
   const [podcast, setPodcast] = useState(false);
   const [expand, setIsExpand] = useState<boolean>(false);
   const videoRef3 = useRef<HTMLVideoElement>(null);
@@ -69,11 +72,11 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
 }, [prevRef, nextRef]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container+` md:pb-5`}>
       <div className={styles.heading_container}>
         <h3 className={styles.heading}>{categoryName}</h3>
         <div className={styles.see_all}>
-          <Link href={paths.categoryWiseBooks(categoryName)}>
+          <Link href={paths.reels}>
             সব দেখুন
             <span className={styles.arrow}>
               <RightArrowIcon />
@@ -112,7 +115,7 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
 
            modules={[Navigation, Autoplay]}
           pagination={{ clickable: true }}
-          style={{ paddingBottom: "40px" }}
+          style={{ paddingBottom: "20px" }}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
@@ -134,7 +137,7 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
               slidesPerView: 2,
             },
             1024: {
-              slidesPerView: 3.3,
+              slidesPerView: 3,
             },
           }}
           // onBeforeInit={(swiper: any) => {
@@ -181,14 +184,15 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
                   </iframe> */}
 
                   {/* </div> */}
-                  <div className="w-[90%] z-[20] relative h-[80vh] flex justify-center items-center bg-black pointer-events-none">
-                    <iframe
-                      className="h-[80vh] z-[50] relative pointer-events-auto"
-                      src={`https://www.youtube.com/embed/${item.reelInfo?.reel_youtube_id}`}
-                      frameBorder={0}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                    />
+                  <div onClick={()=>setTarget(item.reelInfo?.reel_youtube_id)} key={index} className="w-full h-[85vh] md:h-[75vh]  max-h-[800px] cursor-pointer overflow-hidden">
+            
+                    <figure className="relative max-h-full xs2:mr-3">
+                      <img className="max-w-full max-h-full" src={item?.reelInfo.thumb}/>
+                      <span className="absolute z-[3] inline-block w-24 h-24 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <BigVideoPlayerIcon />
+                      </span>
+                    </figure>
+                    {/* {item.reelInfo?.reel_youtube_id} */}
                   </div>
                 </SwiperSlide>
               ))}
@@ -221,6 +225,14 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
           </div>
         </div>
       </CommonModal> */}
+      <CommonModal
+        isOpen={target?true:false}
+        onClose={()=>{setTarget('')}}
+      >
+        <div className="w-[99vw]">
+            <CustomReels targetId={target}/>
+        </div>
+      </CommonModal>
     </div>
   );
 };

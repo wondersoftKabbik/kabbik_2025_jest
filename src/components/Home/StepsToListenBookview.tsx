@@ -1,23 +1,23 @@
 import { setStaticTexts } from '@/store/slicers/staticTextSlice';
-import { useAppDispatch, useAppSelector } from '@/store/store'
-import { fetchDataFromJson } from '@/utils/apiServices'
-import React, { useEffect } from 'react'
+import {  useAppSelector } from '@/store/store'
+// import { fetchDataFromJson } from '@/utils/apiServices'
+import React from 'react'
 import { IconsForSteps } from './static/utils';
 
 const StepsToListenBookview = () => {
-    const dispatch=useAppDispatch();
+    // const dispatch=useAppDispatch();
     const staticText=useAppSelector((store)=>store?.staticTexts?.data?.home_page_steps_by_steps)
 
-    const getStaticData=async()=>{
-        let result = await fetchDataFromJson();
-        console.log(result);
-        dispatch(setStaticTexts(result));
-    }
+    // const getStaticData=async()=>{
+    //     let result = await fetchDataFromJson();
+    //     console.log(result);
+    //     dispatch(setStaticTexts(result));
+    // }
     
-    useEffect(()=>{
-        if(staticText)return;
-        getStaticData();
-    },[])
+    // useEffect(()=>{
+    //     if(staticText)return;
+    //     getStaticData();
+    // },[])
   return (
     <div className='flex mt-5 items-center justify-between gap-[2vw] w-[97%] md:w-[90%] mx-auto max-w-[1300px] '>
         <div className='max-sm:hidden max-w-[40%] lg2:max-w-[44%] mr-8 relative mb-7'>
