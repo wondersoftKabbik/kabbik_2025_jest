@@ -1390,8 +1390,11 @@ export const get_refer_history = async (userId:number,fromDate:string,toDate:str
   )
 };
 
-export const subscriptionList = async () => {
-  const url = apiEndPoints.new_packageList ;
+export const subscriptionList = async (source:any) => {
+  let url = apiEndPoints.new_packageList ;
+  if(source?.value==='city_touch'){
+      url = apiEndPoints.new_packageList + "?domain=citytouch";
+  }
   return await CommonApiHandler(
     {
       name: "subscriptionList",

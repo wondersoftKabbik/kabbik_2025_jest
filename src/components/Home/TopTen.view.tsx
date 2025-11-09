@@ -120,7 +120,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                     }}
                   >
                     <>
-                            {data && data.filter((item)=>item.premium).slice(0,9).map((item:TBooks,index:number)=>(
+                            {data && data?.map((item:TBooks,index:number)=>(
                                 <SwiperSlide
                                   key={item?.id}
                                   onClick={() => {
@@ -155,7 +155,7 @@ const TopTen = ({categoryName,link,data,isPopular}:tProps) => {
                                             <span className='w-4 h-4'>
                                                 <RedPlayerIcon/>
                                             </span>
-                                            <span className='text-cxs'>{(item?.play_count/1000).toFixed(2)}k <span className='max-xs:hidden'>listen</span></span>
+                                            <span className='text-cxs'>{(item?.play_count/1000).toFixed(2)}k <span className='max-xs:hidden'></span></span>
                                         </p>
                                       </div>
                                   </Link>

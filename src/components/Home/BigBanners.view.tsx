@@ -31,6 +31,10 @@ const BigBanners = () => {
               prevEl: prevRef.current,
               nextEl: nextRef.current,
             }}
+            autoplay={{
+              delay: 3000, // 3 seconds
+              disableOnInteraction: false, // keeps autoplay even after user interaction
+            }}
             breakpoints={{
                0: {
                slidesPerView: 1,

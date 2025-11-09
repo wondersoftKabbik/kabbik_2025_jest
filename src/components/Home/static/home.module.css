@@ -91,6 +91,12 @@
     .play_icons{
         flex-direction: column;
     }
+    .hue_btn,.secondary_btn{
+        width: 38vw;
+        height: 42px;
+        /* margin-bottom: 16px; */
+        /* font-size: 14px; */
+    }
 }
 
 @media (max-width: 640px){

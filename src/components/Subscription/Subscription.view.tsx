@@ -36,6 +36,7 @@ import PaymentOptions from "./PaymentOptions.view";
 import { container } from "../ui/static/tailwind.classes";
 import LeftAngle from "@/svgs/LeftAngle.svg";
 import FreeTrialMessage from "./FreeTrailMessage.view";
+import CityTouchPayment from "../CityTouchPayment/CityTouchPayment.view";
 
 const SubscribeComponent = ({
   subscriptionPackList,
@@ -63,7 +64,7 @@ const SubscribeComponent = ({
     useState(false);
   const isMsisdnSubmitted = useRef(false);
   const msisdnRef = useRef("");
-
+  const [isCityTouch,setIsCityTouch]=useState(false);
   const isMsisdnValid = msisdn.length === 11;
   const [isNextButtonPressed, setIsNextButtonPressed] = useState(false);
 
@@ -112,6 +113,16 @@ const SubscribeComponent = ({
     }
 
   }, []);
+
+  useEffect(()=>{
+    let sourceFromParams=Cookies.get('sourceFromParams')??'';
+     let source=Cookies.get('source')??'';
+    if(sourceFromParams==='city_touch'){
+      setIsCityTouch(true);
+    }if(source?.includes('city')){
+      setIsCityTouch(true);
+    }
+  },[])
 
 
   
@@ -482,7 +493,36 @@ const SubscribeComponent = ({
                       "Select Payment Method"
                   }
               </h2> */}
-              {isMsisdnTakerModalOpened?(
+              {isCityTouch?(
+               <div
+              className="modal-body text-center d-flex flex-column"
+              style={{ gap: "1rem" }}
+            >
+              <CityTouchPayment
+                options={[]}
+                callbacks={[
+                   // { methodName: "stripe", payment: stripePayment }
+                ]}
+                promoData={promoData}
+                setPromoData={setPromoData}
+                isPromocodeApplied={"reduce_price" in subscriptionPackData}
+                addPromocodeHandler={promocodeHandler}
+                removePromocodeHandler={removeHandler}
+                subscriptionPackId={subscriptionPackData.id}
+                price={
+                  "reduce_price" in subscriptionPackData
+                    ? subscriptionPackData.rawPrice -
+                      subscriptionPackData.reduce_price!
+                    : subscriptionPackData?.rawPrice
+                }
+                reducePrice={subscriptionPackData?.reduce_price??0}
+                isMsisdnSubmitted={isMsisdnSubmitted}
+                setIsMsisdnTakerModalOpened={setIsMsisdnTakerModalOpened}
+              />
+            </div>
+            ):
+              isMsisdnTakerModalOpened?(
+                
                 <MsisdnTracker
                   value={msisdnRef.current}
                   onChange={(e:any) => {

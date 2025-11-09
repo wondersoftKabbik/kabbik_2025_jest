@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { THomeProps } from './static/home.types'
 // import Hero from '';
 import { findCatwiseData } from '@/helpers/commonFunction';
@@ -135,7 +135,7 @@ const HomeComponent = (props:THomeProps) => {
                 <TopTen
                   categoryName="শীর্ষ ১০"
                   link="/"
-                  data={findCatwiseData(homeData.data,'ট্রেন্ডিং')?.data}
+                  data={findCatwiseData(homeData.data,"শীর্ষ ১০")?.data}
                   // isPopular={true}
                 />
               {/* </Link> */}

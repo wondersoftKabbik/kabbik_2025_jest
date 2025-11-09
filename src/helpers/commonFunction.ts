@@ -449,6 +449,7 @@ export function getCurrentMonthFirstDate() {
 
 
 export function convertToBanglaDigits(input:string|number) {
+  if(!input)return 0;
   input=input.toString();
   const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
   return input.toString().split('').map((char:string) => {

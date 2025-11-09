@@ -33,6 +33,10 @@ const BestCollection = (props:TBestCollection) => {
               // modules={[Navigation, Pagination]}
             // centeredSlides={true}
             modules={[Navigation, Autoplay,Pagination]}
+            autoplay={{
+                delay: 3000, // 1.5 seconds
+                disableOnInteraction: false, // keeps autoplay even after user interaction
+            }}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,

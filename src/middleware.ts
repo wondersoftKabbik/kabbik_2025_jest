@@ -52,28 +52,29 @@ export async function middleware(req: NextRequest) {
   }
    if(source){
     const oneMonthLater = new Date();
-      oneMonthLater.setUTCMonth(oneMonthLater.getUTCMonth() + 1);
+      const threeHourLater = new Date();
+      threeHourLater.setUTCHours(threeHourLater.getUTCHours() + 3);
 
       response.cookies.set({
         name: "source",
         value: source,
         httpOnly: false,
         secure: true,
-        expires: oneMonthLater,
+        expires: threeHourLater,
         sameSite: "none",
       });
     return withCorsHeaders(response, origin);
   }
   if(sourceFromParams){
     console.log(sourceFromParams,"sourceFromParams")
-     const oneMonthLater = new Date();
-      oneMonthLater.setUTCMonth(oneMonthLater.getUTCMonth() + 1);
+     const threeHourLater = new Date();
+     threeHourLater.setUTCHours(threeHourLater.getUTCHours() + 3);
     response.cookies.set({
       name: "sourceFromParams",
       value: sourceFromParams,
       httpOnly: false,
       secure: true,
-      expires: oneMonthLater,
+      expires: threeHourLater,
       sameSite: "none",
     });
     return withCorsHeaders(response, origin);

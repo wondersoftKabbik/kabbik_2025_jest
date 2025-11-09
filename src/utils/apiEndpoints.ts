@@ -18,7 +18,7 @@ export const apiEndPoints = {
   castCrewDetails: `${BASE_URL}/v1/audiobooks/castcrew/?name=`,
   castCrewEpisodes: `${BASE_URL}/v1/audiobooks/castcrew/castcrewaudiobook/?name=`,
   reviewList: `${BASE_URL}/v3/audiobooks/getallreview/?id=`,
-  homeList: `${BASE_URL}/v4/home/home`,
+  homeList: `${BASE_URL}/v4/home/home?top10=true`,
   catagorySuggestions: `${BASE_URL}/v2/categories/suggestion`,
   catagoryItems: `${BASE_URL}/v2/audiobooks/category/`,
   homeCategoryItems: `${BASE_URL}/v1/audiobooks/home/seemore?name=`,

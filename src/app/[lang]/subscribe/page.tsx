@@ -4,6 +4,7 @@ import { catagoryList, subscriptionList } from "@/utils/apiServices";
 import { Metadata } from "next";
 import SubscribeComponent from "@/components/Subscription/Subscription.view"
 import DynamicSubscriptionPack from "@/components/Subscription/static/subscription.type";
+import { cookies } from "next/headers";
 
 
 export const metadata: Metadata = {
@@ -14,8 +15,10 @@ export const metadata: Metadata = {
 };
 
 const Subscribe = async () => {
+  const cookie=cookies();
+  const source=cookie.get('sourceFromParams')
   const subscriptionPackList: DynamicSubscriptionPack[] = (
-    await subscriptionList()
+    await subscriptionList(source)
   ).data
     .sort(
       (a: DynamicSubscriptionPack, b: DynamicSubscriptionPack) =>

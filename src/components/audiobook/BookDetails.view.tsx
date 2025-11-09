@@ -47,6 +47,7 @@ import { paths } from "@/utils/Paths";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
 import { siteConfig } from "@/config/config";
+import CityTouchPayment from "../CityTouchPayment/CityTouchPayment.view";
 // import SleeperTimer from "./SleeperTime.view";
 // import PaymentOptions from "../Subscription/PaymentOptions.view";
 
@@ -180,6 +181,7 @@ const AudiobookComponent = ({
   const [isLogin, setIsLogin]: any = useState();
   const [isFree, setIsFree] = useState();
   const dispatch=useAppDispatch();
+  const [isCityTouch,SetIsCityTouch]=useState(false);
 
   const isNextAllowed =
     index < epList?.length - 1 &&
@@ -193,6 +195,15 @@ const AudiobookComponent = ({
   }, []);
 
 
+  useEffect(()=>{
+    let sourceFromParams=Cookies.get('sourceFromParams')??'';
+         let source=Cookies.get('source')??'';
+        if(sourceFromParams==='city_touch'){
+          SetIsCityTouch(true);
+        }if(source?.includes('city')){
+          SetIsCityTouch(true);
+        }
+  },[])
 
   useEffect(()=>{
     console.log("crewwww",reviewDetailsData)
@@ -1073,6 +1084,20 @@ const AudiobookComponent = ({
         onClose={()=>setShowPaymentOptions(false)}
       >
         <div className={`${styles.modalBody} bg-navyblue modal-body text-center max-h-[96vh] overflow-y-scroll`}>
+          {isCityTouch?    
+          <CityTouchPayment
+              options={[]}
+              // callbacks={[
+              // ]}
+              subscriptionPackId={1}
+             
+              price={
+                audioBookDetailsData?.price??0
+              }
+              reducePrice={0}
+              bookId={audioBookDetailsData?.id}
+            />
+          :
           <PaymentOptions
             options={paymentOptions.map((option: any) => ({
               methodName: option.method_name,
@@ -1082,7 +1107,7 @@ const AudiobookComponent = ({
             }))}
             callback={makePayment}
             price={audioBookDetailsData?.price}
-          />
+          />}
         </div>
       </CommonModal>
       <CommonModal
