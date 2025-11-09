@@ -15,7 +15,7 @@ const CategoriesList = () => {
       <div className='max-w-[450px] cursor-pointer mx-auto my-8'>
         {/* Main content grid */}
         {new Array(Math.ceil((categories?.length??0)/11)).fill(1).map((item,index)=>(
-            <div className="flex flex-col gap-3 ">
+            <div key={item?.id} className="flex flex-col gap-3 ">
           {/* First section */}
           <div className="flex flex-col gap-2 ">
             {/* Top row - large left image and two smaller right images */}
