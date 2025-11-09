@@ -12,6 +12,7 @@ import Script from 'next/script';
 import dynamic from 'next/dynamic';
 import Skeleton from '../Skeleton/Skeleton';
 import BigVideoPlayerIcon from '@/svgs/BigVideoPlayer';
+import Reels from './Reels.view';
 
 const TopTen = dynamic(() => import("./TopTen.view"), {
   ssr: false, // optional: disable server-side rendering
@@ -72,10 +73,10 @@ const BestCollection = dynamic(() => import("./BestCollection.view"), {
   loading: () => <p></p>, // optional fallback
 });
 
-const Reels = dynamic(() => import("./Reels.view"), {
-  ssr: false, // optional: disable server-side rendering
-  loading: () => <p></p>, // optional fallback
-});
+// const Reels = dynamic(() => import("./Reels.view"), {
+//   ssr: false, // optional: disable server-side rendering
+//   loading: () => <p></p>, // optional fallback
+// });
 
 const UpComing = dynamic(() => import("./UpComing.view"), {
   ssr: false, // optional: disable server-side rendering

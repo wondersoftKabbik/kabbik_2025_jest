@@ -18,8 +18,10 @@ export const {
 } = NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID??'',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET??'',
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      // clientId: process.env.DUMMY_CLIENT_ID,
+      // clientSecret: process.env.DUMMY_CLIENT_SECRET,
       authorization: {
         params: {
           scope: "profile email",
@@ -43,13 +45,18 @@ export const {
         // Ensure that id_token is a string before assigning it to session.id_token
         session.id_token = token.id_token;
       }
-      console.log(process.env.JWT_SECRET,"JWT")
       return session;
     },
 
+    // async redirect({ url, baseUrl }) {
+    //   url = "/redirecting";
+    //   // Allows relative callback URLs
+    //   if (url.startsWith("/")) return `${baseUrl}${url}`;
+    //   // Allows callback URLs on the same origin
+    //   else if (new URL(url).origin === baseUrl) return url;
+    //   return baseUrl;
+    // },
   },
-  
 
   secret: process.env.JWT_SECRET,
 });
-

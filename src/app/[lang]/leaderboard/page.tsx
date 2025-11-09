@@ -1,46 +1,29 @@
+'use client'
+import { useAppSelector } from "@/store/store";
 import GoldPosition from "@/svgs/GoldPosition.svg";
 import SecondPosition from "@/svgs/SecondPosition.svg";
 import ThirdPosition from "@/svgs/ThirdPosition.svg";
+import { leaderboard_top_listners } from "@/utils/apiServices";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { UserStreamingStatList } from "./static/leaderboard.type";
 
 export default function Leaderboard() {
-  const players = [
-    {
-      name: "মোঃ রাইহান",
-      position: 2,
-      hours: 245,
-      books: 32,
-      episodes: 45,
-      color: "from-cyan-400 to-blue-600",
-    },
-    {
-      name: "নুহাশ",
-      position: 1,
-      hours: 245,
-      books: 32,
-      episodes: 45,
-      color: "from-pink-400 to-yellow-400",
-      image: "/leader1.png", // replace with your image path
-    },
-    {
-      name: "আরেফিন",
-      position: 3,
-      hours: 245,
-      books: 32,
-      episodes: 45,
-      color: "from-amber-400 to-orange-500",
-    },
-  ];
+    const user= useAppSelector(store=>store?.user?.userData)
+    const [leaderboardData,setLoaderboardData]=useState<UserStreamingStatList>([]);
+    let getTopListners=async()=>{
+        let result = await leaderboard_top_listners(user?.id??0);
+        setLoaderboardData(result)
+    }
 
-  const users = [
-{ rank: 8, name: "আকাশ", photo: "/akash.jpg", hour: 85, book: 28, level: "গোল্ড" },
-{ rank: 5, name: "সাগর রহমান", photo: "/sagar.jpg", hour: 78, book: 25, level: "গোল্ড" },
-{ rank: 6, name: "শরিফুল ইসলাম", photo: "/shorif.jpg", hour: 72, book: 23, level: "সিলভার" },
-{ rank: 7, name: "সাকলাইন", photo: "/saklain.jpg", hour: 72, book: 23, level: "সিলভার" },
-{ rank: 8, name: "আব্দুল্লাহ", photo: "/abdullah.jpg", hour: 72, book: 23, level: "ব্রোঞ্জ" },
-{ rank: 9, name: "আকরাম", photo: "/akram.jpg", hour: 68, book: 23, level: "ব্রোঞ্জ" },
-{ rank: 10, name: "আফতাব", photo: "/aftab.jpg", hour: 78, book: 23, level: "সিলভার" },
-];
+    useEffect(()=>{
+        getTopListners()
+    },[])
+  
+
+    useEffect(()=>{
+        console.log(leaderboardData?.find((item)=>item?.user_id===(user?.id || '')),"leader")
+    },[leaderboardData])
 
   return (
     <div>
@@ -57,58 +40,53 @@ export default function Leaderboard() {
                 opacity: 0.3
             }}
             />
-            <h3 className='text-white mt-0 pt-8 text-clg2 font-semibold text-center'>এই মাসের শীর্ষ অডিওবুক শ্রোতারা</h3>
+            <h3 className='text-white mt-0 pt-8 text-cn2 md:text-clg2 font-semibold text-center'>এই মাসের শীর্ষ অডিওবুক শ্রোতারা</h3>
         </div>
         <div className="circular_gradient right-[-10%]  top-[0%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
-        <div className=" flex flex-col  items-center justify-center px-4 pb-6">
+        <div className=" flex flex-col  items-center justify-center px-4 pb-3 md:pb-6">
             <div className="circular_gradient_bluish right-[10%]  bottom-[0%] w-[85vw] h-[25vw] absolute rounded-[50%] "></div>
-            <div className="flex z-[2] relative flex-col sm:flex-row items-end justify-center gap-6 sm:gap-12">
-                {players.map((p, i) => (
+            <div className="flex z-[2] relative flex-row items-end justify-center gap-3 xs:gap-6 sm:gap-12">
+                {/* {console.log(leaderboardData?.slice(0,2),"kdfdfkj")
+                } */}
+                {leaderboardData?.slice(0,3).map((p, i) => (
                 <div
                     key={i}
                     className={`flex flex-col items-center text-white ${
-                    p.position === 1 ? "order-2 sm:order-2 mt-[-100px] " : p.position === 2 ? "order-1 sm:order-1 mt-[100px]" : "order-3 mt-[100px] sm:order-3"
+                    p?.ranking === 1 ? "order-2 sm:order-2 mt-[-100px] " : p?.ranking === 2 ? "order-1 sm:order-1 mt-[100px]" : "order-3 mt-[100px] sm:order-3"
                     }`}
                 >
                     {/* Podium Number */}
                     <div
                     className={`relative flex items-center justify-center   rounded-full bg-gradient-to-tr  shadow-xl`}
                     >
-                    {p.position === 1 && (
-                        <div className=" w-56">
+                    {p?.ranking === 1 && (
+                        <div className=" w-16 xs:w-24 sm:w-32 md:w-44 lg:w-56">
                         <GoldPosition/>
                         </div>
                     )}
-                    {p.position === 2 && (
-                        <div className=" w-56">
+                    {p?.ranking === 2 && (
+                        <div className=" w-16 xs:w-24 sm:w-32 md:w-44 lg:w-56">
                         <SecondPosition/>
                         </div>
                     )}
-                    {p.position === 3 && (
-                        <div className=" w-56">
+                    {p?.ranking === 3 && (
+                        <div className=" w-16 xs:w-24 sm:w-32 md:w-44 lg:w-56">
                         <ThirdPosition/>
                         </div>
                     )}
                     </div>
 
                     {/* Name */}
-                    <h2 className="mt-4 text-xl sm:text-2xl font-bold">{p.name}</h2>
+                    <h2 className="mt-4 text-cs text-center xs:text-cs2 md:text-cn2 lg:text-lg2 font-normal xs:font-bold">{p?.full_name||'User'}</h2>
 
                     {/* Stats Box */}
-                    <div className="mt-3 btn-gradient-2 rounded-[8px] px-6 py-3 text-center text-sm sm:text-base">
+                    <div className="mt-3 btn-gradient-2 rounded-[8px] px-4 py-2 text-center text-sm sm:text-base">
                     <div className="flex justify-between gap-6">
                         <div>
                         <p className="font-medium text-pink-300">ঘন্টা</p>
-                        <p>{p.hours}</p>
+                        <p>{Math.floor(p?.total_streaming_time)}</p>
                         </div>
-                        <div>
-                        <p className="font-medium text-pink-300">বই</p>
-                        <p>{p.books}</p>
-                        </div>
-                        <div>
-                        <p className="font-medium text-pink-300">এপিসোড</p>
-                        <p>{p.episodes}</p>
-                        </div>
+                        
                     </div>
                     </div>
                 </div>
@@ -119,22 +97,22 @@ export default function Leaderboard() {
             <div className="circular_gradient left-[-10%]  top-[10%] w-[25vw] h-[25vw] absolute rounded-[50%] "></div>
             <div className="w-full max-w-5xl btn_gradient_3 rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
                 <table className="w-full text-center border-collapse">
-                    <thead className="bg-black/20 text-lg font-semibold border-b border-white/20">
+                    <thead className="bg-black/20 text-cs md:text-lg font-semibold border-b border-white/20">
                         <tr>
                             <th className="py-4">অবস্থান</th>
                             <th className="py-4 text-left pl-8">প্রোফাইল নাম</th>
                             <th className="py-4">ঘন্টা</th>
-                            <th className="py-4">বই</th>
-                            <th className="py-4">লেভেল</th>
+                            {/* <th className="py-4">বই</th> */}
+                            {/* <th className="py-4">লেভেল</th> */}
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
+                        {leaderboardData?.slice(3,14).map((user, index) => (
                             <tr
                             key={index}
-                            className="border-b border-white/10 hover:bg-white/10 transition"
+                            className="border-b text-cs md:text-cn border-white/10 hover:bg-white/10 transition"
                             >
-                                <td className="py-3 text-pink-300 font-semibold">#{user.rank}</td>
+                                <td className="py-3 text-pink-300 font-semibold">#{user.ranking}</td>
                                 <td className="py-3 flex items-center space-x-3 justify-start pl-8">
                                 {/* <Image
                                 src={user.photo}
@@ -143,11 +121,11 @@ export default function Leaderboard() {
                                 height={35}
                                 className="rounded-full border border-white/30"
                                 /> */}
-                                <span className="font-medium text-white">{user.name}</span>
+                                <span className="font-medium text-white">{user.full_name||'User'}</span>
                                 </td>
-                                <td className="py-3">{user.hour}</td>
-                                <td className="py-3">{user.book}</td>
-                                <td className="py-3">
+                                <td className="py-3">{Math.floor(user.total_streaming_time)}</td>
+                                {/* <td className="py-3">{user.book}</td> */}
+                                {/* <td className="py-3">
                                 <span
                                 className={`px-3 py-1 text-xs rounded-full font-semibold inline-block ${
                                 user.level === "গোল্ড"
@@ -159,12 +137,13 @@ export default function Leaderboard() {
                                 >
                                 {user.level}
                                 </span>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+                <div className="mt-3 font-bold text-cn md:text-clg"><h2>Your Current position is {leaderboardData?.find((item)=>item?.user_id===(user?.id?.toString() || ''))?.ranking}</h2></div>
         </div>
     </div>
   );

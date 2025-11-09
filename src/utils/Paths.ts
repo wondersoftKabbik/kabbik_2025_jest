@@ -23,7 +23,8 @@ export const paths={
     refer_earn:'/profile/refer-earn',
     refer_dashboard:`/profile/refer-earn/dashboard`,
     about:`/about`,
-    reels:`/reels`
+    reels:`/reels`,
+    leaderboard:`/leaderboard`
     // home:'',
 
 }

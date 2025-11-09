@@ -115,7 +115,7 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
 
            modules={[Navigation, Autoplay]}
           pagination={{ clickable: true }}
-          style={{ paddingBottom: "20px" }}
+          style={{ paddingBottom: "0px" }}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
@@ -130,14 +130,32 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
             0: {
               slidesPerView: 1,
             },
-            580: {
-              slidesPerView: 1.5,
+            400: {
+              slidesPerView: 1.33,
             },
-            748: {
+            500: {
+              slidesPerView: 1.66,
+            },
+            600: {
               slidesPerView: 2,
             },
-            1024: {
+            700: {
+              slidesPerView: 2.33,
+            },
+            800: {
+              slidesPerView: 2.66,
+            },
+            900: {
               slidesPerView: 3,
+            },
+            1000: {
+              slidesPerView:3.33 ,
+            },
+            1100: {
+              slidesPerView: 3.66,
+            },
+            1200: {
+              slidesPerView: 4,
             },
           }}
           // onBeforeInit={(swiper: any) => {
@@ -184,9 +202,9 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
                   </iframe> */}
 
                   {/* </div> */}
-                  <div onClick={()=>setTarget(item.reelInfo?.reel_youtube_id)} key={index} className="w-full h-[85vh] md:h-[75vh]  max-h-[800px] cursor-pointer overflow-hidden">
+                  <div onClick={()=>setTarget(item.reelInfo?.reel_youtube_id)} key={index} className="w-full space-x-2 h-[70vh] md:h-[65vh]  max-h-[800px] cursor-pointer overflow-hidden">
             
-                    <figure className="relative max-h-full xs2:mr-3">
+                    <figure className="relative max-h-full xxs:mr-3">
                       <img className="max-w-full max-h-full" src={item?.reelInfo.thumb}/>
                       <span className="absolute z-[3] inline-block w-24 h-24 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                         <BigVideoPlayerIcon />
@@ -229,7 +247,7 @@ const Reels = ({ categoryName, link, data, isPopular }: tProps) => {
         isOpen={target?true:false}
         onClose={()=>{setTarget('')}}
       >
-        <div className="max-w-[99vw]">
+        <div className="max-w-[99vw] w-[99vw]">
             <CustomReels targetId={target}/>
         </div>
       </CommonModal>

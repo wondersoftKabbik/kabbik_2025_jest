@@ -21,7 +21,7 @@ const OTPVerification = ({closeModal,handleShowPasswordModal}:{closeModal:()=>vo
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(30);
     const dispatch=useAppDispatch();
-  
+    
     useEffect(() => {
       const interval = setInterval(() => {
         if (seconds > 0) {

@@ -21,6 +21,10 @@ export default function RootLayout({
     <html lang="en">
       
       <body suppressHydrationWarning={true}>
+        <Script
+          src="https://www.youtube.com/iframe_api"
+          strategy="beforeInteractive"
+        />
             {children}
             <TawkScript/>
       </body>

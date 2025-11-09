@@ -441,6 +441,11 @@ export function normalizeBillingPeriod(text: string) {
 
   return {};
 }
+export function getCurrentMonthFirstDate() {
+  const now = new Date();
+  const firstDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  return firstDate.toISOString().split('T')[0];
+}
 
 
 export function convertToBanglaDigits(input:string|number) {

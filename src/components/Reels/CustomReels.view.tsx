@@ -1,5 +1,6 @@
 import { useAppSelector } from "@/store/store";
 import { useEffect, useState, useRef } from "react";
+import Spinner from "../ui/Spinner.view";
 
 declare global {
   interface Window {
@@ -22,10 +23,11 @@ export default function CustomReels({ targetId }: { targetId: string }) {
       return;
     }
 
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-    window.onYouTubeIframeAPIReady = () => setApiReady(true);
+    // const tag = document.createElement("script");
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // document.body.appendChild(tag);
+    // window.onYouTubeIframeAPIReady = () => setApiReady(true);
+    // return false
   }, []);
 
   // ✅ Detect first user interaction
@@ -127,10 +129,16 @@ export default function CustomReels({ targetId }: { targetId: string }) {
           data-index={index}
           className="reel-video mx-auto  w-[95%] h-[97vh] my-[5vh] flex justify-center items-center snap-start"
         >
-          <div
-            id={`yt-player-${index}`}
-            className=" o h-[90%] md:h-full max-w-[98%] mx-auto w-[500px]"
-          ></div>
+          {!apiReady?
+            <picture className="relative">
+              <img src={reel?.reelInfo?.thumb}/>
+              <Spinner size="w-5 h-5 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2" />
+            </picture>
+            :<div
+              id={`yt-player-${index}`}
+              className=" o h-[90%] md:h-full max-w-[98%] mx-auto w-[500px]"
+            ></div>
+          }
         </div>
       ))}
     </div>

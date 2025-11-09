@@ -19,17 +19,17 @@ export default function ReelsVideoGrid() {
         className="
           grid gap-4
           grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-3
-          2xl:grid-cols-4
+          xs:grid-cols-2
+          md:grid-cols-3
+          lg:grid-cols-4
         "
       >
         {reelsData?.map((item, i) => (
-          <div onClick={()=>setTarget(item.reelInfo?.reel_youtube_id)} key={i} className="w-full cursor-pointer h-[80vh] max-h-[800px] rounded-xl overflow-hidden">
+          <div onClick={()=>setTarget(item.reelInfo?.reel_youtube_id)} key={i} className="w-full cursor-pointer h-[60vh] max-h-[800px] rounded-xl overflow-hidden">
             
             <figure className="relative max-h-full">
               <img className="max-h-full max-w-full" src={item?.reelInfo.thumb}/>
-              <span className="absolute z-[3] inline-block w-24 h-24 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <span className="absolute z-[3] inline-block w-16  h-16  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <BigVideoPlayerIcon />
               </span>
             </figure>
@@ -41,7 +41,7 @@ export default function ReelsVideoGrid() {
         isOpen={target?true:false}
         onClose={()=>{setTarget('')}}
       >
-        <div className="max-w-[99vw]">
+        <div className="max-w-[99vw] w-[99vw]">
             <CustomReels targetId={target}/>
         </div>
       </CommonModal>

@@ -1,7 +1,7 @@
 'use client'
 import BdFlag from '@/svgs/BdFlag.svg'
 import Google from '@/svgs/Google.svg'
-import React, { MouseEvent, useState } from 'react'
+import React, { MouseEvent, useEffect, useState } from 'react'
 import { signIn } from "next-auth/react";
 import { usePathname } from 'next/navigation'
 import { isValidMsisdn } from '@/helpers/commonFunction'
@@ -14,6 +14,17 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
     const [phoneNumbers,setPhoneNumbers]=useState('')
     const [errors,setErrors]=useState('');
     const [submitLoader,setSubmitLoader]=useState(false);
+
+    const [isAndroidWebView,setIsAndroidWebView]=useState(false);
+      
+    
+    useEffect(()=>{
+      let userAgent=navigator.userAgent;
+      // const isAndroid = /Android/.test(userAgent);
+      const hasWV = userAgent.includes('wv');
+      setIsAndroidWebView(  hasWV)
+      
+    },[])
 
     const googleBtn = async () => {
       await signIn("google", { callbackUrl: `/redirecting?route=${router}` });
@@ -42,28 +53,32 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
           </div>
 
           {/* Social Login Section */}
-          <div className="flex flex-col justify-center gap-3 md:gap-7">
+         {isAndroidWebView?'':(
+          <>
+              <div className="flex flex-col justify-center gap-3 md:gap-7">
 
-            {/* Google Button */}
-            <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md  py-1.5 px-2 md:px-4 flex items-center gap-4 sm:gap-8 md:gap-12">
-                <div className='w-full flex justify-center'>
-                    <div className="w-5 md:w-6 h-6 mr-4 flex-shrink-0">
-                        <Google/>
-                    </div>
-                    <span className="text-black text-cn md:text-xl font-semibold">
-                        গুগল
-                    </span>
-                </div>
-            </button>
-          </div>
+              {/* Google Button */}
+              <button onClick={googleBtn} className="w-full bg-gray-300 hover:bg-gray-200 transition-colors rounded-[4px] shadow-md  py-1.5 px-2 md:px-4 flex items-center gap-4 sm:gap-8 md:gap-12">
+                  <div className='w-full flex justify-center'>
+                      <div className="w-5 md:w-6 h-6 mr-4 flex-shrink-0">
+                          <Google/>
+                      </div>
+                      <span className="text-black text-cn md:text-xl font-semibold">
+                          গুগল
+                      </span>
+                  </div>
+              </button>
+            </div>
 
-          {/* Divider */}
-          <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-white"></div>
-            <span className="text-white text-sm px-4">অথবা</span>
-            <div className="flex-1 h-px bg-white"></div>
-          </div>
+            {/* Divider */}
+            <div className="flex items-center gap-3">
+              <div className="flex-1 h-px bg-white"></div>
+              <span className="text-white text-sm px-4">অথবা</span>
+              <div className="flex-1 h-px bg-white"></div>
+            </div>
 
+            </>
+          )}
           {/* Phone Input Section */}
           <div className="flex flex-col gap-2">
             <label className="text-white font-medium">

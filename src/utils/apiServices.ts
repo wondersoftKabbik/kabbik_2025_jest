@@ -3,7 +3,7 @@ import { apiEndPoints } from "./apiEndpoints";
 import { toast } from "react-toastify";
 // import { formatTime, showToast } from "";
 import { BlogInfo, DynamicSubscriptionPack, TMethods, TtoastType } from "@/helpers/commonTypes";
-import { formatTime, normalizeMsisdn, showToast } from "@/helpers/commonFunction";
+import { formatTime, getCurrentMonthFirstDate, normalizeMsisdn, showToast } from "@/helpers/commonFunction";
 import { CommonApiHandler, getHeaders } from "./CommonApicalls";
 import { TSponsorRequest } from "./types";
 
@@ -1179,6 +1179,19 @@ export const upcomingList = async () => {
    return await CommonApiHandler(
     {
       name: "upcomingList",
+      url:url,
+      method: TMethods.GET
+    }
+  )
+};
+
+export const leaderboard_top_listners = async (userId:number) => {
+  let endDate= new Date().toISOString().split('T')[0];;
+  const url = apiEndPoints.leaderboard_top_listners+`?startDate=${getCurrentMonthFirstDate()}&endDate=${endDate}&user_id=${userId}`;
+  
+   return await CommonApiHandler(
+    {
+      name: "leaderboard_top_listners",
       url:url,
       method: TMethods.GET
     }

@@ -132,12 +132,13 @@ export default function Profiles(profileData: any) {
 
   const menuItems = [
     // Row 1
-    { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', handleClick:()=>{setShowBookRequestModal(true)} },
     { title: 'রিডিম কোড', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{setShowRedeemModal(true)} },
     { title: 'রেফার অ্যান্ড আর্ন', icon: <TakaIcon />, gradient: 'bg-orange-gradient',hasNewBadge:true,handleClick:()=>router.push(paths.refer_earn) },
     { title: 'রিওয়ার্ড পয়েন্ট', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{router.push(paths.reward_point)},hasNewBadge: true },
+    {title: 'লিডারবোর্ড', icon: <LoveIcon />, gradient: 'bg-red-gradient',handleClick:()=>{router.push(paths.leaderboard)},hasNewBadge: true },
     { title: 'আমার প্লে-লিস্ট', icon: <MyPlayList />, gradient: 'bg-teal-gradient',hasNewBadge: true ,handleClick:()=>router.push(paths.myPlayList) },
     { title: 'পছন্দের তালিকা', icon: <PlayIcon />, gradient: 'bg-green-gradient' , handleClick:()=>{router.push(paths.favorites)} },
+    { title: 'বইয়ের অনুরোধ', icon: <BookIcon color="white" />, gradient: 'bg-blue-gradient', handleClick:()=>{setShowBookRequestModal(true)} },
 
     // Row 2
     { title: 'রেন্ট বুক', icon: <UserIcon />, gradient: 'bg-purple-gradient', handleClick:()=>{router.push(paths.my_rents)} },
