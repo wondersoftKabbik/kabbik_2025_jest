@@ -141,25 +141,25 @@ const PaymentOptions = ({
       ? (
         <div className="text-white ">
           <div className="text-center mb-4 px-4">
-            <h1 className="text-muted2 text-clg font-semibold my-4">
+            <h1 className="text-muted2 text-cs2 md:text-clg font-semibold my-4">
               পেমেন্ট পদ্ধতি নির্বাচন করুন
             </h1>
             
             {/* Promo Code Section */}
-            <div className="flex rounded-[8px] bg-[#253252] flex-row items-center px-3 mb-2">
-              <div className="flex items-center   rounded-3xl  flex-1 max-w-md">
-                <div className="w-4 h-4  rounded-2xl flex items-center justify-center">
+            <div className="flex rounded-[4px] md:rounded-[8px] bg-[#253252] flex-row items-center px-0.5 md:px-3 mb-2">
+              <div className="flex items-center   rounded-3xl  flex-1 max-w-[94vw] md:max-w-md">
+                <div className="w-2 md:w-4 h-4  rounded-2xl flex items-center justify-center">
                   <Percentage/>
                 </div>
-                <span className="text-muted2 text-cn whitespace-nowrap font-medium ml-1">প্রোমো কোড</span>
+                <span className="text-muted2 text-cxs md:text-cn whitespace-nowrap font-medium md:ml-1">প্রোমো কোড</span>
               </div>
               
-              <div className="bg-[#35405E] rounded-[4px] border border-[#515462] p-1 m-1.5 flex items-center  ">
+              <div className="bg-[#35405E] rounded-[4px] border border-[#515462] p-1 m-0.5 md:m-1.5 flex items-center  ">
                 <input
                   type="text"
                   value={promoData}
                   onChange={(e) => setPromoData?.(e.target.value)}
-                  className="bg-transparent text-cs2 text-white placeholder-gray-400 flex-1 outline-none"
+                  className="bg-transparent text-cs md:text-cs2 text-white placeholder-gray-400 flex-1 outline-none"
                   placeholder="কোড লিখুন"
                 />
                 <button
@@ -168,7 +168,7 @@ const PaymentOptions = ({
                       ? addPromocodeHandler
                       : removePromocodeHandler
                   }
-                  className="bg-[#23442F] text-white px-2 py-1 rounded-[3px] shadow-md text-cs hover:bg-[#2a5236] transition-colors"
+                  className="bg-[#23442F] text-white px-1 md:px-2 py-1 rounded-[3px] shadow-md text-cxs md:text-cs hover:bg-[#2a5236] transition-colors"
                 >
                   Apply
                 </button>
@@ -187,10 +187,10 @@ const PaymentOptions = ({
             )}
           </div>
           <div className="mb-4 px-4 ">
-          <div className="bg-navyblue rounded-[8px] py-2 text-center mb-2">
-            <h2 className="text-white text-cn font-medium">লোকাল পেমেন্ট মেথড</h2>
+          <div className="bg-navyblue rounded-[4px] md:rounded-[8px] py-2 text-center mb-2">
+            <h2 className="text-white text-cs md:text-cn font-medium">লোকাল পেমেন্ট মেথড</h2>
           </div>
-          <p className="text-white text-cs2 text-center">
+          <p className="text-white text-cs md:text-cs2 text-center">
             (দয়া করে আপনার পেমেন্ট মেথড নির্বাচন করুন)
           </p>
           </div>
@@ -199,19 +199,19 @@ const PaymentOptions = ({
         <></>
       )}
       <div className={findAtLeastOne('mobile_wallet')?"px-4 border-t border-muted2":'hidden'}>
-        <div className="flex flex-col lg:flex-row mx-2 lg:items-center lg:justify-between mb-5">
-          <div className="mb-2 lg:mb-0 mt-4">
-            <h3 className="text-white text-cn2  text-left font-semibold mb-2">মোবাইল ওয়ালেট</h3>
-            <p className="text-white text-cs2 ">মোবাইল ওয়ালেটের মাধ্যমে পেমেন্ট করুন।</p>
+        <div className="flex flex-col lg:flex-row mx-2 lg:items-center lg:justify-between mb-2 md:mb-5">
+          <div className="mb-0 md:mb-2 lg:mb-0 mt-4">
+            <h3 className="text-white text-cs2 md:text-cn2  text-left font-semibold mb-0 md:mb-2">মোবাইল ওয়ালেট</h3>
+            <p className="text-white text-cs md:text-cs2 ">মোবাইল ওয়ালেটের মাধ্যমে পেমেন্ট করুন।</p>
           </div>
           
           <div className="flex items-center gap-1">
             <span className="w-3 h-3 inline-block"><SecureShield/></span>
-            <div className="text-[#76DA84] text-cs">SecurePayment</div>
+            <div className="text-[#76DA84] text-cxs md:text-cs">SecurePayment</div>
           </div>
         </div>
       </div>
-      <div className="d-flex mx-4 flex-column gap-0">
+      <div className="d-flex mx-1.5 md:mx-4 flex-column gap-0">
             {findObj('bkash',options)?<SinglePaymentCard
               selectedPayment={selectedOption?.methodName??''}
               handlePaymentSelect={() => {
@@ -240,16 +240,16 @@ const PaymentOptions = ({
               amount={price + (findObj('upay',options)?.vat ?? 0)}
             />:''}
       </div>
-      <div className={findAtLeastOne('mobile_balance')?"px-4 border-t-[1px] border-muted2 mt-4":'hidden'}>
+      <div className={findAtLeastOne('mobile_balance')?"  px-1.5 md:px-4 border-t-[1px] border-muted2 mt-4":'hidden'}>
         <div className="flex flex-col lg:flex-row mx-2 lg:items-center lg:justify-between mb-2">
-          <div className="mb-2 lg:mb-0 mt-2">
-            <h3 className="text-white text-cn2  text-left font-semibold mb-2">মোবাইল ব্যালেন্স</h3>
-            <p className="text-white text-cs2 "> মোবাইল ব্যালেন্স দিয়ে পেমেন্ট করুন।</p>
+          <div className="md:mb-2 lg:mb-0 mt-2">
+            <h3 className="text-white text-cs2 md:text-cn2  text-left font-semibold mb-0.5 md:mb-2">মোবাইল ব্যালেন্স</h3>
+            <p className="text-white text-cs md:text-cs2 "> মোবাইল ব্যালেন্স দিয়ে পেমেন্ট করুন।</p>
           </div>
           
           <div className="flex items-center gap-1">
-            <span className="w-4 h-4 inline-block"><SecureShield/></span>
-            <div className="text-[#76DA84] text-cs">Secure Payment</div>
+            <span className="w-2.5 md:w-4 h-4 inline-block"><SecureShield/></span>
+            <div className="text-[#76DA84] text-cxs md:text-cs">Secure Payment</div>
           </div>
         </div>
       </div>
@@ -284,14 +284,14 @@ const PaymentOptions = ({
       </div>
       <div className={findAtLeastOne('card')?"px-4 border-t-[1px] border-muted2 mt-4":'hidden'}>
         <div className="flex flex-col lg:flex-row mx-2 lg:items-center lg:justify-between mb-2">
-          <div className="mb-2 lg:mb-0 mt-2">
-            <h3 className="text-white text-cn2  text-left font-semibold mb-2">ডেবিট/ক্রেডিট কার্ড</h3>
-            <p className="text-white  text-cs2">পে ভিয়া ডেবিট/ ক্রেডিট কার্ড মেথড</p>
+          <div className="md:mb-2 lg:mb-0 mt-2">
+            <h3 className="text-white text-cs2 md:text-cn2  text-left font-semibold mb-0.5 md:mb-2">ডেবিট/ক্রেডিট কার্ড</h3>
+            <p className="text-white text-cs  md:text-cs2">পে ভিয়া ডেবিট/ ক্রেডিট কার্ড মেথড</p>
           </div>
           
           <div className="flex items-center gap-1 ">
-            <span className="w-4 h-4 inline-block"><SecureShield/></span>
-            <div className="text-[#76DA84] text-cs">Secure Payment</div>
+            <span className="w-2.5 md:w-4 h-4 inline-block"><SecureShield/></span>
+            <div className="text-[#76DA84] text-cxs md:text-cs">Secure Payment</div>
           </div>
         </div>
       </div>
@@ -326,7 +326,7 @@ const PaymentOptions = ({
           onChange={(evt) => setTermsPrivacyAgreed(!termsPrivacyAgreed)}
         />
         <label htmlFor="termsPrivacy" className="d-flex items-start">
-          <div className="text-white text-cs2">
+          <div className="text-white text-cxs md:text-cs2">
             আমি{" "} 
             <Link href={"/terms&condition"} className="text-[#0200FF]">
               শর্তাবলী
@@ -342,9 +342,9 @@ const PaymentOptions = ({
         <button
           disabled={!selectedOption || isLoading}
           onClick={payNow}
-          className={`w-[95%] bg-[#0D244E] text-white flex justify-center items-center 
+          className={`w-[92%] mx-auto md:w-[95%] bg-[#0D244E] text-white flex justify-center items-center 
                      border border-muted2 
-                      px-8 py-2  md:py-1.5 mb-4 mx-3 rounded-[6px]
+                      md:px-8 py-0.5  md:py-1.5 mb-4 md:mx-3 rounded-[6px]
                       transition-colors duration-200
                       ${(!selectedOption || isLoading) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#132f63]'}`}
         >

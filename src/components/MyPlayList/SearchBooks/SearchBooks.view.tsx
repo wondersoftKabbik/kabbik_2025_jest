@@ -62,8 +62,8 @@ export default function SearchBooks() {
 
   return (
     <div>
-      <div className="z-[3] relative  flex items-center justify-center px-2 py-4">
-      <div className="w-full max-w-[279px] flex flex-col items-center">
+      <div className="z-[11] relative  flex items-center justify-center px-2 py-4">
+      <div className="w-[99%] mx-auto max-w-[279px] flex flex-col items-center">
         {/* Music Note Icon */}
         <div className="flex h-[77px] pb-[15px] items-start justify-center mb-2 sm:mb-0">
           <AudioIcon/>

@@ -23,7 +23,7 @@ export default function Categories({folders}:{folders:number|string}) {
         {/* First Section */}
         {totaldiv.map((item,i)=>(
             <div key={i}>
-            <div className="grid grid-cols-1 sm:grid-cols-2  relative gap-2 lg:gap-3 mb-3">
+            <div className="grid grid-cols-2  relative gap-2 lg:gap-3 mb-3">
            
                 <div className="  h-[185px] rounded-[4px] overflow-hidden border border-gray-300">
                     <Link href={`${paths.categoryWiseBooks(categories?.[item-4].name??'')}?folders=${folders}`}>

@@ -228,7 +228,7 @@ const Navbar = (props:TNavbar) => {
             </div>
         </div>
         <CustomDrawer open={mobileMenu} position='left' onClose={()=>{setMobileMenu(!mobileMenu)}}>
-            <MobileNavbar categories={categories} setMobileMenu={setMobileMenu}/>
+            <MobileNavbar categories={categories} onClose={()=>{setMobileMenu(!mobileMenu)}} setMobileMenu={setMobileMenu}/>
         </CustomDrawer>
         <CommonModal
             isOpen={loginModal || showLoginModal}

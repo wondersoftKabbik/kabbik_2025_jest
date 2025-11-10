@@ -189,13 +189,13 @@ const AudiobookComponent = ({
                 </div>
             </div>
             </div>
-            <div className=" z-[5]   py-4 md:py-8">
+            <div className=" z-[5] w-full   py-4 md:py-8">
             <div className="max-w-full sm:max-w-2xl mx-auto px-4 max-sm:pr-0 space-y-8 md:space-y-16">
                 {/* Header Section */}
             
 
                 {/* Navigation Tabs */}
-                <div className="flex sm:gap-2 md:gap-4">
+                <div className=" sm:gap-2 md:gap-4">
                     <PlayList 
                         hasAccess={hasAccess} 
                         book={audioBookData}

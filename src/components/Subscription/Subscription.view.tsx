@@ -356,12 +356,12 @@ const SubscribeComponent = ({
       <div className="  relative ">
         {/* Back Arrow */}
         <div className="absolute left-4 md:left-4 md:top-1  ">
-          <span 
+          {/* <span 
             onClick={()=>{router.back()}}
             className="w-9 h-9 sm:w-12 sm:h-12 md:w-20 md:h-20 max-md:inline-block hidden text-white "
           >
             <LeftAngle />
-          </span>
+          </span> */}
         
         </div>
 
@@ -604,7 +604,7 @@ const SubscribeComponent = ({
               ):
               (
               <div
-                className="modal-body text-center d-flex flex-column"
+                className="modal-body max-w-[97vw] overflow-x-hidden text-center d-flex flex-column"
                 // style={{ gap: "1rem" }}
               >
                 <PaymentOptions

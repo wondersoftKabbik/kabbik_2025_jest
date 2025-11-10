@@ -3,7 +3,7 @@ import React from 'react'
 
 const SinglePaymentCard = ({selectedPayment,paymentName,handlePaymentSelect,img,amount}:{selectedPayment:string,handlePaymentSelect:(args:string)=>void,img:string,amount:number,paymentName:string}) => {
   return (
-    <div className="flex items-center gap-2 m-1">
+    <div className="flex max-w-[95vw] items-center gap-2 m-1">
         <button
           onClick={() => handlePaymentSelect(paymentName)}
           className={`w-5 h-5 rounded-full border-2 border-white flex items-center justify-center ${
@@ -18,13 +18,13 @@ const SinglePaymentCard = ({selectedPayment,paymentName,handlePaymentSelect,img,
             <img 
               src={img??''}
               alt="bKash" 
-              className="h-14  w-auto"
+              className="h-11 md:h-14  w-auto"
             />
             <div className="flex items-center gap-2">
               <span className='w-6 h-6 inline-block'>
                 <TakaIcon/>
               </span>
-              <span className="text-white text-2xl font-medium">{amount}/-</span>
+              <span className="text-white text-xl md:text-2xl font-medium">{amount}/-</span>
             </div>
           </div>
         </div>

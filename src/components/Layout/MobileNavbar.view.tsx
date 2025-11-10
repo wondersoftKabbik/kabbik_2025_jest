@@ -13,8 +13,9 @@ import { useAppSelector } from '@/store/store';
 
 
 
-export default function MobileNavbarContent({setMobileMenu}:TmobileNavbarProps) {
+export default function MobileNavbarContent({setMobileMenu,onClose}:TmobileNavbarProps) {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const profile=useAppSelector((store)=>store?.user?.userData);
   const categories=useAppSelector((store)=>store.categories.CategoriesData)
   return (
     <div className="w-100 bg-bg text-white  h-full shadow-lg flex flex-col">
@@ -39,7 +40,10 @@ export default function MobileNavbarContent({setMobileMenu}:TmobileNavbarProps) 
               <button
                 className="flex justify-between items-center w-full text-left font-medium py-2 px-3 hover:bg-gray-100 hover:text-bg rounded"
                 onClick={() =>
+                {
                   setOpenSubmenu(openSubmenu === item.label ? null : item.label)
+                }
+                  
                 }
               >
                 {item.label}
@@ -55,6 +59,7 @@ export default function MobileNavbarContent({setMobileMenu}:TmobileNavbarProps) 
                   <Link
                     key={sub.id}
                     href={`/${sub?.name}`}
+                    onClick={onClose}
                     className="text-sm py-1 z-[3] px-3 rounded hover:bg-gray-100 hover:text-bg"
                   >
                     {sub.name}
@@ -66,6 +71,7 @@ export default function MobileNavbarContent({setMobileMenu}:TmobileNavbarProps) 
             <Link
               key={item.label}
               href={item.href??''}
+              onClick={onClose}
               className="py-2 px-3 rounded hover:bg-gray-100 hover:text-bg"
             >
               {item.label}
@@ -79,6 +85,16 @@ export default function MobileNavbarContent({setMobileMenu}:TmobileNavbarProps) 
             >
                 স্টোর
             </CommonButton>
+        </span>
+        <span>
+          {(!profile?.is_subscribed && profile?.id && profile?.id!==2820) ?<CommonButton
+              isLoading={false}
+              // handleClick={handleLoginClick}
+              addiTionalClass='xxs2:hidden'
+              disabled={false}
+          >
+              <Link href={'/subscribe'}>সাবস্ক্রাইব</Link>
+          </CommonButton>:''}
         </span>
       </nav>
     </div>
