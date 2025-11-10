@@ -57,7 +57,7 @@ export function AudiobookCard({ audiobook, className = '',category,isInPlayList,
               blurDataURL={siteConfig.placeholderBook}
               loading="lazy"
               priority={false}
-              className="aspect-[3/4] max-w-full z-10 object-cover transition-transform duration-300 group-hover:scale-110"
+              className="aspect-[3/4] max-w-full object-left-top z-10 object-cover transition-transform duration-300 group-hover:scale-110"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = siteConfig.placeholderBook; // fallback if image fails

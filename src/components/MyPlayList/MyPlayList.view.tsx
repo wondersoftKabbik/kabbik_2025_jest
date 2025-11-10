@@ -152,7 +152,7 @@ export default function MyPlayList() {
         {/* Table Header */}
 
         {/* Table Rows */}
-        <table className="w-full min-w-[800px] border-collapse z-30 relative">
+        <table className="w-full min-w-[800px] border-collapse z-[3] relative">
           {/* Table Head */}
           <thead>
             <tr className="text-gray-400 text-cs md:text-cn bg-white bg-opacity-10 text-left">

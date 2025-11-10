@@ -23,23 +23,8 @@ export default function CustomReels({ targetId }: { targetId: string }) {
       return;
     }
 
-    // const tag = document.createElement("script");
-    // tag.src = "https://www.youtube.com/iframe_api";
-    // document.body.appendChild(tag);
-    // window.onYouTubeIframeAPIReady = () => setApiReady(true);
-    // return false
   }, []);
 
-  // ✅ Detect first user interaction
-  // useEffect(() => {
-  //   const handleFirstInteraction = () => setUserInteracted(true);
-  //   window.addEventListener("click", handleFirstInteraction, { once: true });
-  //   window.addEventListener("touchstart", handleFirstInteraction, { once: true });
-  //   return () => {
-  //     window.removeEventListener("click", handleFirstInteraction);
-  //     window.removeEventListener("touchstart", handleFirstInteraction);
-  //   };
-  // }, []);
 
   // ✅ Initialize YouTube players
   useEffect(() => {
@@ -132,7 +117,7 @@ export default function CustomReels({ targetId }: { targetId: string }) {
           {!apiReady?
             <picture className="relative">
               <img src={reel?.reelInfo?.thumb}/>
-              <Spinner size="w-5 h-5 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2" />
+              <Spinner size="w-5 h-5 z-[5] relative left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2" />
             </picture>
             :<div
               id={`yt-player-${index}`}

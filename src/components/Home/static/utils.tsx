@@ -82,7 +82,7 @@ export const footer=[
       icon:<span className="w-5 h-5 inline-block"><Youtube/></span>
     },
     {
-      name: "Twitter",
+      name: "X.com",
       link:'https://x.com/kabbikOfficial',
       icon: <span className="w-5 h-5 inline-block"><Twiter/></span>
     },

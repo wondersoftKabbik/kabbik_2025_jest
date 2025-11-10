@@ -1,7 +1,8 @@
 import { TimerOption } from "./audiobook.type";
 
 export const timerOptions: TimerOption[] = [
-  { label: "Stop", value: 0, isStop: true },
+  { label: "No Timer", value: 0, isStop: true },
+  { label: "5 min", value: 5 },
   { label: "10 min", value: 10 },
   { label: "20 min", value: 20 },
   { label: "30 min", value: 30 },

@@ -102,7 +102,7 @@ export function PasswordLoginForm(
                   অন্তত ৮ টি অক্ষর থাকতে হবে
                 </p> */}
               </div>
-              <div className='flex justify-between items-center'>
+              <div className='flex justify-between mt-1 items-center'>
                 <div className='flex items-start'>
                   <input type='checkbox'/>
                   <label className='text-[#5C5C5C] mt-0 text-cxs whitespace-nowrap mr-2 md:text-cs'>পরবর্তীতে স্বয়ংক্রিয় লগইন করুন</label>

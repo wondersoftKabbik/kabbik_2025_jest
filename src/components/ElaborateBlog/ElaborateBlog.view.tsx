@@ -34,11 +34,12 @@ const ElaborateBlog = ({ blog }: { blog: BlogInfoFromDB }) => {
 
   return (
     <div>
+                <div className='h-[110px] z-[1] mt-[-90px] bg-[#0E1D3F]'/>
         <div className='relative'>
            <div className={`bg-[url('https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/kabbikGalaryBg-min2-min.jpg')] bg-cover opacity-20 w-full h-[256px] absolute left-0 bottom-[-15px]`}></div>
           <div className="container mx-auto px-4 pt-[67px] pb-6 ">
            <div className="text-center max-w-4xl mx-auto">
-             <h1 className="font-bengali text-[35px]  font-bold text-white mb-6 leading-tight">
+             <h1 className="font-bengali lg:text-cxl  font-bold text-white mb-6 leading-tight">
                {decodeWord(blog?.title)}
              </h1>
              <p className="font-bengali text-2xl md:text-[24px] text-white/90 font-normal leading-relaxed">
@@ -47,10 +48,10 @@ const ElaborateBlog = ({ blog }: { blog: BlogInfoFromDB }) => {
            </div>
          </div>
         </div>
-        <div className={container('1306px')}>
+        <div className={container('1206px')}>
             <div className="mt-10">
                 <figure>
-                    <img className="max-w-[100%] rounded-[8px] max-h-[100%]" src={blog?.featured_image} />
+                    <img className="w-[100%] rounded-[8px] max-h-[100%]" src={blog?.featured_image} />
                 </figure>
                 <div className="text-white font-medium max-w-[1000px] mx-auto mt-5 text-[18px]">
                     {<Editor

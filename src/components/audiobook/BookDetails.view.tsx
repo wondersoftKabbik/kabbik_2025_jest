@@ -714,7 +714,7 @@ const AudiobookComponent = ({
         <div className=" flex max-md:mx-auto mr-4 items-center z-[5] justify-center p-1">
           <div className="w-full max-w-[500px] mx-auto">
             {/* Main Card Container */}
-            <div className="bg-white/95 rounded-[20px] md2:rounded-[40px]  overflow-hidden">
+            <div className="bg-[#E6F7FA] rounded-[20px] md2:rounded-[40px]  overflow-hidden">
               {/* Book Cover Section */}
               <div className="relative m-3 md1:m-7 mb-0">
                 <div 
@@ -722,7 +722,7 @@ const AudiobookComponent = ({
                   style={{
                     backgroundImage: `url('${bookId ? audioBookDetailsData?.thumb_path : ""}')`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center'
+                    backgroundPosition: 'top left'
                   }}
                 >
                   {/* Top Icons */}

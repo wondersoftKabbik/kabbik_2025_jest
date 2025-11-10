@@ -14,7 +14,7 @@ const ThreeDBook = ({bg,path}:{bg:string,path:string}) => {
                     <span></span>
                     <span></span>
                 </div>
-                <div className={`cover bg-[#f3f3f0] bg-center bg-cover bg-no-repeat`}
+                <div className={`cover  bg-[#f3f3f0] bg-center bg-cover bg-no-repeat`}
                     style={{
                         backgroundImage: `url(${bg})`,
                     }}

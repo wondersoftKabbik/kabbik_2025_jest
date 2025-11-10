@@ -54,7 +54,7 @@ const UpComing = () => {
             </div>
             <div className='relative  md:h-[420px] overflow-y-hidden overflow-y-scroll-none'>
                 
-                <figure className='absolute overflow-hidden   left-1/2 -translate-x-1/2 top-0 w-full max-h-[650px]'>
+                {/* <figure className='absolute overflow-hidden   left-1/2 -translate-x-1/2 top-0 w-full max-h-[650px]'> */}
                         {/* <div className='-rotate-45 w-[300px]  top-9  py-1 text-[20px] text-center absolute left-[-90px] bg-[#E53F79] z-10'>
                             ১১ জুলাই ২০২৫
                         </div>
@@ -71,7 +71,7 @@ const UpComing = () => {
                   >
                     <RightAngle />
                   </button>
-                </figure>
+                {/* </figure> */}
                 <div className={styles.slider_box}>
                   {/* Custom Arrows */}
                   
