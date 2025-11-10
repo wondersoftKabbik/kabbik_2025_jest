@@ -26,15 +26,17 @@ export default function SocialMediaSection() {
     <div className={`${container('1300px')} text-white z-[2] relative rounded-xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8`}>
       {/* Left illustration */}
       <div className="flex items-center justify-center w-full md:w-1/2">
-        <div className="relative">
+        <div className="relative max-w-full">
           <div className="absolute  rounded-full max-w-24 max-h-24 -top-6 -left-6 blur-xl opacity-40"></div>
-          <ProfilePagesvg/>
+          <div className="w-full h-full">
+            <ProfilePagesvg/>
+          </div>
         </div>
       </div>
 
       {/* Right content */}
       <div className="w-full md:w-1/2 space-y-5">
-        <h2 className="text-2xl md:text-3xl font-semibold text-center md:text-left">
+        <h2 className="text-xl md:text-3xl font-semibold text-center md:text-left">
           আমরা সোশ্যাল মিডিয়ায় রয়েছি
         </h2>
         <div className="space-y-3">
