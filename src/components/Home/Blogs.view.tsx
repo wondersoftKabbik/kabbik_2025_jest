@@ -56,7 +56,7 @@ const Blogs = ({blogs}:TBlogsProps) => {
         >
             {blogs?.list?.length ? (
             <div className={`${styles.blogsWrapper}`}>
-                {blogs.list?.slice(0,3).map((blog) => (
+                {blogs.list?.slice(1,3).map((blog) => (
                     <div key={blog.id} className="blog">
                         <Link href={`/blogs/${blog.slug}`}>
                             <div className={`${styles.blogWrapper} rounded`}>
@@ -95,8 +95,8 @@ const Blogs = ({blogs}:TBlogsProps) => {
                         </Link>
                     </div>
                 ))}
-                {blogs.list?.slice(0,1).map((blog) => (
-                    <div key={blog.id} className="blog">
+                {blogs.list?.slice(3,4).map((blog) => (
+                    <div key={blog.id} className="blog max-md:hidden">
                         <Link href={`/blogs/${blog.slug}`}>
                             <div className={`${styles.blogWrapper} rounded`}>
                             <div className={styles.featureImageContainer}>

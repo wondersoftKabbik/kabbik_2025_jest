@@ -484,146 +484,24 @@ const SubscribeComponent = ({
             onClose={() => setOpenPaymentModal(false)}
             // className={(blNumberModal.show || blOtpModal.show )?styles.blPaymentBg:''}
           >
-            <div className="bg-[#0E1D3F] inline-block h-[100%] rounded-[8px] max-h-[96vh] overflow-y-auto">
-              {/* <h2>
-                  {isMsisdnTakerModalOpened ?
-                      "Enter your GP number" :
-                      blNumberModal.show ? "Pay with your mobile balance":
-                      blOtpModal.show ?"Enter Your OTP":
-                      "Select Payment Method"
-                  }
-              </h2> */}
-              {isCityTouch?(
-               <div
-              className="modal-body text-center d-flex flex-column"
-              style={{ gap: "1rem" }}
-            >
-              <CityTouchPayment
-                options={[]}
-                callbacks={[
-                   // { methodName: "stripe", payment: stripePayment }
-                ]}
-                promoData={promoData}
-                setPromoData={setPromoData}
-                isPromocodeApplied={"reduce_price" in subscriptionPackData}
-                addPromocodeHandler={promocodeHandler}
-                removePromocodeHandler={removeHandler}
-                subscriptionPackId={subscriptionPackData.id}
-                price={
-                  "reduce_price" in subscriptionPackData
-                    ? subscriptionPackData.rawPrice -
-                      subscriptionPackData.reduce_price!
-                    : subscriptionPackData?.rawPrice
-                }
-                reducePrice={subscriptionPackData?.reduce_price??0}
-                isMsisdnSubmitted={isMsisdnSubmitted}
-                setIsMsisdnTakerModalOpened={setIsMsisdnTakerModalOpened}
-              />
-            </div>
-            ):
-              isMsisdnTakerModalOpened?(
-                
-                <MsisdnTracker
-                  value={msisdnRef.current}
-                  onChange={(e:any) => {
-                    setMsisdn((prev) => e.target.value);
-                    msisdnRef.current = e.target.value;
-                    setIsNextButtonPressed(false);
-                  }}
-                  isMsisdnValid={isMsisdnValid}
-                  isNextButtonPressed={isNextButtonPressed}
-                  BtnBoxClass={' bg-[#18A7EF] '}
-                  label={"Enter your GP number"}
-                  errorMessage="Enter a valid grameen phone number!"
-                  handleNext={() => {
-                    setIsNextButtonPressed(true);
-                    if (isMsisdnValid) {
-                      gpPayment();
-                      isMsisdnSubmitted.current = true;
-                      // setIsMsisdnTakerModalOpened(false);
+            <div className="tiny_scroll_bar2">
+              <div className="bg-[#0E1D3F] inline-block  h-[100%] rounded-[8px] max-h-[96vh] overflow-y-auto">
+                {/* <h2>
+                    {isMsisdnTakerModalOpened ?
+                        "Enter your GP number" :
+                        blNumberModal.show ? "Pay with your mobile balance":
+                        blOtpModal.show ?"Enter Your OTP":
+                        "Select Payment Method"
                     }
-                  }}
-                />
-              ):blNumberModal.show?(
-                <MsisdnTracker
-                  value={blNumberModal.value}
-                  onChange={(e:any) => {
-                    setBlNumberModal({value: e.target.value,show:blNumberModal.show});
-                    // msisdnRef.current = e.target.value;
-                    setIsNextButtonPressed(false);
-                  }}
-                  isMsisdnValid={isValidBLNumber(blNumberModal.value)}
-                  isNextButtonPressed={isNextButtonPressed}
-                  errorMessage="Enter a valid Banglalink number!"
-                  label={"Enter your Banglalink number"}
-                  inputBoxClass={styles.blPaymentInputBg}
-                  BtnBoxClass={styles.BtnBoxClass}
-                  handleNext={() => {
-                    setIsNextButtonPressed(true);
-                    if (isValidBLNumber(blNumberModal.value)) {
-                      handleBlPayment();
-                      // isMsisdnSubmitted.current = true;
-                      // setIsMsisdnTakerModalOpened(false);
-                    }
-                  }}
-                />
-              ):blOtpModal.show?(
-               <div className="flex flex-col items-center justify-center p-6 bg-gray-900/70 rounded-2xl shadow-lg backdrop-blur-md text-white w-full max-w-md mx-auto">
-                  <p className="text-center text-lg font-medium mb-4">
-                    An OTP was sent to your number
-                  </p>
-                  <div className="mx-auto mb-6">
-                    <OtpInput
-                      value={blOtpModal.value}
-                      onChange={(e) => setBlOtpModal({ value: e, show: blOtpModal.show })}
-                      numInputs={5}
-                      renderSeparator={<span className="me-2"></span>}
-                      inputType="tel"
-                      inputStyle={styles.otpInputField}
-                      shouldAutoFocus={true}
-                      renderInput={(props) => <input {...props} />}
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className={`w-full py-2 rounded-lg bg-pink-600 hover:bg-pink-700 transition-all duration-200 font-semibold shadow-md ${styles.BtnBoxClass}`}
-                    onClick={() => {
-                      verifyConsent(
-                        normalizeBLNumber(blNumberModal.value) ?? "",
-                        blOtpModal.value,
-                        navigate,
-                        (value) => {
-                          setBlLoader(value);
-                        }
-                      );
-                    }}
-                  >
-                    Submit OTP
-                  </button>
-                </div>
-              ):
-              (
-              <div
-                className="modal-body max-w-[97vw] overflow-x-hidden text-center d-flex flex-column"
-                // style={{ gap: "1rem" }}
+                </h2> */}
+                {isCityTouch?(
+                <div
+                className="modal-body  text-center d-flex flex-column"
+                style={{ gap: "1rem" }}
               >
-                <PaymentOptions
-                  options={paymentMethodData.map((option: any) => ({
-                    methodName: option.name,
-                    logoUrl: option.thumbnail,
-                    apiUrl: option.url,
-                    vat: Number(subscriptionPackData.rawPrice) *  Number(option.vat_percentage),
-                    extraChargeFor: option.extra_charge_for,
-                  }))}
+                <CityTouchPayment
+                  options={[]}
                   callbacks={[
-                    { methodName: "bkash", payment: bkashPayment },
-                    { methodName: "bkashOnetime", payment: bkashOneTimePayment },
-                    { methodName: "nagad", payment: nagadPayment },
-                    { methodName: "upay", payment: upayPayment },
-                    { methodName: "surjopay", payment: aamarpayPayment },
-                    { methodName: "robi", payment: robiPayment },
-                    { methodName: "GPDCB", payment: gpPayment },
-                    { methodName: "BLDCB", payment: handleBlPayment },
                     // { methodName: "stripe", payment: stripePayment }
                   ]}
                   promoData={promoData}
@@ -631,21 +509,144 @@ const SubscribeComponent = ({
                   isPromocodeApplied={"reduce_price" in subscriptionPackData}
                   addPromocodeHandler={promocodeHandler}
                   removePromocodeHandler={removeHandler}
+                  subscriptionPackId={subscriptionPackData.id}
                   price={
                     "reduce_price" in subscriptionPackData
                       ? subscriptionPackData.rawPrice -
                         subscriptionPackData.reduce_price!
                       : subscriptionPackData?.rawPrice
                   }
-                  isFreeTrial={subscriptionPackData?.is_free_trail}
-                  reducePrice={subscriptionPackData?.reduce_price}
+                  reducePrice={subscriptionPackData?.reduce_price??0}
                   isMsisdnSubmitted={isMsisdnSubmitted}
                   setIsMsisdnTakerModalOpened={setIsMsisdnTakerModalOpened}
                 />
               </div>
-              )}
+              ):
+                isMsisdnTakerModalOpened?(
+                  
+                  <MsisdnTracker
+                    value={msisdnRef.current}
+                    onChange={(e:any) => {
+                      setMsisdn((prev) => e.target.value);
+                      msisdnRef.current = e.target.value;
+                      setIsNextButtonPressed(false);
+                    }}
+                    isMsisdnValid={isMsisdnValid}
+                    isNextButtonPressed={isNextButtonPressed}
+                    BtnBoxClass={' bg-[#18A7EF] '}
+                    label={"Enter your GP number"}
+                    errorMessage="Enter a valid grameen phone number!"
+                    handleNext={() => {
+                      setIsNextButtonPressed(true);
+                      if (isMsisdnValid) {
+                        gpPayment();
+                        isMsisdnSubmitted.current = true;
+                        // setIsMsisdnTakerModalOpened(false);
+                      }
+                    }}
+                  />
+                ):blNumberModal.show?(
+                  <MsisdnTracker
+                    value={blNumberModal.value}
+                    onChange={(e:any) => {
+                      setBlNumberModal({value: e.target.value,show:blNumberModal.show});
+                      // msisdnRef.current = e.target.value;
+                      setIsNextButtonPressed(false);
+                    }}
+                    isMsisdnValid={isValidBLNumber(blNumberModal.value)}
+                    isNextButtonPressed={isNextButtonPressed}
+                    errorMessage="Enter a valid Banglalink number!"
+                    label={"Enter your Banglalink number"}
+                    inputBoxClass={styles.blPaymentInputBg}
+                    BtnBoxClass={styles.BtnBoxClass}
+                    handleNext={() => {
+                      setIsNextButtonPressed(true);
+                      if (isValidBLNumber(blNumberModal.value)) {
+                        handleBlPayment();
+                        // isMsisdnSubmitted.current = true;
+                        // setIsMsisdnTakerModalOpened(false);
+                      }
+                    }}
+                  />
+                ):blOtpModal.show?(
+                <div className="flex flex-col items-center justify-center p-6 bg-gray-900/70 rounded-2xl shadow-lg backdrop-blur-md text-white w-full max-w-md mx-auto">
+                    <p className="text-center text-lg font-medium mb-4">
+                      An OTP was sent to your number
+                    </p>
+                    <div className="mx-auto mb-6">
+                      <OtpInput
+                        value={blOtpModal.value}
+                        onChange={(e) => setBlOtpModal({ value: e, show: blOtpModal.show })}
+                        numInputs={5}
+                        renderSeparator={<span className="me-2"></span>}
+                        inputType="tel"
+                        inputStyle={styles.otpInputField}
+                        shouldAutoFocus={true}
+                        renderInput={(props) => <input {...props} />}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className={`w-full py-2 rounded-lg bg-pink-600 hover:bg-pink-700 transition-all duration-200 font-semibold shadow-md ${styles.BtnBoxClass}`}
+                      onClick={() => {
+                        verifyConsent(
+                          normalizeBLNumber(blNumberModal.value) ?? "",
+                          blOtpModal.value,
+                          navigate,
+                          (value) => {
+                            setBlLoader(value);
+                          }
+                        );
+                      }}
+                    >
+                      Submit OTP
+                    </button>
+                  </div>
+                ):
+                (
+                <div
+                  className="modal-body  max-w-[97vw] overflow-x-hidden text-center d-flex flex-column"
+                  // style={{ gap: "1rem" }}
+                >
+                  <PaymentOptions
+                    options={paymentMethodData.map((option: any) => ({
+                      methodName: option.name,
+                      logoUrl: option.thumbnail,
+                      apiUrl: option.url,
+                      vat: Number(subscriptionPackData.rawPrice) *  Number(option.vat_percentage),
+                      extraChargeFor: option.extra_charge_for,
+                    }))}
+                    callbacks={[
+                      { methodName: "bkash", payment: bkashPayment },
+                      { methodName: "bkashOnetime", payment: bkashOneTimePayment },
+                      { methodName: "nagad", payment: nagadPayment },
+                      { methodName: "upay", payment: upayPayment },
+                      { methodName: "surjopay", payment: aamarpayPayment },
+                      { methodName: "robi", payment: robiPayment },
+                      { methodName: "GPDCB", payment: gpPayment },
+                      { methodName: "BLDCB", payment: handleBlPayment },
+                      // { methodName: "stripe", payment: stripePayment }
+                    ]}
+                    promoData={promoData}
+                    setPromoData={setPromoData}
+                    isPromocodeApplied={"reduce_price" in subscriptionPackData}
+                    addPromocodeHandler={promocodeHandler}
+                    removePromocodeHandler={removeHandler}
+                    price={
+                      "reduce_price" in subscriptionPackData
+                        ? subscriptionPackData.rawPrice -
+                          subscriptionPackData.reduce_price!
+                        : subscriptionPackData?.rawPrice
+                    }
+                    isFreeTrial={subscriptionPackData?.is_free_trail}
+                    reducePrice={subscriptionPackData?.reduce_price}
+                    isMsisdnSubmitted={isMsisdnSubmitted}
+                    setIsMsisdnTakerModalOpened={setIsMsisdnTakerModalOpened}
+                  />
+                </div>
+                )}
+              </div>
             </div>
-           
           </CommonModal>
           <CommonModal
             isOpen={showTrailModal}

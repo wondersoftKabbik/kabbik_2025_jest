@@ -24,7 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { PageProps, UserProfileInfo } from "./static/audiobook.type";
-import {  BookIcon, ChevronRight, ExpandIcon, X } from "lucide-react";
+import {  BookIcon, ChevronRight, Clock, ExpandIcon, Headphones, X } from "lucide-react";
 import {  convertToBanglaDigits, GetFloatNum, handleShare, scrollToTop, textSlice } from "@/helpers/commonFunction";
 import LoveIcon from "@/svgs/LoveIcon";
 import LinkIcon from "@/svgs/LinkIcon.svg";
@@ -48,6 +48,7 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
 import { siteConfig } from "@/config/config";
 import CityTouchPayment from "../CityTouchPayment/CityTouchPayment.view";
+import PlayIcon from "@/svgs/PlayIcon.svg";
 // import SleeperTimer from "./SleeperTime.view";
 // import PaymentOptions from "../Subscription/PaymentOptions.view";
 
@@ -735,7 +736,7 @@ const AudiobookComponent = ({
                         <LoveIcon fill={isFavorite?'#D14874':'white'}/>
                       </span>
                     </div>
-                    <div onClick={handleShare} className="w-8 h-8 bg-gray-500/60 rounded-full flex items-center justify-center">
+                    <div onClick={handleShare} className="w-8 h-8 0/60 rounded-full flex items-center justify-center">
                       <span className="w-4 h-4 text-white inline-block" >
                         <ShareIcon />
                       </span>
@@ -756,77 +757,46 @@ const AudiobookComponent = ({
                 </div>
               </div>
 
-              {/* Premium Content Section */}
               <div className="bg_gradient_bg rounded-t-[32px] p-3  md2:p-9">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-1 ">
-                    <span className="text-cs2 md:text-clg font-medium">{audiobookData?.play_count}</span>
-                    <span className="text-cs2 md:text-clg">🎧</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className=" text-cs2 md:text-clg font-medium">{GetFloatNum(audiobookData?.rating,1)}</span>
-                    <span className="w-4 md:w-6 h-6 fill-audio-gold text-audio-gold">
-                      <Star  />
-                    </span>
-                  </div>
-                </div>
-                {/* Premium Header */}
-                <div className="text-center mb-3 md:mb-8">
-                  <h2 className="text-cs2 md2:text-clg font-bold text-black mb-2">
-                    {isSubscribed ? (
-                            <>প্রিমিয়াম ব্যবহারকারী</>
-                        ) : audioBookDetailsData?.isPurchased === 1 ? (
-                            <>কনটেন্ট কেনা হয়েছে</>
-                        ) : audioBookDetailsData?.price === 0 ? (
-                            <>ফ্রি</>
-                        ) : (
-                            <>প্রিমিয়াম কনটেন্ট</>
-                        )}
-                  </h2>
-                  <div className="flex justify-center gap-3">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="w-4 md:w-6 h-6 fill-audio-star text-audio-star">
-                        <Star key={i}  />
+                <div className="w-full max-w-md">
+                  <div className=" ">
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-3 gap-6 mb-8">
+                      {/* Listens */}
+                      <div className="flex  items-center ">
+                        <div className="w-5 h-5  rounded-full flex items-center justify-center">
+                          <Headphones className="w-5 h-5 text-gray-700" strokeWidth={2} />
+                        </div>
+                        <span className="text-cn mt-0 ml-1 font-medium text-gray-900">92k listens</span>
+                        {/* <span className="text-sm text-gray-500">listens</span> */}
+                      </div>
+
+                      {/* Duration */}
+                      <div className="flex items-center ">
+                        <div className="w-5 h-5  rounded-full flex items-center justify-center">
+                          <Clock className="w-5 h-5 text-gray-700" strokeWidth={2} />
+                        </div>
+                        <span className="text-cn ml-1 font-medium mt-0 pt-0 text-gray-900">15h 10m</span>
+                        {/* <span className="text-sm text-gray-500">duration</span> */}
+                      </div>
+
+                      {/* Rating */}
+                      <div className="flex  items-center ">
+                        <div className="w-5 h-5  rounded-full flex items-center justify-center">
+                          <Star  />
+                        </div>
+                        <span className="text-cn ml-1 font-medium mt-0 pt-0 text-gray-900">4.8</span>
+                        {/* <span className="text-sm text-gray-500">rating</span> */}
+                      </div>
+                    </div>
+
+                    {/* Action Button */}
+                    <button className="w-full mb-4  text-gray font-semibold py-4 px-6 rounded-full  transition-colors duration-200 flex items-center justify-center space-x-2 shadow-md">
+                      <span className="w-5 h-5 inline-block">
+                        <PlayIcon   />
                       </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Subscription Options */}
-                <div className="space-y-2 mb-3 md:mb-8">
-                  {/* Premium Subscription */}
-                  <div className="red_gradient_bg rounded-[30px] py-3 flex justify-around shadow-lg">
-                    <div className="flex items-center gap-1 md2:gap-4">
-                      <div className="w-6 h-6 bg-white rounded-full flex  items-center justify-center flex-shrink-0">
-                        <div className="flex">
-                          <ChevronRight className="w-5 h-5 text-[#7E1663]" />
-                          <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
-                        </div>
-                      </div>
-                      <p className="text-white text-center text-cs  md2:text-cs2  font-semibold leading-tight flex-1">
-                       <Link href={'/subscribe'}> সাবস্ক্রাইব করুন অ্যাড-ফ্রি প্রিমিয়াম অ্যাক্সেসের জন্য</Link>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Or Divider */}
-                  <div className="text-center ">
-                    <span className="text-black text-cs2 md:text-clg font-normal">অথবা</span>
-                  </div>
-
-                  {/* Rental Option */}
-                  <div onClick={handleShowPayModal} className="bg-[#7E1663] cursor-pointer rounded-[30px] py-3 flex justify-around shadow-lg">
-                    <div className="flex items-center justify-around gap-1">
-                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                        <div className="flex">
-                          <ChevronRight className="w-5 h-5 text-[#7E1663]" />
-                          <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
-                        </div>
-                      </div>
-                      <p className="text-white text-cs2 md2:text-cn2 font-semibold leading-tight flex-1">
-                        রেন্ট নিন ৬০ দিনের জন্য, মাত্র {convertToBanglaDigits(audioBookDetailsData?.price)} টাকা
-                      </p>
-                    </div>
+                      <span>এখন শুনুন</span>
+                    </button>
                   </div>
                 </div>
 
@@ -905,7 +875,6 @@ const AudiobookComponent = ({
                       index={index}
                       isPlaying={isPlaying}
                       togglePlay={(i,episodeId)=>{
-                        console.log("working")
                         if(hasAccess(i)){
                           togglePlayList(i,episodeId)
                         }else{
@@ -1123,3 +1092,71 @@ const AudiobookComponent = ({
 export default dynamic(() => Promise.resolve(AudiobookComponent), {
   ssr: false,
 });
+
+
+{/* <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-1 ">
+                    <span className="text-cs2 md:text-clg font-medium">{audiobookData?.play_count}</span>
+                    <span className="text-cs2 md:text-clg">🎧</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className=" text-cs2 md:text-clg font-medium">{GetFloatNum(audiobookData?.rating,1)}</span>
+                    <span className="w-4 md:w-6 h-6 fill-audio-gold text-audio-gold">
+                      <Star  />
+                    </span>
+                  </div>
+                </div>
+                <div className="text-center mb-3 md:mb-8">
+                  <h2 className="text-cs2 md2:text-clg font-bold text-black mb-2">
+                    {isSubscribed ? (
+                            <>প্রিমিয়াম ব্যবহারকারী</>
+                        ) : audioBookDetailsData?.isPurchased === 1 ? (
+                            <>কনটেন্ট কেনা হয়েছে</>
+                        ) : audioBookDetailsData?.price === 0 ? (
+                            <>ফ্রি</>
+                        ) : (
+                            <>প্রিমিয়াম কনটেন্ট</>
+                        )}
+                  </h2>
+                  <div className="flex justify-center gap-3">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="w-4 md:w-6 h-6 fill-audio-star text-audio-star">
+                        <Star key={i}  />
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2 mb-3 md:mb-8">
+                  <div className="red_gradient_bg rounded-[30px] py-3 flex justify-around shadow-lg">
+                    <div className="flex items-center gap-1 md2:gap-4">
+                      <div className="w-6 h-6 bg-white rounded-full flex  items-center justify-center flex-shrink-0">
+                        <div className="flex">
+                          <ChevronRight className="w-5 h-5 text-[#7E1663]" />
+                          <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
+                        </div>
+                      </div>
+                      <p className="text-white text-center text-cs  md2:text-cs2  font-semibold leading-tight flex-1">
+                       <Link href={'/subscribe'}> সাবস্ক্রাইব করুন অ্যাড-ফ্রি প্রিমিয়াম অ্যাক্সেসের জন্য</Link>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="text-center ">
+                    <span className="text-black text-cs2 md:text-clg font-normal">অথবা</span>
+                  </div>
+
+                  <div onClick={handleShowPayModal} className="bg-[#7E1663] cursor-pointer rounded-[30px] py-3 flex justify-around shadow-lg">
+                    <div className="flex items-center justify-around gap-1">
+                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="flex">
+                          <ChevronRight className="w-5 h-5 text-[#7E1663]" />
+                          <ChevronRight className="w-5 h-5 text-[#7E1663] -ml-3" />
+                        </div>
+                      </div>
+                      <p className="text-white text-cs2 md2:text-cn2 font-semibold leading-tight flex-1">
+                        রেন্ট নিন ৬০ দিনের জন্য, মাত্র {convertToBanglaDigits(audioBookDetailsData?.price)} টাকা
+                      </p>
+                    </div>
+                  </div>
+                </div> */}

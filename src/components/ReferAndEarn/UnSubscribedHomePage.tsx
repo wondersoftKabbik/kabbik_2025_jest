@@ -35,7 +35,7 @@ const UnSubscribedHomePage = ({data}:{data:ReferralData}) => {
             </div>
 
             {/* CTA Button */}
-            <button onClick={()=>router.push(paths.subscribe)} className="w-full bg-[#D32F2F] hover:bg-[#B71C1C] active:bg-[#9A0007] transition-all duration-200 text-white text-lg sm:text-clg py-2 px-4 sm:px-6 rounded-[4px] border border-[#AAA]/30 shadow-lg font-normal">
+            <button onClick={()=>router.push(paths.subscribe)} className="w-full gradient_subscribe transition-all duration-200 text-white text-lg sm:text-clg py-2 px-4 sm:px-6 rounded-[4px] border border-[#AAA]/30 shadow-lg font-normal">
               এখনই সাবস্ক্রাইব করুন
             </button>
           </div>

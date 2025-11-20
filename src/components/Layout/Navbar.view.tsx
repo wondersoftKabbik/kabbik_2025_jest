@@ -129,7 +129,7 @@ const Navbar = (props:TNavbar) => {
                     </li>
                     <li 
                         onClick={()=>setShowCategories(!showCategories)}
-                        className={(isCategoryPage(pathname)?'active_nav_item':'')+'tiny_scroll_bar2 relative cursor-pointer'}
+                        className={(isCategoryPage(pathname)?'active_nav_item':'')+' tiny_scroll_bar2 relative cursor-pointer'}
                         ref={boxRef}
                     >
                         {/* <Link href={'/'} className='flex' onClick={()=>{setShowCategories(!showCategories)}}> */}

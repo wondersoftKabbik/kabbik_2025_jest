@@ -33,5 +33,5 @@ export default async function SingleBlogPage({
   const { slug } = params;
   const data = await getApprovedBlogBySlug(slug);
   const blog = data.data;
-  return !blog ? <PageNotFound /> : <ElaborateBlog rawJson={blog} />;
+  return !blog ? <PageNotFound /> : <ElaborateBlog blog={blog} />;
 }

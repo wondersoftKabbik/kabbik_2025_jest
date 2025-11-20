@@ -328,11 +328,11 @@ const PaymentOptions = ({
         <label htmlFor="termsPrivacy" className="d-flex items-start">
           <div className="text-white text-cxs md:text-cs2">
             আমি{" "} 
-            <Link href={"/terms&condition"} className="text-[#0200FF]">
+            <Link href={"/terms&condition"} className="text-[#D24874]">
               শর্তাবলী
             </Link>{" "}
             এবং{" "}
-            <Link href={"/returnpolicy"} className="text-[#0200FF]">
+            <Link href={"/returnpolicy"} className="text-[#D24874]">
               রিফান্ড{" "}
             </Link>
             নীতির সাথে একমত
