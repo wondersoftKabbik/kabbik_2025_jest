@@ -9,22 +9,23 @@ import { useEffect, useState } from "react";
 // import { toLocalMsisdn } from "@/helper/commonFunction";
 
 interface PageProps {
-  referenceId: string;
-  statusId: string;
+//   referenceId: string;
+//   statusId: string;
 //   status:string;
-  message: string;
+//   message: string;
 }
 
 export default function PaymentStatusComponent({
-  referenceId,
-  statusId,
+//   referenceId,
+//   statusId,
 //   status,
-  message,
+//   message,
 }: PageProps) {
   const searchParams = useSearchParams();
   const [showLoginModal,setShowLoginModal]=useState(false);
   const phone = searchParams.get('phone'); 
-    const status = searchParams.get('status');
+    const referenceId = searchParams.get('referenceId');
+    const message = searchParams.get('message');
 
 
   useEffect(()=>{
