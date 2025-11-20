@@ -3,7 +3,7 @@
 import React, { useMemo } from "react";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 
-type Props = {
+type Props = { 
   rawJson: any;
 };
 
