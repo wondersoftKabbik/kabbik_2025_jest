@@ -23,7 +23,7 @@ export default function ReferAndEarn() {
           {/* Right side - Content */}
           <div className="md:w-[55%]">
             {/* Main header with gradient background */}
-            <Link href={paths.refer_earn} className="flex items-center justify-center btn-gradient-2 px-2 md:px-5 py-2 rounded-[8px]">
+            <Link href={paths.refer_earn} className="flex items-center justify-center subscribe_listen px-2 md:px-5 py-2 rounded-[8px]">
                 <img src="https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/image.svg" className="w-7 mr-1 md:mr-3"/>
                 <h1 className="text-white text-center font-inter font-semibold text-cs2 sm:text-clg md:text-cxl">
                     রেফার করুন এবং উপার্জন করুন!

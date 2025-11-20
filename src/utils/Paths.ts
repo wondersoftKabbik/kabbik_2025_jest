@@ -24,7 +24,9 @@ export const paths={
     refer_dashboard:`/profile/refer-earn/dashboard`,
     about:`/about`,
     reels:`/reels`,
-    leaderboard:`/leaderboard`
+    leaderboard:`/leaderboard`,
+    top10:`/top-ten`,
+    payment_status:`/payment-status`
     // home:'',
 
 }

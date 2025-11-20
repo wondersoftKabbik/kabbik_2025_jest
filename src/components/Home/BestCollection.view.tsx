@@ -34,7 +34,7 @@ const BestCollection = (props:TBestCollection) => {
             // centeredSlides={true}
             modules={[Navigation, Autoplay,Pagination]}
             autoplay={{
-                delay: 3000, // 1.5 seconds
+                delay: 7000, // 1.5 seconds
                 disableOnInteraction: false, // keeps autoplay even after user interaction
             }}
             navigation={{
@@ -92,10 +92,10 @@ const BestCollection = (props:TBestCollection) => {
                                         </div>
                                         <h6 className='text-cn md:text-cxl lg2:text-[33px] mt-3 sm:mt-8 font-[600]'>{item.heading}</h6>
                                         <p className='text-cs md:text-cn lg2:text-[22px] my-4 sm:my-10 mb-5 sm:mb-20'>{item.para}</p>
-                                        <div className='bg-white rounded-[4px] text-black px-1 py-1 sm:px-4 sm:py-2 max-w-[450px] w-[45vw] xs:w-[40vw] sm:w-[30vw] '>
+                                        <div className='bg-white rounded-[4px] text-black px-1 py-1 sm:px-4 sm:py-2.5 max-w-[400px] w-[45vw] xs:w-[40vw] sm:w-[25vw] '>
                                             <Link className='flex items-center  justify-around font-[500] sm:font-[600] text-cxs md:text-cs2 lg2:text-[18px]' href={'/subscribe'} >
                                                 সাবস্ক্রাইব করুন এবং শুনুন  
-                                                <span className='max-w-[15px] md:max-w-[25px] lg2:max-w-[37px] inline-block '>
+                                                <span className='max-w-[10px] md:max-w-[12px] lg2:max-w-[15px] inline-block '>
                                                     <RightArrow/>
                                                 </span>
                                             </Link>

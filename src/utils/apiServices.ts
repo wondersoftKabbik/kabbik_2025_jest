@@ -413,7 +413,9 @@ export const postSendOtp = async (msisdn: any,set_password?:boolean) => {
       if(data.message!=="password settled" && data?.created===true){
         showToast("OTP Sent!",TtoastType?.success,3000)
       }else{
-        showToast("Something Went Wrong!",TtoastType?.error,3000)
+        if(data.message!=="password settled"){
+          data.message!=="password settled"
+        }
       }
     }
     return data;

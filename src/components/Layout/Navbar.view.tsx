@@ -113,8 +113,8 @@ const Navbar = (props:TNavbar) => {
 
 
     return (
-    <nav className='w-full bg-[#D9D9D91A] relative z-[11]'>
-        <div className='max-w-[1440px]  flex justify-between items-center px-4 py-2 mx-auto'>
+    <nav className={` w-full bg-[#D9D9D91A] relative z-[11]`}>
+        <div className='max-w-[1300px]  flex justify-between items-center px-4 py-2 mx-auto'>
             <div className='flex items-center gap-4'>
                 <Link href={'/'} >
                     <figure className='mr-3'>
@@ -129,7 +129,7 @@ const Navbar = (props:TNavbar) => {
                     </li>
                     <li 
                         onClick={()=>setShowCategories(!showCategories)}
-                        className={(isCategoryPage(pathname)?'active_nav_item':'')+' relative cursor-pointer'}
+                        className={(isCategoryPage(pathname)?'active_nav_item':'')+'tiny_scroll_bar2 relative cursor-pointer'}
                         ref={boxRef}
                     >
                         {/* <Link href={'/'} className='flex' onClick={()=>{setShowCategories(!showCategories)}}> */}
@@ -190,7 +190,7 @@ const Navbar = (props:TNavbar) => {
                 {(!profile?.is_subscribed && profile?.id && profile?.id!==2820) ?<CommonButton
                     isLoading={false}
                     // handleClick={handleLoginClick}
-                    addiTionalClass='max-xxs2:hidden'
+                    addiTionalClass='max-xxs2:hidden gradient_subscribe'
                     disabled={false}
                 >
                     <Link href={'/subscribe'}>সাবস্ক্রাইব</Link>
@@ -222,9 +222,9 @@ const Navbar = (props:TNavbar) => {
                     লগ ইন
                 </CommonButton>}
                 
-                <span onClick={()=>setMobileMenu(!mobileMenu)} className={'w-11 h-7 inline-block '+style.menuIcon}>
+                {pathname===''?'':<span onClick={()=>setMobileMenu(!mobileMenu)} className={`w-11 h-7  inline-block `+style.menuIcon}>
                     <MenuIcons color='white'/>
-                </span>
+                </span>}
             </div>
         </div>
         <CustomDrawer open={mobileMenu} position='left' onClose={()=>{setMobileMenu(!mobileMenu)}}>

@@ -13,6 +13,9 @@ import dynamic from 'next/dynamic';
 import Skeleton from '../Skeleton/Skeleton';
 import BigVideoPlayerIcon from '@/svgs/BigVideoPlayer';
 import Reels from './Reels.view';
+import RightArrowIcon from '@/svgs/RightArrowIcon';
+import { paths } from '@/utils/Paths';
+import { useRouter } from 'next/navigation';
 
 const TopTen = dynamic(() => import("./TopTen.view"), {
   ssr: false, // optional: disable server-side rendering
@@ -106,6 +109,7 @@ const Blogs = dynamic(() => import("./Blogs.view"), {
 
 const HomeComponent = (props:THomeProps) => {
     const {homeData,topBannerData,blogs}=props;
+    const router=useRouter();
     // logic separation
     const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats,topVideo,middleVideo,lastVideo,goToNext} = useHomeComponent({homeData});
     
@@ -125,10 +129,10 @@ const HomeComponent = (props:THomeProps) => {
         <div>
           <div className={topTenStyles.heading_container+" my-8  text-white max-w-[1300px] w-[97%] md:w-[90%] mx-auto"}>
               <h3 className={topTenStyles.heading}>শীর্ষ ১০</h3>
-              {/* <div className={topTenStyles.see_all}>
+              <div onClick={()=>router.push(paths.top10)} className={topTenStyles.see_all}>
                   সব দেখুন
                   <span className={topTenStyles.arrow}><RightArrowIcon/></span>
-              </div> */}
+              </div>
           </div>
             <div className='bg-ash_blue'>
             {/* <Link href={'/home_category_list/নতুন'}> */}
@@ -345,7 +349,7 @@ const HomeComponent = (props:THomeProps) => {
         </div>
 
         <div className='relative'>
-            <PopularCategories/>
+            <PopularCategories data={homeData.data}/>
             <div className="circular_gradient left-1/2 -translate-x-1/2 bottom-[10%] w-[30vw] h-[30vw] absolute rounded-[50%] "></div>
         </div>
 
@@ -442,10 +446,10 @@ const HomeComponent = (props:THomeProps) => {
               <p className='gradient-text text-lg sm:text-cxl md:text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.videos[0].heading}</p>
               <p className='text-white text-cs2 sm:text-cn2 md:text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.videos[0].para}</p>
               <Link href={'/subscribe'}>
-                <div className="flex items-center btn-gradient-1 px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[350px] w-[auto] mx-auto">
+                <div className="flex items-center subscribe_listen px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[350px] w-[auto] mx-auto">
                   <span className='max-w-[300px] flex'>
                       <span className="mr-4 w-6 sm:w-9 md:w-11 h-6 sm:h-7 md:h-8 inline-block">
-                      <PlayerIcon />
+                      <PlayerIcon color='#68233A' />
                     </span>
                     <p className="my-0 text-[white] text-cs2 sm:text-cn2 md:text-[20px]">সাবস্ক্রাইব করুন এবং শুনুন</p>
                   </span>

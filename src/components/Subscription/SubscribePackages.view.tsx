@@ -79,14 +79,12 @@ const SubscribePackage = ({
 
   return (
     <div
-      // className={`col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`}
-      className="my-2"
+      className="my-2 z-[3] relative"
       onClick={handleClick}
     >
        <div className={`p-1 md:p-3  ${styles.cardBg}`}>
       {data?.banner_name ?(
         <p className={styles.corner_highlight}>
-        {/* <picture><img src={dealIcon?.[data?.banner_name]}/></picture> */}
         {decodeURIComponent(data?.banner_name ?? '')}
       </p>
       ):''}
@@ -94,7 +92,6 @@ const SubscribePackage = ({
         <p >
           {normalizeBillingPeriod(data?.name)?.name}
         </p>
-        {/* <small>{normalizeBillingPeriod(data?.name)?.day}</small> */}
       </div>
       <div className={"relative w-full max-w-sm "}>
         {/* Main Card */}
@@ -126,7 +123,7 @@ const SubscribePackage = ({
                 </div>
                 <div>
                   <h3 className="text-white font-medium text-cxs md:text-cs leading-tight line-clamp-1">{item?.title}</h3>
-                  <p className="text-gray-400 text-cxs md:text-cs mt-1 line-clamp-1">{item?.sub_title}</p>
+                  {item?.sub_title?<p className="text-gray-400 text-cxs md:text-cs mt-1 line-clamp-1">{item?.sub_title}</p>:''}
                 </div>
             </div>
             ))}
@@ -135,35 +132,13 @@ const SubscribePackage = ({
           </div>
           
           {/* Subscribe Button */}
-          <button className="w-full bg-[#FF8798] hover:bg-[#FF0500] text-white font-semibold text-cs md:text-cn  py-1 md:py-2.5 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200">
+          <button className="w-full bg-[#FF8798] gradient_subscribe2 text-white font-semibold text-cs md:text-cn  py-1 md:py-2.5 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200">
             সাবস্ক্রাইব
           </button>
         </div>
       </div>
       
-      {/* <div className={styles.pack_name}>
-        <p >
-          {normalizeBillingPeriod(data?.name)?.name}
-        </p>
-        <small>{normalizeBillingPeriod(data?.name)?.day}</small>
-      </div>
       
-      <div className={styles.middle_card}>
-        <div
-          className={''}
-        >
-          <p>{convertToBanglaDigits(data?.amount)}</p>
-          {data?.isOnetime === 0 && (
-            <small>(অটো রিনিউয়াল)</small>
-          )}
-        </div>
-        <div
-            className={`${styles.subscribeBtn}`}
-          >
-            সাবস্ক্রাইব
-          </div>
-          
-        </div> */}
       </div>
     </div>
   );

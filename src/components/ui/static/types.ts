@@ -71,6 +71,7 @@ export type TCategoryItem= {
   id: number;
   name: string;
   price: number;
+  color?:string;
   thumb_path: string;
   rent_duration_day: number;
   priority: number;

@@ -3,7 +3,7 @@ import { TBooks } from "@/pageTypes/home.types";
 import ThreeDBook from "../ui/ThreeDBook.view";
 import { paths } from "@/utils/Paths";
 import styles from "@/components/CategoryWiseBooks/static/CategorySelector.module.css"
-import { useTranslation } from 'next-i18next';
+// import { useTranslation } from 'next-i18next';
 import { DictionaryType } from "@/locales/locales.types";
 import { numberTranslator } from "@/helpers/commonFunction";
 import CircularStar from "@/svgs/CircularStar.svg";
@@ -13,10 +13,10 @@ import Link from "next/link";
 
 export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:DictionaryType}) {
   return (
-   <div className={`mt-28  ${styles.ThreeDBannerGradient} `}>
+   <div className={`mt-16 xxs2:mt-28  ${styles.ThreeDBannerGradient} `}>
   <div className={`flex relative   justify-between  max-w-[1300px] w-[97%] md:w-[90%] mx-auto`}>
     {/* Book Cover Image */}
-    <div className="min-w-[55%] xs:min-w-[40%] mt-[-120px]">
+    <div className="min-w-[44%] three_d_small xs:min-w-[40%] mt-[-75px] xxs2:mt-[-120px]">
       {book ? (
         <ThreeDBook path={paths.book_details(book.id)} bg={book?.thumb_path} />
       ) : null}
@@ -27,7 +27,7 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
       
       {/* Main Heading */}
       <div className="">
-        <h1 className=" text-cs xs:text-cn sm:text-clg md:text-cxl text-white font-medium leading-tight lg:leading-[50.4px] ">
+        <h1 className=" text-cs max-md:text-center xs:text-cn sm:text-clg md:text-cxl text-white font-medium leading-tight lg:leading-[50.4px] ">
           {numberTranslator(book?.play_count??0,dict.numbers)} <span className="max-xs:hidden">এরও বেশি</span>- মানুষ এই বইটি শুনেছেন!
         </h1>
 
@@ -35,7 +35,7 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
         <div className="flex flex-col my-7 md:items-center gap-6 lg:gap-8">
           
           {/* Star Rating */}
-          <div className="flex items-center gap-1 max-sm:justify-end xs:gap-3 lg:gap-[14px]">
+          <div className="flex max-md:mx-auto items-center gap-1 xs:gap-3 lg:gap-[14px]">
             {[...Array(Math.ceil(Number(book?.rating)))].map((_, index) => (
               <div
                 key={index}
@@ -47,15 +47,15 @@ export default function ThreeDBanner({book,dict}:{book:TBooks|null,dict:Dictiona
           </div>
 
           {/* Rating Text */}
-          <h2 className="text-cs xs:text-cs2 sm:text-lg md:text-lg2 text-white font-medium leading-tight lg:leading-[50.4px]">
+          <h2 className="text-cs max-md:text-center xs:text-cs2 sm:text-lg md:text-lg2 text-white font-medium leading-tight lg:leading-[50.4px]">
             পাঠকের রিভিউ – ৫/{numberTranslator(Number((book?.rating)?.toFixed(1))??0,dict.numbers)} রেটিং!
           </h2>
         </div>
       </div>
 
       {/* Play Button */}
-      <div className="w-full max-w-[80%] max-sm:text-right md:max-w-[421px] mx-auto max-sm:mr-0 ">
-        <Link href={paths.book_details(book?.id??0)} className=" w-full rounded-[8px] bg-gradient-to-r from-[#001F29] to-[#734DCE] border border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-1.5 md:py-2 px:1 md:px-6 hover:opacity-90 transition-opacity">
+      <div className="w-full flex justify-center   mx-auto max-sm:mr-0 ">
+        <Link href={paths.book_details(book?.id??0)} className=" w-full rounded-[8px] subscribe_listen border max-w-[80%]  md:max-w-[421px] border-[#888] shadow-lg flex items-center justify-center gap-5 lg:gap-[22px] py-1.5 md:py-2 px:1 md:px-6 hover:opacity-90 transition-opacity">
           <span className="w-3 md:w-5">
             <Traingle/>
           </span>

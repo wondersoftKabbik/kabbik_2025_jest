@@ -32,7 +32,7 @@ const BigBanners = () => {
               nextEl: nextRef.current,
             }}
             autoplay={{
-              delay: 3000, // 3 seconds
+              delay: 7000, // 3 seconds
               disableOnInteraction: false, // keeps autoplay even after user interaction
             }}
             breakpoints={{

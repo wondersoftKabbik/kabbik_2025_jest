@@ -1,12 +1,46 @@
+'use cleint'
 import { useAppSelector } from '@/store/store'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import common_cat_styles from "./static/category.module.css";
 import RightArrowIcon from '@/svgs/RightArrowIcon';
 import Link from 'next/link';
 import { paths } from '@/utils/Paths';
+import { HomeInfo, TBooks } from '@/pageTypes/home.types';
+import { TCategoryItem } from '../ui/static/types';
 
-const PopularCategories = () => {
-    const PopularCategories=useAppSelector(store=>store.staticTexts.data?.popular_categories) ?? [];
+const PopularCategories = ({data}:{data:[{ name: string; data: TBooks[]; }]}) => {
+    const popularCategories=useAppSelector(store=>store.staticTexts.data?.popular_categories) ?? [];
+    const categories=useAppSelector((store)=>store?.categories?.CategoriesData)
+    const [top12Cat,setTop12Cat]=useState<TCategoryItem[] | null>(null);
+
+
+    const getTop12Cat=async()=>{
+      let topCats:TCategoryItem[]=[];
+        data?.forEach(async(item,i)=>{
+            
+            if(i>2 && i<16){
+                if(item?.name!=='ফ্রি'){
+                    let selected= categories?.find((cat)=>{
+                        if(cat.name===item?.name){
+                            return true;
+                        }
+                    })
+                    if(selected){
+                      topCats.push(selected)
+                    }
+                }
+            }
+        })
+        setTop12Cat(topCats)
+    }
+
+    useEffect(()=>{
+        if(!categories){
+            return;
+        }
+        getTop12Cat()
+        // console.log(topCats,"topCats")
+    },[popularCategories])
 
     
   return (
@@ -18,30 +52,34 @@ const PopularCategories = () => {
                 <span className={common_cat_styles.arrow}><RightArrowIcon/></span>
             </Link>
         </div>
-        <div className='flex gap-2 sm:gap-6 mt-3'>
-            <div className='w-[48.5%]'>
-                <figure className='mb-2 sm:mb-6'>
-                    <Link href={paths.categoryWiseBooks(PopularCategories[0]?.path)}>
-                        <img loading="lazy" className='h-[30vh] sm:h-[40vh] w-full rounded-[8px] object-cover object-left-bottom' src={PopularCategories[0]?.img}/>
-                    </Link>
-                </figure>
-                <div className="  h-[18vh] mb-6 rounded-[4px] overflow-hidden border border-gray-300">
-                    <Link href={paths.categoryWiseBooks(PopularCategories[6]?.path)}>
-                        <img loading="lazy" src={PopularCategories[6]?.img} className=" h-[24.5vh] w-full object-cover object-left-bottom" />
-                    </Link>
-                    
-                </div>
+        <div className="grid mt-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap:0 sm:gap-2.5 md:gap-4">
+          {top12Cat?.map((category, index) => (
+            <div
+              key={index}
+              style={{background:category?.color}}
+              className={` rounded-2xl p-1 sm:p-2 relative overflow-hidden  flex flex-col justify-between cursor-pointer transition-all hover:scale-105 hover:shadow-2xl`}
+            >
+              {/* Category Name */}
+              {/* <h3 className="text-white font-bold text-lg sm:text-xl z-10 relative drop-shadow-lg leading-tight">
+                {category.name}
+              </h3> */}
+
+              
+
+              {/* Book Image - positioned at bottom right with tilt */}
+              <div className=" transform  z-0">
+                <Link
+                    href={paths?.categoryWiseBooks(category?.name)}
+                >
+                  <img
+                    src={category.thumb_path}
+                    alt={category.name}
+                    className="w-full h-full aspect-[2/1] object-left-bottom  object-cover rounded-lg shadow-2xl border-2 border-white/30"
+                  />
+                </Link>
+              </div>
             </div>
-            <div className='w-[48.5%]'>
-                {PopularCategories.slice(2,5).map((item,index:number)=>(
-                    <div key={index} className=" h-[15.6vh] sm:h-[18vh] mb-2 sm:mb-6 rounded-[4px] overflow-hidden border border-gray-300">
-                            <Link href={paths.categoryWiseBooks(item.path)}>
-                                <img loading="lazy" src={item.img} className="h-[15.6vh] sm:h-[18vh] w-full object-cover object-left-bottom" />
-                            </Link>
-                        
-                    </div>
-                ))}
-            </div>
+          ))}
         </div>
     </div>
   )

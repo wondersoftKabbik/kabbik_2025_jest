@@ -1,4 +1,5 @@
 import { auth } from '@/app/lib/auth';
+import ProfileDashboard from '@/components/Profile/Profile2.view';
 import Profiles from '@/components/Profile/ProfileOptions.view'
 import TopSection from '@/components/Profile/TopSection.view'
 import React from 'react'
@@ -12,7 +13,7 @@ const page = async() => {
   const session = await auth();
   return (
     <div>
-        <div className='h-[100px] mt-[-100px] bg-[#0E1D3F]'/>
+        {/* <div className='h-[100px] mt-[-100px] bg-[#0E1D3F]'/>
         <div className='relative'>
            <div className={`bg-[url('https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/kabbikGalaryBg-min2-min.jpg')] bg-cover opacity-20 w-full h-[126px] absolute left-0 `}></div>
           <div className="container mx-auto px-4 pt-6 pb-3 ">
@@ -31,7 +32,8 @@ const page = async() => {
             <div>
                 <Profiles session={session}/>
             </div>
-        </div>
+        </div> */}
+        <ProfileDashboard/>
     </div>
   )
 }

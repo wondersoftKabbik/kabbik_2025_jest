@@ -140,7 +140,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                           className={styles.swiper_slider_custom}
                         >
                                 <Link href={`/audiobook/${item?.id}`}>
-                                    <div className={podcast?' mx-2.5':styles.item_cont} key={index}>
+                                    <div className={podcast?styles.podcast_cont+' mx-1.5 sm:mx-2.5':styles.item_cont} key={index}>
                                         {isPopular?
                                             <p className={styles.popular}>Most Popular</p>
                                         :''}
@@ -155,14 +155,14 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             <img className={podcast?styles.podcast_img:styles.img} src={item.thumb_path} alt={item.name}/>
                                         </picture> */}
                                         <picture className={podcast ? styles.podcast_pic : styles.picture}>
-                                        <div className="relative w-full" style={{  /* 16:9 */ }}>
+                                        <div className="relative w-full max-xxs:overflow-x-hidden max-xxs:rounded-[8px]" style={{  /* 16:9 */ }}>
                                           <Image
                                             src={item.thumb_path }
                                             alt={item.name}
                                             width={200}
                                             priority={false}
                                             height={320}
-                                            className={`${podcast ? styles.podcast_img : styles.img} object-contain`}
+                                            className={`${podcast ? styles.podcast_img : styles.img}  max-w-full object-contain`}
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                             loading="lazy"
                                             blurDataURL ={siteConfig.placeholderBook}
@@ -182,7 +182,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                         
                                         <div className={podcast?'hidden ':styles.hovered_item}>
                                             <div className={'w-full h-6 opacity-80 '+styles.shadow_blur}></div>
-                                            <div className='flex items-start justify-around bg-bg'>
+                                            <div className='flex items-start justify-around rounded-b-[8px] bg-bg'>
                                                 <div className='z-10'>
                                                     <CommonButton >
                                                         <div className="flex gap-2">

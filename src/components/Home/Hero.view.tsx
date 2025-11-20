@@ -17,6 +17,7 @@ import PlayerIcon from "@/svgs/PlayerIcon";
 import IIcon from "@/svgs/IIcon";
 import AppStoreIcon from "@/svgs/AppStoreIcon";
 import PlayStoreIcon from "@/svgs/PlayStoreIcon";
+import AutoButtonSlider from "./AutoButtonSlider.view";
 
 const Hero = ({
   slidingData,
@@ -28,26 +29,26 @@ const Hero = ({
   const router = useRouter();
 
   return (
-    <div className="relative w-full">
+    <div className="relative mt-1 w-full">
+      <div className="absolute top-20  z-[5] md:hidden">
+        <AutoButtonSlider/>
+      </div>
       <div className=" relative w-full bg-[black]">
         
         <Swiper
-          // slidesPerView={1}
-          // spaceBetween={1}
           loop={true}
           pagination={{ clickable: true }}
-          // style={{ paddingBottom: "40px" }}
-          // modules={[Navigation, Pagination]}
-          // centeredSlides={true}
           modules={[Navigation, Autoplay]}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
           }}
+          autoplay={{
+            delay: 6000, // 10 seconds
+            disableOnInteraction: false, // keeps autoplay running after manual slide
+          }}
           breakpoints={{
             0: { slidesPerView: 1 },
-            // 640: { slidesPerView: 1.2 },
-            // 1024: { slidesPerView: 2 },
           }}
           onBeforeInit={(swiper: any) => {
             if (
@@ -85,15 +86,15 @@ const Hero = ({
                       {/* <div className={styles.book_on_banner}>
                       <h5>{topbannerinfo.name}</h5>
                     </div> */}
-                      <div className="w-full z-10 max-sm:mt-[7.5vh]  text-white">
+                      <div className="w-full z-10 max-md:mt-[7.5vh]  text-white">
                         <h3 className=" leading-[1.3] text-clg2 xxs2:text-cxl md2:text-cxxl2 w-full 1350:w-[60%] font-semibold">{topbannerinfo.name}</h3>
                         <p className="text-clg sm:text-cxl my-4 sm:my-7">{topbannerinfo.author_name}</p>
-                        <CommonButton className={styles.hue_btn}>
+                        <CommonButton className={styles.hue_btn +" "}>
                           <div className="flex gap-2">
                             <span className=" xxs2:mr-4 w-5 h-5 sm:w-7 sm:h-7 inline-block">
-                              <PlayerIcon />
+                              <PlayerIcon color="#68233A" />
                             </span>
-                            <p className="text-cn sm:text-cn2 mt-0">এখনই শুনুন</p>
+                            <p className="text-cn  sm:text-cn2 mt-0">এখনই শুনুন</p>
                           </div>
                         </CommonButton>
                         <CommonButton className={styles.secondary_btn+` bg-grey`}>

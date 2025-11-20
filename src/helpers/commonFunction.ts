@@ -4,6 +4,9 @@ import { toast, ToastPosition } from 'react-toastify';
 import { Edigit, TShareContent, TtoastType, TtranslatorNums } from './commonTypes';
 import { apiEndPoints } from '../utils/apiEndpoints';
 import { TBooks } from '@/pageTypes/home.types';
+// @ts-ignore
+// import ColorThief  from 'color-thief-browser';
+
 
 export const StringToJSX=(str:string)=>{
 
@@ -155,7 +158,38 @@ export function normalizeMsisdn(input: string): string | null {
   return null;
 }
 
+export function getDominantColor(imageUrl: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.src = imageUrl;
 
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+      if (!context) {
+        reject("Canvas not supported");
+        return;
+      }
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+
+      const { data } = context.getImageData(0, 0, canvas.width, canvas.height);
+
+      const colorCount: Record<string, number> = {};
+      for (let i = 0; i < data.length; i += 4) {
+        const key = `${data[i]},${data[i + 1]},${data[i + 2]}`;
+        colorCount[key] = (colorCount[key] || 0) + 1;
+      }
+
+      const dominantColor = Object.entries(colorCount).sort((a, b) => b[1] - a[1])[0][0];
+      resolve(`rgb(${dominantColor})`);
+    };
+    img.onerror = reject;
+  });
+}
 
 
 export async function verifyConsent(

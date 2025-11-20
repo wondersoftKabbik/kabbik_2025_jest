@@ -80,6 +80,17 @@ body{
   -webkit-text-fill-color: transparent;
 }
 
+.gradient_subscribe{
+  background: linear-gradient(270deg, #FF6800 -32.47%, #F73894 113.65%) !important;
+}
+
+.gradient_subscribe2:hover{
+  background: linear-gradient(270deg, #FF6800 -32.47%, #F73894 113.65%) !important;
+}
+.subscribe_listen{
+  background: linear-gradient(270deg, #F73894 -32.47%, #68233A 113.65%);
+}
+
 .blur_gradient{
   filter: blur(68px);
   /* background: linear-gradient(353.98deg, #060F1E 4.77%, #27211F 95.23%); */
@@ -412,6 +423,13 @@ article {
   }
 }
 
+@media (max-width:400px){
+  .three_d_small article {
+    width: 120px;
+    height: 230px;
+  }
+}
+
 /*------------------------------------ 3d book design ended-------------------------------------- */
 
 /* width of scrollbar */
@@ -441,6 +459,32 @@ article {
   background: linear-gradient(90deg, #D94C75 0%, #7F1867 100%);
   padding: 0px 4px;
   border-radius: 4px;
+}
+.profile_btn_gradient2{
+  background: linear-gradient(90deg, #3A2768 0%, #881D69 157.07%);
+
+}
+
+.no__scrollbar ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+.bg_water{
+  background-color:  #FFFFFF14;
+}
+.bg_water:hover{
+  background: linear-gradient(270deg, #BC0974 -32.47%, #50226A 113.65%);
+
+}
+
+.tiny_scroll_bar ::-webkit-scrollbar {
+  width: 0.1px;
+  height: 0.1px;
+}
+
+.tiny_scroll_bar2 ::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
 
 @media (max-width:768px){

@@ -384,7 +384,7 @@ const SubscribeComponent = ({
           </div>
 
           {/* Plan Selection Section */}
-          <div className="text-center mb-0 md:mb-4 relative z-10">
+          <div className="text-center mb-0 md:mb-4 relative z-[3]">
             <div className="max-w-4xl mx-auto">
               <h2 className={"font-bengali font-bold text-lg sm:text-3xl md:text-cxl leading-tight  gradient-text mb-2 "+styles.gradient_para}>
                 আপনার সেরা প্ল্যানটি বেছে নিন

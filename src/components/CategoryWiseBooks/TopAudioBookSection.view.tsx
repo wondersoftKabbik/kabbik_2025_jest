@@ -6,10 +6,10 @@ export default function TopAudioBookSection(props:TCategoryWiseTopBooksSection) 
   const {category,data}=props;
 
   return (
-    <div className=" bg-background text-foreground relative z-1">      
-      <div className="circular_gradient right-[-10%] max-xs:hidden top-[-30%] w-[30vw] h-[30vw] absolute  "></div>
-      <div className="circular_gradient left-[-10%] top-[50%] -translate-y-1/2 w-[30vw] h-[30vw] absolute  "></div>
-      <div className="circular_gradient right-[-10%] bottom-[-30%] w-[30vw] h-[30vw] absolute  "></div>
+    <div className=" bg-background max-md:overflow-hidden text-foreground relative z-1">      
+      <div className="circular_gradient right-[-10%]  top-[-30%] w-[30vw] h-[30vw] absolute  "></div>
+      <div className="circular_gradient left-[-10%]  top-[50%] -translate-y-1/2 w-[30vw] h-[30vw] absolute  "></div>
+      <div className="circular_gradient right-[-10%]  bottom-[-30%] w-[30vw] h-[30vw] absolute  "></div>
       {/* Main content */}
       <div className="relative z-10">
 

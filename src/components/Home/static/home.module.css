@@ -18,7 +18,8 @@
 }
 
 .hue_btn{
-    background: linear-gradient(90deg, #E319BC 0%, #A36AE9 100%);
+     background: linear-gradient(270deg, #F73894 -32.47%, #68233A 113.65%);
+    /* background: linear-gradient(90deg, #E319BC 0%, #A36AE9 100%); */
 }
 
 .hue_btn,.secondary_btn{

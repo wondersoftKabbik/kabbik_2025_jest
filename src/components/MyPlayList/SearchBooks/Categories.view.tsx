@@ -4,10 +4,13 @@ import ContentCard from "./contentCard.view";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { paths } from "@/utils/Paths";
+import { container } from "@/components/ui/static/tailwind.classes";
+import { useRouter } from "next/navigation";
 
 export default function Categories({folders}:{folders:number|string}) {
     const categories=useAppSelector((store)=>store.categories.CategoriesData);
     const [totaldiv,setTotalDiv]=useState<number[]>([]); // a div consisted with three image
+    // const router=useRouter();
 
     useEffect(()=>{
         let totaldiv=Math.floor((categories??[])?.length/4);
@@ -18,42 +21,40 @@ export default function Categories({folders}:{folders:number|string}) {
 
     
   return (
-    <div className="max-h-[95vh] overflow-y-auto  relative bg-gray-50 p-1 sm:p-2 md:p-3">
+    <div className={"max-w-[700px]  mt-3 bg-bg/95 overflow-y-auto  relative  p-1 sm:p-2 md:p-6"}>
       <div className=" mx-auto">
         {/* First Section */}
-        {totaldiv.map((item,i)=>(
-            <div key={i}>
-            <div className="grid grid-cols-2  relative gap-2 lg:gap-3 mb-3">
-           
-                <div className="  h-[185px] rounded-[4px] overflow-hidden border border-gray-300">
-                    <Link href={`${paths.categoryWiseBooks(categories?.[item-4].name??'')}?folders=${folders}`}>
-                        <img loading="lazy" src={categories?.[item-4].thumb_path ?? ''} className=" h-[185px] w-full object-cover object-left-bottom" />
-                    </Link>                
-                </div>
+        <div className='grid mt-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-1 cursor-pointer mx-auto my-8'>
+        {/* Main content grid */}
+        {categories?.map((category, index) => (
+            <div
+              key={index}
+            //   onClick={()=>router}
+              style={{background:category?.color}}
+              className={` rounded-2xl p-1 relative overflow-hidden  flex flex-col justify-between cursor-pointer transition-all hover:scale-105 hover:shadow-2xl`}
+            >
+              {/* Category Name */}
+              {/* <h3 className="text-white font-bold text-lg sm:text-xl z-10 relative drop-shadow-lg leading-tight">
+                {category.name}
+              </h3> */}
 
-                {/* Right Column with Two Cards */}
-                <div className="flex flex-col gap-2">
-                    <div className="  h-[90px] rounded-[4px] overflow-hidden border border-gray-300">
-                        <Link href={`${paths.categoryWiseBooks(categories?.[item-4+1].name??'')}?folders=${folders}`}>
-                            <img loading="lazy" src={categories?.[item-4+1].thumb_path ?? ''} className=" h-[90px] w-full object-cover object-left-bottom" />
-                        </Link>                
-                    </div>
-                    <div className="  h-[90px] rounded-[4px] overflow-hidden border border-gray-300">
-                        <Link href={`${paths.categoryWiseBooks(categories?.[item-4+2].name??'')}?folders=${folders}`}>
-                            <img loading="lazy" src={categories?.[item-4+2].thumb_path ?? ''} className=" h-[90px] w-full object-cover object-left-bottom" />
-                        </Link>                
-                    </div>
-                    
-                </div>
-                
+              
+
+              {/* Book Image - positioned at bottom right with tilt */}
+              <div className=" transform  z-0">
+                <Link
+                    href={paths?.categoryWiseBooks(category?.name)}
+                >
+                    <img
+                        src={category.thumb_path}
+                        alt={category.name}
+                        className="w-full rounded-[8px] h-full aspect-[2/1] object-left-bottom  object-cover  shadow-2xl border-2 border-white/30"
+                    />
+                </Link>
+              </div>
             </div>
-            <div className="  h-[110px] w-full mb-3 rounded-[4px] overflow-hidden border border-gray-300">
-                    <Link href={`${paths.categoryWiseBooks(categories?.[item-4+3].name??'')}?folders=${folders}`}>
-                        <img loading="lazy" src={categories?.[item-4+3].thumb_path ?? ''} className=" h-[110px] w-full object-cover object-left-bottom" />
-                    </Link>                
-            </div>
-            </div>
-        ))}
+          ))}
+      </div>
       </div>
     </div>
   );
