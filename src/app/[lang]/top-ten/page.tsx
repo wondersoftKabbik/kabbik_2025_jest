@@ -47,7 +47,7 @@ const page = async() => {
         {/* Grid: 2 cols default, 3 cols on md, 4 cols on xl */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-x-1 xs:gap-x-2 sm:gap-x-3 md:gap-x-6 xl:gap-x-8 gap-y-16">
           {findCatwiseData(homeData.data,"শীর্ষ ১০")?.data.map((item,index) => (
-            <Link href={`/audiobook/${item?.id}`}>
+            <Link key={index} href={`/audiobook/${item?.id}`}>
                 <div className={styles.item_cont} key={index}>
                   <span className='max-w-[280px] max-h-[20vh]  xxs2:max-h-[25vh] md:max-h-[200px] inline-block'>
                     {OneToTen[(index+1).toString()] ?(
