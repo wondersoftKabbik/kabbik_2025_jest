@@ -22,10 +22,7 @@ interface SubscribePackageProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setSubscriptionPackData: React.Dispatch<
     React.SetStateAction<
-      DynamicSubscriptionPack & {
-        reduce_price?: number;
-        promo_code?: string;
-      }
+      DynamicSubscriptionPack 
     >
   >;
   paymentMethod: (packId: any, renewal: any) => Promise<void>;
@@ -58,7 +55,7 @@ const SubscribePackage = ({
         // loginModal.show();
       } else {
         setShowModal(true);
-        setSubscriptionPackData(data);
+        setSubscriptionPackData({...data});
         if(data?.is_free_trail){
           setTrialModal();
         }

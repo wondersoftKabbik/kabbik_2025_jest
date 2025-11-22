@@ -60,10 +60,7 @@ const SubscribeComponent = ({
   const [promoCode, setPromoCode]: any = useState("");
   const [msisdn, setMsisdn] = useState("");
   const [subscriptionPackData, setSubscriptionPackData] = useState(
-    {} as DynamicSubscriptionPack & {
-      reduce_price?: number;
-      promo_code?: string;
-    }
+    {} as DynamicSubscriptionPack 
   );
   const [paymentMethodData, setPaymentMethodData] = useState([]);
   const [isMsisdnTakerModalOpened, setIsMsisdnTakerModalOpened] =
@@ -354,7 +351,7 @@ const SubscribeComponent = ({
   const gpPayment = async () => {
     if (checkPromocodeCompatibility("gpdcb")) {
       const gpResponseData = await gpPostApi({
-        ...subscriptionPackData,
+        ...subscriptionPackData as any,
         msisdn: msisdnRef.current,
       });
       if (gpResponseData?.resultCode === "SUCCESS") {
@@ -703,7 +700,7 @@ const SubscribeComponent = ({
                         : subscriptionPackData?.rawPrice
                     }
                     isFreeTrial={subscriptionPackData?.is_free_trail}
-                    reducePrice={subscriptionPackData?.reduce_price}
+                    reducePrice={subscriptionPackData?.reduce_price??0}
                     isMsisdnSubmitted={isMsisdnSubmitted}
                     setIsMsisdnTakerModalOpened={setIsMsisdnTakerModalOpened}
                   />
