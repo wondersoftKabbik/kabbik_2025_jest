@@ -16,7 +16,7 @@ export default function CategorySelector({folders}:{folders?:string}) {
 
   return (
     <div>
-        <div className="w-full cursor-pointer  px-4 btn-gradient-2 mt-3">
+        <div className="w-full   cursor-pointer  px-4 btn-gradient-2 mt-3">
             <div onClick={()=>setShowCategories(!showCategories)} className="max-w-[1440px] mx-auto rounded-lg shadow-lg overflow-hidden">
                 <div className="flex items-center justify-between w-full  py-2">
                 <div className="flex items-center gap-4 sm:gap-6 flex-1 min-w-0">
@@ -43,25 +43,27 @@ export default function CategorySelector({folders}:{folders?:string}) {
             isOpen={showCategories}
             onClose={()=>setShowCategories(false)}
            >
-                {showCategories && 
-                <ul className={style.subCategories}>
-                        { categories?.map((name: any, index: any) => (
-                            <li key={name?.name} className="w-100">
-                                <Link
-                                // className="d-block"
-                                href={`/${name?.name}${folders?`?folders=${folders}`:''}`}
-                                >
-                                <div className=" w-100">
-                                    <span className='w-7 h-7 inline-block mr-2'>
-                                        <AudioBookIcon/>
-                                    </span>
-                                    {name.name}
-                                </div>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                }
+                <div className="tiny_scroll_bar2">
+                    {showCategories && 
+                        <ul className={style.subCategories}>
+                                { categories?.map((name: any, index: any) => (
+                                    <li key={name?.name} className="w-100">
+                                        <Link
+                                        // className="d-block"
+                                        href={`/${name?.name}${folders?`?folders=${folders}`:''}`}
+                                        >
+                                        <div className=" w-100">
+                                            <span className='w-7 h-7 inline-block mr-2'>
+                                                <AudioBookIcon/>
+                                            </span>
+                                            {name.name}
+                                        </div>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        }
+                </div>
            </CommonModal>
     </div>
   );

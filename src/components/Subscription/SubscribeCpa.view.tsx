@@ -18,7 +18,7 @@ import {
   aamarpayPostApi,
   gpPostApi,
   blDcbVerifyApi,
-  promocodeHandlerV2,
+  postLoginApi1,
 } from "@/utils/apiServices";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -27,7 +27,7 @@ import OTPInput from "react-otp-input";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 import MsisdnTracker from "./MsisdnTracker.view";
-import { convertToBanglaDigits, createBlPayment, extractNumber, isValidBLNumber, normalizeBLNumber, verifyConsent } from "@/helpers/commonFunction";
+import { createBlPayment, extractNumber, isValidBLNumber, normalizeBLNumber, setCookiesFromParams, verifyConsent } from "@/helpers/commonFunction";
 import DynamicSubscriptionPack from "./static/subscription.type";
 import { UserProfileInfo } from "../audiobook/static/audiobook.type";
 import Spinner from "../ui/Spinner.view";
@@ -50,13 +50,8 @@ const SubscribeComponent = ({
   const [userData, setUserData] = useState<UserProfileInfo | null>(null);
   const [loader,setLoader]=useState(true);
   const [isSubscribed,setIsSubscribed]=useState(true);
-  const searchParams = useSearchParams();
-  const affId = searchParams.get("affId");
+
   const [promoData, setPromoData] = useState("");
-  const [affPackageId,setAffPackageId]=useState("");
-  const affProductId = searchParams.get("productId");
-  const affProductType = searchParams.get("productType");
-  let [affIdValue,setAffIdValue]=useState<string|null>(null)
   const [promoCode, setPromoCode]: any = useState("");
   const [msisdn, setMsisdn] = useState("");
   const [subscriptionPackData, setSubscriptionPackData] = useState(
@@ -73,69 +68,50 @@ const SubscribeComponent = ({
   const [isCityTouch,setIsCityTouch]=useState(false);
   const isMsisdnValid = msisdn.length === 11;
   const [isNextButtonPressed, setIsNextButtonPressed] = useState(false);
-    const [subscriptionPackDataList,setSubscriptionPackDataList]=useState(subscriptionPackList);
+
   const [blNumberModal,setBlNumberModal]=useState({show:false,value:''});
   const [blOtpModal,setBlOtpModal]=useState({show:false,value:''})
   const [blLoader,setBlLoader]=useState(false)
   const navigate=useRouter();
   const [openPaymentModal,setOpenPaymentModal]=useState(false);
   const [showTrailModal,setTrialModal]=useState(false);
-  const hasRun=useRef(false);
-    let [reducedPrice,setReducedPrice]=useState(0);
+  const searchParams = useSearchParams();
+  let [pubId,setPubId]=useState<string|null>(null)
+  let [clickId,setClickId]=useState<string|null>(null)
 
 
-    useEffect(() => {
-      Cookies.remove('affId')
-      // alert(affId);
-      if (affId) {
-        const expiresIn2Min = new Date(new Date().getTime() + 2 * 60 * 1000);
-        Cookies.set("affId", affId, { expires: expiresIn2Min });
-        Cookies.set("affProductId", affProductId??'', { expires: expiresIn2Min });
-        Cookies.set("affProductType", affProductType??'', { expires: expiresIn2Min });
+  const userLoginWithBlAndGp=async(number:string)=>{
+    let result = await postLoginApi1(number);
+    if(result?.user?.id){
+      Cookies.set('msisdn',number);
+      await Cookies.set('id',result?.user?.id);
+    }else{
+      toast.error("Something Went Wrong")
+      return;
+    }
+    return result?.user?.id
+  }
+
+   useEffect(() => {
+      const clickId = searchParams.get("clickId");
+      const pubId = searchParams.get("pubId");
+      // alert(clickId);
+
+      if (clickId || pubId) {
+        setCookiesFromParams({ clickId: clickId || undefined, pubId: pubId || undefined });
       }
-      let affIdFromCookies = Cookies.get('affId')
-      let affProductIdFromCookies = Cookies.get('affProductId');
-      let affProductTypeFromCookie = Cookies.get('affProductType');
-      setAffPackageId(affProductId || affProductIdFromCookies || '');
-      setAffIdValue(affId??affIdFromCookies??null);
-      if(affProductType==="subscription_plan" || affProductTypeFromCookie==="subscription_plan"){
-        // alert(affId);
-       
-        getDiscountedData(affId??affIdFromCookies??null)
-      }
-    }, [affId]);
-
-
-    const getDiscountedData=async(affIdValue:string|null)=>{
-      //  await setAffiliateApplied(true);
-       if(hasRun.current)return;
-       hasRun.current=true;
-       
-        // if(affLiateApplied)return;
-      let discountedPrice = await promocodeHandlerV2(affProductId??'',affIdValue??null)
-      // alert(discountedPrice);
-      setReducedPrice(Number(discountedPrice)??0)
-      let newPacksData=[...subscriptionPackDataList];
-      newPacksData=newPacksData.map((item)=>{
-        if(item.subscriptionItemId?.toString()===affProductId){
-          item.amount= '৳'+convertToBanglaDigits(item.rawPrice-discountedPrice);
-          item.reduce_price=discountedPrice||0
-          item.promo_code=affIdValue||null;
-          // item.re=item.rawPrice-discountedPrice
-          // item.
-        }
-        console.log(item,"item");
-        
-        return item
-      })
-      // alert(discountedPrice);
-
-      setSubscriptionPackDataList(newPacksData);
-
-    };
+      let clickIdFromLocal = Cookies.get("clickId");
+      let pubIdFromLocal=Cookies.get("pubId") ;
+      setPubId(pubId??pubIdFromLocal??null);
+      setClickId(clickIdFromLocal??clickId??'');
+    }, [searchParams]);
 
   const handleBlPayment=async()=>{
     if(isValidBLNumber(blNumberModal.value)){
+      let userId = await userLoginWithBlAndGp(msisdnRef.current)
+      if(!userId){
+        return;
+      }
       createBlPayment(
         normalizeBLNumber(blNumberModal.value ) ?? '', 
         subscriptionPackData, 
@@ -353,6 +329,10 @@ const SubscribeComponent = ({
 
   const gpPayment = async () => {
     if (checkPromocodeCompatibility("gpdcb")) {
+      let userId = await userLoginWithBlAndGp(msisdnRef.current)
+      if(!userId){
+        return;
+      }
       const gpResponseData = await gpPostApi({
         ...subscriptionPackData,
         msisdn: msisdnRef.current,
@@ -484,9 +464,7 @@ const SubscribeComponent = ({
                             setBlNumberModal({value: '',show:false});
                             setBlOtpModal({value:'',show:false})
                           }}
-                          className={`${!affPackageId?"":(
-                            affPackageId===data?.subscriptionItemId?'':'hidden'
-                          )} col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`}
+                          className={`col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`}
                         >
                           <SubscribePackage
                             setTrialModal={()=>setTrialModal(true)}
@@ -502,9 +480,7 @@ const SubscribeComponent = ({
                             setBlNumberModal({value: '',show:false});
                             setBlOtpModal({value:'',show:false})
                           }}
-                          className={` ${!affPackageId?"":(
-                            affPackageId===data?.subscriptionItemId?'':'hidden'
-                          )} col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`}
+                          className={`col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`}
                         >
                           <SubscribePackage
                             setTrialModal={()=>setTrialModal(true)}
@@ -518,9 +494,7 @@ const SubscribeComponent = ({
                       </>
                     ) : (
                       <div 
-                          className={` ${!affPackageId?"":(
-                            affPackageId===data?.subscriptionItemId?'':'hidden'
-                          )} col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`} 
+                          className={`col-12 col-sm-12 col-md-6 col-lg-3 cp ${styles.parentDiv}`} 
                           onClick={()=>{
                             setIsMsisdnTakerModalOpened(false);
                             setBlNumberModal({value: '',show:false});

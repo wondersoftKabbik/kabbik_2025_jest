@@ -26,7 +26,8 @@ export const paths={
     reels:`/reels`,
     leaderboard:`/leaderboard`,
     top10:`/top-ten`,
-    payment_status:`/payment-status`
+    payment_status:`/payment-status`,
+    subscribe_cpa:`/subscribe-cpa`
     // home:'',
 
 }

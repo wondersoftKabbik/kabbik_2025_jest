@@ -111,7 +111,7 @@ const HomeComponent = (props:THomeProps) => {
     const {homeData,topBannerData,blogs}=props;
     const router=useRouter();
     // logic separation
-    const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats,topVideo,middleVideo,lastVideo,goToNext} = useHomeComponent({homeData});
+    const {player,setPlayer,videoRef,initialPlayer,StaticTexts,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2, setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats,topVideo,middleVideo,lastVideo,goToNext,user} = useHomeComponent({homeData});
     
     
   return (
@@ -445,7 +445,7 @@ const HomeComponent = (props:THomeProps) => {
           <div className='text-center pt-10  z-[5]'>
               <p className='gradient-text text-lg sm:text-cxl md:text-[28px] font-semibold'>{StaticTexts?.nepal_tour_video?.videos[0].heading}</p>
               <p className='text-white text-cs2 sm:text-cn2 md:text-[20px] py-2'>{StaticTexts?.nepal_tour_video?.videos[0].para}</p>
-              <Link href={'/subscribe'}>
+              <Link href={user?.is_subscribed?paths.searchBooks:'/subscribe'}>
                 <div className="flex items-center subscribe_listen px-3 py-2 rounded-[10px] justify-center gap-2 max-w-[350px] w-[auto] mx-auto">
                   <span className='max-w-[300px] flex'>
                       <span className="mr-4 w-6 sm:w-9 md:w-11 h-6 sm:h-7 md:h-8 inline-block">

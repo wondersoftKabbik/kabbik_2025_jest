@@ -1,13 +1,15 @@
 // store/slices/loginSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { value: false };
+const initialState:{value:boolean|string} = { value: false };
 
 const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    ReduxShowLoginModal: (state,action) => { state.value =action.payload },
+    ReduxShowLoginModal: (state,action) => { 
+      state.value =action.payload 
+    },
     // decrement: (state) => { state.value =false },
     // reset: (state) => { state.value = 0 },
   },

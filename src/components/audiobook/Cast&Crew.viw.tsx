@@ -9,7 +9,7 @@ export default function CastAndCrew(props: { castCrewData: castCrewInfo[]  }) {
   const { castCrewData } = props;
   const router=useRouter();
   return (
-    <div className="max-h-[180vh] overflow-y-auto  py-8 px-4">
+    <div className="max-h-[125vh] overflow-y-auto  py-8 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="flex flex-col gap-[27px]">
           {castCrewData?.map((author) => (

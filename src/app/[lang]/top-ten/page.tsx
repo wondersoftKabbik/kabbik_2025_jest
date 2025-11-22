@@ -39,7 +39,7 @@ const page = async() => {
         <div>
             <CategorySelector />
         </div>
-        <div className={container('1300px')+` mt-10 relative`}>
+        <div className={container('1300px')+` mt-10 relative max-md:overflow-hidden`}>
             <div className="circular_gradient left-[-10%] top-[0%] w-[30vw] h-[30vw] absolute  "></div>
             <div className="circular_gradient max-xs:hidden right-[-20%] bottom-[-15vh] w-[40vw] h-[40vw] absolute  "></div>
             {/* <div className="mt-10  grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  lg:grid-cols-5  gap-3 md:gap-4 lg2:gap-6"> */}
@@ -49,7 +49,7 @@ const page = async() => {
           {findCatwiseData(homeData.data,"শীর্ষ ১০")?.data.map((item,index) => (
             <Link key={index} href={`/audiobook/${item?.id}`}>
                 <div className={styles.item_cont} key={index}>
-                  <span className='max-w-[280px] max-h-[20vh]  xxs2:max-h-[25vh] md:max-h-[200px] inline-block'>
+                  <span className={`${index===0?'pl-0 sm:pl-7 md:pl-0 ':''} max-w-[280px] max-h-[20vh]  xxs2:max-h-[25vh] md:max-h-[200px] inline-block`}>
                     {OneToTen[(index+1).toString()] ?(
                       OneToTen[(index+1).toString()]
                     ):''}

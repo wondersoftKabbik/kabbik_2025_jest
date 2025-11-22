@@ -12,6 +12,8 @@ import Tik from "@/svgs/Tik.svg";
 import { useEffect } from "react";
 import { useAppDispatch } from "@/store/store";
 import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
+import { usePathname } from "next/navigation";
+import { paths } from "@/utils/Paths";
 // import { LuBadgeCheck } from "react-icons/lu";
 
 interface SubscribePackageProps {
@@ -38,12 +40,15 @@ const SubscribePackage = ({
 }: SubscribePackageProps) => {
   const isLoggedIn = Cookies.get("isLogin") === "true";
   const dispatch=useAppDispatch();
+  const pathnameWithLang = usePathname();
+  // const loginModal=useAppSelector((store)=>store?.loginSlice?.value)
+  const pathname = pathnameWithLang.replace(/^\/(en|bl)/, "");
 
   const handleClick = async () => {
     
     // const Modal = require("bootstrap/js/dist/modal");
     if (document) {
-      if (!isLoggedIn) {
+      if (!isLoggedIn && pathname!==paths.subscribe_cpa) {
         toast.error("Please login first");
         dispatch(ReduxShowLoginModal(true));
         return;

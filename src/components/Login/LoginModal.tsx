@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { isValidMsisdn } from '@/helpers/commonFunction'
 import Spinner from '../ui/Spinner.view'
 import { TLoginModal } from './static/login.type'
+import { useAppSelector } from '@/store/store';
 
 const LoginModal = ({handleSubmit}:TLoginModal) => {
     const [showSignUp,setShowSignUp]=useState(false);
@@ -14,6 +15,7 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
     const [phoneNumbers,setPhoneNumbers]=useState('')
     const [errors,setErrors]=useState('');
     const [submitLoader,setSubmitLoader]=useState(false);
+    const loginReduxData=useAppSelector(store=>store?.loginSlice?.value)
 
     const [isAndroidWebView,setIsAndroidWebView]=useState(false);
       
@@ -25,6 +27,15 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
       setIsAndroidWebView(  hasWV)
       
     },[])
+
+    useEffect(()=>{
+      if(typeof  loginReduxData==='string'){
+        // alert(loginReduxData+'kkkk')
+
+        setPhoneNumbers(loginReduxData);
+      }
+    },[])
+
 
     const googleBtn = async () => {
       await signIn("google", { callbackUrl: `/redirecting?route=${router}` });
@@ -99,7 +110,7 @@ const LoginModal = ({handleSubmit}:TLoginModal) => {
                   {/* Phone Input */}
                   <input
                     type="tel"
-                    // value={phoneNumber}
+                    value={phoneNumbers}
                     onChange={(e) => {setPhoneNumbers(e.target.value);setErrors('');}}
                     placeholder="আপনার ফোন নম্বর লিখুন"
                     className="flex-1 text-cs2 md:text-cn bg-transparent text-white placeholder-gray-400 px-1 focus:outline-none"

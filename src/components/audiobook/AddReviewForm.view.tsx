@@ -29,14 +29,14 @@ export default function ExperienceForm({ book,onClose}: { book: TAudioBookDetail
   };
 
   return (
-    <div className="flex rounded-[4px] justify-center items-center min-h-[60vh] bg-gray-50 px-4">
+    <div className="flex my-3  rounded-[4px] justify-center items-center min-h-[60vh] bg-bg px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white w-full max-w-md rounded-2xl shadow-md p-6 space-y-5 border border-gray-100"
+        className="bg-bg w-full max-w-md rounded-2xl shadow-md p-6 space-y-5  "
       >
-        <h2 className="text-xl font-semibold text-gray-800 leading-[1.3] text-center">
+        <h2 className="text-xl font-semibold text-gray-50 leading-[1.3] text-center">
           How was your experience while listening to <br />
-          <span className="gradient-text font-bold">{book?.name}</span>?
+          <span className="gradient-text font-bold">{book?.name}?</span>
         </h2>
 
         {/* ⭐ Rating Section */}
@@ -65,7 +65,7 @@ export default function ExperienceForm({ book,onClose}: { book: TAudioBookDetail
           onChange={(e) => setFeedback(e.target.value)}
           placeholder="Share your thoughts here..."
           rows={4}
-          className="w-full border border-gray-300 focus:border-[#CE4573] focus:ring-2 focus:ring-[#CE4573] rounded-xl p-3 text-gray-700 outline-none resize-none transition"
+          className="w-full border bg-bg border-gray-300 focus:border-[#CE4573] focus:ring-2 focus:ring-[#CE4573] rounded-xl p-3 text-gray-100 outline-none resize-none transition"
         />
 
         <button

@@ -3,7 +3,7 @@ import { apiEndPoints } from "./apiEndpoints";
 import { toast } from "react-toastify";
 // import { formatTime, showToast } from "";
 import { BlogInfo, DynamicSubscriptionPack, TMethods, TtoastType } from "@/helpers/commonTypes";
-import { formatTime, getCurrentMonthFirstDate, normalizeMsisdn, showToast } from "@/helpers/commonFunction";
+import { formatTime, getCookiesAsObject, getCurrentMonthFirstDate, normalizeMsisdn, showToast } from "@/helpers/commonFunction";
 import { CommonApiHandler, getHeaders } from "./CommonApicalls";
 import { TSponsorRequest } from "./types";
 
@@ -475,6 +475,92 @@ export const postLoginApi = async () => {
  )
 };
 
+export const promocodeHandlerV2= async (bookId:number|string,promoData:string|null) => {
+    if(!promoData){
+      return;
+    }
+    let promoCodeData
+    try{
+      promoCodeData = await getPromoCodeApi(
+        bookId,
+        promoData
+      );
+      if (promoCodeData.success === "false") {
+        toast.error("Invalid promo code");
+        return;
+      }
+    }catch(e:any){
+      console.log(e.message);
+      
+    }
+    if (Object.keys(promoCodeData).length) {
+      // subscriptionPackData.reduce_price = promoCodeData.data.reduce_price;
+      // subscriptionPackData.promo_code = promoData;
+      // setPromoCode(promoCodeData.data);
+      toast.success("Promo Code Added!", {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "dark",
+      });
+    } else {
+      toast.error("Invalid Promo Code!", {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "dark",
+      });
+    }
+    return promoCodeData.data?.reduce_price;
+  };
+
+
+  export const promocodeHandlerForBook= async (bookId:number|string,promoData:string|'',amount:number) => {
+    const url = `${
+      apiEndPoints.bookPromoCode
+    }`;
+    const requestOptions = JSON.stringify({
+        "promoCode": promoData.trim(),
+        "promoType": 'rent',
+        "productId": bookId.toString(),
+        "amount": amount.toString()
+      })
+    
+    return await CommonApiHandler(
+    {
+      name: "postLoginApi",
+      url,
+      method: TMethods.POST,
+      body: requestOptions ? requestOptions : null,
+      defaultTokenAllowed:false 
+    }
+ )
+};
+
+export const postLoginApi1 = async (number:string) => {
+  const url = apiEndPoints.loginApi;
+  const raw = JSON.stringify({
+    user_name: `88${number}`,
+    full_name: "user",
+    auth_src: "phone",
+    image_url: null,
+    channel: "web",
+  });
+  return await CommonApiHandler(
+    {
+      name: "postLoginApi",
+      url,
+      method: TMethods.POST,
+      body: raw ? raw : null,
+      defaultTokenAllowed:false 
+    }
+ )
+};
+
 export const postReview = async (id: any, rating_num: any, review: any) => {
   const url = `${apiEndPoints.addReview}${id}/analytics/ratings`;
   const raw = JSON.stringify({
@@ -586,6 +672,7 @@ export const robiPostApi = async (payloadData: any) => {
     from_source: "web",
     from_autorenewal: payloadData.isOnetime ? 0 : 1,
     promo_code: payloadData.promo_code ? payloadData.promo_code : null,
+    ...getCookiesAsObject()
   });
   return await CommonApiHandler(
     {
@@ -671,6 +758,7 @@ export const gpPostApi = async (
     purpose: "subscription",
     trafficSource: "Kabbik",
     platform: "Web",
+    ...getCookiesAsObject()
   });
   return await CommonApiHandler(
     {
@@ -737,6 +825,7 @@ export const bkashPostApi = async (payloadData: any) => {
   let firstPrice =
     payloadData.rawPrice -
     (payloadData?.reduce_price ? payloadData.reduce_price : 0);
+  
   var raw = JSON.stringify({
     AMOUNT: payloadData.rawPrice?.toString(),
     FIRSTPAYMENTAMOUNT: firstPrice.toString(),
@@ -748,6 +837,7 @@ export const bkashPostApi = async (payloadData: any) => {
     PACKAGEID: payloadData.subscriptionItemId,
     subscripRequestFrom: "web",
     promo_code: payloadData.promo_code ? payloadData.promo_code : null,
+    ...getCookiesAsObject()
   });
   return await CommonApiHandler(
     {
@@ -1396,6 +1486,9 @@ export const subscriptionList = async (source:any) => {
   let url = apiEndPoints.new_packageList ;
   if(source?.value==='city_touch'){
       url = apiEndPoints.new_packageList + "?domain=citytouch";
+  }
+  if(source==='web_cpa'){
+      url = apiEndPoints.new_packageList + "?domain=web_cpa";
   }
   return await CommonApiHandler(
     {

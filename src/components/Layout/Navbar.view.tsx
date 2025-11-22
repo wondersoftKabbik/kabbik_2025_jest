@@ -113,7 +113,7 @@ const Navbar = (props:TNavbar) => {
 
 
     return (
-    <nav className={` w-full bg-[#D9D9D91A] relative z-[11]`}>
+    <nav className={` w-full bg-[#D9D9D91A] relative z-[5]`}>
         <div className='max-w-[1300px]  flex justify-between items-center px-4 py-2 mx-auto'>
             <div className='flex items-center gap-4'>
                 <Link href={'/'} >
@@ -231,7 +231,7 @@ const Navbar = (props:TNavbar) => {
             <MobileNavbar categories={categories} onClose={()=>{setMobileMenu(!mobileMenu)}} setMobileMenu={setMobileMenu}/>
         </CustomDrawer>
         <CommonModal
-            isOpen={loginModal || showLoginModal}
+            isOpen={loginModal || showLoginModal?true:false}
             onClose={closeLoginClick}
         >
             <div className='bg-[#050F1E] p-2 md:p-4 px-2 md:px-8 relative  rounded-[8px] overflow-y-auto overflow-hidden'>

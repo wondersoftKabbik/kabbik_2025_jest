@@ -11,6 +11,8 @@ import Percentage from "@/svgs/Percentage.view";
 import SecureShield from "@/svgs/SecureShield.svg";
 import SinglePaymentCard from "./SinglePaymentCard.view";
 import { findObj } from "@/helpers/commonFunction";
+import { usePathname } from "next/navigation";
+import { paths } from "@/utils/Paths";
 // import { TbDiscount2 } from "react-icons/tb";
 // import { BiCheck, BiX } from "react-icons/bi";
 // import { Spinner } from "react-bootstrap";
@@ -56,6 +58,9 @@ const PaymentOptions = ({
   const [isLoading,setIsLoading]=useState(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [termsPrivacyAgreed, setTermsPrivacyAgreed] = useState(false);
+  const pathnameWithLang = usePathname();
+    // const loginModal=useAppSelector((store)=>store?.loginSlice?.value)
+    const pathname = pathnameWithLang.replace(/^\/(en|bl)/, "");
 
 
   
@@ -132,7 +137,17 @@ const PaymentOptions = ({
     }
   }
 
-  useEffect(()=>{console.log(options)},[])
+  useEffect(()=>{  
+    if(pathname!==paths.subscribe_cpa)return;
+      
+    options?.map((item)=>{
+        if(item?.methodName==="bkash" || item?.methodName==="bkashOnetime"){
+            setSelectedOption(item);
+            setTermsPrivacyAgreed(true)
+        }
+    })
+  },[options])
+
 
   return (
     <>

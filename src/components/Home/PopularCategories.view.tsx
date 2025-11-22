@@ -46,7 +46,10 @@ const PopularCategories = ({data}:{data:[{ name: string; data: TBooks[]; }]}) =>
   return (
     <div className='mt-12 z-[3] relative text-white max-w-[1300px] mx-auto cursor-pointer w-[97%] md:w-[90%]'>
         <div className={common_cat_styles.heading_container}>
-            <h3 className={common_cat_styles.heading}>মোস্ট পপুলার ক্যাটেগরিজ</h3>
+            <h3 className={common_cat_styles.heading}>
+              <span className='max-xxs2:hidden'>মোস্ট পপুলার ক্যাটেগরিজ</span>
+              <span className='xxs2:hidden'>ক্যাটেগরিজ</span>
+            </h3>
             <Link href={'/categories'} className={common_cat_styles.see_all}>
                 সব দেখুন
                 <span className={common_cat_styles.arrow}><RightArrowIcon/></span>

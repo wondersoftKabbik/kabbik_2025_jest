@@ -285,7 +285,7 @@ const GradientAudioPlayer: React.FC<GradientAudioPlayerProps> = ({
 
   return (
     <div
-      className={`w-full   p-4   ${className}`}
+      className={`w-full   p-4 pt-0   ${className}`}
       style={{ color: accent }}
     >
       <audio ref={audioRef} src={src} preload="metadata" />

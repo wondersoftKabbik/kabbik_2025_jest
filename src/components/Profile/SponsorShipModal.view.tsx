@@ -69,7 +69,7 @@ const SponsorFormModal = ({  onClose }: SponsorFormModalProps) => {
   return (
       <div className="tiny_scroll_bar">
         <div
-          className="profile_btn_gradients  max-h-[95vh] overflow-y-auto text-white rounded-2xl p-6 sm:p-8 shadow-lg 
+          className="profile_btn_gradients  max-h-[95vh] pt-5 mt-3 overflow-y-auto text-white rounded-2xl p-6 sm:p-8 shadow-lg 
                     transition-all duration-300"
         >
           {/* Header */}

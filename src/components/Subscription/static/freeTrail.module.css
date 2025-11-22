@@ -1,19 +1,17 @@
 .card {
-  /* max-width: 420px; */
-  /* margin: 2rem auto; */
-  background: #ffffff;
+  background: #0a162a;
   border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid #f1f1f1;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  border: 1px solid #1e2b45;
   padding: 10px;
-  color: #333;
+  color: #e5e7eb;
   font-family: "Noto Sans Bengali", sans-serif;
 }
 
 /* Header */
 .header {
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #1e2b45;
   padding-bottom: 6px;
   margin-bottom: 10px;
 }
@@ -21,13 +19,13 @@
 .title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #4f46e5; /* Indigo tone */
+  color: #818cf8; 
   margin: 0;
 }
 
 .date {
   font-size: 0.85rem;
-  color: #888;
+  color: #9ca3af;
   margin-top: 4px;
 }
 
@@ -43,37 +41,38 @@
 .table td {
   padding: 4px 6px;
   font-size: 0.95rem;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #1e2b45;
+  color: #d1d5db;
 }
 
 .table tr:nth-child(even) {
-  background: #f8f9ff;
+  background: #0f1c33;
 }
 
 .table td:last-child {
   text-align: right;
   font-weight: 600;
-  color: #222;
+  color: #ffffff;
 }
 
 /* Auto renewal note */
 .autoRenew {
   text-align: center;
-  color: #4f46e5;
+  color: #818cf8;
   font-size: 0.9rem;
   margin-top: 6px;
 }
 
 /* Notes */
 .notes {
-  background: #fafafa;
+  background: #0d192c;
   border-radius: 12px;
   padding: 8px;
   margin-top: 10px;
 }
 
 .cancel {
-  color: #e11d48; /* red tone */
+  color: #f87171;
   font-weight: 500;
   font-size: 0.9rem;
   margin-bottom: 4px;
@@ -81,7 +80,7 @@
 }
 
 .info {
-  color: #444;
+  color: #d1d5db;
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -93,8 +92,7 @@
   margin-top: 10px;
 }
 
-.cancelBtn,
-.continueBtn {
+.cancelBtn, .continueBtn {
   flex: 1;
   padding: 5px 0;
   border-radius: 10px;
@@ -106,32 +104,34 @@
 
 /* Cancel Button */
 .cancelBtn {
-  border: 1px solid #fca5a5;
-  color: #dc2626;
-  background: #fff;
+  border: 1px solid #b91c1c;
+  color: #f87171;
+  background: transparent;
 }
 
 .cancelBtn:hover {
-  background: #fee2e2;
+  background: rgba(239, 68, 68, 0.15);
 }
 
 /* Continue Button */
 .continueBtn {
-  background: linear-gradient(90deg, #4f46e5, #3730a3);
+    background: linear-gradient(270deg, #FF6800 -32.47%, #F73894 113.65%) !important;
+
+  /* background: linear-gradient(90deg, #4f46e5, #3730a3); */
   color: white;
   border: none;
-  box-shadow: 0 3px 10px rgba(79, 70, 229, 0.25);
+  box-shadow: 0 3px 10px rgba(79, 70, 229, 0.4);
 }
 
 .continueBtn:hover {
   transform: scale(1.02);
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.55);
 }
 
 /* Footer */
 .footer {
   text-align: center;
   font-size: 0.75rem;
-  color: #888;
+  color: #9ca3af;
   margin-top: 8px;
 }

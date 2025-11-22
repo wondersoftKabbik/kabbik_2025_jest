@@ -97,4 +97,8 @@
     .slider_icons{
         display: none;
     }
+    .slider_box{
+      margin: 0;
+      padding: 10px 0px 0;
+    }
   }

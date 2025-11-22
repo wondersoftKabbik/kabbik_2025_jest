@@ -11,7 +11,7 @@ const EpisodeList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBoo
 
   return (
     <div>
-        <div className="space-y-2.5 max-h-[150vh] overflow-y-auto px-2">
+        <div className="space-y-2.5 tiny_scroll_bar2 max-h-[124vh] overflow-y-auto px-2">
           {book?.episodes?.map((episode,i) => (
             <div
               onClick={()=>togglePlay(i,episode.id)}

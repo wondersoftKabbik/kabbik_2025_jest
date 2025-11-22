@@ -4,6 +4,7 @@ import { toast, ToastPosition } from 'react-toastify';
 import { Edigit, TShareContent, TtoastType, TtranslatorNums } from './commonTypes';
 import { apiEndPoints } from '../utils/apiEndpoints';
 import { TBooks } from '@/pageTypes/home.types';
+import Cookies from 'js-cookie';
 // @ts-ignore
 // import ColorThief  from 'color-thief-browser';
 
@@ -72,6 +73,7 @@ export async function createBlPayment(
           userId: userId,
           packageId: selectedPack.subscriptionItemId,
           fromRenewal: selectedPack.isOnetime === 1 ? 0 : 1,
+          ...getCookiesAsObject()
         }),
       });
 
@@ -158,38 +160,7 @@ export function normalizeMsisdn(input: string): string | null {
   return null;
 }
 
-export function getDominantColor(imageUrl: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'Anonymous';
-    img.src = imageUrl;
 
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d");
-      if (!context) {
-        reject("Canvas not supported");
-        return;
-      }
-
-      canvas.width = img.width;
-      canvas.height = img.height;
-      context.drawImage(img, 0, 0);
-
-      const { data } = context.getImageData(0, 0, canvas.width, canvas.height);
-
-      const colorCount: Record<string, number> = {};
-      for (let i = 0; i < data.length; i += 4) {
-        const key = `${data[i]},${data[i + 1]},${data[i + 2]}`;
-        colorCount[key] = (colorCount[key] || 0) + 1;
-      }
-
-      const dominantColor = Object.entries(colorCount).sort((a, b) => b[1] - a[1])[0][0];
-      resolve(`rgb(${dominantColor})`);
-    };
-    img.onerror = reject;
-  });
-}
 
 
 export async function verifyConsent(
@@ -594,4 +565,101 @@ export function timeAgo(dateString:string) {
 
   const years = Math.floor(months / 12);
   return years === 1 ? "1 year ago" : `${years} years ago`;
+}
+
+
+export function setCookiesFromParams(params: { clickId?: string; pubId?: string }) {
+  const { clickId, pubId } = params;
+
+  // 20 minutes in days (since js-cookie uses days)
+  const expiresInDays = 20 / (24 * 60);
+
+  if (clickId) {
+    // Remove old value first (optional but clean)
+    // Cookies.remove("clickId", { path: "/" });
+    // Set new one
+    Cookies.set("clickId", clickId, { expires: expiresInDays, path: "/" });
+  }
+
+  if (pubId) {
+    // Cookies.remove("pubId", { path: "/" });
+    Cookies.set("pubId", pubId, { expires: expiresInDays, path: "/" });
+  }
+}
+
+
+
+export function getCookiesAsObject() {
+  const clickId = Cookies.get("clickId");
+  const pubId = Cookies.get("pubId");
+
+  // If neither exists → return empty object
+  if (!clickId && !pubId) return {};
+
+  // Return only existing cookies
+  const cookieData: Record<string, string | number> = {};
+
+  if (clickId) cookieData.clickId = clickId;
+  if (pubId) cookieData.pubId = isNaN(Number(pubId)) ? pubId : Number(pubId);
+  console.log(cookieData,"cookieData")
+  return cookieData;
+}
+
+
+export async function getDominantColor(imageUrl: string, opacityPercent: number = 100) {
+  return await new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      if (!ctx) return reject("Canvas not supported");
+
+      ctx.drawImage(img, 0, 0);
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+      let r = 0, g = 0, b = 0;
+      let count = 0;
+
+      // Sample every 10 pixels for performance
+      for (let i = 0; i < imageData.length; i += 40) {
+        r += imageData[i];
+        g += imageData[i + 1];
+        b += imageData[i + 2];
+        count++;
+      }
+
+      r = Math.round(r / count);
+      g = Math.round(g / count);
+      b = Math.round(b / count);
+
+      // Convert percentage → decimal (0–1)
+      let opacity = Math.min(Math.max(opacityPercent / 100, 0), 1);
+
+      resolve(`rgba(${r}, ${g}, ${b}, ${opacity})`);
+    };
+
+    img.onerror = reject;
+
+    img.src = imageUrl;
+  });
+}
+
+
+export function formatHM(totalMinutes: number): string {
+  if (totalMinutes < 0) totalMinutes = 0;
+
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  if (hours === 0) return `${minutes?.toFixed(0)}m`;       // only minutes
+  if (minutes === 0) return `${hours?.toFixed(0)}h`;      // only hours
+
+  return `${hours}h ${minutes?.toFixed()}m`;             // both
 }

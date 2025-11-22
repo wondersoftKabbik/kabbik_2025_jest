@@ -473,8 +473,8 @@ article {
   background-color:  #FFFFFF14;
 }
 .bg_water:hover{
-  background: linear-gradient(270deg, #BC0974 -32.47%, #50226A 113.65%);
-
+  /* background: linear-gradient(270deg, #BC0974 -32.47%, #50226A 113.65%); */
+  background: linear-gradient(270deg, #F73894 -32.47%, #68233A 113.65%);
 }
 
 .tiny_scroll_bar ::-webkit-scrollbar {

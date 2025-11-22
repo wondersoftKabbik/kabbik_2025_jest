@@ -32,7 +32,7 @@ const BigBanners = () => {
               nextEl: nextRef.current,
             }}
             autoplay={{
-              delay: 7000, // 3 seconds
+              delay: 70000, // 3 seconds
               disableOnInteraction: false, // keeps autoplay even after user interaction
             }}
             breakpoints={{
@@ -69,8 +69,8 @@ const BigBanners = () => {
                         >
                         <Link href={`/${item?.id}`}>
                             <div className='w-full  '>
-                                <figure className='max-w-[100%] max-h-[100%]'>
-                                    <img className='max-w-[100%] max-h-[100%]' src={item.img}/>
+                                <figure className='max-w-[100%] max-xs:overflow-x-hidden  max-h-[100%]'>
+                                    <img className=' object-cover object-center max-w-[100%] max-xs:h-[175px] xs:max-h-[100%]' src={item.img}/>
                                 </figure>
                             </div>
                         </Link>

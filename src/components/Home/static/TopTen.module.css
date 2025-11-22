@@ -135,7 +135,7 @@
 @media only screen and (max-width: 768px) {
     .container{
         margin: 20px auto;
-        max-width: 100%;
+        max-width: 97%;
     }
     .heading{
         font-weight: 600;

@@ -28,6 +28,7 @@ export const apiEndPoints = {
   verifyOtp: `${BASE_URL}/v1/auth/otp/verify2`,
   loginWithPassword:`${BASE_URL}/v1/auth/login-password`,
   loginApi: `${BASE_URL}/v2/auth/login`,
+  loginApi1: `${BASE_URL}/v1/auth/login`,
   setPassword:`${BASE_URL}/v1/auth/set-password`,
   addReview: `${BASE_URL}/v2/audiobooks/`,
   favPostApi: `${BASE_URL}/v1/favs`,
@@ -119,6 +120,8 @@ export const apiEndPoints = {
   get_total_earn:`${BASE_URL}/v4/refer/get-user-earning`,
   // ?userId=$userId'
   // top listners
-  leaderboard_top_listners:`https://api.kabbik.com/v1/kabbikanalytics/top-listner-leaderBoard`
+  leaderboard_top_listners:`https://api.kabbik.com/v1/kabbikanalytics/top-listner-leaderBoard`,
   // ?startDate=2025-11-01&endDate=2025-11-08&user_id=1649587
+    affliate:`${BASE_URL}/v4/affiliate/redirect_to_aff_target`,
+    bookPromoCode:`${BASE_URL}/v4/home/verify_rent_promocode`
 };

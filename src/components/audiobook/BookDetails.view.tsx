@@ -14,6 +14,7 @@ import {
   postEpisodePlayCountApi,
   postFavoritesApi,
   postReview,
+  promocodeHandlerForBook,
   userProfile,
 } from "@/utils/apiServices";
 
@@ -22,10 +23,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PageProps, UserProfileInfo } from "./static/audiobook.type";
 import {  BookIcon, ChevronRight, Clock, ExpandIcon, Headphones, X } from "lucide-react";
-import {  convertToBanglaDigits, GetFloatNum, handleShare, scrollToTop, textSlice } from "@/helpers/commonFunction";
+import {  convertToBanglaDigits, formatHM, getDominantColor, GetFloatNum, handleShare, scrollToTop, textSlice } from "@/helpers/commonFunction";
 import LoveIcon from "@/svgs/LoveIcon";
 import LinkIcon from "@/svgs/LinkIcon.svg";
 // import CommonModal from "../ui/CommonModal/CommonModal.view";
@@ -49,6 +50,8 @@ import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
 import { siteConfig } from "@/config/config";
 import CityTouchPayment from "../CityTouchPayment/CityTouchPayment.view";
 import PlayIcon from "@/svgs/PlayIcon.svg";
+import Biography from "./BiographyModal.view";
+import DottedPlayer from "@/svgs/DottedPlayer.svg";
 // import SleeperTimer from "./SleeperTime.view";
 // import PaymentOptions from "../Subscription/PaymentOptions.view";
 
@@ -126,7 +129,7 @@ const AudiobookComponent = ({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isFavorite,setIsFavorite]=useState(audioBookDetailsData?.is_favorite??false);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const reviewData = reviewDetailsData.data;
+  const reviewData = reviewDetailsData?.data;
   const [expand,setExpand] = useState(false);
   const continueEpisodeId = episodeId;
   const continueRunningTime = runningTime;
@@ -174,6 +177,7 @@ const AudiobookComponent = ({
   const [epList, setEpList]: any = useState(audioBookDetailsData?.episodes);
   const [currentPlay, setCurrentPlay]: any = useState({});
   const [index, setIndex] = useState(-1);
+  // const 
   const [isPlaying, setisPlaying] = useState(false);
   const [elapsed, setElapsed]: any = useState();
   const [duration, setDuration]: any = useState(0);
@@ -182,7 +186,14 @@ const AudiobookComponent = ({
   const [isLogin, setIsLogin]: any = useState();
   const [isFree, setIsFree] = useState();
   const dispatch=useAppDispatch();
+  const searchParams = useSearchParams();
   const [isCityTouch,SetIsCityTouch]=useState(false);
+  const affId = searchParams.get("affId");
+  const affProductId = searchParams.get("productId");
+  const affProductType = searchParams.get("productType");
+  let [affIdValue,setAffIdValue]=useState<string|null>(null);
+  const [reducedPrice,setReducedPrice]=useState(0);
+  const [dominantColor,setDominantColor]=useState<string|null>(null);
 
   const isNextAllowed =
     index < epList?.length - 1 &&
@@ -595,7 +606,7 @@ const AudiobookComponent = ({
       amount: audioBookDetailsData.price,
       audioBookId: audioBookDetailsData.id,
       type: "Audiobook",
-      promo_code: "",
+      promo_code: affIdValue??"",
       productId: audioBookDetailsData.id,
       source: "Kabbik",
       platform: "web",
@@ -660,9 +671,29 @@ const AudiobookComponent = ({
 
   }
 
-  useEffect(()=>{
-    console.log(audioBookDetailsData,"audio book data")
-  },[])
+  useEffect(() => {
+    Cookies.remove('affId')
+    // alert(affId);
+    
+    if (affId) {
+      const expiresIn2Min = new Date(new Date().getTime() + 2 * 60 * 1000);
+      Cookies.set("affId", affId, { expires: expiresIn2Min });
+      Cookies.set("affProductId", affProductId??'', { expires: expiresIn2Min });
+      Cookies.set("affProductType", affProductType??'', { expires: expiresIn2Min });
+    }
+    let affIdFromCookies = Cookies.get('affId')
+    // console.log(affIdValue,affId,affProductType==='book','affs')
+    setAffIdValue(affId??affIdFromCookies??null);
+    if(affProductType==="book"){
+      getDiscountedData(affId??affIdFromCookies??null)
+    }
+  }, [affId]);
+
+  const getDiscountedData=async(affIdValue:string|null)=>{
+    let result = await promocodeHandlerForBook(audioBookDetailsData.id,affIdValue??'',audioBookDetailsData?.price)
+    // console.log(affIdValue,result,'affs2',result.data?.reduce_price)
+    setReducedPrice(Number(result?.data?.reduce_price)??0)
+  };
 
   const handleFavourite=async()=>{
      if(!user?.id || user?.id===Number(siteConfig?.defaultUserId)){
@@ -689,11 +720,23 @@ const AudiobookComponent = ({
     }
   }
 
+  const takeDominantColor=async()=>{
+    // alert("dkkjfjdfff")
+    let color = await getDominantColor(audioBookDetailsData?.thumb_path,10);
+    setDominantColor(color as string)
+    // alert(color)
+  }
+
+  useEffect(()=>{
+    console.log(audioBookDetailsData,"dataaaaaaa")
+    takeDominantColor();
+  },[])
+
 
  
   return (
     <>
-      <div className="w-full h-[100px]  bg-[#0E1D3F] mt-[-100px]"></div>
+      <div className="w-full  h-[100px]  bg-[#0E1D3F] mt-[-100px]"></div>
       <ToastContainer />
       <div 
           className={`absolute  left-0 w-full  ${styles.audioBookBg}`}
@@ -712,10 +755,10 @@ const AudiobookComponent = ({
         {/* <div className="h-40 absolute bottom-[-80px] z-2 w-full blur_gradient opacity-90"></div> */}
         <div className="circular_gradient left-0 bottom-[-10%] w-[35vw] h-[35vw] absolute rounded-[50%] "></div>
 
-        <div className=" flex max-md:mx-auto mr-4 items-center z-[5] justify-center p-1">
+        <div className=" flex max-md:mx-auto mr-4 items-center z-[1] justify-center p-1">
           <div className="w-full max-w-[500px] mx-auto">
             {/* Main Card Container */}
-            <div className="bg-[#E6F7FA] rounded-[20px] md2:rounded-[40px]  overflow-hidden">
+            <div className={`bg-[#E6F7FA] rounded-[20px] md2:rounded-[40px]  overflow-hidden`}>
               {/* Book Cover Section */}
               <div className="relative m-3 md1:m-7 mb-0">
                 <div 
@@ -727,16 +770,16 @@ const AudiobookComponent = ({
                   }}
                 >
                   {/* Top Icons */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-[#00000002] z-10 ">
+                  <div className="absolute top-0 left-0 w-full h-full bg-[#00000002] z-[2] ">
 
                   </div>
-                  <div className=" absolute top-4 right-4 flex items-center gap-2 cursor-pointer z-[100]">
+                  <div className=" absolute top-4 right-4 flex items-center gap-2 cursor-pointer z-[4]">
                     <div className={`w-8 h-8 ${isFavorite?"bg-white/70":"bg-red-500/50"} rounded-full flex items-center justify-center`}>
                       <span onClick={handleFavourite} className={`w-4 h-4 text-white fill-white`} >
                         <LoveIcon fill={isFavorite?'#D14874':'white'}/>
                       </span>
                     </div>
-                    <div onClick={handleShare} className="w-8 h-8 0/60 rounded-full flex items-center justify-center">
+                    <div onClick={handleShare} className="w-8 h-8 0/60 rounded-full bg-gray-500/50 flex items-center justify-center">
                       <span className="w-4 h-4 text-white inline-block" >
                         <ShareIcon />
                       </span>
@@ -744,7 +787,7 @@ const AudiobookComponent = ({
                   </div>
 
                   {/* Book Title Overlay */}
-                  <div className="absolute bg_opacity_gradient bottom-0 left-0 right-0 p-4  rounded-b-xl z-[200]">
+                  <div className="absolute bg_opacity_gradient bottom-0 left-0 right-0 p-4  rounded-b-xl z-[5]">
                     <div className="text-center">
                       <h1 className=" text-[#f9f9f9] text-clg font-bold leading-[34px] mb-1">
                         {audioBookDetailsData?.name}
@@ -757,17 +800,17 @@ const AudiobookComponent = ({
                 </div>
               </div>
 
-              <div className="bg_gradient_bg rounded-t-[32px] p-3  md2:p-9">
-                <div className="w-full max-w-md">
+              <div  className={`bg_gradient_bg rounded-t-[32px] p-3  md2:p-9`}>
+                <div className="w-full">
                   <div className=" ">
                     {/* Stats Grid */}
-                    <div className="grid grid-cols-3 gap-6 mb-8">
+                    <div className="flex justify-between gap-6 mb-8">
                       {/* Listens */}
                       <div className="flex  items-center ">
                         <div className="w-5 h-5  rounded-full flex items-center justify-center">
                           <Headphones className="w-5 h-5 text-gray-700" strokeWidth={2} />
                         </div>
-                        <span className="text-cn mt-0 ml-1 font-medium text-gray-900">92k listens</span>
+                        <span className="text-cs sm:text-cn mt-0 ml-1 font-medium text-gray-900">{(audioBookDetailsData?.play_count/1000).toFixed()}k listens</span>
                         {/* <span className="text-sm text-gray-500">listens</span> */}
                       </div>
 
@@ -776,7 +819,7 @@ const AudiobookComponent = ({
                         <div className="w-5 h-5  rounded-full flex items-center justify-center">
                           <Clock className="w-5 h-5 text-gray-700" strokeWidth={2} />
                         </div>
-                        <span className="text-cn ml-1 font-medium mt-0 pt-0 text-gray-900">15h 10m</span>
+                        <span className="text-cs md:text-cn ml-1 font-medium mt-0 pt-0 text-gray-900">{formatHM(audioBookDetailsData?.episodes?.reduce((a,c)=>a+c?.duration,0))}</span>
                         {/* <span className="text-sm text-gray-500">duration</span> */}
                       </div>
 
@@ -785,15 +828,21 @@ const AudiobookComponent = ({
                         <div className="w-5 h-5  rounded-full flex items-center justify-center">
                           <Star  />
                         </div>
-                        <span className="text-cn ml-1 font-medium mt-0 pt-0 text-gray-900">4.8</span>
+                        <span className="text-cs md:text-cn ml-1 font-medium mt-0 pt-0 text-gray-900">{audioBookDetailsData?.rating?.toFixed(1)}</span>
                         {/* <span className="text-sm text-gray-500">rating</span> */}
                       </div>
                     </div>
 
                     {/* Action Button */}
-                    <button className="w-full mb-4  text-gray font-semibold py-4 px-6 rounded-full  transition-colors duration-200 flex items-center justify-center space-x-2 shadow-md">
+                    <button onClick={()=>{
+                        if(hasAccess(0)){
+                          togglePlayList(0,audiobookData?.episodes[0]?.id)
+                        }else{
+                          setShowPayModal(true)
+                        }
+                      }} className="w-full mb-4  text-gray font-semibold py-4 px-6 rounded-full  transition-colors duration-200 flex items-center justify-center space-x-2 shadow-md">
                       <span className="w-5 h-5 inline-block">
-                        <PlayIcon   />
+                        <DottedPlayer   />
                       </span>
                       <span>এখন শুনুন</span>
                     </button>
@@ -811,16 +860,17 @@ const AudiobookComponent = ({
                   </div>
 
                   {/* Synopsis */}
-                  <div>
+                  <div className="tiny_scroll_bar2">
                     <h3 className="text-black text-cn2 font-bold mb-2">সংক্ষিপ্ত জীবনী:</h3>
                     <div 
-                      dangerouslySetInnerHTML={{ __html: audiobookData?.description??'' }}
+                      // dangerouslySetInnerHTML={{ __html: audiobookData?.description??'' }}
                       onClick={()=>setExpand(!expand)}
                       className="text-black text-cn cursor-pointer leading-relaxed max-h-56 overflow-x-hidden overflow-y-auto"
                     >
-                      {/* { expand? audiobookData?.description :
-                        textSlice( audiobookData?.description,160, true,"এই বইটির সংক্ষিপ্ত বিবরণ এখানে দেওয়া হবে।") 
-                      } */}
+                      { 
+                      // expand? audiobookData?.description :
+                        textSlice( audiobookData?.description,140, true,"এই বইটির সংক্ষিপ্ত বিবরণ এখানে দেওয়া হবে।") 
+                      }
                     </div>
                   </div>
                 </div>
@@ -828,7 +878,7 @@ const AudiobookComponent = ({
             </div>
           </div>
         </div>
-        <div className=" z-[5] w-full md:w-[50%] xl:w-[44%] py-4 md:py-8">
+        <div className=" z-[1] w-full md:w-[50%] xl:w-[44%] py-4 md:py-8">
           <div className="max-w-[600px] w-[100%] mx-auto px-0 space-y-8 ">
             {/* Header Section */}
             <div className="bg-gradient-to-r from-[#881D69] to-[#D34974] rounded-xl p-3 md:p-4 text-white">
@@ -865,7 +915,7 @@ const AudiobookComponent = ({
             </div>
 
             {/* Navigation Tabs */}
-            <div className="flex w-full">
+            <div className="flex tiny_scroll_bar2 w-full">
               <Tabs tabs={[
                 { name: 'এপিসোড', 
                   component: 
@@ -888,7 +938,7 @@ const AudiobookComponent = ({
                                 castCrewData={castCrewData}
                             /> 
                 },
-                { name: 'রিভিউ', component: <Review handleReveiw={()=>setShowAddReviewModal(true)} reviews={reviewDetailsData.data}/> },
+                { name: 'রিভিউ', component: <Review handleReveiw={()=>setShowAddReviewModal(true)} reviews={reviewDetailsData?.data}/> },
               ]} />
             </div>
 
@@ -923,7 +973,7 @@ const AudiobookComponent = ({
           />
         </div>
       
-      <div className={showMiniPlayer?"fixed bottom-0 left-0 min-w-[100vw] right-0 h-[210px] z-[100] bg-bg shadow-lg  ":'hidden'}>
+      <div className={showMiniPlayer?"fixed bottom-0 left-0 min-w-[100vw] right-0 h-[210px] z-[5] bg-bg shadow-lg  ":'hidden'}>
         <div className={'w-full'}>
           <div className={container('1300px')}>
             <div className="absolute top-0 right-5 p-2 cursor-pointer" >
@@ -1015,7 +1065,7 @@ const AudiobookComponent = ({
             {/* Subscribe */}
             {true && (
               <div onClick={() => router.push("/subscribe")} className="flex flex-col items-center text-center flex-1">
-                <button className="px-6 py-2 bg-white text-black rounded-full shadow hover:bg-gray-100 transition">
+                <button className="px-6 py-2 bg-white text-white rounded-full shadow gradient_subscribe transition">
                   Subscribe
                 </button>
                 <p className="text-xs text-gray-200 mt-2">
@@ -1052,7 +1102,7 @@ const AudiobookComponent = ({
         isOpen={showPaymentOptions}
         onClose={()=>setShowPaymentOptions(false)}
       >
-        <div className={`${styles.modalBody} bg-navyblue modal-body text-center max-h-[96vh] overflow-y-scroll`}>
+        <div className={`${styles.modalBody}  bg-navyblue modal-body text-center max-h-[96vh] overflow-y-scroll`}>
           {isCityTouch?    
           <CityTouchPayment
               options={[]}
@@ -1075,7 +1125,7 @@ const AudiobookComponent = ({
               vat: option.vat,
             }))}
             callback={makePayment}
-            price={audioBookDetailsData?.price}
+            price={audioBookDetailsData?.price-(Number(reducedPrice))}
           />}
         </div>
       </CommonModal>
@@ -1084,6 +1134,12 @@ const AudiobookComponent = ({
         onClose={()=>{setShowAddReviewModal(false)}}
       >
         <AddReviewForm onClose={()=>{setShowAddReviewModal(false)}}  book={audioBookDetailsData}/>
+      </CommonModal>
+      <CommonModal
+        isOpen={expand}
+        onClose={()=>{setExpand(false)}}
+      >
+        <Biography heading="সংক্ষিপ্ত জীবনী:" text={audiobookData?.description} />
       </CommonModal>
     </>
   );

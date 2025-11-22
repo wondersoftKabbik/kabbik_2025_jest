@@ -21,7 +21,7 @@ export default function Review({reviews,handleReveiw}:{reviews:RatingReviewInfo[
         </div>
 
         {/* Review List */}
-        <div className="space-y-4  max-h-[160vh] pr-3 overflow-y-auto">
+        <div className="space-y-4  max-h-[106vh] pr-3 overflow-y-auto">
           {reviews.map((review,index) => (
             <div
                 key={index}

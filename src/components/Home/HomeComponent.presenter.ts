@@ -14,6 +14,7 @@ const useHomeComponent = ({homeData}:{homeData:HomeInfo}) => {
     const [initialPlayer3,setInitialPlayer3]=useState(false);
     const StaticTexts=useAppSelector((store)=>store.staticTexts?.data)
     const userPreference=useAppSelector((store)=>store.userPreference?.userPreferenceData)
+    const user=useAppSelector((store)=>store?.user?.userData)
     const categories=useAppSelector(store=>store.categories?.CategoriesData)
     const [userPreferdCats,setUserPreferdCats]=useState<string[]>([])
     const [topVideo,setTopVideo]=useState({video:StaticTexts?.home_video?.videos[0],index:0});
@@ -118,7 +119,7 @@ const useHomeComponent = ({homeData}:{homeData:HomeInfo}) => {
     }
 
    
-  return {player,StaticTexts,setPlayer,videoRef,initialPlayer,setInitialPlayer,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2,setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats,topVideo,middleVideo,lastVideo,goToNext}
+  return {player,StaticTexts,setPlayer,videoRef,initialPlayer,setInitialPlayer,togglePlay,handleInitialPlay,setPlayer2,videoRef2,initialPlayer2,setInitialPlayer2,togglePlay2,handleInitialPlay2,player2,setPlayer3,videoRef3,initialPlayer3,setInitialPlayer3,togglePlay3,handleInitialPlay3,player3,userPreferdCats,topVideo,middleVideo,lastVideo,goToNext,user}
 }
 
 export default useHomeComponent

@@ -37,7 +37,7 @@ export function BookCard({ title, author, description, imageUrl, slug }: BookCar
       </p>
       
       {/* <Link  className="block"> */}
-        <button onClick={()=>{setShowFull(!showFull)}} className="w-full btn-gradient-3 text-white rounded-[8px] p-3 text-lg">
+        <button onClick={()=>{setShowFull(!showFull)}} className="w-full btn-gradient-2 text-white rounded-[8px] p-3 text-lg">
           {showFull?"সংক্ষেপে দেখুন":"বিস্তারিত দেখুন"}
         </button>
       {/* </Link> */}

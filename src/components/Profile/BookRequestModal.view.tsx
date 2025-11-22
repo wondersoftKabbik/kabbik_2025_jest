@@ -91,7 +91,7 @@ const BookInfoForm = ({onclose}:{onclose:()=>void}) => {
   };
 
   return (
-    <div className="w-full max-h-[95vh] overflow-y-auto profile_btn_gradients max-w-md mx-auto px-8 pb-4 pt-6 rounded-2xl shadow-2xl text-white relative">
+    <div className="w-full  max-h-[95vh] overflow-y-auto profile_btn_gradients max-w-md mx-auto px-8 pb-4 pt-7 mt-4 rounded-2xl shadow-2xl text-white relative">
       {/* Header */}
       <h2 className="text-2xl font-semibold text-center mb-8 text-white drop-shadow-md">
         📚 বই সম্পর্কিত তথ্য দিন

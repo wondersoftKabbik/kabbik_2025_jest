@@ -25,7 +25,7 @@ const PlayList = ({book,hasAccess,togglePlay,index,isPlaying}:{book:TAudioBookDe
                     <div className="w-8 z-50 absolute top-[10px] left-[10px] h-8 md:w-10 md:h-10" onClick={()=>togglePlay(i,episode.id)}>
                       {hasAccess(episode.id) ? (
                         isPlaying && index === i ? <PauseIcon  /> : <><WhitePlayer  /></>
-                      ) : <LockIcon />}
+                      ) : <LockIcon  color='white' />}
                     </div>
                   <div>
                     <h3 className="text-cs md:text-cn text-white font-normal min-w-0 leading-tight">

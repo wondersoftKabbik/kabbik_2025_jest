@@ -29,6 +29,7 @@ import PlayerIcon from '@/svgs/PlayerIcon';
 import ExpandableIcon from '@/svgs/ExpandableIcon';
 import { paths } from '@/utils/Paths';
 import { siteConfig } from '@/config/config';
+import { convertToBanglaDigits } from '@/helpers/commonFunction';
 // import DesktopCrown from '../../svgs/DesktopCrown';
 
 type tProps={
@@ -148,7 +149,7 @@ const CommonCategory = ({categoryName,link,data,isPopular}:tProps) => {
                                             {item?.premium ?<span><PremiumCrownIcon/></span>:''}
                                         </div>
                                         {item.for_rent?(
-                                            <div className={styles.rent}>রেন্ট tk. {item?.price}</div>
+                                            <div className={styles.rent}>রেন্ট TK. {convertToBanglaDigits(item?.price)}</div>
                                         ):''}
                                         {/* <picture className={podcast?styles.podcast_pic:styles.picture}>
                                             

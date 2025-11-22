@@ -1,4 +1,6 @@
 "use client";
+import { ReduxShowLoginModal } from "@/store/slicers/LoginSlice";
+import { useAppDispatch } from "@/store/store";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,17 +26,19 @@ export default function PaymentStatusComponent({
   const searchParams = useSearchParams();
   const [showLoginModal,setShowLoginModal]=useState(false);
   const phone = searchParams.get('phone'); 
+  const statusId=searchParams.get('status');
     const referenceId = searchParams.get('referenceId');
     const message = searchParams.get('message');
+    const dispatch=useAppDispatch();
 
 
   useEffect(()=>{
     // alert(status)
     let token = Cookies.get("token")
-    if(token==='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjgyMCIsInJvbGUiOjEsImlhdCI6MTY2NTc0NjIyNX0.dSY47sipaGTI_OtsysFWw_kaKZKWHWRtp4vklstVgVc'){
+    if(!token || token==='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjgyMCIsInJvbGUiOjEsImlhdCI6MTY2NTc0NjIyNX0.dSY47sipaGTI_OtsysFWw_kaKZKWHWRtp4vklstVgVc' ){
       if(phone || Cookies.get('msisdn')){
         // alert(phone??'' + Cookies.get('msisdn'))
-        setTimeout(()=>{setShowLoginModal(true)},1500)
+        setTimeout(()=>{dispatch(ReduxShowLoginModal(phone || Cookies.get('msisdn')));},1500)
       }else{
         window.location.href =(`http://api.kabbik.com/v3/bkash/bkash-redirect?reference=${referenceId}`)
       }
@@ -47,7 +51,7 @@ export default function PaymentStatusComponent({
         <div className="w-full max-w-md mx-auto mt-5">
         <div className="mt-5">
             <div className="text-center flex justify-center items-center mx-auto mb-2">
-            {status?.toUpperCase() === "FAILED" ? (
+            {statusId?.toUpperCase() === "FAILED" ? (
                 <Image
                 src="https://kabbik-space.sgp1.cdn.digitaloceanspaces.com/kabbik-images/failed_logo.gif"
                 height={200}
@@ -66,7 +70,7 @@ export default function PaymentStatusComponent({
 
             <div>
             <p className="text-center mb-1 font-poppins text-white text-xl">
-                {status?.toUpperCase() === "FAILED" ? "Failed" : "Success"} Transaction
+                {statusId?.toUpperCase() === "FAILED" ? "Failed" : "Success"} Transaction
             </p>
             </div>
 
@@ -76,7 +80,7 @@ export default function PaymentStatusComponent({
             )}
 
             <p className="font-poppins">
-                Status: {status?.toUpperCase() === "FAILED" ? "FAILED" : "SUCCESS"}
+                Status: {statusId?.toUpperCase() === "FAILED" ? "FAILED" : "SUCCESS"}
             </p>
 
             {message && <p className="font-poppins">Message: {message}</p>}
